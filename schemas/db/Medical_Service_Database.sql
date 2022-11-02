@@ -84,6 +84,7 @@ CREATE TABLE `visits` (
   `status` enum('completed','pending','canceled') NOT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL,
+  `duration` int(5) NOT NULL,
   `client_id` int(11) NOT NULL,
   `doctor_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -102,8 +103,7 @@ ALTER TABLE `clinics`
 -- Indeksy dla tabeli `doctors`
 --
 ALTER TABLE `doctors`
-  ADD PRIMARY KEY (`doctor_id`,`clinic_id`),
-  ADD KEY `clinic_ID` (`clinic_id`);
+  ADD PRIMARY KEY (`doctor_id`,`clinic_id`);
 
 --
 -- Indeksy dla tabeli `expertise`
@@ -121,9 +121,7 @@ ALTER TABLE `users`
 -- Indeksy dla tabeli `visits`
 --
 ALTER TABLE `visits`
-  ADD PRIMARY KEY (`date`,`time`,`client_id`,`doctor_id`),
-  ADD KEY `client_ID` (`client_id`),
-  ADD KEY `doctor_ID` (`doctor_id`);
+  ADD PRIMARY KEY (`date`,`time`,`client_id`,`doctor_id`);
 
 --
 -- AUTO_INCREMENT dla zrzuconych tabel
@@ -149,22 +147,21 @@ ALTER TABLE `users`
 -- Ograniczenia dla tabeli `doctors`
 --
 ALTER TABLE `doctors`
-  ADD CONSTRAINT `doctors_ibfk_1` FOREIGN KEY (`clinic_ID`) REFERENCES `clinics` (`clinic_ID`),
-  ADD CONSTRAINT `doctors_ibfk_3` FOREIGN KEY (`doctor_ID`) REFERENCES `users` (`user_ID`);
+  ADD CONSTRAINT `doctors_ibfk_1` FOREIGN KEY (`clinic_id`) REFERENCES `clinics` (`clinic_id`),
+  ADD CONSTRAINT `doctors_ibfk_3` FOREIGN KEY (`doctor_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Ograniczenia dla tabeli `expertise`
 --
 ALTER TABLE `expertise`
-  ADD CONSTRAINT `expertise_ibfk_1` FOREIGN KEY (`doctor_ID`) REFERENCES `doctors` (`doctor_ID`),
-  ADD CONSTRAINT `expertise_ibfk_2` FOREIGN KEY (`doctor_ID`) REFERENCES `doctors` (`doctor_ID`);
+  ADD CONSTRAINT `expertise_ibfk_1` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`doctor_id`);
 
 --
 -- Ograniczenia dla tabeli `visits`
 --
 ALTER TABLE `visits`
-  ADD CONSTRAINT `visits_ibfk_1` FOREIGN KEY (`client_ID`) REFERENCES `users` (`user_ID`),
-  ADD CONSTRAINT `visits_ibfk_2` FOREIGN KEY (`doctor_ID`) REFERENCES `doctors` (`doctor_ID`);
+  ADD CONSTRAINT `visits_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `users` (`user_id`),
+  ADD CONSTRAINT `visits_ibfk_2` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`doctor_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
