@@ -71,6 +71,7 @@ CREATE TABLE `users` (
   `city` varchar(255) NOT NULL,
   `phone_number` int(9) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `password` int(30) NOT NULL,
   `permissions` enum('admin','moderator','patient','doctor','guest') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
