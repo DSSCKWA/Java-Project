@@ -1,5 +1,7 @@
 package src.users;
 
+import java.util.Objects;
+
 import src.db.client.DBClient;
 import src.db.repository.UserRepository;
 import src.db.tables.UsersTable;
