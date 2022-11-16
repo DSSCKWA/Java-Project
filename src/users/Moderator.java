@@ -1,4 +1,4 @@
 package src.users;
 
-public class Moderator {
+public class Moderator extends User {
 }
