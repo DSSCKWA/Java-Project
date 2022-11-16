@@ -1,4 +1,4 @@
 package src.users;
 
-public class Guest {
+public class Guest extends User{
 }

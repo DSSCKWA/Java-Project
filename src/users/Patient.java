@@ -1,4 +1,7 @@
 package src.users;
 
-public class Patient {
+public class Patient extends User{
+
+
+
 }
