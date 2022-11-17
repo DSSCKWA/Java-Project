@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 31 Paź 2022, 18:22
+-- Czas generowania: 17 Lis 2022, 22:57
 -- Wersja serwera: 10.4.25-MariaDB
 -- Wersja PHP: 8.0.23
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Baza danych: `medical_clinic`
+-- Baza danych: `medical_service`
 --
 CREATE DATABASE IF NOT EXISTS `medical_service` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `medical_service`;
@@ -60,6 +60,20 @@ CREATE TABLE `expertise` (
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `schedule`
+--
+
+CREATE TABLE `schedule` (
+  `doctor_id` int(11) NOT NULL,
+  `clinic_id` int(11) NOT NULL,
+  `day` enum('monday','tuesday','wednsday','thursday','friday','saturday','sunday') NOT NULL,
+  `start_hour` time NOT NULL,
+  `end_hour` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `users`
 --
 
@@ -82,10 +96,11 @@ CREATE TABLE `users` (
 --
 
 CREATE TABLE `visits` (
-  `status` enum('completed','pending','canceled') NOT NULL,
+  `status` enum('completed','pending','canceled','in_progress') NOT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL,
   `duration` int(5) NOT NULL,
+  `rating` int(1) DEFAULT NULL,
   `client_id` int(11) NOT NULL,
   `doctor_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -104,13 +119,21 @@ ALTER TABLE `clinics`
 -- Indeksy dla tabeli `doctors`
 --
 ALTER TABLE `doctors`
-  ADD PRIMARY KEY (`doctor_id`,`clinic_id`);
+  ADD PRIMARY KEY (`doctor_id`,`clinic_id`),
+  ADD KEY `doctors_ibfk_1` (`clinic_id`);
 
 --
 -- Indeksy dla tabeli `expertise`
 --
 ALTER TABLE `expertise`
   ADD PRIMARY KEY (`doctor_id`,`area_of_expertise`);
+
+--
+-- Indeksy dla tabeli `schedule`
+--
+ALTER TABLE `schedule`
+  ADD PRIMARY KEY (`doctor_id`,`clinic_id`,`day`),
+  ADD KEY `clinic_id` (`clinic_id`);
 
 --
 -- Indeksy dla tabeli `users`
@@ -122,7 +145,9 @@ ALTER TABLE `users`
 -- Indeksy dla tabeli `visits`
 --
 ALTER TABLE `visits`
-  ADD PRIMARY KEY (`date`,`time`,`client_id`,`doctor_id`);
+  ADD PRIMARY KEY (`date`,`time`,`client_id`,`doctor_id`),
+  ADD KEY `visits_ibfk_1` (`client_id`),
+  ADD KEY `visits_ibfk_2` (`doctor_id`);
 
 --
 -- AUTO_INCREMENT dla zrzuconych tabel
@@ -156,6 +181,13 @@ ALTER TABLE `doctors`
 --
 ALTER TABLE `expertise`
   ADD CONSTRAINT `expertise_ibfk_1` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`doctor_id`);
+
+--
+-- Ograniczenia dla tabeli `schedule`
+--
+ALTER TABLE `schedule`
+  ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`doctor_id`),
+  ADD CONSTRAINT `schedule_ibfk_2` FOREIGN KEY (`clinic_id`) REFERENCES `clinics` (`clinic_id`);
 
 --
 -- Ograniczenia dla tabeli `visits`
