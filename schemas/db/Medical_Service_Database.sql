@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 17 Lis 2022, 22:57
+-- Czas generowania: 19 Lis 2022, 01:24
 -- Wersja serwera: 10.4.25-MariaDB
 -- Wersja PHP: 8.0.23
 
@@ -85,7 +85,7 @@ CREATE TABLE `users` (
   `city` varchar(255) NOT NULL,
   `phone_number` int(9) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` int(30) NOT NULL,
+  `password` varchar(30) NOT NULL,
   `permissions` enum('admin','moderator','patient','doctor','guest') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
