@@ -5,7 +5,6 @@ import src.users.Patient;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.Objects;
 
 public class Visit {
@@ -15,6 +14,8 @@ public class Visit {
     private int duration;
     private Doctor doctor;
     private Patient patient;
+    private int rating;
+    private Status status;
 
     public LocalDate getDate() {
         return date;
@@ -56,17 +57,35 @@ public class Visit {
         this.duration = duration;
     }
 
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        if (rating < 1)rating = 1;
+        else if (rating > 5) rating = 5;
+        this.rating = rating;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Visit visit = (Visit) o;
-        return Objects.equals(date, visit.date) && duration == visit.duration && time.equals(visit.time) && Objects.equals(doctor, visit.doctor) && Objects.equals(patient, visit.patient);
+        return duration == visit.duration && rating == visit.rating && Objects.equals(date, visit.date) && Objects.equals(time, visit.time) && Objects.equals(doctor, visit.doctor) && Objects.equals(patient, visit.patient) && status == visit.status;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(date, time, duration, doctor, patient);
+        return Objects.hash(date, time, duration, doctor, patient, rating, status);
     }
 
     @Override
