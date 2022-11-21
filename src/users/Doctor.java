@@ -2,37 +2,28 @@ package src.users;
 
 import src.clinic.Clinic;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Doctor extends User{
 
-    private int id;
-    private int expertiseId;
-    private int clinicId;
 
-    @Override
-    public int getId() {
-        return id;
-    }
+    private List<Integer> expertiseId;
+    private List<Integer> clinicId;
 
-    @Override
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getExpertiseId() {
+    public List<Integer> getExpertiseId() {
         return expertiseId;
     }
 
-    public void setExpertiseId(int expertiseId) {
+    public void setExpertiseId(List<Integer> expertiseId) {
         this.expertiseId = expertiseId;
     }
 
-    public int getClinicId() {
+    public List<Integer> getClinicId() {
         return clinicId;
     }
 
-    public void setClinicId(int clinicId) {
+    public void setClinicId(List<Integer> clinicId) {
         this.clinicId = clinicId;
     }
 
@@ -43,25 +34,20 @@ public class Doctor extends User{
         if (!super.equals(o)) return false;
         Doctor doctor = (Doctor) o;
         User user = (User) o;
-        return id == doctor.id && expertiseId == doctor.expertiseId && clinicId == doctor.clinicId && super.equals(user);
+        return expertiseId == doctor.expertiseId && clinicId == doctor.clinicId && super.equals(user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), id, expertiseId, clinicId);
+        return Objects.hash(super.hashCode(), expertiseId, clinicId);
     }
 
     @Override
     public String toString() {
         return "Doctor{" +
-                "id='" + id + '\'' +
-                "firstName='" + getFirstName() + '\'' +
-                ", lastName='" + getLastName() + '\'' +
-                ", email='" + getEmail() + '\'' +
-                ", password='" + getPassword() + '\'' +
-                ", address='" + getAddress() + '\'' +
+                super.toString() +
                 ", expertiseId='" + expertiseId + '\'' +
-                ", clinicId='" + clinicId + '\''+
+                ", clinicId='" + clinicId + '\'' +
                 '}';
     }
 }
