@@ -2,6 +2,7 @@ package src.users;
 
 import src.clinic.Clinic;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,8 +10,7 @@ public class Doctor extends User{
 
 
     private List<Integer> expertiseId;
-    private List<Integer> clinicId;
-
+    private HashSet<Integer> clinicId;
     public List<Integer> getExpertiseId() {
         return expertiseId;
     }
@@ -19,11 +19,11 @@ public class Doctor extends User{
         this.expertiseId = expertiseId;
     }
 
-    public List<Integer> getClinicId() {
+    public HashSet<Integer> getClinicId() {
         return clinicId;
     }
 
-    public void setClinicId(List<Integer> clinicId) {
+    public void setClinicId(HashSet<Integer> clinicId) {
         this.clinicId = clinicId;
     }
 
