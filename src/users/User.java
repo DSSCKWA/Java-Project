@@ -11,6 +11,7 @@ public abstract class User {
     private String password;
     private String address;
     private String city;
+    private int phoneNumber;
     private Permissions permissions;
 
     public int getId() {
@@ -77,6 +78,14 @@ public abstract class User {
         this.address = address;
     }
 
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -89,25 +98,25 @@ public abstract class User {
                 password.equals(user.password) &&
                 address.equals(user.address) &&
                 city.equals(user.city) &&
-                permissions.equals(user.permissions);
+                permissions.equals(user.permissions) &&
+                phoneNumber == user.phoneNumber;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email, password, address, city, permissions);
+        return Objects.hash(id, firstName, lastName, email, password, address, city, phoneNumber, permissions);
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "id='" + id + '\'' +
-                "firstName='" + firstName + '\'' +
+        return "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
                 ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
-                ", permission='" + permissions + '\'' +
-                '}';
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", permission='" + permissions + '\'';
     }
 }
+
