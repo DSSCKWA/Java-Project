@@ -2,6 +2,7 @@ package src.visit;
 
 import src.users.Doctor;
 import src.users.Patient;
+import src.schedule.Schedule;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -16,6 +17,8 @@ public class Visit {
     private Patient patient;
     private int rating;
     private Status status;
+
+    private Schedule schedule;
 
     public LocalDate getDate() {
         return date;
