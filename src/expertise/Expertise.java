@@ -60,8 +60,7 @@ public class Expertise {
     //</editor-fold>
 
     //<editor-fold desc="Database Handling">
-    public void insertToDB(Expertise expertise)
-    {
+    public void insertToDB(Expertise expertise) {
         ExpertiseRepository expertiseRepository = new ExpertiseRepository(dbClientAutoCommit);
         expertiseRepository.insertExpertise(new ExpertiseTable(doctorId, this.expertise));
         System.out.println(expertiseRepository.getAllExpertises());
@@ -70,6 +69,16 @@ public class Expertise {
     public void removeFromDB(Doctor doctor) {
             ExpertiseRepository expertiseRepository = new ExpertiseRepository(dbClientAutoCommit);
             expertiseRepository.deleteExpertise(doctor.getId(),expertise);
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="ToString">
+    @Override
+    public String toString() {
+        return "Expertise{" +
+                "doctorId=" + doctorId +
+                ", expertise='" + expertise + '\'' +
+                '}';
     }
     //</editor-fold>
 }

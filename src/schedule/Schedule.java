@@ -14,14 +14,12 @@ public class Schedule {
     private DayOfWeek day; // jednostki czasu
     private LocalTime startTime;// jednostki czasu
     private LocalTime endTime;// jednostki czasu
-
     private final DBClient dbClientAutoCommit;
 
     //<editor-fold desc="Getters">
     public int getDoctorId() {
         return doctorId;
     }
-
     public int getClinicId() {
         return clinicId;
     }
@@ -106,6 +104,19 @@ public class Schedule {
     public void updateDB() {
         ScheduleRepository scheduleRepository = new ScheduleRepository(dbClientAutoCommit);
         scheduleRepository.updateSchedule(new ScheduleTable(doctorId,clinicId,day,startTime,endTime));
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="ToString">
+    @Override
+    public String toString() {
+        return "Schedule{" +
+                "doctorId=" + doctorId +
+                ", clinicId=" + clinicId +
+                ", day=" + day +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                '}';
     }
     //</editor-fold>
 }

@@ -21,7 +21,7 @@ public class Doctor extends User {
     private HashSet<Clinic> doctorClinics;
     private HashSet<Schedule> doctorSchedules;
     private HashSet<Visit> doctorVisits;
-    private HashSet<Expertise> doctorexpertise;
+    private HashSet<Expertise> doctorExpertise;
     private final DBClient dbClientAutoCommit;
 
     //<editor-fold desc="Getters">
@@ -38,8 +38,8 @@ public class Doctor extends User {
         return doctorVisits;
     }
 
-    public HashSet<Expertise> getDoctorexpertise() {
-        return doctorexpertise;
+    public HashSet<Expertise> getDoctorExpertise() {
+        return doctorExpertise;
     }
 
     public int getId(){return super.getId();}
@@ -60,19 +60,20 @@ public class Doctor extends User {
         this.doctorVisits = doctorVisits;
     }
 
-    public void setDoctorexpertise(HashSet<Expertise> doctorexpertise) {
-        this.doctorexpertise = doctorexpertise;
+    public void setDoctorExpertise(HashSet<Expertise> doctorexpertise) {
+        this.doctorExpertise = doctorexpertise;
     }
 
     //</editor-fold>
 
     //<editor-fold desc="Constructor">
-    public Doctor(String name, String surname, String address, String city, int phoneNumber, String email, String password) {
-        super(name, surname, address, city, phoneNumber, email, password, Permissions.DOCTOR); ///TODO: konstruktor w User
+    public Doctor(String name, String surname, String email, String password,String address, String city, int phoneNumber) {
+        super(name, surname, email, password ,address,city, phoneNumber, Permissions.DOCTOR);
+        super.insertToDB(); // chyba może zostac, co ?
         this.doctorClinics = new HashSet<Clinic>();
         this.doctorSchedules = new HashSet<Schedule>();
         this.doctorVisits = new HashSet<Visit>();
-        this.doctorexpertise = new HashSet<Expertise>();
+        this.doctorExpertise = new HashSet<Expertise>();
         try {
             dbClientAutoCommit = new DBClient(true);
         } catch (SQLException e) {
@@ -88,12 +89,12 @@ public class Doctor extends User {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Doctor doctor = (Doctor) o;
-        return doctorClinics.equals(doctor.doctorClinics) && doctorSchedules.equals(doctor.doctorSchedules) && Objects.equals(doctorVisits, doctor.doctorVisits) && doctorexpertise.equals(doctor.doctorexpertise);
+        return doctorClinics.equals(doctor.doctorClinics) && doctorSchedules.equals(doctor.doctorSchedules) && Objects.equals(doctorVisits, doctor.doctorVisits) && doctorExpertise.equals(doctor.doctorExpertise);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), doctorClinics, doctorSchedules, doctorVisits, doctorexpertise);
+        return Objects.hash(super.hashCode(), doctorClinics, doctorSchedules, doctorVisits, doctorExpertise);
     }
     //</editor-fold>
 
@@ -111,11 +112,24 @@ public class Doctor extends User {
         doctorsRepository.deleteDoctorFromClinic(doctor.getId());
     }
     //</editor-fold>
-public void addClinic(Clinic clinic)
-{
+
+    //<editor-fold desc="ToString">
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "doctorClinics=" + doctorClinics +
+                ", doctorSchedules=" + doctorSchedules +
+                ", doctorVisits=" + doctorVisits +
+                ", doctorExpertise=" + doctorExpertise +
+                '}';
+    }
+    //</editor-fold>
+
+    //<editor-fold desc="Other Methods">
+    public void addClinic(Clinic clinic) {
     doctorClinics.add(clinic);
 }
-public void removeClinic(Clinic clinic) {
+    public void removeClinic(Clinic clinic) {
         boolean exists= false;
         for (Clinic x:doctorClinics) {
             if(x.equals(clinic))
@@ -128,13 +142,8 @@ public void removeClinic(Clinic clinic) {
         {
             doctorClinics.remove(clinic);
         }
-        else {
-            System.out.println("Doctor isn't working add chosen clinic");
-            /// W domyśle nie będzie opcji wybrania kliniki w listy
-        }
     }
-
-public boolean checkIfAvaliable(HashSet<Visit> doctorVisits,LocalDate date,LocalTime startTime,LocalTime endTime) {
+    public boolean checkIfAvaliable(HashSet<Visit> doctorVisits,LocalDate date,LocalTime startTime,LocalTime endTime) {
     boolean ava = true;
     for (Visit x:doctorVisits) {
         if(date==x.getDate() && (((startTime.compareTo(x.getTime().plusMinutes(x.getDuration())))<0 && (startTime.compareTo(x.getTime()))>0)||((endTime.compareTo(x.getTime().plusMinutes(x.getDuration())))<0 && (endTime.compareTo(x.getTime()))>0)))
@@ -145,25 +154,19 @@ public boolean checkIfAvaliable(HashSet<Visit> doctorVisits,LocalDate date,Local
     }
     return ava;
 }
-
-public void cancelVisit(Visit visit)
-{
+    public void cancelVisit(Visit visit) {
     visit.setStatus(Status.CANCELED);
 }
-public void postponeVisit(Visit visit,LocalDate date,LocalTime startTime,LocalTime endTime) {
+    public void postponeVisit(Visit visit,LocalDate date,LocalTime startTime,LocalTime endTime) {
         if(checkIfAvaliable(doctorVisits,date,startTime,endTime)) {
             visit.setDate(date);
             visit.setTime(startTime);
             visit.setDuration((int) endTime.until(startTime, MINUTES));
         }
-        else {
-            System.out.println("Not a valid visit date");
-        }
     }
     public void completeVisit(Visit visit) {
         visit.setStatus(Status.COMPLETED);
     }
-
     public void addToSchedule( int clinicId, DayOfWeek day, LocalTime startTime, LocalTime endTime) {
         boolean exists=false;
         for (Schedule x:doctorSchedules) {
@@ -175,31 +178,24 @@ public void postponeVisit(Visit visit,LocalDate date,LocalTime startTime,LocalTi
         }
         if(!exists)
         {
-            doctorSchedules.add(new Schedule(super.getId(),clinicId,day,startTime,endTime));
-        }
-        else {
-            System.out.println("Not a valid work date");
+            Schedule schedule = new Schedule(this.getId(),clinicId,day,startTime,endTime);
+            schedule.insertToDB();
+            doctorSchedules.add(schedule);
         }
     }
-
-    public void removeFromSchedule( Schedule schedule) {
-        boolean cleared=true;
-        for (Visit x:doctorVisits
-             ) {
-            ///TODO: metoda/nadpisanie konstruktora w Visit przypisująca Schedule do wizyty
-            if(x.getSchedule().equals(schedule) && !x.getStatus().equals(Status.CANCELED) && !x.getStatus().equals(Status.POSTPONED)) {
-                cleared=false;
-            }
-        }
-            if(cleared)
-            {
-                doctorSchedules.remove(schedule);
-            }
-            else{
-                System.out.println("Doctor still has active visits during chosen schedule");
-            }
-        }
-
+//    public void removeFromSchedule( Schedule schedule) {
+//        boolean cleared=true;
+//        for (Visit x:doctorVisits
+//             ) {
+//            ///TODO: metoda/nadpisanie konstruktora w Visit przypisująca Schedule do wizyty
+//            if(x.getSchedule().equals(schedule) && !x.getStatus().equals(Status.CANCELED) && !x.getStatus().equals(Status.POSTPONED)) {
+//                cleared=false;
+//            }
+//        }
+//            if(cleared) {
+//                doctorSchedules.remove(schedule);
+//            }
+//        }
     public void addVisit(Visit visit) {
         if(checkIfAvaliable(doctorVisits,visit.getDate(),visit.getTime(),visit.getTime().plusMinutes(visit.getDuration()))) {
             doctorVisits.add(visit);
@@ -209,12 +205,12 @@ public void postponeVisit(Visit visit,LocalDate date,LocalTime startTime,LocalTi
         }
         doctorVisits.add(visit);
     }
-
     public void addExpertise(Expertise expertise) {
-        doctorexpertise.add(expertise);
+        doctorExpertise.add(expertise);
     }
-
     public void removeExpertise(Expertise expertise) {
-        doctorexpertise.remove(expertise);
+        doctorExpertise.remove(expertise);
     }
+//</editor-fold>
+
 }
