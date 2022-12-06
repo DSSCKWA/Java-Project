@@ -1,5 +1,11 @@
 package src.db.tables;
 
+import src.db.client.DBClient;
+import src.db.repository.ExpertiseRepository;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 public class ExpertiseTable {
     private int doctorId;
     private String areaOfExpertise;
@@ -10,6 +16,17 @@ public class ExpertiseTable {
     }
 
     public ExpertiseTable() {
+    }
+
+    public ArrayList<ExpertiseTable> getExpertiseTableArrayListByDoctorId(int doctorId){
+        ExpertiseRepository db;
+        this.doctorId = doctorId;
+        try{
+            db = new ExpertiseRepository(new DBClient(false));
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        return db.getExpertiseByDoctorId(doctorId);
     }
 
     public int getDoctorId() {
