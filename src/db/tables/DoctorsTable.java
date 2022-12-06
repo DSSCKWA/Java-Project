@@ -1,5 +1,11 @@
 package src.db.tables;
 
+import src.db.client.DBClient;
+import src.db.repository.DoctorsRepository;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 public class DoctorsTable {
     private int doctorId;
     private int clinicId;
@@ -9,7 +15,17 @@ public class DoctorsTable {
         this.clinicId = clinicId;
     }
 
-    public DoctorsTable() {
+    public ArrayList<DoctorsTable> getDoctorsTableArrayByDoctorId(int id){
+        DoctorsRepository db;
+        try {
+            db = new DoctorsRepository(new DBClient(false));
+        }catch (SQLException e){
+            throw  new RuntimeException(e);
+        }
+       return db.getDoctorById(id);
+    }
+
+    public DoctorsTable(){
     }
 
     public int getDoctorId() {

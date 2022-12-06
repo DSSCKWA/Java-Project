@@ -1,6 +1,10 @@
 package src.db.tables;
 
+import src.db.client.DBClient;
+import src.db.repository.UserRepository;
 import src.users.Permissions;
+
+import java.sql.SQLException;
 
 public class UsersTable {
     private int userId;
@@ -34,6 +38,17 @@ public class UsersTable {
         this.email = email;
         this.password = password;
         this.permissions = permissions;
+    }
+
+    public UsersTable getUsersTableByUserId(int userId){
+        UserRepository db;
+        this.userId = userId;
+        try{
+            db = new UserRepository(new DBClient(false));
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        return db.getUserById(userId);
     }
 
     public UsersTable() {
