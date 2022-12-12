@@ -11,7 +11,7 @@ import java.time.LocalTime;
 
 public class TestMail {
     public static void main(String[] args) {
-        Mail mail = new Mail("dssckwabot@gmail.com", "Delta Szwadron Super Cool Komando Wilków Alfa Bot", "mgjtlfviswsnblvc");
+        Mail mail = new Mail("dssckwabot@gmail.com", "Delta Szwadron Super Cool Komando Wilków Alfa Bot", "");
 //        mail.sendEmail("dawidgorski0000@gmail.com", "Test subject", "Test email message");
         LocalDate date = LocalDate.of(2022, 12, 14);
         LocalTime time = LocalTime.of(14, 00);
