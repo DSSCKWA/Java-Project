@@ -3,8 +3,11 @@ package src.db.tables;
 import src.db.client.DBClient;
 import src.db.repository.UserRepository;
 import src.users.Permissions;
+import src.users.User;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Objects;
 
 public class UsersTable {
     private int userId;
@@ -40,12 +43,12 @@ public class UsersTable {
         this.permissions = permissions;
     }
 
-    public UsersTable getUsersTableByUserId(int userId){
+    public UsersTable getUsersTableByUserId(int userId) {
         UserRepository db;
         this.userId = userId;
-        try{
+        try {
             db = new UserRepository(new DBClient(false));
-        }catch(SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return db.getUserById(userId);
@@ -139,5 +142,18 @@ public class UsersTable {
                 ", password='" + password + '\'' +
                 ", permissions=" + permissions +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UsersTable that = (UsersTable) o;
+        return userId == that.userId && phoneNumber == that.phoneNumber && Objects.equals(name, that.name) && Objects.equals(surname, that.surname) && Objects.equals(address, that.address) && Objects.equals(city, that.city) && Objects.equals(email, that.email) && Objects.equals(password, that.password) && permissions == that.permissions;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, name, surname, address, city, phoneNumber, email, password, permissions);
     }
 }

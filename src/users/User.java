@@ -1,53 +1,58 @@
 package src.users;
 
 import src.db.client.DBClient;
-import src.db.repository.ClinicRepository;
-import src.db.repository.ScheduleRepository;
 import src.db.repository.UserRepository;
-import src.db.tables.ScheduleTable;
 import src.db.tables.UsersTable;
 
 import java.sql.SQLException;
 import java.util.Objects;
 
-public abstract class User {
+public class User {
 
     private int id;
-    private String firstName;
-    private String lastName;
+    private String name;
+    private String surname;
     private String email;
     private String password;
     private String address;
     private String city;
     private int phoneNumber;
     private Permissions permissions;
-    private final DBClient dbClientAutoCommit;
+    private transient final DBClient dbClientAutoCommit;
 
     //<editor-fold desc="Getters">
     public int getId() {
         return id;
     }
+
     public String getCity() {
         return city;
     }
+
     public Permissions getPermissions() {
         return permissions;
     }
-    public String getFirstName() {
-        return firstName;
+
+    public String getName() {
+        return name;
     }
-    public String getLastName() {
-        return lastName;
+
+    public String getSurname() {
+        return surname;
     }
+
     public String getEmail() {
         return email;
     }
+
     public String getPassword() {
         return password;
     }
+
     public String getAddress() {
         return address;
     }
+
     public int getPhoneNumber() {
         return phoneNumber;
     }
@@ -57,36 +62,44 @@ public abstract class User {
     public void setId(int id) {
         this.id = id;
     }
+
     public void setCity(String city) {
         this.city = city;
     }
+
     public void setPermissions(Permissions permissions) {
         this.permissions = permissions;
     }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+
+    public void setName(String name) {
+        this.name = name;
     }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
+
     public void setEmail(String email) {
         this.email = email;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
+
     public void setAddress(String address) {
         this.address = address;
     }
+
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
     //</editor-fold>
 
     //<editor-fold desc="Constructors">
-    public User(String firstName, String lastName, String email, String password, String address, String city, int phoneNumber, Permissions permissions) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String name, String lastName, String email, String password, String address, String city, int phoneNumber, Permissions permissions) {
+        this.name = name;
+        this.surname = lastName;
         this.email = email;
         this.password = password;
         this.address = address;
@@ -100,10 +113,10 @@ public abstract class User {
         }
     }
 
-    public User(int id, String firstName, String lastName, String email, String password, String address, String city, int phoneNumber, Permissions permissions) {
+    public User(int id, String name, String lastName, String email, String password, String address, String city, int phoneNumber, Permissions permissions) {
         this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
+        this.surname = lastName;
         this.email = email;
         this.password = password;
         this.address = address;
@@ -126,8 +139,8 @@ public abstract class User {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
         return id == user.id &&
-                firstName.equals(user.firstName) &&
-                lastName.equals(user.lastName) &&
+                name.equals(user.name) &&
+                surname.equals(user.surname) &&
                 email.equals(user.email) &&
                 password.equals(user.password) &&
                 address.equals(user.address) &&
@@ -138,13 +151,13 @@ public abstract class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email, password, address, city, phoneNumber, permissions);
+        return Objects.hash(id, name, surname, email, password, address, city, phoneNumber, permissions);
     }
     //</editor-fold>
 
     //<editor-fold desc="Database Handling">
     public void insertToDB() {
-        UsersTable user = new UsersTable(0,firstName, lastName,address, city, phoneNumber, email, password, permissions);
+        UsersTable user = new UsersTable(0, name, surname, address, city, phoneNumber, email, password, permissions);
         UserRepository userRepository = new UserRepository(dbClientAutoCommit);
         this.id = userRepository.insertUser(user);
         user.setUserId(id);
@@ -157,7 +170,7 @@ public abstract class User {
 
     public void updateDB() {
         UserRepository userRepository = new UserRepository(dbClientAutoCommit);
-        userRepository.updateUser(new UsersTable(id,firstName, lastName,address, city, phoneNumber, email, password, permissions));
+        userRepository.updateUser(new UsersTable(id, name, surname, address, city, phoneNumber, email, password, permissions));
     }
     //</editor-fold>
 
@@ -165,8 +178,8 @@ public abstract class User {
     @Override
     public String toString() {
         return "id='" + id + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", firstName='" + name + '\'' +
+                ", lastName='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
@@ -175,4 +188,3 @@ public abstract class User {
     }
     //</editor-fold>
 }
-

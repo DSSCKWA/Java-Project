@@ -3,6 +3,7 @@ package src.db.repository;
 import src.db.client.DBClient;
 import src.db.tables.UsersTable;
 import src.users.Permissions;
+import src.users.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,12 +17,34 @@ public class UserRepository extends Repository {
         super(client);
     }
 
+    public User toUser(UsersTable usersTables) {
+        return new User(
+                usersTables.getUserId(),
+                usersTables.getName(),
+                usersTables.getSurname(),
+                usersTables.getEmail(),
+                usersTables.getPassword(),
+                usersTables.getAddress(),
+                usersTables.getCity(),
+                usersTables.getPhoneNumber(),
+                usersTables.getPermissions()
+        );
+    }
+
+    public ArrayList<User> toUserList(ArrayList<UsersTable> usersTables) {
+        ArrayList<User> users = new ArrayList<>();
+        for (UsersTable user : usersTables) {
+            users.add(toUser(user));
+        }
+        return users;
+    }
+
     public ArrayList<UsersTable> getAllUsers() {
         String query = "SELECT * FROM users";
         ArrayList<UsersTable> users = new ArrayList<>();
         try (Statement stmt = client.getConnection().createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
-            while(rs.next()) {
+            while (rs.next()) {
                 users.add(new UsersTable(
                         rs.getInt("user_id"),
                         rs.getString("name"),
@@ -46,7 +69,7 @@ public class UserRepository extends Repository {
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setString(1, permissions.toString().toLowerCase(Locale.ROOT));
             ResultSet rs = stmt.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 users.add(new UsersTable(
                         rs.getInt("user_id"),
                         rs.getString("name"),
@@ -71,16 +94,39 @@ public class UserRepository extends Repository {
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setInt(1, userId);
             ResultSet rs = stmt.executeQuery();
-            while(rs.next()) {
-               user.setUserId(rs.getInt("user_id"));
-               user.setName(rs.getString("name"));
-               user.setSurname(rs.getString("surname"));
-               user.setAddress(rs.getString("address"));
-               user.setCity(rs.getString("city"));
-               user.setPhoneNumber(rs.getInt("phone_number"));
-               user.setEmail(rs.getString("email"));
-               user.setPassword(rs.getString("password"));
-               Permissions.valueOf(rs.getString("permissions").toUpperCase(Locale.ROOT));
+            while (rs.next()) {
+                user.setUserId(rs.getInt("user_id"));
+                user.setName(rs.getString("name"));
+                user.setSurname(rs.getString("surname"));
+                user.setAddress(rs.getString("address"));
+                user.setCity(rs.getString("city"));
+                user.setPhoneNumber(rs.getInt("phone_number"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                Permissions.valueOf(rs.getString("permissions").toUpperCase(Locale.ROOT));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return user;
+    }
+
+    public UsersTable getUserByEmail(String email) {
+        String query = "SELECT * FROM users WHERE email = ?";
+        UsersTable user = new UsersTable();
+        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                user.setUserId(rs.getInt("user_id"));
+                user.setName(rs.getString("name"));
+                user.setSurname(rs.getString("surname"));
+                user.setAddress(rs.getString("address"));
+                user.setCity(rs.getString("city"));
+                user.setPhoneNumber(rs.getInt("phone_number"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                Permissions.valueOf(rs.getString("permissions").toUpperCase(Locale.ROOT));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -100,10 +146,10 @@ public class UserRepository extends Repository {
             stmt.setString(6, user.getEmail());
             stmt.setString(7, user.getPassword());
             stmt.setString(8, user.getPermissions().toString().toLowerCase(Locale.ROOT));
-            int rowAffected =  stmt.executeUpdate();
-            if(rowAffected == 1) {
+            int rowAffected = stmt.executeUpdate();
+            if (rowAffected == 1) {
                 ResultSet rs = stmt.getGeneratedKeys();
-                if(rs.next()) {
+                if (rs.next()) {
                     userId = rs.getInt(1);
                 }
             }
