@@ -1,5 +1,6 @@
 package src.users;
 
+import src.clinic.Clinic;
 import src.db.tables.*;
 import src.db.client.DBClient;
 import src.db.repository.DoctorsRepository;
@@ -12,6 +13,7 @@ import java.sql.SQLException;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.time.LocalTime;
 import java.time.LocalDate;
@@ -23,7 +25,7 @@ public class Doctor extends User {
     private HashSet<Schedule> doctorSchedules;
     private HashSet<Visit> doctorVisits;
     private HashSet<Expertise> doctorExpertise;
-    private final DBClient dbClientAutoCommit;
+    private DBClient dbClientAutoCommit;
 
     //<editor-fold desc="Getters">
 
@@ -112,6 +114,9 @@ public class Doctor extends User {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public Doctor() {
     }
     //</editor-fold>
 
