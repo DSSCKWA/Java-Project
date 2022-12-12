@@ -117,23 +117,6 @@ public abstract class User {
         }
     }
 
-        //TODO: delete default contructor later
-        public User() {
-            this.id=0;
-            this.firstName = "Anon";
-            this.lastName = "Anonowicz";
-            this.email = "anon@gmail.com";
-            this.password = "password";
-            this.address = "address";
-            this.city = "city";
-            this.phoneNumber = 100000001;
-            this.permissions = Permissions.GUEST;
-            try {
-                dbClientAutoCommit = new DBClient(true);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-    }
     //</editor-fold>
 
     //<editor-fold desc="Equals & HashCode">

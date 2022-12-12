@@ -1,6 +1,7 @@
 package src.users;
 
 import src.clinic.Clinic;
+import src.db.repository.ExpertiseRepository;
 import src.db.tables.*;
 import src.db.client.DBClient;
 import src.db.repository.DoctorsRepository;
@@ -26,6 +27,10 @@ public class Doctor extends User {
     private HashSet<Visit> doctorVisits;
     private HashSet<Expertise> doctorExpertise;
     private DBClient dbClientAutoCommit;
+
+    public Doctor(String firstName, String lastName, String email, String password, String address, String city, int phoneNumber, Permissions permissions) {
+        super(firstName, lastName, email, password, address, city, phoneNumber, permissions);
+    }
 
     //<editor-fold desc="Getters">
 
@@ -102,7 +107,7 @@ public class Doctor extends User {
     //</editor-fold>
 
     //<editor-fold desc="Constructor">
-    public Doctor(String name, String surname, String email, String password,String address, String city, int phoneNumber) {
+    public Doctor(String name, String surname, String email, String password, String address, String city, int phoneNumber) {
         super(name, surname, email, password ,address,city, phoneNumber, Permissions.DOCTOR);
         super.insertToDB(); // chyba może zostac, co ?
         this.doctorClinics = new HashSet<Clinic>();
@@ -116,8 +121,17 @@ public class Doctor extends User {
         }
     }
 
-    public Doctor() {
+    public Doctor(int id, String firstName, String lastName, String email, String password, String address, String city, int phoneNumber, Permissions permissions, HashSet<Clinic> doctorClinics, HashSet<Schedule> doctorSchedules, HashSet<Visit> doctorVisits, HashSet<Expertise> doctorExpertise, DBClient dbClientAutoCommit, List<String> expertiseId, HashSet<Integer> clinicId) {
+        super(id, firstName, lastName, email, password, address, city, phoneNumber, permissions);
+        this.doctorClinics = doctorClinics;
+        this.doctorSchedules = doctorSchedules;
+        this.doctorVisits = doctorVisits;
+        this.doctorExpertise = doctorExpertise;
+        this.dbClientAutoCommit = dbClientAutoCommit;
+        this.expertiseId = expertiseId;
+        this.clinicId = clinicId;
     }
+
     //</editor-fold>
 
     //<editor-fold desc="Equals & HashCode">
@@ -144,11 +158,18 @@ public class Doctor extends User {
             doctor.setDoctorId(super.getId());
     }
 
-    public void removeFromDB(Doctor doctor) {
+    // function which removes doctor from ALL clinics
+    public void removeFromAllClinicsDB(Doctor doctor) {
         DoctorsRepository doctorsRepository = new DoctorsRepository(dbClientAutoCommit);
-        doctorsRepository.deleteDoctorFromClinic(doctor.getId());
+        doctorsRepository.deleteDoctorFromClinics(doctor.getId());
     }
     //</editor-fold>
+
+    // function which removes doctor from ONE specific clinic
+    public void removeFromClinic(Clinic clinic) {
+        DoctorsRepository doctorsRepository = new DoctorsRepository(dbClientAutoCommit);
+        doctorsRepository.deleteDoctorFromClinic(this.getId(), clinic.getClinicId());
+    }
 
     //<editor-fold desc="ToString">
     @Override
@@ -164,7 +185,8 @@ public class Doctor extends User {
 
     //<editor-fold desc="Other Methods">
     public void addClinic(Clinic clinic) {
-    doctorClinics.add(clinic);
+        doctorClinics.add(clinic);
+        this.insertToDB(clinic);
 }
     public void removeClinic(Clinic clinic) {
         boolean exists= false;
@@ -178,8 +200,15 @@ public class Doctor extends User {
         if(exists)
         {
             doctorClinics.remove(clinic);
+            this.removeFromClinic(clinic);
         }
     }
+
+    public void removeClinics() {
+        doctorClinics.clear();
+        this.removeFromAllClinicsDB(this);
+    }
+
     public boolean checkIfAvaliable(HashSet<Visit> doctorVisits,LocalDate date,LocalTime startTime,LocalTime endTime) {
     boolean ava = true;
     for (Visit x:doctorVisits) {
@@ -242,11 +271,18 @@ public class Doctor extends User {
         }
         doctorVisits.add(visit);
     }
-    public void addExpertise(Expertise expertise) {
+    public void addExpertise(Expertise expertise) throws SQLException {
         doctorExpertise.add(expertise);
+        ExpertiseRepository expertiseRepository;
+        expertiseRepository = new ExpertiseRepository(new DBClient(true));
+        ExpertiseTable expertiseTable = new ExpertiseTable(expertise.getDoctorId(), expertise.getExpertise());
+        expertiseRepository.insertExpertise(expertiseTable);
     }
-    public void removeExpertise(Expertise expertise) {
+    public void removeExpertise(Expertise expertise) throws SQLException {
         doctorExpertise.remove(expertise);
+        ExpertiseRepository expertiseRepository;
+        expertiseRepository = new ExpertiseRepository(new DBClient(true));
+        expertiseRepository.deleteExpertise(expertise.getDoctorId(), expertise.getExpertise());
     }
 //</editor-fold>
 
