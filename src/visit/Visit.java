@@ -18,6 +18,16 @@ public class Visit {
     private int rating;
     private Status status;
 
+    public Visit(LocalDate date, LocalTime time, int duration, Doctor doctor, Patient patient, int rating, Status status) {
+        this.date = date;
+        this.time = time;
+        this.duration = duration;
+        this.doctor = doctor;
+        this.patient = patient;
+        this.rating = rating;
+        this.status = status;
+    }
+
     public LocalDate getDate() {
         return date;
     }
