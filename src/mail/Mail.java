@@ -1,5 +1,11 @@
 package src.mail;
 
+import src.clinic.Clinic;
+import src.users.Doctor;
+import src.users.Patient;
+import src.users.User;
+import src.visit.Visit;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -58,5 +64,20 @@ public class Mail {
         return false;
     }
 
+    public void visitReminder(Visit visit) {
+        String subject = "Upcoming medical appointment on " + visit.getDate();
+        String message = "Hello " + visit.getPatient().getFirstName() + " " + visit.getPatient().getLastName() + "! \n\nWe would like to remind you about the upcoming visit to " + visit.getDoctor().getFirstName() + " " + visit.getDoctor().getLastName() + " doctor. The visit will take place on " + visit.getDate() + " at " + visit.getTime() + ".\nRemember to change the date of your visit if the current one does not suit you.";
+        this.sendEmail(visit.getPatient().getEmail(), subject, message);
+    }
+
+    public void infoAboutPermissionChange(User user) {
+        String subject = "Permission changed for user " + user.getFirstName() + " " + user.getLastName();
+        String message = "Hello " + user.getFirstName() + " " + user.getLastName() + "! \n\nWe would like to notify you about an important change regarding your account. Your user permissions have changed to " + user.getPermissions().toString().toLowerCase() + ".";
+        this.sendEmail(user.getEmail(), subject, message);
+    }
+
+    // succesful registration for a visit
+    // changes made to a visit - delete / date changes
+    // remider to rate a visit
 
 }
