@@ -16,17 +16,10 @@ public class Patient extends User {
         super(firstName, lastName, email, password, address, city, phoneNumber, permissions);
     }
 
-    public void registerNewVisit(LocalDate visitDate, LocalTime visitTime, int doctorId) {
+    public void registerNewVisit(LocalDate visitDate, LocalTime visitTime, Doctor doctor) {
         Visit visit;
 
-        visit = new Visit();
-        visit.setDate(visitDate);
-        visit.setTime(visitTime);
-        visit.setPatient(this);
-        //visit.setDoctor(new Doctor().readDoctorFromDBById(doctorId));
-        visit.setPatient(this);
-        visit.setRating(-1); //initialize rating, -1 means no rating
-        visit.setStatus(Status.PENDING);
+        visit = new Visit(visitDate, visitTime, 20, doctor, this, -1, Status.PENDING);
 
         VisitsTable vTable = new VisitsTable(
                 visit.getStatus(),
@@ -40,7 +33,7 @@ public class Patient extends User {
 
         VisitRepository db;
         try {
-            db = new VisitRepository(new DBClient(false));
+            db = new VisitRepository(new DBClient(true));
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
@@ -63,7 +56,7 @@ public class Patient extends User {
 
         VisitRepository db;
         try {
-            db = new VisitRepository(new DBClient(false));
+            db = new VisitRepository(new DBClient(true));
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
@@ -89,7 +82,7 @@ public class Patient extends User {
 
         VisitRepository db;
         try {
-            db = new VisitRepository(new DBClient(false));
+            db = new VisitRepository(new DBClient(true));
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
@@ -115,7 +108,7 @@ public class Patient extends User {
 
         VisitRepository db;
         try {
-            db = new VisitRepository(new DBClient(false));
+            db = new VisitRepository(new DBClient(true));
         }catch (SQLException e){
             throw new RuntimeException(e);
         }
