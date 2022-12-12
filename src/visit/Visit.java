@@ -1,8 +1,9 @@
 package src.visit;
 
+
 import src.users.Doctor;
 import src.users.Patient;
-import src.schedule.Schedule;
+import src.db.tables.VisitsTable;import src.schedule.Schedule;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -76,6 +77,16 @@ public class Visit {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public VisitsTable visitToVisitTable(){
+        return new VisitsTable(this.status,
+                this.date,
+                this.time,
+                this.duration,
+                this.patient.getId(),
+                this.doctor.getId(),
+                this.rating);
     }
 
     @Override

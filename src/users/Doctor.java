@@ -1,6 +1,6 @@
 package src.users;
 
-import src.clinic.Clinic;
+import src.db.tables.*;
 import src.db.client.DBClient;
 import src.db.repository.DoctorsRepository;
 import src.db.tables.DoctorsTable;
@@ -10,6 +10,7 @@ import src.visit.Status;
 import src.visit.Visit;
 import java.sql.SQLException;
 import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
 import java.time.LocalTime;
@@ -48,8 +49,40 @@ public class Doctor extends User {
 
     //<editor-fold desc="Setters">
 
-    public void setDoctorClinics(HashSet<Clinic> doctorClinics) {
+    private List<String> expertiseId;
+    private HashSet<Integer> clinicId;
+
+    public Doctor readDoctorFromDBById(int id){
+        ArrayList<DoctorsTable> doctors = new DoctorsTable().getDoctorsTableArrayByDoctorId(id);
+        ArrayList<ExpertiseTable> expertises = new ExpertiseTable().getExpertiseTableArrayListByDoctorId(id);
+        UsersTable usersTable = new UsersTable().getUsersTableByUserId(id);
+
+        for (ExpertiseTable exp: expertises) {
+            this.expertiseId.add(exp.getAreaOfExpertise());
+        }
+
+        for (DoctorsTable doc: doctors){
+            this.clinicId.add(doc.getClinicId());
+        }
+
+        super.setId(id);
+        super.setFirstName(usersTable.getName());
+        super.setLastName(usersTable.getSurname());
+        super.setEmail(usersTable.getEmail());
+        super.setPassword(usersTable.getPassword());
+        super.setAddress(usersTable.getAddress());
+        super.setCity(usersTable.getCity());
+        super.setPhoneNumber(usersTable.getPhoneNumber());
+        super.setPermissions(usersTable.getPermissions());
+
+        return this;
+    }
+ public void setDoctorClinics(HashSet<Clinic> doctorClinics) {
         this.doctorClinics = doctorClinics;
+    }
+    
+    public List<String> getExpertiseId() {
+        return expertiseId;
     }
 
     public void setDoctorSchedules(HashSet<Schedule> doctorSchedules) {
