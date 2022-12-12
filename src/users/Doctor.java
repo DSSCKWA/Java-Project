@@ -10,6 +10,7 @@ import src.expertise.Expertise;
 import src.schedule.Schedule;
 import src.visit.Status;
 import src.visit.Visit;
+
 import java.sql.SQLException;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
@@ -50,7 +51,9 @@ public class Doctor extends User {
         return doctorExpertise;
     }
 
-    public int getId(){return super.getId();}
+    public int getId() {
+        return super.getId();
+    }
 
     //</editor-fold>
 
@@ -59,22 +62,22 @@ public class Doctor extends User {
     private List<String> expertiseId;
     private HashSet<Integer> clinicId;
 
-    public Doctor readDoctorFromDBById(int id){
+    public Doctor readDoctorFromDBById(int id) {
         ArrayList<DoctorsTable> doctors = new DoctorsTable().getDoctorsTableArrayByDoctorId(id);
         ArrayList<ExpertiseTable> expertises = new ExpertiseTable().getExpertiseTableArrayListByDoctorId(id);
         UsersTable usersTable = new UsersTable().getUsersTableByUserId(id);
 
-        for (ExpertiseTable exp: expertises) {
+        for (ExpertiseTable exp : expertises) {
             this.expertiseId.add(exp.getAreaOfExpertise());
         }
 
-        for (DoctorsTable doc: doctors){
+        for (DoctorsTable doc : doctors) {
             this.clinicId.add(doc.getClinicId());
         }
 
         super.setId(id);
-        super.setFirstName(usersTable.getName());
-        super.setLastName(usersTable.getSurname());
+        super.setName(usersTable.getName());
+        super.setSurname(usersTable.getSurname());
         super.setEmail(usersTable.getEmail());
         super.setPassword(usersTable.getPassword());
         super.setAddress(usersTable.getAddress());
@@ -84,10 +87,11 @@ public class Doctor extends User {
 
         return this;
     }
- public void setDoctorClinics(HashSet<Clinic> doctorClinics) {
+
+    public void setDoctorClinics(HashSet<Clinic> doctorClinics) {
         this.doctorClinics = doctorClinics;
     }
-    
+
     public List<String> getExpertiseId() {
         return expertiseId;
     }
@@ -152,10 +156,10 @@ public class Doctor extends User {
 
     //<editor-fold desc="Database Handling">
     public void insertToDB(Clinic clinic) {
-            DoctorsTable doctor = new DoctorsTable(super.getId(),clinic.getClinicId());
-            DoctorsRepository doctorsRepository = new DoctorsRepository(dbClientAutoCommit);
-            doctorsRepository.insertDoctor(doctor);
-            doctor.setDoctorId(super.getId());
+        DoctorsTable doctor = new DoctorsTable(super.getId(), clinic.getClinicId());
+        DoctorsRepository doctorsRepository = new DoctorsRepository(dbClientAutoCommit);
+        doctorsRepository.insertDoctor(doctor);
+        doctor.setDoctorId(super.getId());
     }
 
     // function which removes doctor from ALL clinics
@@ -189,16 +193,14 @@ public class Doctor extends User {
         this.insertToDB(clinic);
 }
     public void removeClinic(Clinic clinic) {
-        boolean exists= false;
-        for (Clinic x:doctorClinics) {
-            if(x.equals(clinic))
-            {
-                exists=true;
+        boolean exists = false;
+        for (Clinic x : doctorClinics) {
+            if (x.equals(clinic)) {
+                exists = true;
                 break;
             }
         }
-        if(exists)
-        {
+        if (exists) {
             doctorClinics.remove(clinic);
             this.removeFromClinic(clinic);
         }
@@ -218,38 +220,39 @@ public class Doctor extends User {
             break;
         }
     }
-    return ava;
-}
+
     public void cancelVisit(Visit visit) {
-    visit.setStatus(Status.CANCELED);
-}
-    public void postponeVisit(Visit visit,LocalDate date,LocalTime startTime,LocalTime endTime) {
-        if(checkIfAvaliable(doctorVisits,date,startTime,endTime)) {
+        visit.setStatus(Status.CANCELED);
+    }
+
+    public void postponeVisit(Visit visit, LocalDate date, LocalTime startTime, LocalTime endTime) {
+        if (checkIfAvaliable(doctorVisits, date, startTime, endTime)) {
             visit.setDate(date);
             visit.setTime(startTime);
             visit.setDuration((int) endTime.until(startTime, MINUTES));
         }
     }
+
     public void completeVisit(Visit visit) {
         visit.setStatus(Status.COMPLETED);
     }
-    public void addToSchedule( int clinicId, DayOfWeek day, LocalTime startTime, LocalTime endTime) {
-        boolean exists=false;
-        for (Schedule x:doctorSchedules) {
-            if(day==x.getDay() && ((startTime.compareTo(x.getEndTime())<0 && startTime.compareTo(x.getStartTime())>0)||(endTime.compareTo(x.getEndTime())<0 && endTime.compareTo(x.getStartTime())>0)))
-            {
-                exists=true;
+
+    public void addToSchedule(int clinicId, DayOfWeek day, LocalTime startTime, LocalTime endTime) {
+        boolean exists = false;
+        for (Schedule x : doctorSchedules) {
+            if (day == x.getDay() && ((startTime.compareTo(x.getEndTime()) < 0 && startTime.compareTo(x.getStartTime()) > 0) || (endTime.compareTo(x.getEndTime()) < 0 && endTime.compareTo(x.getStartTime()) > 0))) {
+                exists = true;
                 break;
             }
         }
-        if(!exists)
-        {
-            Schedule schedule = new Schedule(this.getId(),clinicId,day,startTime,endTime);
+        if (!exists) {
+            Schedule schedule = new Schedule(this.getId(), clinicId, day, startTime, endTime);
             schedule.insertToDB();
             doctorSchedules.add(schedule);
         }
     }
-//    public void removeFromSchedule( Schedule schedule) {
+
+    //    public void removeFromSchedule( Schedule schedule) {
 //        boolean cleared=true;
 //        for (Visit x:doctorVisits
 //             ) {
@@ -263,10 +266,9 @@ public class Doctor extends User {
 //            }
 //        }
     public void addVisit(Visit visit) {
-        if(checkIfAvaliable(doctorVisits,visit.getDate(),visit.getTime(),visit.getTime().plusMinutes(visit.getDuration()))) {
+        if (checkIfAvaliable(doctorVisits, visit.getDate(), visit.getTime(), visit.getTime().plusMinutes(visit.getDuration()))) {
             doctorVisits.add(visit);
-        }
-        else {
+        } else {
             System.out.println("Not a valid visit date");
         }
         doctorVisits.add(visit);
