@@ -191,7 +191,7 @@ public class Doctor extends User {
     public void addClinic(Clinic clinic) {
         doctorClinics.add(clinic);
         this.insertToDB(clinic);
-}
+    }
     public void removeClinic(Clinic clinic) {
         boolean exists = false;
         for (Clinic x : doctorClinics) {
@@ -212,47 +212,49 @@ public class Doctor extends User {
     }
 
     public boolean checkIfAvaliable(HashSet<Visit> doctorVisits,LocalDate date,LocalTime startTime,LocalTime endTime) {
-    boolean ava = true;
-    for (Visit x:doctorVisits) {
-        if(date==x.getDate() && (((startTime.compareTo(x.getTime().plusMinutes(x.getDuration())))<0 && (startTime.compareTo(x.getTime()))>0)||((endTime.compareTo(x.getTime().plusMinutes(x.getDuration())))<0 && (endTime.compareTo(x.getTime()))>0)))
-        {
-            ava=false;
-            break;
-        }
-    }
-
-    public void cancelVisit(Visit visit) {
-        visit.setStatus(Status.CANCELED);
-    }
-
-    public void postponeVisit(Visit visit, LocalDate date, LocalTime startTime, LocalTime endTime) {
-        if (checkIfAvaliable(doctorVisits, date, startTime, endTime)) {
-            visit.setDate(date);
-            visit.setTime(startTime);
-            visit.setDuration((int) endTime.until(startTime, MINUTES));
-        }
-    }
-
-    public void completeVisit(Visit visit) {
-        visit.setStatus(Status.COMPLETED);
-    }
-
-    public void addToSchedule(int clinicId, DayOfWeek day, LocalTime startTime, LocalTime endTime) {
-        boolean exists = false;
-        for (Schedule x : doctorSchedules) {
-            if (day == x.getDay() && ((startTime.compareTo(x.getEndTime()) < 0 && startTime.compareTo(x.getStartTime()) > 0) || (endTime.compareTo(x.getEndTime()) < 0 && endTime.compareTo(x.getStartTime()) > 0))) {
-                exists = true;
+        boolean ava = true;
+        for (Visit x:doctorVisits) {
+            if(date==x.getDate() && (((startTime.compareTo(x.getTime().plusMinutes(x.getDuration())))<0 && (startTime.compareTo(x.getTime()))>0)||((endTime.compareTo(x.getTime().plusMinutes(x.getDuration())))<0 && (endTime.compareTo(x.getTime()))>0)))
+            {
+                ava=false;
                 break;
             }
         }
-        if (!exists) {
-            Schedule schedule = new Schedule(this.getId(), clinicId, day, startTime, endTime);
-            schedule.insertToDB();
-            doctorSchedules.add(schedule);
-        }
+    return ava;
     }
 
-    //    public void removeFromSchedule( Schedule schedule) {
+        public void cancelVisit(Visit visit) {
+            visit.setStatus(Status.CANCELED);
+        }
+
+        public void postponeVisit(Visit visit, LocalDate date, LocalTime startTime, LocalTime endTime) {
+            if (checkIfAvaliable(doctorVisits, date, startTime, endTime)) {
+                visit.setDate(date);
+                visit.setTime(startTime);
+                visit.setDuration((int) endTime.until(startTime, MINUTES));
+            }
+        }
+
+        public void completeVisit(Visit visit) {
+            visit.setStatus(Status.COMPLETED);
+        }
+
+        public void addToSchedule(int clinicId, DayOfWeek day, LocalTime startTime, LocalTime endTime) {
+            boolean exists = false;
+            for (Schedule x : doctorSchedules) {
+                if (day == x.getDay() && ((startTime.compareTo(x.getEndTime()) < 0 && startTime.compareTo(x.getStartTime()) > 0) || (endTime.compareTo(x.getEndTime()) < 0 && endTime.compareTo(x.getStartTime()) > 0))) {
+                    exists = true;
+                    break;
+                }
+            }
+            if (!exists) {
+                Schedule schedule = new Schedule(this.getId(), clinicId, day, startTime, endTime);
+                schedule.insertToDB();
+                doctorSchedules.add(schedule);
+            }
+        }
+
+        //    public void removeFromSchedule( Schedule schedule) {
 //        boolean cleared=true;
 //        for (Visit x:doctorVisits
 //             ) {
@@ -265,27 +267,27 @@ public class Doctor extends User {
 //                doctorSchedules.remove(schedule);
 //            }
 //        }
-    public void addVisit(Visit visit) {
-        if (checkIfAvaliable(doctorVisits, visit.getDate(), visit.getTime(), visit.getTime().plusMinutes(visit.getDuration()))) {
+        public void addVisit(Visit visit) {
+            if (checkIfAvaliable(doctorVisits, visit.getDate(), visit.getTime(), visit.getTime().plusMinutes(visit.getDuration()))) {
+                doctorVisits.add(visit);
+            } else {
+                System.out.println("Not a valid visit date");
+            }
             doctorVisits.add(visit);
-        } else {
-            System.out.println("Not a valid visit date");
         }
-        doctorVisits.add(visit);
-    }
-    public void addExpertise(Expertise expertise) throws SQLException {
-        doctorExpertise.add(expertise);
-        ExpertiseRepository expertiseRepository;
-        expertiseRepository = new ExpertiseRepository(new DBClient(true));
-        ExpertiseTable expertiseTable = new ExpertiseTable(expertise.getDoctorId(), expertise.getExpertise());
-        expertiseRepository.insertExpertise(expertiseTable);
-    }
-    public void removeExpertise(Expertise expertise) throws SQLException {
-        doctorExpertise.remove(expertise);
-        ExpertiseRepository expertiseRepository;
-        expertiseRepository = new ExpertiseRepository(new DBClient(true));
-        expertiseRepository.deleteExpertise(expertise.getDoctorId(), expertise.getExpertise());
-    }
+        public void addExpertise(Expertise expertise) throws SQLException {
+            doctorExpertise.add(expertise);
+            ExpertiseRepository expertiseRepository;
+            expertiseRepository = new ExpertiseRepository(new DBClient(true));
+            ExpertiseTable expertiseTable = new ExpertiseTable(expertise.getDoctorId(), expertise.getExpertise());
+            expertiseRepository.insertExpertise(expertiseTable);
+        }
+        public void removeExpertise(Expertise expertise) throws SQLException {
+            doctorExpertise.remove(expertise);
+            ExpertiseRepository expertiseRepository;
+            expertiseRepository = new ExpertiseRepository(new DBClient(true));
+            expertiseRepository.deleteExpertise(expertise.getDoctorId(), expertise.getExpertise());
+        }
 //</editor-fold>
 
-}
+    }
