@@ -96,7 +96,6 @@ public class Clinic {
         ClinicRepository clinicRepository = new ClinicRepository(dbClientAutoCommit);
         this.clinicId = clinicRepository.insertClinic(clinic);
         clinic.setClinicId(clinicId);
-        clinicRepository.insertClinic(clinic);
     }
 
     public void removeFromDB() {

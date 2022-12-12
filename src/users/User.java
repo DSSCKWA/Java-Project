@@ -165,7 +165,6 @@ public abstract class User {
         UserRepository userRepository = new UserRepository(dbClientAutoCommit);
         this.id = userRepository.insertUser(user);
         user.setUserId(id);
-        userRepository.insertUser(user);
     }
 
     public void removeFromDB() {

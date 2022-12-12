@@ -104,7 +104,6 @@ public class Doctor extends User {
             DoctorsRepository doctorsRepository = new DoctorsRepository(dbClientAutoCommit);
             doctorsRepository.insertDoctor(doctor);
             doctor.setDoctorId(super.getId());
-            System.out.println(doctorsRepository.getAllDoctors());
     }
 
     public void removeFromDB(Doctor doctor) {
