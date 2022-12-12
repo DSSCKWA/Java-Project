@@ -3,7 +3,8 @@ package src.visit;
 
 import src.users.Doctor;
 import src.users.Patient;
-import src.db.tables.VisitsTable;
+import src.db.tables.VisitsTable;import src.schedule.Schedule;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
@@ -17,6 +18,8 @@ public class Visit {
     private Patient patient;
     private int rating;
     private Status status;
+
+    private Schedule schedule;
 
     public LocalDate getDate() {
         return date;
