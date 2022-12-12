@@ -66,13 +66,13 @@ public class Mail {
 
     public void visitReminder(Visit visit) {
         String subject = "Upcoming medical appointment on " + visit.getDate();
-        String message = "Hello " + visit.getPatient().getFirstName() + " " + visit.getPatient().getLastName() + "! \n\nWe would like to remind you about the upcoming visit to " + visit.getDoctor().getFirstName() + " " + visit.getDoctor().getLastName() + " doctor. The visit will take place on " + visit.getDate() + " at " + visit.getTime() + ".\nRemember to change the date of your visit if the current one does not suit you.";
+        String message = "Hello " + visit.getPatient().getName() + " " + visit.getPatient().getSurname() + "! \n\nWe would like to remind you about the upcoming visit to " + visit.getDoctor().getName() + " " + visit.getDoctor().getSurname() + " doctor. The visit will take place on " + visit.getDate() + " at " + visit.getTime() + ".\nRemember to change the date of your visit if the current one does not suit you.";
         this.sendEmail(visit.getPatient().getEmail(), subject, message);
     }
 
     public void infoAboutPermissionChange(User user) {
-        String subject = "Permission changed for user " + user.getFirstName() + " " + user.getLastName();
-        String message = "Hello " + user.getFirstName() + " " + user.getLastName() + "! \n\nWe would like to notify you about an important change regarding your account. Your user permissions have changed to " + user.getPermissions().toString().toLowerCase() + ".";
+        String subject = "Permission changed for user " + user.getName() + " " + user.getSurname();
+        String message = "Hello " + user.getName() + " " + user.getSurname() + "! \n\nWe would like to notify you about an important change regarding your account. Your user permissions have changed to " + user.getPermissions().toString().toLowerCase() + ".";
         this.sendEmail(user.getEmail(), subject, message);
     }
 
