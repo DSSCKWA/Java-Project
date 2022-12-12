@@ -50,6 +50,17 @@ public class Clinic {
     }
     //</editor-fold>
 
+    public void changeName(String name) {
+        this.setName(name);
+        this.updateDB();
+    }
+
+    public void changeAddress(String city, String address) {
+        this.setAddress(address);
+        this.setCity(city);
+        this.updateDB();
+    }
+
     //<editor-fold desc="Constructors">
     public Clinic( String name, String address, String city) {
         this.name = name;

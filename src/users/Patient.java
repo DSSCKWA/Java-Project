@@ -12,6 +12,9 @@ import java.time.LocalTime;
 
 public class Patient extends User {
 
+    public Patient(String firstName, String lastName, String email, String password, String address, String city, int phoneNumber, Permissions permissions) {
+        super(firstName, lastName, email, password, address, city, phoneNumber, permissions);
+    }
 
     public void registerNewVisit(LocalDate visitDate, LocalTime visitTime, int doctorId) {
         Visit visit;
@@ -20,7 +23,7 @@ public class Patient extends User {
         visit.setDate(visitDate);
         visit.setTime(visitTime);
         visit.setPatient(this);
-        visit.setDoctor(new Doctor().readDoctorFromDBById(doctorId));
+        //visit.setDoctor(new Doctor().readDoctorFromDBById(doctorId));
         visit.setPatient(this);
         visit.setRating(-1); //initialize rating, -1 means no rating
         visit.setStatus(Status.PENDING);
