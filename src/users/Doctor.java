@@ -1,6 +1,7 @@
 package src.users;
 
 import src.clinic.Clinic;
+import src.db.repository.ExpertiseRepository;
 import src.db.tables.*;
 import src.db.client.DBClient;
 import src.db.repository.DoctorsRepository;
@@ -9,6 +10,7 @@ import src.expertise.Expertise;
 import src.schedule.Schedule;
 import src.visit.Status;
 import src.visit.Visit;
+
 import java.sql.SQLException;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
@@ -26,6 +28,10 @@ public class Doctor extends User {
     private HashSet<Visit> doctorVisits;
     private HashSet<Expertise> doctorExpertise;
     private DBClient dbClientAutoCommit;
+
+    public Doctor(String firstName, String lastName, String email, String password, String address, String city, int phoneNumber, Permissions permissions) {
+        super(firstName, lastName, email, password, address, city, phoneNumber, permissions);
+    }
 
     //<editor-fold desc="Getters">
 
@@ -45,7 +51,9 @@ public class Doctor extends User {
         return doctorExpertise;
     }
 
-    public int getId(){return super.getId();}
+    public int getId() {
+        return super.getId();
+    }
 
     //</editor-fold>
 
@@ -54,22 +62,22 @@ public class Doctor extends User {
     private List<String> expertiseId;
     private HashSet<Integer> clinicId;
 
-    public Doctor readDoctorFromDBById(int id){
+    public Doctor readDoctorFromDBById(int id) {
         ArrayList<DoctorsTable> doctors = new DoctorsTable().getDoctorsTableArrayByDoctorId(id);
         ArrayList<ExpertiseTable> expertises = new ExpertiseTable().getExpertiseTableArrayListByDoctorId(id);
         UsersTable usersTable = new UsersTable().getUsersTableByUserId(id);
 
-        for (ExpertiseTable exp: expertises) {
+        for (ExpertiseTable exp : expertises) {
             this.expertiseId.add(exp.getAreaOfExpertise());
         }
 
-        for (DoctorsTable doc: doctors){
+        for (DoctorsTable doc : doctors) {
             this.clinicId.add(doc.getClinicId());
         }
 
         super.setId(id);
-        super.setFirstName(usersTable.getName());
-        super.setLastName(usersTable.getSurname());
+        super.setName(usersTable.getName());
+        super.setSurname(usersTable.getSurname());
         super.setEmail(usersTable.getEmail());
         super.setPassword(usersTable.getPassword());
         super.setAddress(usersTable.getAddress());
@@ -79,10 +87,11 @@ public class Doctor extends User {
 
         return this;
     }
- public void setDoctorClinics(HashSet<Clinic> doctorClinics) {
+
+    public void setDoctorClinics(HashSet<Clinic> doctorClinics) {
         this.doctorClinics = doctorClinics;
     }
-    
+
     public List<String> getExpertiseId() {
         return expertiseId;
     }
@@ -102,7 +111,7 @@ public class Doctor extends User {
     //</editor-fold>
 
     //<editor-fold desc="Constructor">
-    public Doctor(String name, String surname, String email, String password,String address, String city, int phoneNumber) {
+    public Doctor(String name, String surname, String email, String password, String address, String city, int phoneNumber) {
         super(name, surname, email, password ,address,city, phoneNumber, Permissions.DOCTOR);
         super.insertToDB(); // chyba może zostac, co ?
         this.doctorClinics = new HashSet<Clinic>();
@@ -116,8 +125,17 @@ public class Doctor extends User {
         }
     }
 
-    public Doctor() {
+    public Doctor(int id, String firstName, String lastName, String email, String password, String address, String city, int phoneNumber, Permissions permissions, HashSet<Clinic> doctorClinics, HashSet<Schedule> doctorSchedules, HashSet<Visit> doctorVisits, HashSet<Expertise> doctorExpertise, DBClient dbClientAutoCommit, List<String> expertiseId, HashSet<Integer> clinicId) {
+        super(id, firstName, lastName, email, password, address, city, phoneNumber, permissions);
+        this.doctorClinics = doctorClinics;
+        this.doctorSchedules = doctorSchedules;
+        this.doctorVisits = doctorVisits;
+        this.doctorExpertise = doctorExpertise;
+        this.dbClientAutoCommit = dbClientAutoCommit;
+        this.expertiseId = expertiseId;
+        this.clinicId = clinicId;
     }
+
     //</editor-fold>
 
     //<editor-fold desc="Equals & HashCode">
@@ -138,17 +156,24 @@ public class Doctor extends User {
 
     //<editor-fold desc="Database Handling">
     public void insertToDB(Clinic clinic) {
-            DoctorsTable doctor = new DoctorsTable(super.getId(),clinic.getClinicId());
-            DoctorsRepository doctorsRepository = new DoctorsRepository(dbClientAutoCommit);
-            doctorsRepository.insertDoctor(doctor);
-            doctor.setDoctorId(super.getId());
+        DoctorsTable doctor = new DoctorsTable(super.getId(), clinic.getClinicId());
+        DoctorsRepository doctorsRepository = new DoctorsRepository(dbClientAutoCommit);
+        doctorsRepository.insertDoctor(doctor);
+        doctor.setDoctorId(super.getId());
     }
 
-    public void removeFromDB(Doctor doctor) {
+    // function which removes doctor from ALL clinics
+    public void removeFromAllClinicsDB(Doctor doctor) {
         DoctorsRepository doctorsRepository = new DoctorsRepository(dbClientAutoCommit);
-        doctorsRepository.deleteDoctorFromClinic(doctor.getId());
+        doctorsRepository.deleteDoctorFromClinics(doctor.getId());
     }
     //</editor-fold>
+
+    // function which removes doctor from ONE specific clinic
+    public void removeFromClinic(Clinic clinic) {
+        DoctorsRepository doctorsRepository = new DoctorsRepository(dbClientAutoCommit);
+        doctorsRepository.deleteDoctorFromClinic(this.getId(), clinic.getClinicId());
+    }
 
     //<editor-fold desc="ToString">
     @Override
@@ -164,63 +189,72 @@ public class Doctor extends User {
 
     //<editor-fold desc="Other Methods">
     public void addClinic(Clinic clinic) {
-    doctorClinics.add(clinic);
-}
+        doctorClinics.add(clinic);
+        this.insertToDB(clinic);
+    }
     public void removeClinic(Clinic clinic) {
-        boolean exists= false;
-        for (Clinic x:doctorClinics) {
-            if(x.equals(clinic))
-            {
-                exists=true;
+        boolean exists = false;
+        for (Clinic x : doctorClinics) {
+            if (x.equals(clinic)) {
+                exists = true;
                 break;
             }
         }
-        if(exists)
-        {
+        if (exists) {
             doctorClinics.remove(clinic);
+            this.removeFromClinic(clinic);
         }
     }
+
+    public void removeClinics() {
+        doctorClinics.clear();
+        this.removeFromAllClinicsDB(this);
+    }
+
     public boolean checkIfAvaliable(HashSet<Visit> doctorVisits,LocalDate date,LocalTime startTime,LocalTime endTime) {
-    boolean ava = true;
-    for (Visit x:doctorVisits) {
-        if(date==x.getDate() && (((startTime.compareTo(x.getTime().plusMinutes(x.getDuration())))<0 && (startTime.compareTo(x.getTime()))>0)||((endTime.compareTo(x.getTime().plusMinutes(x.getDuration())))<0 && (endTime.compareTo(x.getTime()))>0)))
-        {
-            ava=false;
-            break;
-        }
-    }
-    return ava;
-}
-    public void cancelVisit(Visit visit) {
-    visit.setStatus(Status.CANCELED);
-}
-    public void postponeVisit(Visit visit,LocalDate date,LocalTime startTime,LocalTime endTime) {
-        if(checkIfAvaliable(doctorVisits,date,startTime,endTime)) {
-            visit.setDate(date);
-            visit.setTime(startTime);
-            visit.setDuration((int) endTime.until(startTime, MINUTES));
-        }
-    }
-    public void completeVisit(Visit visit) {
-        visit.setStatus(Status.COMPLETED);
-    }
-    public void addToSchedule( int clinicId, DayOfWeek day, LocalTime startTime, LocalTime endTime) {
-        boolean exists=false;
-        for (Schedule x:doctorSchedules) {
-            if(day==x.getDay() && ((startTime.compareTo(x.getEndTime())<0 && startTime.compareTo(x.getStartTime())>0)||(endTime.compareTo(x.getEndTime())<0 && endTime.compareTo(x.getStartTime())>0)))
+        boolean ava = true;
+        for (Visit x:doctorVisits) {
+            if(date==x.getDate() && (((startTime.compareTo(x.getTime().plusMinutes(x.getDuration())))<0 && (startTime.compareTo(x.getTime()))>0)||((endTime.compareTo(x.getTime().plusMinutes(x.getDuration())))<0 && (endTime.compareTo(x.getTime()))>0)))
             {
-                exists=true;
+                ava=false;
                 break;
             }
         }
-        if(!exists)
-        {
-            Schedule schedule = new Schedule(this.getId(),clinicId,day,startTime,endTime);
-            schedule.insertToDB();
-            doctorSchedules.add(schedule);
-        }
+    return ava;
     }
-//    public void removeFromSchedule( Schedule schedule) {
+
+        public void cancelVisit(Visit visit) {
+            visit.setStatus(Status.CANCELED);
+        }
+
+        public void postponeVisit(Visit visit, LocalDate date, LocalTime startTime, LocalTime endTime) {
+            if (checkIfAvaliable(doctorVisits, date, startTime, endTime)) {
+                visit.setDate(date);
+                visit.setTime(startTime);
+                visit.setDuration((int) endTime.until(startTime, MINUTES));
+            }
+        }
+
+        public void completeVisit(Visit visit) {
+            visit.setStatus(Status.COMPLETED);
+        }
+
+        public void addToSchedule(int clinicId, DayOfWeek day, LocalTime startTime, LocalTime endTime) {
+            boolean exists = false;
+            for (Schedule x : doctorSchedules) {
+                if (day == x.getDay() && ((startTime.compareTo(x.getEndTime()) < 0 && startTime.compareTo(x.getStartTime()) > 0) || (endTime.compareTo(x.getEndTime()) < 0 && endTime.compareTo(x.getStartTime()) > 0))) {
+                    exists = true;
+                    break;
+                }
+            }
+            if (!exists) {
+                Schedule schedule = new Schedule(this.getId(), clinicId, day, startTime, endTime);
+                schedule.insertToDB();
+                doctorSchedules.add(schedule);
+            }
+        }
+
+        //    public void removeFromSchedule( Schedule schedule) {
 //        boolean cleared=true;
 //        for (Visit x:doctorVisits
 //             ) {
@@ -233,21 +267,27 @@ public class Doctor extends User {
 //                doctorSchedules.remove(schedule);
 //            }
 //        }
-    public void addVisit(Visit visit) {
-        if(checkIfAvaliable(doctorVisits,visit.getDate(),visit.getTime(),visit.getTime().plusMinutes(visit.getDuration()))) {
+        public void addVisit(Visit visit) {
+            if (checkIfAvaliable(doctorVisits, visit.getDate(), visit.getTime(), visit.getTime().plusMinutes(visit.getDuration()))) {
+                doctorVisits.add(visit);
+            } else {
+                System.out.println("Not a valid visit date");
+            }
             doctorVisits.add(visit);
         }
-        else {
-            System.out.println("Not a valid visit date");
+        public void addExpertise(Expertise expertise) throws SQLException {
+            doctorExpertise.add(expertise);
+            ExpertiseRepository expertiseRepository;
+            expertiseRepository = new ExpertiseRepository(new DBClient(true));
+            ExpertiseTable expertiseTable = new ExpertiseTable(expertise.getDoctorId(), expertise.getExpertise());
+            expertiseRepository.insertExpertise(expertiseTable);
         }
-        doctorVisits.add(visit);
-    }
-    public void addExpertise(Expertise expertise) {
-        doctorExpertise.add(expertise);
-    }
-    public void removeExpertise(Expertise expertise) {
-        doctorExpertise.remove(expertise);
-    }
+        public void removeExpertise(Expertise expertise) throws SQLException {
+            doctorExpertise.remove(expertise);
+            ExpertiseRepository expertiseRepository;
+            expertiseRepository = new ExpertiseRepository(new DBClient(true));
+            expertiseRepository.deleteExpertise(expertise.getDoctorId(), expertise.getExpertise());
+        }
 //</editor-fold>
 
-}
+    }

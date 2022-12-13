@@ -3,8 +3,7 @@ package src.visit;
 
 import src.users.Doctor;
 import src.users.Patient;
-import src.db.tables.VisitsTable;import src.schedule.Schedule;
-
+import src.db.tables.VisitsTable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
@@ -19,7 +18,15 @@ public class Visit {
     private int rating;
     private Status status;
 
-    private Schedule schedule;
+    public Visit(LocalDate date, LocalTime time, int duration, Doctor doctor, Patient patient, int rating, Status status) {
+        this.date = date;
+        this.time = time;
+        this.duration = duration;
+        this.doctor = doctor;
+        this.patient = patient;
+        this.rating = rating;
+        this.status = status;
+    }
 
     public LocalDate getDate() {
         return date;

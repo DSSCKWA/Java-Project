@@ -78,10 +78,21 @@ public class DoctorsRepository extends Repository {
         }
     }
 
-    public void deleteDoctorFromClinic(int doctorId) {
+    public void deleteDoctorFromClinics(int doctorId) {
         String query = "DELETE FROM doctors where doctor_id = ?";
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setInt(1, doctorId);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteDoctorFromClinic(int doctorId, int clinicId) {
+        String query = "DELETE FROM doctors where doctor_id = ? and clinic_id = ?";
+        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+            stmt.setInt(1, doctorId);
+            stmt.setInt(2, clinicId);
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

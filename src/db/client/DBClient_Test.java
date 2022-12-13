@@ -35,19 +35,17 @@ public class DBClient_Test {
             clinic.setAddress("updated address");
             clinicRepository.updateClinic(clinic);
             dbClientNoAutoCommit.getConnection().commit();
-            UsersTable user = new UsersTable("name","surname","address", "city", 1234567,"mail", "password",Permissions.DOCTOR);
+            UsersTable user = new UsersTable("name", "surname", "address", "city", 1234567, "mail", "password", Permissions.DOCTOR);
             int userId = userRepository.insertUser(user);
             user.setUserId(userId);
-            doctorsRepository.insertDoctor(new DoctorsTable(userId,clinicId));
-            expertiseRepository.insertExpertise(new ExpertiseTable(userId,"nothing"));
+            doctorsRepository.insertDoctor(new DoctorsTable(userId, clinicId));
+            expertiseRepository.insertExpertise(new ExpertiseTable(userId, "nothing"));
             dbClientNoAutoCommit.getConnection().commit();
             System.out.println(doctorsRepository.getDoctorById(userId));
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
-
 
 
     }
