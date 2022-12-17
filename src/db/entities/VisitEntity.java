@@ -1,11 +1,11 @@
-package src.db.tables;
+package src.db.entities;
 
 import src.visit.Status;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class VisitsTable {
+public class VisitEntity {
     private Status status;
     private LocalDate date;
     private LocalTime time;
@@ -14,7 +14,7 @@ public class VisitsTable {
     private int doctorId;
     private int rating;
 
-    public VisitsTable(Status status, LocalDate date, LocalTime time, int duration, int clientId, int doctorId, int rating) {
+    public VisitEntity(Status status, LocalDate date, LocalTime time, int duration, int clientId, int doctorId, int rating) {
         this.status = status;
         this.date = date;
         this.time = time;
@@ -24,7 +24,7 @@ public class VisitsTable {
         this.rating = rating;
     }
 
-    public VisitsTable() {
+    public VisitEntity() {
     }
 
     public Status getStatus() {
@@ -85,7 +85,7 @@ public class VisitsTable {
 
     @Override
     public String toString() {
-        return "VisitsTable{" +
+        return "VisitsEntity{" +
                 "status=" + status +
                 ", date=" + date +
                 ", time=" + time +

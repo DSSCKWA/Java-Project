@@ -1,7 +1,7 @@
 package src.db.repository;
 
 import src.db.client.DBClient;
-import src.db.tables.VisitsTable;
+import src.db.entities.VisitEntity;
 import src.visit.Status;
 
 import java.sql.PreparedStatement;
@@ -11,18 +11,18 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class VisitRepository extends Repository{
+public class VisitRepository extends Repository {
     public VisitRepository(DBClient client) {
         super(client);
     }
 
-    public ArrayList<VisitsTable> getAllVisits() {
+    public ArrayList<VisitEntity> getAllVisits() {
         String query = "SELECT * FROM visits";
-        ArrayList<VisitsTable> visits = new ArrayList<>();
+        ArrayList<VisitEntity> visits = new ArrayList<>();
         try (Statement stmt = client.getConnection().createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
-            while(rs.next()) {
-                visits.add(new VisitsTable(
+            while (rs.next()) {
+                visits.add(new VisitEntity(
                         Status.valueOf(rs.getString("status").toUpperCase(Locale.ROOT)),
                         rs.getDate("date").toLocalDate(),
                         rs.getTime("time").toLocalTime(),
@@ -38,14 +38,14 @@ public class VisitRepository extends Repository{
         return visits;
     }
 
-    public ArrayList<VisitsTable> getVisitsByClientId(int clientId) {
+    public ArrayList<VisitEntity> getVisitsByClientId(int clientId) {
         String query = "SELECT * FROM visits WHERE client_id = ?";
-        ArrayList<VisitsTable> visits = new ArrayList<>();
+        ArrayList<VisitEntity> visits = new ArrayList<>();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setInt(1, clientId);
             ResultSet rs = stmt.executeQuery();
-            while(rs.next()) {
-                visits.add(new VisitsTable(
+            while (rs.next()) {
+                visits.add(new VisitEntity(
                         Status.valueOf(rs.getString("status").toUpperCase(Locale.ROOT)),
                         rs.getDate("date").toLocalDate(),
                         rs.getTime("time").toLocalTime(),
@@ -61,14 +61,14 @@ public class VisitRepository extends Repository{
         return visits;
     }
 
-    public ArrayList<VisitsTable> getVisitsByDoctorId(int doctorId) {
+    public ArrayList<VisitEntity> getVisitsByDoctorId(int doctorId) {
         String query = "SELECT * FROM visits WHERE doctor_id = ?";
-        ArrayList<VisitsTable> visits = new ArrayList<>();
+        ArrayList<VisitEntity> visits = new ArrayList<>();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setInt(1, doctorId);
             ResultSet rs = stmt.executeQuery();
-            while(rs.next()) {
-                visits.add(new VisitsTable(
+            while (rs.next()) {
+                visits.add(new VisitEntity(
                         Status.valueOf(rs.getString("status").toUpperCase(Locale.ROOT)),
                         rs.getDate("date").toLocalDate(),
                         rs.getTime("time").toLocalTime(),
@@ -84,10 +84,10 @@ public class VisitRepository extends Repository{
         return visits;
     }
 
-    public void insertVisit(VisitsTable visit) {
+    public void insertVisit(VisitEntity visit) {
         String query = "INSERT INTO visits(status,date,time,duration,client_id,doctor_id,rating) VALUES (?,?,?,?,?,?,?)";
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
-            stmt.setString(1,visit.getStatus().toString().toLowerCase(Locale.ROOT));
+            stmt.setString(1, visit.getStatus().toString().toLowerCase(Locale.ROOT));
             stmt.setDate(2, java.sql.Date.valueOf(visit.getDate()));
             stmt.setTime(3, java.sql.Time.valueOf(visit.getTime()));
             stmt.setInt(4, visit.getDuration());
@@ -100,7 +100,7 @@ public class VisitRepository extends Repository{
         }
     }
 
-    public void updateVisit(VisitsTable visit) {
+    public void updateVisit(VisitEntity visit) {
         String query = "UPDATE visits SET status = ?, date = ?, time = ?, duration = ?, rating = ? WHERE client_id = ? and doctor_id = ?";
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setString(1, visit.getStatus().toString().toLowerCase(Locale.ROOT));

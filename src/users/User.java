@@ -4,10 +4,9 @@ import java.util.Objects;
 
 import src.db.client.DBClient;
 import src.db.repository.UserRepository;
-import src.db.tables.UsersTable;
+import src.db.entities.UserEntity;
 
 import java.sql.SQLException;
-import java.util.Objects;
 
 public class User {
 
@@ -159,7 +158,7 @@ public class User {
 
     //<editor-fold desc="Database Handling">
     public void insertToDB() {
-        UsersTable user = new UsersTable(0, name, surname, address, city, phoneNumber, email, password, permissions);
+        UserEntity user = new UserEntity(0, name, surname, address, city, phoneNumber, email, password, permissions);
         UserRepository userRepository = new UserRepository(dbClientAutoCommit);
         this.id = userRepository.insertUser(user);
         user.setUserId(id);
@@ -172,7 +171,7 @@ public class User {
 
     public void updateDB() {
         UserRepository userRepository = new UserRepository(dbClientAutoCommit);
-        userRepository.updateUser(new UsersTable(id, name, surname, address, city, phoneNumber, email, password, permissions));
+        userRepository.updateUser(new UserEntity(id, name, surname, address, city, phoneNumber, email, password, permissions));
     }
     //</editor-fold>
 
@@ -190,4 +189,3 @@ public class User {
     }
     //</editor-fold>
 }
-

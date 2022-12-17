@@ -2,7 +2,8 @@ package src.schedule;
 
 import src.db.client.DBClient;
 import src.db.repository.ScheduleRepository;
-import src.db.tables.ScheduleTable;
+import src.db.entities.ScheduleEntity;
+
 import java.sql.SQLException;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -20,6 +21,7 @@ public class Schedule {
     public int getDoctorId() {
         return doctorId;
     }
+
     public int getClinicId() {
         return clinicId;
     }
@@ -92,18 +94,18 @@ public class Schedule {
     //<editor-fold desc="Database Handling">
     public void insertToDB() {
         ScheduleRepository scheduleRepository = new ScheduleRepository(dbClientAutoCommit);
-        scheduleRepository.insertSchedule(new ScheduleTable(doctorId,clinicId,day,startTime,endTime));
+        scheduleRepository.insertSchedule(new ScheduleEntity(doctorId, clinicId, day, startTime, endTime));
         System.out.println(scheduleRepository.getAllSchedules());
     }
 
     public void removeFromDB() {
         ScheduleRepository scheduleRepository = new ScheduleRepository(dbClientAutoCommit);
-        scheduleRepository.deleteSchedule(doctorId,clinicId,day);
+        scheduleRepository.deleteSchedule(doctorId, clinicId, day);
     }
 
     public void updateDB() {
         ScheduleRepository scheduleRepository = new ScheduleRepository(dbClientAutoCommit);
-        scheduleRepository.updateSchedule(new ScheduleTable(doctorId,clinicId,day,startTime,endTime));
+        scheduleRepository.updateSchedule(new ScheduleEntity(doctorId, clinicId, day, startTime, endTime));
     }
     //</editor-fold>
 

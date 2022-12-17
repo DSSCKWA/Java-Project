@@ -1,7 +1,8 @@
 package src.db.repository;
 
+import src.clinic.Clinic;
 import src.db.client.DBClient;
-import src.db.tables.ClinicsTable;
+import src.db.entities.ClinicEntity;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,14 +15,32 @@ public class ClinicRepository extends Repository {
         super(client);
     }
 
-    public ArrayList<ClinicsTable> getAllClinics() {
+    public Clinic toClinic(ClinicEntity clinicEntity) {
+        return new Clinic(
+                clinicEntity.getClinicId(),
+                clinicEntity.getName(),
+                clinicEntity.getAddress(),
+                clinicEntity.getCity()
+        );
+    }
+
+    public ArrayList<Clinic> toClinicList(ArrayList<ClinicEntity> clinicEntities) {
+        ArrayList<Clinic> clinics = new ArrayList<>();
+        for (ClinicEntity clinic : clinicEntities) {
+            clinics.add(toClinic(clinic));
+        }
+        return clinics;
+    }
+
+    public ArrayList<ClinicEntity> getAllClinics() {
         String query = "SELECT * FROM clinics";
-        ArrayList<ClinicsTable> clinics = new ArrayList<>();
+        ArrayList<ClinicEntity> clinics = new ArrayList<>();
         try (Statement stmt = client.getConnection().createStatement()) {
-           ResultSet rs = stmt.executeQuery(query);
-            while(rs.next()) {
-                clinics.add(new ClinicsTable(
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                clinics.add(new ClinicEntity(
                         rs.getInt("clinic_id"),
+                        rs.getString("name"),
                         rs.getString("address"),
                         rs.getString("city")
                 ));
@@ -32,15 +51,16 @@ public class ClinicRepository extends Repository {
         return clinics;
     }
 
-    public ArrayList<ClinicsTable> getClinicsByAddress(String address) {
+    public ArrayList<ClinicEntity> getClinicsByAddress(String address) {
         String query = "SELECT * FROM clinics WHERE address = ?";
-        ArrayList<ClinicsTable> clinics = new ArrayList<>();
+        ArrayList<ClinicEntity> clinics = new ArrayList<>();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setString(1, address);
             ResultSet rs = stmt.executeQuery();
-            while(rs.next()) {
-                clinics.add(new ClinicsTable(
+            while (rs.next()) {
+                clinics.add(new ClinicEntity(
                         rs.getInt("clinic_id"),
+                        rs.getString("name"),
                         rs.getString("address"),
                         rs.getString("city")
                 ));
@@ -51,15 +71,16 @@ public class ClinicRepository extends Repository {
         return clinics;
     }
 
-    public ArrayList<ClinicsTable> getClinicsByCity(String city) {
+    public ArrayList<ClinicEntity> getClinicsByCity(String city) {
         String query = "SELECT * FROM clinics WHERE city = ?";
-        ArrayList<ClinicsTable> clinics = new ArrayList<>();
+        ArrayList<ClinicEntity> clinics = new ArrayList<>();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setString(1, city);
             ResultSet rs = stmt.executeQuery();
-            while(rs.next()) {
-                clinics.add(new ClinicsTable(
+            while (rs.next()) {
+                clinics.add(new ClinicEntity(
                         rs.getInt("clinic_id"),
+                        rs.getString("name"),
                         rs.getString("address"),
                         rs.getString("city")
                 ));
@@ -70,16 +91,17 @@ public class ClinicRepository extends Repository {
         return clinics;
     }
 
-    public ClinicsTable getClinicById(int clinicId) {
+    public ClinicEntity getClinicById(int clinicId) {
         String query = "SELECT * FROM clinics WHERE clinic_id = ?";
-        ClinicsTable clinic = new ClinicsTable();
+        ClinicEntity clinic = new ClinicEntity();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setInt(1, clinicId);
             ResultSet rs = stmt.executeQuery();
-            while(rs.next()) {
-                     clinic.setClinicId(rs.getInt("clinic_id"));
-                     clinic.setAddress(rs.getString("address"));
-                     clinic.setCity(rs.getString("city"));
+            while (rs.next()) {
+                clinic.setClinicId(rs.getInt("clinic_id"));
+                clinic.setName(rs.getString("name"));
+                clinic.setAddress(rs.getString("address"));
+                clinic.setCity(rs.getString("city"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -87,18 +109,19 @@ public class ClinicRepository extends Repository {
         return clinic;
     }
 
-    public int insertClinic(ClinicsTable clinic) {
-        String query = "INSERT INTO clinics(address,city) VALUES (?,?)";
+    public int insertClinic(ClinicEntity clinic) {
+        String query = "INSERT INTO clinics(name,address,city) VALUES (?,?,?)";
         int clinicId = 0;
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
-            stmt.setString(1, clinic.getAddress());
-            stmt.setString(2, clinic.getCity());
+            stmt.setString(1, clinic.getName());
+            stmt.setString(2, clinic.getAddress());
+            stmt.setString(3, clinic.getCity());
             int rowAffected = stmt.executeUpdate();
-            if(rowAffected == 1) {
-               ResultSet rs = stmt.getGeneratedKeys();
-               if(rs.next()) {
-                   clinicId = rs.getInt(1);
-               }
+            if (rowAffected == 1) {
+                ResultSet rs = stmt.getGeneratedKeys();
+                if (rs.next()) {
+                    clinicId = rs.getInt(1);
+                }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -106,12 +129,13 @@ public class ClinicRepository extends Repository {
         return clinicId;
     }
 
-    public void updateClinic(ClinicsTable clinic) {
-        String query = "UPDATE clinics SET address = ?, city = ? WHERE clinic_id = ?";
+    public void updateClinic(ClinicEntity clinic) {
+        String query = "UPDATE clinics SET name = ?, address = ?, city = ? WHERE clinic_id = ?";
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
-            stmt.setString(1, clinic.getAddress());
-            stmt.setString(2, clinic.getCity());
-            stmt.setInt(3, clinic.getClinicId());
+            stmt.setString(1, clinic.getName());
+            stmt.setString(2, clinic.getAddress());
+            stmt.setString(3, clinic.getCity());
+            stmt.setInt(4, clinic.getClinicId());
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);

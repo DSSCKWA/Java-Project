@@ -2,13 +2,9 @@ package src.clinic;
 
 import src.db.client.DBClient;
 import src.db.repository.ClinicRepository;
-import src.db.repository.UserRepository;
-import src.db.tables.ClinicsTable;
-import src.db.tables.UsersTable;
-import src.users.Doctor;
+import src.db.entities.ClinicEntity;
 
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Objects;
 
 public class Clinic {
@@ -18,18 +14,21 @@ public class Clinic {
     private String name;
     private String address;
     private String city;
-    private final DBClient dbClientAutoCommit;
+    private final transient DBClient dbClientAutoCommit;
 
     //<editor-fold desc="Getters">
     public int getClinicId() {
         return clinicId;
     }
+
     public String getCity() {
         return city;
     }
+
     public String getName() {
         return name;
     }
+
     public String getAddress() {
         return address;
     }
@@ -39,12 +38,15 @@ public class Clinic {
     public void setClinicId(int clinicId) {
         this.clinicId = clinicId;
     }
+
     public void setCity(String city) {
         this.city = city;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public void setAddress(String address) {
         this.address = address;
     }
@@ -62,7 +64,7 @@ public class Clinic {
     }
 
     //<editor-fold desc="Constructors">
-    public Clinic( String name, String address, String city) {
+    public Clinic(String name, String address, String city) {
         this.name = name;
         this.address = address;
         this.city = city;
@@ -73,8 +75,8 @@ public class Clinic {
         }
     }
 
-    public Clinic( int clinicId, String name, String address, String city) {
-        this.clinicId=clinicId;
+    public Clinic(int clinicId, String name, String address, String city) {
+        this.clinicId = clinicId;
         this.name = name;
         this.address = address;
         this.city = city;
@@ -103,7 +105,7 @@ public class Clinic {
 
     //<editor-fold desc="Database Handling">
     public void insertToDB() {
-        ClinicsTable clinic = new ClinicsTable(address,city);
+        ClinicEntity clinic = new ClinicEntity(name, address, city);
         ClinicRepository clinicRepository = new ClinicRepository(dbClientAutoCommit);
         this.clinicId = clinicRepository.insertClinic(clinic);
         clinic.setClinicId(clinicId);
@@ -116,7 +118,7 @@ public class Clinic {
 
     public void updateDB() {
         ClinicRepository clinicRepository = new ClinicRepository(dbClientAutoCommit);
-        clinicRepository.updateClinic(new ClinicsTable(clinicId,address,city));
+        clinicRepository.updateClinic(new ClinicEntity(clinicId, name, address, city));
     }
     //</editor-fold>
 

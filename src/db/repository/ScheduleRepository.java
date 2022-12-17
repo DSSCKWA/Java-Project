@@ -1,7 +1,7 @@
 package src.db.repository;
 
 import src.db.client.DBClient;
-import src.db.tables.ScheduleTable;
+import src.db.entities.ScheduleEntity;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,13 +16,13 @@ public class ScheduleRepository extends Repository {
         super(client);
     }
 
-    public ArrayList<ScheduleTable> getAllSchedules() {
+    public ArrayList<ScheduleEntity> getAllSchedules() {
         String query = "SELECT * FROM schedule";
-        ArrayList<ScheduleTable> schedules = new ArrayList<>();
+        ArrayList<ScheduleEntity> schedules = new ArrayList<>();
         try (Statement stmt = client.getConnection().createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
-            while(rs.next()) {
-                schedules.add(new ScheduleTable(
+            while (rs.next()) {
+                schedules.add(new ScheduleEntity(
                         rs.getInt("doctor_id"),
                         rs.getInt("clinic_id"),
                         DayOfWeek.valueOf(rs.getString("day").toUpperCase(Locale.ROOT)),
@@ -36,14 +36,14 @@ public class ScheduleRepository extends Repository {
         return schedules;
     }
 
-    public ArrayList<ScheduleTable> getSchedulesByClinicId(int clinicId) {
+    public ArrayList<ScheduleEntity> getSchedulesByClinicId(int clinicId) {
         String query = "SELECT * FROM schedule WHERE clinic_id = ?";
-        ArrayList<ScheduleTable> schedules = new ArrayList<>();
+        ArrayList<ScheduleEntity> schedules = new ArrayList<>();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setInt(1, clinicId);
             ResultSet rs = stmt.executeQuery();
-            while(rs.next()) {
-                schedules.add(new ScheduleTable(
+            while (rs.next()) {
+                schedules.add(new ScheduleEntity(
                         rs.getInt("doctor_id"),
                         rs.getInt("clinic_id"),
                         DayOfWeek.valueOf(rs.getString("day").toUpperCase(Locale.ROOT)),
@@ -57,14 +57,14 @@ public class ScheduleRepository extends Repository {
         return schedules;
     }
 
-    public ArrayList<ScheduleTable> getSchedulesByDoctorId(int doctorId) {
+    public ArrayList<ScheduleEntity> getSchedulesByDoctorId(int doctorId) {
         String query = "SELECT * FROM schedule WHERE doctor_id = ?";
-        ArrayList<ScheduleTable> schedules = new ArrayList<>();
+        ArrayList<ScheduleEntity> schedules = new ArrayList<>();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setInt(1, doctorId);
             ResultSet rs = stmt.executeQuery();
-            while(rs.next()) {
-                schedules.add(new ScheduleTable(
+            while (rs.next()) {
+                schedules.add(new ScheduleEntity(
                         rs.getInt("doctor_id"),
                         rs.getInt("clinic_id"),
                         DayOfWeek.valueOf(rs.getString("day").toUpperCase(Locale.ROOT)),
@@ -78,12 +78,12 @@ public class ScheduleRepository extends Repository {
         return schedules;
     }
 
-    public void insertSchedule(ScheduleTable schedule) {
+    public void insertSchedule(ScheduleEntity schedule) {
         String query = "INSERT INTO schedule(doctor_id,clinic_id,day,start_hour,end_hour) VALUES (?,?,?,?,?)";
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
-            stmt.setInt(1,schedule.getDoctorId());
-            stmt.setInt(2,schedule.getClinicId());
-            stmt.setString(3,schedule.getDay().toString().toLowerCase(Locale.ROOT));
+            stmt.setInt(1, schedule.getDoctorId());
+            stmt.setInt(2, schedule.getClinicId());
+            stmt.setString(3, schedule.getDay().toString().toLowerCase(Locale.ROOT));
             stmt.setTime(4, java.sql.Time.valueOf(schedule.getStartHour()));
             stmt.setTime(5, java.sql.Time.valueOf(schedule.getEndHour()));
             stmt.executeUpdate();
@@ -92,7 +92,7 @@ public class ScheduleRepository extends Repository {
         }
     }
 
-    public void updateSchedule(ScheduleTable schedule) {
+    public void updateSchedule(ScheduleEntity schedule) {
         String query = "UPDATE schedule SET start_hour = ?, end_hour = ? WHERE clinic_id = ? and doctor_id = ? and day = ?";
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setTime(1, java.sql.Time.valueOf(schedule.getStartHour()));
@@ -105,7 +105,8 @@ public class ScheduleRepository extends Repository {
             throw new RuntimeException(e);
         }
     }
-    public void deleteSchedule(int doctorId,int clinicId, DayOfWeek day) {
+
+    public void deleteSchedule(int doctorId, int clinicId, DayOfWeek day) {
         String query = "DELETE FROM schedule where doctor_id = ? and clinic_id = ? and day = ?";
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setInt(1, doctorId);

@@ -2,7 +2,7 @@ package src.users;
 
 import src.db.client.DBClient;
 import src.db.repository.VisitRepository;
-import src.db.tables.VisitsTable;
+import src.db.entities.VisitEntity;
 import src.visit.Status;
 import src.visit.Visit;
 
@@ -21,7 +21,7 @@ public class Patient extends User {
 
         visit = new Visit(visitDate, visitTime, 20, doctor, this, -1, Status.PENDING);
 
-        VisitsTable vTable = new VisitsTable(
+        VisitEntity vTable = new VisitEntity(
                 visit.getStatus(),
                 visit.getDate(),
                 visit.getTime(),
@@ -34,17 +34,17 @@ public class Patient extends User {
         VisitRepository db;
         try {
             db = new VisitRepository(new DBClient(true));
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
         db.insertVisit(vTable);
     }
 
-    public void cancelVisit(Visit visit){
+    public void cancelVisit(Visit visit) {
         visit.setStatus(Status.CANCELED);
 
-        VisitsTable vTable = new VisitsTable(
+        VisitEntity vTable = new VisitEntity(
                 visit.getStatus(),
                 visit.getDate(),
                 visit.getTime(),
@@ -57,7 +57,7 @@ public class Patient extends User {
         VisitRepository db;
         try {
             db = new VisitRepository(new DBClient(true));
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
@@ -65,12 +65,12 @@ public class Patient extends User {
 
     }
 
-    public void modifyDate(Visit visit, LocalTime time, LocalDate date){
+    public void modifyDate(Visit visit, LocalTime time, LocalDate date) {
 
         visit.setTime(time);
         visit.setDate(date);
 
-        VisitsTable vTable = new VisitsTable(
+        VisitEntity vTable = new VisitEntity(
                 visit.getStatus(),
                 visit.getDate(),
                 visit.getTime(),
@@ -83,7 +83,7 @@ public class Patient extends User {
         VisitRepository db;
         try {
             db = new VisitRepository(new DBClient(true));
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
@@ -91,12 +91,12 @@ public class Patient extends User {
 
     }
 
-    public void rateVisit(Visit visit, int rating){
+    public void rateVisit(Visit visit, int rating) {
 
         //zakładam sprawdzenie poprawności wartości ratingu po stronie UI
         visit.setRating(rating);
 
-        VisitsTable vTable = new VisitsTable(
+        VisitEntity vTable = new VisitEntity(
                 visit.getStatus(),
                 visit.getDate(),
                 visit.getTime(),
@@ -109,7 +109,7 @@ public class Patient extends User {
         VisitRepository db;
         try {
             db = new VisitRepository(new DBClient(true));
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
