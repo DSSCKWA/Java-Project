@@ -51,7 +51,7 @@ public class UserRestHandler implements RestHandler {
         } catch (HttpException httpException) {
             throw httpException;
         } catch (Exception exception) {
-            throw new HttpException(HttpStatus.INTERNAL_ERROR, "Unexpected error");
+            throw new HttpException(HttpStatus.INTERNAL_ERROR, "Unexpected error " + exception.getMessage());
         }
     }
 
@@ -74,7 +74,7 @@ public class UserRestHandler implements RestHandler {
         } catch (HttpException httpException) {
             throw httpException;
         } catch (Exception exception) {
-            throw new HttpException(HttpStatus.INTERNAL_ERROR, "Unexpected error");
+            throw new HttpException(HttpStatus.INTERNAL_ERROR, "Unexpected error " + exception.getMessage());
         }
     }
 
@@ -102,7 +102,7 @@ public class UserRestHandler implements RestHandler {
         } catch (HttpException httpException) {
             throw httpException;
         } catch (Exception exception) {
-            throw new HttpException(HttpStatus.INTERNAL_ERROR, "Unexpected error");
+            throw new HttpException(HttpStatus.INTERNAL_ERROR, "Unexpected error " + exception.getMessage());
         }
     }
 
@@ -125,7 +125,7 @@ public class UserRestHandler implements RestHandler {
         } catch (HttpException httpException) {
             throw httpException;
         } catch (Exception exception) {
-            throw new HttpException(HttpStatus.INTERNAL_ERROR, "Unexpected error");
+            throw new HttpException(HttpStatus.INTERNAL_ERROR, "Unexpected error " + exception.getMessage());
         }
     }
 }

@@ -1,4 +1,4 @@
-package src.db.tables;
+package src.db.entities;
 
 import src.db.client.DBClient;
 import src.db.repository.DoctorsRepository;
@@ -6,26 +6,26 @@ import src.db.repository.DoctorsRepository;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class DoctorsTable {
+public class DoctorEntity {
     private int doctorId;
     private int clinicId;
 
-    public DoctorsTable(int doctorId, int clinicId) {
+    public DoctorEntity(int doctorId, int clinicId) {
         this.doctorId = doctorId;
         this.clinicId = clinicId;
     }
 
-    public ArrayList<DoctorsTable> getDoctorsTableArrayByDoctorId(int id){
+    public ArrayList<DoctorEntity> getDoctorEntityArrayByDoctorId(int id) {
         DoctorsRepository db;
         try {
             db = new DoctorsRepository(new DBClient(false));
-        }catch (SQLException e){
-            throw  new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
-       return db.getDoctorById(id);
+        return db.getDoctorById(id);
     }
 
-    public DoctorsTable(){
+    public DoctorEntity() {
     }
 
     public int getDoctorId() {
@@ -46,7 +46,7 @@ public class DoctorsTable {
 
     @Override
     public String toString() {
-        return "DoctorsTable{" +
+        return "DoctorsEntity{" +
                 "doctorId=" + doctorId +
                 ", clinicId=" + clinicId +
                 '}';

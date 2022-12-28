@@ -1,4 +1,4 @@
-package src.db.tables;
+package src.db.entities;
 
 import src.db.client.DBClient;
 import src.db.repository.ExpertiseRepository;
@@ -6,24 +6,24 @@ import src.db.repository.ExpertiseRepository;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ExpertiseTable {
+public class ExpertiseEntity {
     private int doctorId;
     private String areaOfExpertise;
 
-    public ExpertiseTable(int doctorId, String areaOfExpertise) {
+    public ExpertiseEntity(int doctorId, String areaOfExpertise) {
         this.doctorId = doctorId;
         this.areaOfExpertise = areaOfExpertise;
     }
 
-    public ExpertiseTable() {
+    public ExpertiseEntity() {
     }
 
-    public ArrayList<ExpertiseTable> getExpertiseTableArrayListByDoctorId(int doctorId){
+    public ArrayList<ExpertiseEntity> getExpertiseEntityArrayListByDoctorId(int doctorId) {
         ExpertiseRepository db;
         this.doctorId = doctorId;
-        try{
+        try {
             db = new ExpertiseRepository(new DBClient(false));
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return db.getExpertiseByDoctorId(doctorId);
@@ -47,7 +47,7 @@ public class ExpertiseTable {
 
     @Override
     public String toString() {
-        return "ExpertiseTable{" +
+        return "ExpertiseEntity{" +
                 "doctorId=" + doctorId +
                 ", areaOfExpertise='" + areaOfExpertise + '\'' +
                 '}';

@@ -1,16 +1,16 @@
-package src.db.tables;
+package src.db.entities;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
-public class ScheduleTable {
+public class ScheduleEntity {
     private int doctorId;
     private int clinicId;
     private DayOfWeek day;
     private LocalTime startHour;
     private LocalTime endHour;
 
-    public ScheduleTable(int doctorId, int clinicId, DayOfWeek day, LocalTime startHour, LocalTime endHour) {
+    public ScheduleEntity(int doctorId, int clinicId, DayOfWeek day, LocalTime startHour, LocalTime endHour) {
         this.doctorId = doctorId;
         this.clinicId = clinicId;
         this.day = day;
@@ -18,7 +18,7 @@ public class ScheduleTable {
         this.endHour = endHour;
     }
 
-    public ScheduleTable() {
+    public ScheduleEntity() {
     }
 
     public int getDoctorId() {
@@ -63,7 +63,7 @@ public class ScheduleTable {
 
     @Override
     public String toString() {
-        return "ScheduleTable{" +
+        return "ScheduleEntity{" +
                 "doctorId=" + doctorId +
                 ", clinicId=" + clinicId +
                 ", day=" + day +

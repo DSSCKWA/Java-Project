@@ -1,7 +1,7 @@
 package src.db.repository;
 
 import src.db.client.DBClient;
-import src.db.tables.DoctorsTable;
+import src.db.entities.DoctorEntity;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,13 +14,13 @@ public class DoctorsRepository extends Repository {
         super(client);
     }
 
-    public ArrayList<DoctorsTable> getAllDoctors() {
+    public ArrayList<DoctorEntity> getAllDoctors() {
         String query = "SELECT * FROM doctors";
-        ArrayList<DoctorsTable> doctor = new ArrayList<>();
+        ArrayList<DoctorEntity> doctor = new ArrayList<>();
         try (Statement stmt = client.getConnection().createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
-            while(rs.next()) {
-                doctor.add(new DoctorsTable(
+            while (rs.next()) {
+                doctor.add(new DoctorEntity(
                         rs.getInt("doctor_id"),
                         rs.getInt("clinic_id")
                 ));
@@ -31,14 +31,14 @@ public class DoctorsRepository extends Repository {
         return doctor;
     }
 
-    public ArrayList<DoctorsTable> getDoctorById(int doctorId) {
+    public ArrayList<DoctorEntity> getDoctorById(int doctorId) {
         String query = "SELECT * FROM doctors WHERE doctor_id = ?";
-        ArrayList<DoctorsTable> expertises = new ArrayList<>();
+        ArrayList<DoctorEntity> expertises = new ArrayList<>();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setInt(1, doctorId);
             ResultSet rs = stmt.executeQuery();
-            while(rs.next()) {
-                expertises.add(new DoctorsTable(
+            while (rs.next()) {
+                expertises.add(new DoctorEntity(
                         rs.getInt("doctor_id"),
                         rs.getInt("clinic_id")
                 ));
@@ -49,14 +49,14 @@ public class DoctorsRepository extends Repository {
         return expertises;
     }
 
-    public ArrayList<DoctorsTable> getDoctorByClinic(int clinicId) {
+    public ArrayList<DoctorEntity> getDoctorByClinic(int clinicId) {
         String query = "SELECT * FROM doctors WHERE clinic_id = ?";
-        ArrayList<DoctorsTable> doctors = new ArrayList<>();
+        ArrayList<DoctorEntity> doctors = new ArrayList<>();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setInt(1, clinicId);
             ResultSet rs = stmt.executeQuery();
-            while(rs.next()) {
-                doctors.add(new DoctorsTable(
+            while (rs.next()) {
+                doctors.add(new DoctorEntity(
                         rs.getInt("doctor_id"),
                         rs.getInt("clinic_id")
                 ));
@@ -67,7 +67,7 @@ public class DoctorsRepository extends Repository {
         return doctors;
     }
 
-    public void insertDoctor(DoctorsTable doctor) {
+    public void insertDoctor(DoctorEntity doctor) {
         String query = "INSERT INTO doctors(doctor_id, clinic_id) VALUES (?,?)";
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setInt(1, doctor.getDoctorId());

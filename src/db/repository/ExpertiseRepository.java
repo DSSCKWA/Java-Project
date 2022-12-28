@@ -1,7 +1,7 @@
 package src.db.repository;
 
 import src.db.client.DBClient;
-import src.db.tables.ExpertiseTable;
+import src.db.entities.ExpertiseEntity;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,13 +14,13 @@ public class ExpertiseRepository extends Repository {
         super(client);
     }
 
-    public ArrayList<ExpertiseTable> getAllExpertises() {
+    public ArrayList<ExpertiseEntity> getAllExpertises() {
         String query = "SELECT * FROM expertise";
-        ArrayList<ExpertiseTable> expertises = new ArrayList<>();
+        ArrayList<ExpertiseEntity> expertises = new ArrayList<>();
         try (Statement stmt = client.getConnection().createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
-            while(rs.next()) {
-                expertises.add(new ExpertiseTable(
+            while (rs.next()) {
+                expertises.add(new ExpertiseEntity(
                         rs.getInt("doctor_id"),
                         rs.getString("area_of_expertise")
                 ));
@@ -31,14 +31,14 @@ public class ExpertiseRepository extends Repository {
         return expertises;
     }
 
-    public ArrayList<ExpertiseTable> getExpertiseByDoctorId(int doctorId) {
+    public ArrayList<ExpertiseEntity> getExpertiseByDoctorId(int doctorId) {
         String query = "SELECT * FROM expertise WHERE doctor_id = ?";
-        ArrayList<ExpertiseTable> expertises = new ArrayList<>();
+        ArrayList<ExpertiseEntity> expertises = new ArrayList<>();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setInt(1, doctorId);
             ResultSet rs = stmt.executeQuery();
-            while(rs.next()) {
-                expertises.add(new ExpertiseTable(
+            while (rs.next()) {
+                expertises.add(new ExpertiseEntity(
                         rs.getInt("doctor_id"),
                         rs.getString("area_of_expertise")
                 ));
@@ -49,14 +49,14 @@ public class ExpertiseRepository extends Repository {
         return expertises;
     }
 
-    public ArrayList<ExpertiseTable> getExpertisesByArea(String areaOfExpertise) {
+    public ArrayList<ExpertiseEntity> getExpertisesByArea(String areaOfExpertise) {
         String query = "SELECT * FROM expertise WHERE area_of_expertise = ?";
-        ArrayList<ExpertiseTable> expertises = new ArrayList<>();
+        ArrayList<ExpertiseEntity> expertises = new ArrayList<>();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setString(1, areaOfExpertise);
             ResultSet rs = stmt.executeQuery();
-            while(rs.next()) {
-                expertises.add(new ExpertiseTable(
+            while (rs.next()) {
+                expertises.add(new ExpertiseEntity(
                         rs.getInt("doctor_id"),
                         rs.getString("area_of_expertise")
                 ));
@@ -67,7 +67,7 @@ public class ExpertiseRepository extends Repository {
         return expertises;
     }
 
-    public void insertExpertise(ExpertiseTable expertise) {
+    public void insertExpertise(ExpertiseEntity expertise) {
         String query = "INSERT INTO expertise(doctor_id,area_of_expertise) VALUES (?,?)";
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setInt(1, expertise.getDoctorId());

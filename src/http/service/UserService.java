@@ -2,7 +2,7 @@ package src.http.service;
 
 import src.db.client.DBClient;
 import src.db.repository.UserRepository;
-import src.db.tables.UsersTable;
+import src.db.entities.UserEntity;
 import src.http.constants.HttpStatus;
 import src.http.util.HttpException;
 import src.users.Permissions;
@@ -33,23 +33,23 @@ public class UserService {
     }
 
     public User getUserById(int userId) {
-        UsersTable user = userRepository.getUserById(userId);
-        if (user.equals(new UsersTable())) {
+        UserEntity user = userRepository.getUserById(userId);
+        if (user.equals(new UserEntity())) {
             return null;
         }
         return userRepository.toUser(user);
     }
 
     public User getUserByEmail(String email) {
-        UsersTable user = userRepository.getUserByEmail(email);
-        if (user.equals(new UsersTable())) {
+        UserEntity user = userRepository.getUserByEmail(email);
+        if (user.equals(new UserEntity())) {
             return null;
         }
         return userRepository.toUser(user);
     }
 
     public User addUser(Map<String, String> userData) {
-        UsersTable user = toUsersTable(userData);
+        UserEntity user = toUserEntity(userData);
         int userId = userRepository.insertUser(user);
         user.setUserId(userId);
         return userRepository.toUser(user);
@@ -57,19 +57,19 @@ public class UserService {
 
     public User updateUser(int userId, Map<String, String> userData) {
         //TODO validate data
-        UsersTable usersTable = toUsersTable(userData);
-        usersTable.setUserId(userId);
-        userRepository.updateUser(usersTable);
-        return userRepository.toUser(usersTable);
+        UserEntity userEntity = toUserEntity(userData);
+        userEntity.setUserId(userId);
+        userRepository.updateUser(userEntity);
+        return userRepository.toUser(userEntity);
     }
 
     public void deleteUser(int userId) {
         userRepository.deleteUserById(userId);
     }
 
-    private UsersTable toUsersTable(Map<String, String> userData) {
+    private UserEntity toUserEntity(Map<String, String> userData) {
         try {
-            UsersTable user = new UsersTable(
+            UserEntity user = new UserEntity(
                     userData.get("name"),
                     userData.get("surname"),
                     userData.get("address"),
