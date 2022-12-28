@@ -10,7 +10,6 @@ import src.http.util.HttpException;
 import src.http.util.HttpHandlerUtil;
 import src.users.User;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Objects;
