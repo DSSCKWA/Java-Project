@@ -1,7 +1,7 @@
 package src.db.repository;
 
 import src.db.client.DBClient;
-import src.db.tables.UsersTable;
+import src.db.entities.UserEntity;
 import src.users.Permissions;
 import src.users.User;
 
@@ -17,35 +17,35 @@ public class UserRepository extends Repository {
         super(client);
     }
 
-    public User toUser(UsersTable usersTables) {
+    public User toUser(UserEntity userEntity) {
         return new User(
-                usersTables.getUserId(),
-                usersTables.getName(),
-                usersTables.getSurname(),
-                usersTables.getEmail(),
-                usersTables.getPassword(),
-                usersTables.getAddress(),
-                usersTables.getCity(),
-                usersTables.getPhoneNumber(),
-                usersTables.getPermissions()
+                userEntity.getUserId(),
+                userEntity.getName(),
+                userEntity.getSurname(),
+                userEntity.getEmail(),
+                userEntity.getPassword(),
+                userEntity.getAddress(),
+                userEntity.getCity(),
+                userEntity.getPhoneNumber(),
+                userEntity.getPermissions()
         );
     }
 
-    public ArrayList<User> toUserList(ArrayList<UsersTable> usersTables) {
+    public ArrayList<User> toUserList(ArrayList<UserEntity> userEntities) {
         ArrayList<User> users = new ArrayList<>();
-        for (UsersTable user : usersTables) {
+        for (UserEntity user : userEntities) {
             users.add(toUser(user));
         }
         return users;
     }
 
-    public ArrayList<UsersTable> getAllUsers() {
+    public ArrayList<UserEntity> getAllUsers() {
         String query = "SELECT * FROM users";
-        ArrayList<UsersTable> users = new ArrayList<>();
+        ArrayList<UserEntity> users = new ArrayList<>();
         try (Statement stmt = client.getConnection().createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
-                users.add(new UsersTable(
+                users.add(new UserEntity(
                         rs.getInt("user_id"),
                         rs.getString("name"),
                         rs.getString("surname"),
@@ -63,14 +63,14 @@ public class UserRepository extends Repository {
         return users;
     }
 
-    public ArrayList<UsersTable> getUsersByPermissions(Permissions permissions) {
+    public ArrayList<UserEntity> getUsersByPermissions(Permissions permissions) {
         String query = "SELECT * FROM users WHERE permissions = ?";
-        ArrayList<UsersTable> users = new ArrayList<>();
+        ArrayList<UserEntity> users = new ArrayList<>();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setString(1, permissions.toString().toLowerCase(Locale.ROOT));
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                users.add(new UsersTable(
+                users.add(new UserEntity(
                         rs.getInt("user_id"),
                         rs.getString("name"),
                         rs.getString("surname"),
@@ -88,9 +88,9 @@ public class UserRepository extends Repository {
         return users;
     }
 
-    public UsersTable getUserById(int userId) {
+    public UserEntity getUserById(int userId) {
         String query = "SELECT * FROM users WHERE user_id = ?";
-        UsersTable user = new UsersTable();
+        UserEntity user = new UserEntity();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setInt(1, userId);
             ResultSet rs = stmt.executeQuery();
@@ -111,9 +111,9 @@ public class UserRepository extends Repository {
         return user;
     }
 
-    public UsersTable getUserByEmail(String email) {
+    public UserEntity getUserByEmail(String email) {
         String query = "SELECT * FROM users WHERE email = ?";
-        UsersTable user = new UsersTable();
+        UserEntity user = new UserEntity();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
@@ -134,7 +134,7 @@ public class UserRepository extends Repository {
         return user;
     }
 
-    public int insertUser(UsersTable user) {
+    public int insertUser(UserEntity user) {
         String query = "INSERT INTO users(name,surname,address,city,phone_number,email,password,permissions) VALUES (?,?,?,?,?,?,?,?)";
         int userId = 0;
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
@@ -159,7 +159,7 @@ public class UserRepository extends Repository {
         return userId;
     }
 
-    public void updateUser(UsersTable user) {
+    public void updateUser(UserEntity user) {
         String query = "UPDATE users SET name = ?, surname = ?, address = ?, city = ?, phone_number = ?, email = ?, password = ?, permissions = ? WHERE user_id = ?";
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
             stmt.setString(1, user.getName());

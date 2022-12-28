@@ -4,10 +4,10 @@ import src.db.repository.ClinicRepository;
 import src.db.repository.DoctorsRepository;
 import src.db.repository.ExpertiseRepository;
 import src.db.repository.UserRepository;
-import src.db.tables.ClinicsTable;
-import src.db.tables.DoctorsTable;
-import src.db.tables.ExpertiseTable;
-import src.db.tables.UsersTable;
+import src.db.entities.ClinicEntity;
+import src.db.entities.DoctorEntity;
+import src.db.entities.ExpertiseEntity;
+import src.db.entities.UserEntity;
 import src.users.Permissions;
 
 import java.sql.SQLException;
@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class DBClient_Test {
     public static void main(String[] args) {
         int clinicId = 0;
-        ClinicsTable clinic = new ClinicsTable("street name", "city name");
+        ClinicEntity clinic = new ClinicEntity("name", "street name", "city name");
         try {
             DBClient dbClientAutoCommit = new DBClient(true);
             ClinicRepository clinicRepository = new ClinicRepository(dbClientAutoCommit);
@@ -35,11 +35,11 @@ public class DBClient_Test {
             clinic.setAddress("updated address");
             clinicRepository.updateClinic(clinic);
             dbClientNoAutoCommit.getConnection().commit();
-            UsersTable user = new UsersTable("name", "surname", "address", "city", 1234567, "mail", "password", Permissions.DOCTOR);
+            UserEntity user = new UserEntity("name", "surname", "address", "city", 1234567, "mail", "password", Permissions.DOCTOR);
             int userId = userRepository.insertUser(user);
             user.setUserId(userId);
-            doctorsRepository.insertDoctor(new DoctorsTable(userId, clinicId));
-            expertiseRepository.insertExpertise(new ExpertiseTable(userId, "nothing"));
+            doctorsRepository.insertDoctor(new DoctorEntity(userId, clinicId));
+            expertiseRepository.insertExpertise(new ExpertiseEntity(userId, "nothing"));
             dbClientNoAutoCommit.getConnection().commit();
             System.out.println(doctorsRepository.getDoctorById(userId));
 

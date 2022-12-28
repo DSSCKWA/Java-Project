@@ -6,9 +6,9 @@ import src.db.repository.ClinicRepository;
 import src.db.repository.DoctorsRepository;
 import src.db.repository.ExpertiseRepository;
 import src.db.repository.UserRepository;
-import src.db.tables.ClinicsTable;
-import src.db.tables.DoctorsTable;
-import src.db.tables.ExpertiseTable;
+import src.db.entities.ClinicEntity;
+import src.db.entities.DoctorEntity;
+import src.db.entities.ExpertiseEntity;
 import src.expertise.Expertise;
 
 import java.sql.SQLException;
@@ -21,7 +21,7 @@ public class ModeratorTest {
         moderator.addClinic(clinic);
         DBClient dbClient = new DBClient(true);
         ClinicRepository clinicRepository = new ClinicRepository(dbClient);
-        ArrayList<ClinicsTable> clinics = clinicRepository.getAllClinics();
+        ArrayList<ClinicEntity> clinics = clinicRepository.getAllClinics();
         System.out.println(clinics);
 
         moderator.changeClinicName(clinic, "Klinika nowa");
@@ -35,7 +35,7 @@ public class ModeratorTest {
         moderator.addDoctorToClinic(doctor, clinic);
 
         DoctorsRepository doctorsRepository = new DoctorsRepository(dbClient);
-        ArrayList<DoctorsTable> doctors = doctorsRepository.getAllDoctors();
+        ArrayList<DoctorEntity> doctors = doctorsRepository.getAllDoctors();
         System.out.println(doctors);
 
         Expertise expertise = new Expertise(doctor.getId(), "pediatra");
@@ -44,7 +44,7 @@ public class ModeratorTest {
         moderator.addDoctorExpertise(doctor, expertise2);
 
         ExpertiseRepository expertiseRepository = new ExpertiseRepository(dbClient);
-        ArrayList<ExpertiseTable> expertises = expertiseRepository.getAllExpertises();
+        ArrayList<ExpertiseEntity> expertises = expertiseRepository.getAllExpertises();
         System.out.println(expertises);
 
         moderator.removeDoctorExpertise(doctor, expertise);

@@ -18,7 +18,7 @@ public class TestMail {
         Doctor doctor = new Doctor("Tadeusz", "Kwiatkowski", "tadek@gmail.com", "haslo", "ul. Parkowa 4", "Wieliczka", 111333555);
         Patient patient = new Patient("Dawid", "Gorski", "dawidgorski0000@gmail.com", "123", "ul. Kwiatowa 1", "Warszawa", 123456789, Permissions.PATIENT);
         Visit visit = new Visit(date, time, 20, doctor, patient, 0, Status.PENDING);
-//        mail.visitReminder(visit);
-        mail.infoAboutPermissionChange(patient);
+        // mail.visitReminder(visit);
+       mail.infoAboutPermissionChange(patient);
     }
 }

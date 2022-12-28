@@ -2,8 +2,9 @@ package src.expertise;
 
 import src.db.client.DBClient;
 import src.db.repository.ExpertiseRepository;
-import src.db.tables.ExpertiseTable;
+import src.db.entities.ExpertiseEntity;
 import src.users.Doctor;
+
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -62,13 +63,13 @@ public class Expertise {
     //<editor-fold desc="Database Handling">
     public void insertToDB(Expertise expertise) {
         ExpertiseRepository expertiseRepository = new ExpertiseRepository(dbClientAutoCommit);
-        expertiseRepository.insertExpertise(new ExpertiseTable(doctorId, this.expertise));
+        expertiseRepository.insertExpertise(new ExpertiseEntity(doctorId, this.expertise));
         System.out.println(expertiseRepository.getAllExpertises());
     }
 
     public void removeFromDB(Doctor doctor) {
-            ExpertiseRepository expertiseRepository = new ExpertiseRepository(dbClientAutoCommit);
-            expertiseRepository.deleteExpertise(doctor.getId(),expertise);
+        ExpertiseRepository expertiseRepository = new ExpertiseRepository(dbClientAutoCommit);
+        expertiseRepository.deleteExpertise(doctor.getId(), expertise);
     }
     //</editor-fold>
 

@@ -29,8 +29,13 @@ public class GlobalHttpHandler implements HttpHandler {
         } catch (HttpException e) {
             LOGGER.info(e.getMessage());
             exchange.sendResponseHeaders(e.getHttpStatus().getStatus(), 0);
+            exchange.getResponseBody().write((
+                    "Error: " + e.getHttpStatus()
+                            + "\nCode: " + e.getHttpStatus().getStatus()
+                            + "\nMessage: " + e.getMessage())
+                    .getBytes());
+        } finally {
             exchange.close();
         }
-        exchange.close();
     }
 }

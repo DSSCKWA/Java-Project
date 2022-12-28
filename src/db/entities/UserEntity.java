@@ -1,15 +1,13 @@
-package src.db.tables;
+package src.db.entities;
 
 import src.db.client.DBClient;
 import src.db.repository.UserRepository;
 import src.users.Permissions;
-import src.users.User;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Objects;
 
-public class UsersTable {
+public class UserEntity {
     private int userId;
     private String name;
     private String surname;
@@ -20,7 +18,7 @@ public class UsersTable {
     private String password;
     private Permissions permissions;
 
-    public UsersTable(int userId, String name, String surname, String address, String city, int phoneNumber, String email, String password, Permissions permissions) {
+    public UserEntity(int userId, String name, String surname, String address, String city, int phoneNumber, String email, String password, Permissions permissions) {
         this.userId = userId;
         this.name = name;
         this.surname = surname;
@@ -32,7 +30,7 @@ public class UsersTable {
         this.permissions = permissions;
     }
 
-    public UsersTable(String name, String surname, String address, String city, int phoneNumber, String email, String password, Permissions permissions) {
+    public UserEntity(String name, String surname, String address, String city, int phoneNumber, String email, String password, Permissions permissions) {
         this.name = name;
         this.surname = surname;
         this.address = address;
@@ -43,7 +41,7 @@ public class UsersTable {
         this.permissions = permissions;
     }
 
-    public UsersTable getUsersTableByUserId(int userId) {
+    public UserEntity getUserEntityByUserId(int userId) {
         UserRepository db;
         this.userId = userId;
         try {
@@ -54,7 +52,7 @@ public class UsersTable {
         return db.getUserById(userId);
     }
 
-    public UsersTable() {
+    public UserEntity() {
     }
 
     public int getUserId() {
@@ -131,7 +129,7 @@ public class UsersTable {
 
     @Override
     public String toString() {
-        return "UsersTable{" +
+        return "UsersEntity{" +
                 "userId=" + userId +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
@@ -148,7 +146,7 @@ public class UsersTable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UsersTable that = (UsersTable) o;
+        UserEntity that = (UserEntity) o;
         return userId == that.userId && phoneNumber == that.phoneNumber && Objects.equals(name, that.name) && Objects.equals(surname, that.surname) && Objects.equals(address, that.address) && Objects.equals(city, that.city) && Objects.equals(email, that.email) && Objects.equals(password, that.password) && permissions == that.permissions;
     }
 

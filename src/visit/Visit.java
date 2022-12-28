@@ -3,7 +3,8 @@ package src.visit;
 
 import src.users.Doctor;
 import src.users.Patient;
-import src.db.tables.VisitsTable;
+import src.db.entities.VisitEntity;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
@@ -73,7 +74,7 @@ public class Visit {
     }
 
     public void setRating(int rating) {
-        if (rating < 1)rating = 1;
+        if (rating < 1) rating = 1;
         else if (rating > 5) rating = 5;
         this.rating = rating;
     }
@@ -86,8 +87,8 @@ public class Visit {
         this.status = status;
     }
 
-    public VisitsTable visitToVisitTable(){
-        return new VisitsTable(this.status,
+    public VisitEntity visitToVisitEntity() {
+        return new VisitEntity(this.status,
                 this.date,
                 this.time,
                 this.duration,

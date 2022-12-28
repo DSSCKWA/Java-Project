@@ -2,7 +2,7 @@ package src.equipment;
 
 import src.db.client.DBClient;
 import src.db.repository.EquipmentRepository;
-import src.db.tables.EquipmentTable;
+import src.db.entities.EquipmentEntity;
 
 public class Equipment {
 
@@ -59,7 +59,7 @@ public class Equipment {
 
     //<editor-fold desc="Database Handling">
     public void insertToDB() {
-        EquipmentTable equipment = new EquipmentTable(name,status,clinicId);
+        EquipmentEntity equipment = new EquipmentEntity(name, status, clinicId);
         EquipmentRepository equipmentRepository = new EquipmentRepository(dbClientAutoCommit);
         this.equipmentId = equipmentRepository.insertEquipment(equipment);
         equipment.setEquipmentId(equipmentId);
@@ -72,7 +72,7 @@ public class Equipment {
 
     public void updateDB() {
         EquipmentRepository equipmentRepository = new EquipmentRepository(dbClientAutoCommit);
-        equipmentRepository.updateEquipment(new EquipmentTable(equipmentId,name,status,clinicId));
+        equipmentRepository.updateEquipment(new EquipmentEntity(equipmentId, name, status, clinicId));
     }
     //</editor-fold>
 

@@ -1,28 +1,29 @@
-package src.db.tables;
+package src.db.entities;
 
 import src.equipment.EquipmentStatus;
 
-public class EquipmentTable {
+public class EquipmentEntity {
 
     private int equipmentId;
     private String name;
     private EquipmentStatus status;
     private int clinicId;
 
-    public EquipmentTable(int equipment_id, String name, EquipmentStatus status, int clinicId) {
+    public EquipmentEntity(int equipment_id, String name, EquipmentStatus status, int clinicId) {
         this.equipmentId = equipment_id;
         this.name = name;
         this.status = status;
         this.clinicId = clinicId;
     }
 
-    public EquipmentTable( String name, EquipmentStatus status, int clinicId) {
+    public EquipmentEntity(String name, EquipmentStatus status, int clinicId) {
         this.name = name;
         this.status = status;
         this.clinicId = clinicId;
     }
 
-    public EquipmentTable() {}
+    public EquipmentEntity() {
+    }
 
     public int getEquipmentId() {
         return equipmentId;
@@ -58,7 +59,7 @@ public class EquipmentTable {
 
     @Override
     public String toString() {
-        return "EquipmentTable{" +
+        return "EquipmentEntity{" +
                 "equipmentId=" + equipmentId +
                 ", name='" + name + '\'' +
                 ", status=" + status +
