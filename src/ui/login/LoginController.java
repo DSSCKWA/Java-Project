@@ -34,12 +34,16 @@ public class LoginController {
 
         System.out.println(email+":"+password);
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../admin/admin.fxml")));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Parent root;
+        Stage stage;
+        Scene scene;
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../patient/patient.fxml")));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setResizable(false);
-        Scene scene = new Scene(root);
+        scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
 
         UserService userService=new UserService(); ///TODO: delete
 
@@ -49,6 +53,12 @@ public class LoginController {
             if(Objects.equals(user.getPassword(), password)) {
                 switch (user.getPermissions()) {
                     case ADMIN:
+                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../admin/admin.fxml")));
+                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setResizable(false);
+                        scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
                         break;
                     case DOCTOR:
                         break;
