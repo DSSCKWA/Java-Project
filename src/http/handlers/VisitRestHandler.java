@@ -1,18 +1,16 @@
 package src.http.handlers;
 
 import com.sun.net.httpserver.HttpExchange;
-import src.http.service.DoctorService;
 import src.http.service.VisitService;
 
-import java.io.IOException;
 import java.util.logging.Logger;
 
-public class VisitRestHanlder implements RestHandler {
-    private static final Logger LOGGER = Logger.getLogger(VisitRestHanlder.class.getName());
+public class VisitRestHandler implements RestHandler {
+    private static final Logger LOGGER = Logger.getLogger(VisitRestHandler.class.getName());
 
     private final VisitService visitService;
 
-    public VisitRestHanlder(VisitService visitService) {
+    public VisitRestHandler(VisitService visitService) {
         this.visitService = visitService;
     }
 
