@@ -67,4 +67,56 @@ public class HttpClient {
         return equipment;
     }
 
+    public boolean updateClinic(Clinic clinic) throws IOException, InterruptedException {
+        Gson g = new Gson();
+        String json = g.toJson(clinic);
+        java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                .uri(java.net.URI.create(serverUrl + "/clinics/" + clinic.getClinicId()))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .PUT(java.net.http.HttpRequest.BodyPublishers.ofString(json))
+                .build();
+        java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() == 200;
+    }
+
+    public Clinic getClinic(int id) throws IOException, InterruptedException {
+        java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                .uri(java.net.URI.create(serverUrl + "/clinics/" + id))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .GET()
+                .build();
+        java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+
+        Gson g = new Gson();
+        String res = response.body();
+        Clinic clinic = g.fromJson(res, Clinic.class);
+        return clinic;
+    }
+
+    public boolean addClinic(Clinic clinic) throws IOException, InterruptedException {
+        Gson g = new Gson();
+        String json = g.toJson(clinic);
+        java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                .uri(java.net.URI.create(serverUrl + "/clinics"))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .POST(java.net.http.HttpRequest.BodyPublishers.ofString(json))
+                .build();
+        java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() == 201;
+    }
+
+    public boolean deleteClinic(int id) throws IOException, InterruptedException {
+        java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                .uri(java.net.URI.create(serverUrl + "/clinics/" + id))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .DELETE()
+                .build();
+        java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() == 200;
+    }
+
 }
