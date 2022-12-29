@@ -4,7 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import src.http.constants.HttpStatus;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
+import java.net.URLDecoder;
+import java.util.HashMap;
 import java.util.Map;
 
 public class HttpHandlerUtil {
@@ -23,5 +26,17 @@ public class HttpHandlerUtil {
         } catch (Exception e) {
             throw new HttpException(HttpStatus.BAD_REQUEST, "Request should be of JSON format");
         }
+    }
+
+    public static Map<String, String> getQueryParams(String query) throws HttpException {
+        Map<String, String> queryParams = new HashMap<>();
+        String[] pairs = query.split("&");
+        for (String pair : pairs) {
+            int idx = pair.indexOf("=");
+            String name = pair.substring(0, idx);
+            String value = pair.substring(idx + 1);
+            queryParams.put(name, value);
+        }
+        return queryParams;
     }
 }
