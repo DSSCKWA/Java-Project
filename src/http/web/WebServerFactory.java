@@ -1,7 +1,7 @@
 package src.http.web;
 
 import com.sun.net.httpserver.HttpServer;
-import src.http.handlers.ClinicRestHanlder;
+import src.http.handlers.ClinicRestHandler;
 import src.http.handlers.EquipmentRestHandler;
 import src.http.handlers.GlobalHttpHandler;
 import src.http.handlers.UserRestHandler;
@@ -27,7 +27,7 @@ public class WebServerFactory {
             EquipmentService equipmentService = new EquipmentService();
 
             server.createContext("/users", new GlobalHttpHandler(new UserRestHandler(userService)));
-            server.createContext("/clinics", new GlobalHttpHandler(new ClinicRestHanlder(clinicService)));
+            server.createContext("/clinics", new GlobalHttpHandler(new ClinicRestHandler(clinicService)));
             server.createContext("/equipment", new GlobalHttpHandler(new EquipmentRestHandler(equipmentService, clinicService)));
 
             return server;

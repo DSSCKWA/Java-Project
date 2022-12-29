@@ -15,13 +15,13 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Logger;
 
-public class ClinicRestHanlder implements RestHandler {
-    private static final Logger LOGGER = Logger.getLogger(src.http.handlers.ClinicRestHanlder.class.getName());
+public class ClinicRestHandler implements RestHandler {
+    private static final Logger LOGGER = Logger.getLogger(ClinicRestHandler.class.getName());
     private static final Gson gson = GsonConverter.newGsonWriterConverter();
 
     private final ClinicService clinicService;
 
-    public ClinicRestHanlder(ClinicService clinicService) {
+    public ClinicRestHandler(ClinicService clinicService) {
         this.clinicService = clinicService;
     }
 
