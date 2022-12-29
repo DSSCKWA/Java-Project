@@ -2,6 +2,8 @@ package src.db.entities;
 
 import src.equipment.EquipmentStatus;
 
+import java.util.Objects;
+
 public class EquipmentEntity {
 
     private int equipmentId;
@@ -55,6 +57,19 @@ public class EquipmentEntity {
 
     public void setClinicId(int clinicId) {
         this.clinicId = clinicId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EquipmentEntity that = (EquipmentEntity) o;
+        return equipmentId == that.equipmentId && clinicId == that.clinicId && Objects.equals(name, that.name) && status == that.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(equipmentId, name, status, clinicId);
     }
 
     @Override

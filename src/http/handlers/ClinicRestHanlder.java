@@ -7,10 +7,8 @@ import src.gson.GsonConverter;
 import src.http.constants.Headers;
 import src.http.constants.HttpStatus;
 import src.http.service.ClinicService;
-import src.http.service.UserService;
 import src.http.util.HttpException;
 import src.http.util.HttpHandlerUtil;
-import src.users.User;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
@@ -91,7 +89,7 @@ public class ClinicRestHanlder implements RestHandler {
             if (clinic == null) {
                 throw new HttpException(HttpStatus.NOT_FOUND, "Clinic does not exist");
             }
-            clinic = clinicService.updateUser(clinicId, clinicData);
+            clinic = clinicService.updateClinic(clinicId, clinicData);
             byte[] clinicBytes = gson.toJson(clinic).getBytes();
             exchange.getResponseHeaders().set(Headers.contentType, Headers.appJson);
             exchange.sendResponseHeaders(HttpStatus.OK.getStatus(), clinicBytes.length);

@@ -10,7 +10,7 @@ public class Equipment {
     private String name;
     private EquipmentStatus status;
     private int clinicId;
-    private DBClient dbClientAutoCommit;
+    private transient DBClient dbClientAutoCommit;
 
     //<editor-fold desc="Getters">
     public int getEquipmentId() {
