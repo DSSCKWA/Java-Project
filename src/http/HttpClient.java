@@ -272,13 +272,7 @@ public class HttpClient {
                 .header("Content-Type", "application/json")
                 .GET()
                 .build();
-        java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
-
-        Gson g = new Gson();
-        String res = response.body();
-        System.out.println(res);
-        Visit[] visits = g.fromJson(res, Visit[].class);
-        return new ArrayList<>(Arrays.asList(visits));
+        return getVisits(request);
     }
 
     public boolean addVisit(Visit visit) throws IOException, InterruptedException {
@@ -325,13 +319,7 @@ public class HttpClient {
                 .header("Content-Type", "application/json")
                 .GET()
                 .build();
-        java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
-
-        Gson g = new Gson();
-        String res = response.body();
-        System.out.println(res);
-        Visit[] visits = g.fromJson(res, Visit[].class);
-        return new ArrayList<>(Arrays.asList(visits));
+        return getVisits(request);
     }
 
     public ArrayList<Visit> getVisitsByClientId(int clientId) throws IOException, InterruptedException {
@@ -341,7 +329,11 @@ public class HttpClient {
                 .header("Content-Type", "application/json")
                 .GET()
                 .build();
-        java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        return getVisits(request);
+    }
+
+    private ArrayList<Visit> getVisits(HttpRequest request) throws IOException, InterruptedException {
+        HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 
         Gson g = new Gson();
         String res = response.body();
