@@ -1,32 +1,59 @@
 package src.visit;
 
 
+import src.db.entities.VisitEntity;
 import src.users.Doctor;
 import src.users.Patient;
-import src.db.entities.VisitEntity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
 public class Visit {
-
+    private int visitId;
     private LocalDate date;
     private LocalTime time;
     private int duration;
     private Doctor doctor;
     private Patient patient;
     private int rating;
-    private Status status;
+    private VisitStatus visitStatus;
 
-    public Visit(LocalDate date, LocalTime time, int duration, Doctor doctor, Patient patient, int rating, Status status) {
+    public Visit(int visitId, LocalDate date, LocalTime time, int duration, Doctor doctor, Patient patient, int rating, VisitStatus visitStatus) {
+        this.visitId = visitId;
         this.date = date;
         this.time = time;
         this.duration = duration;
         this.doctor = doctor;
         this.patient = patient;
         this.rating = rating;
-        this.status = status;
+        this.visitStatus = visitStatus;
+    }
+
+    public Visit(LocalDate date, LocalTime time, int duration, Doctor doctor, Patient patient, int rating, VisitStatus visitStatus) {
+        this.date = date;
+        this.time = time;
+        this.duration = duration;
+        this.doctor = doctor;
+        this.patient = patient;
+        this.rating = rating;
+        this.visitStatus = visitStatus;
+    }
+
+    public int getVisitId() {
+        return visitId;
+    }
+
+    public void setVisitId(int visitId) {
+        this.visitId = visitId;
+    }
+
+    public VisitStatus getVisitStatus() {
+        return visitStatus;
+    }
+
+    public void setVisitStatus(VisitStatus visitStatus) {
+        this.visitStatus = visitStatus;
     }
 
     public LocalDate getDate() {
@@ -79,16 +106,16 @@ public class Visit {
         this.rating = rating;
     }
 
-    public Status getStatus() {
-        return status;
+    public VisitStatus getStatus() {
+        return visitStatus;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setStatus(VisitStatus visitStatus) {
+        this.visitStatus = visitStatus;
     }
 
     public VisitEntity visitToVisitEntity() {
-        return new VisitEntity(this.status,
+        return new VisitEntity(this.visitStatus,
                 this.date,
                 this.time,
                 this.duration,
@@ -102,12 +129,12 @@ public class Visit {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Visit visit = (Visit) o;
-        return duration == visit.duration && rating == visit.rating && Objects.equals(date, visit.date) && Objects.equals(time, visit.time) && Objects.equals(doctor, visit.doctor) && Objects.equals(patient, visit.patient) && status == visit.status;
+        return duration == visit.duration && rating == visit.rating && Objects.equals(date, visit.date) && Objects.equals(time, visit.time) && Objects.equals(doctor, visit.doctor) && Objects.equals(patient, visit.patient) && visitStatus == visit.visitStatus;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(date, time, duration, doctor, patient, rating, status);
+        return Objects.hash(date, time, duration, doctor, patient, rating, visitStatus);
     }
 
     @Override

@@ -51,7 +51,11 @@ public class EquipmentRestHandler implements RestHandler {
                 try {
                     int equipmentId = Integer.parseInt(paths[1]);
                     Equipment equipment = equipmentService.getEquipmentById(equipmentId);
-                    equipmentBytes = gson.toJson(Objects.requireNonNullElse(equipment, "{}")).getBytes();
+                    if (equipment == null) {
+                        throw new HttpException(HttpStatus.NOT_FOUND, "Clinic does not exist");
+                    } else {
+                        equipmentBytes = gson.toJson(equipment).getBytes();
+                    }
                 } catch (NumberFormatException e) {
                     throw new HttpException(HttpStatus.BAD_REQUEST, "Invalid payload");
                 }

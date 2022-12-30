@@ -1,8 +1,6 @@
 package src.db.repository;
 
-import src.clinic.Clinic;
 import src.db.client.DBClient;
-import src.db.entities.ClinicEntity;
 import src.db.entities.EquipmentEntity;
 import src.equipment.Equipment;
 import src.equipment.EquipmentStatus;

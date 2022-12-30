@@ -1,8 +1,5 @@
 package src.mail;
 
-import src.clinic.Clinic;
-import src.users.Doctor;
-import src.users.Patient;
 import src.users.User;
 import src.visit.Visit;
 

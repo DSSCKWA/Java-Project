@@ -1,12 +1,14 @@
 package src.db.entities;
 
-import src.visit.Status;
+import src.visit.VisitStatus;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Objects;
 
 public class VisitEntity {
-    private Status status;
+    private int visitId;
+    private VisitStatus visitStatus;
     private LocalDate date;
     private LocalTime time;
     private int duration;
@@ -14,8 +16,19 @@ public class VisitEntity {
     private int doctorId;
     private int rating;
 
-    public VisitEntity(Status status, LocalDate date, LocalTime time, int duration, int clientId, int doctorId, int rating) {
-        this.status = status;
+    public VisitEntity(int visitId, VisitStatus visitStatus, LocalDate date, LocalTime time, int duration, int clientId, int doctorId, int rating) {
+        this.visitId = visitId;
+        this.visitStatus = visitStatus;
+        this.date = date;
+        this.time = time;
+        this.duration = duration;
+        this.clientId = clientId;
+        this.doctorId = doctorId;
+        this.rating = rating;
+    }
+
+    public VisitEntity(VisitStatus visitStatus, LocalDate date, LocalTime time, int duration, int clientId, int doctorId, int rating) {
+        this.visitStatus = visitStatus;
         this.date = date;
         this.time = time;
         this.duration = duration;
@@ -27,12 +40,20 @@ public class VisitEntity {
     public VisitEntity() {
     }
 
-    public Status getStatus() {
-        return status;
+    public int getVisitId() {
+        return visitId;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setVisitId(int visitId) {
+        this.visitId = visitId;
+    }
+
+    public VisitStatus getStatus() {
+        return visitStatus;
+    }
+
+    public void setStatus(VisitStatus visitStatus) {
+        this.visitStatus = visitStatus;
     }
 
     public LocalDate getDate() {
@@ -84,9 +105,22 @@ public class VisitEntity {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VisitEntity that = (VisitEntity) o;
+        return visitId == that.visitId && duration == that.duration && clientId == that.clientId && doctorId == that.doctorId && rating == that.rating && visitStatus == that.visitStatus && Objects.equals(date, that.date) && Objects.equals(time, that.time);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(visitId, visitStatus, date, time, duration, clientId, doctorId, rating);
+    }
+
+    @Override
     public String toString() {
         return "VisitsEntity{" +
-                "status=" + status +
+                "status=" + visitStatus +
                 ", date=" + date +
                 ", time=" + time +
                 ", duration=" + duration +

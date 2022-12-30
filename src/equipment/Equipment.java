@@ -1,8 +1,8 @@
 package src.equipment;
 
 import src.db.client.DBClient;
-import src.db.repository.EquipmentRepository;
 import src.db.entities.EquipmentEntity;
+import src.db.repository.EquipmentRepository;
 
 public class Equipment {
 

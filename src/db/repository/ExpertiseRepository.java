@@ -1,6 +1,8 @@
 package src.db.repository;
 
+import src.expertise.Expertise;
 import src.db.client.DBClient;
+import src.db.entities.ExpertiseEntity;
 import src.db.entities.ExpertiseEntity;
 
 import java.sql.PreparedStatement;
@@ -12,6 +14,21 @@ import java.util.ArrayList;
 public class ExpertiseRepository extends Repository {
     public ExpertiseRepository(DBClient client) {
         super(client);
+    }
+
+    public Expertise toExpertise(ExpertiseEntity expertiseEntity) {
+        return new Expertise(
+                expertiseEntity.getDoctorId(),
+                expertiseEntity.getAreaOfExpertise()
+        );
+    }
+
+    public ArrayList<Expertise> toExpertiseList(ArrayList<ExpertiseEntity> expertiseEntities) {
+        ArrayList<Expertise> expertises = new ArrayList<>();
+        for (ExpertiseEntity expertise : expertiseEntities) {
+            expertises.add(toExpertise(expertise));
+        }
+        return expertises;
     }
 
     public ArrayList<ExpertiseEntity> getAllExpertises() {

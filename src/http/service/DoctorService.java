@@ -1,6 +1,5 @@
 package src.http.service;
 
-import src.clinic.Clinic;
 import src.users.Doctor;
 
 import java.util.Map;

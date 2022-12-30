@@ -1,12 +1,11 @@
 package src.users;
 
-import java.util.Objects;
-
 import src.db.client.DBClient;
-import src.db.repository.UserRepository;
 import src.db.entities.UserEntity;
+import src.db.repository.UserRepository;
 
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class User {
 

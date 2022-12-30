@@ -1,8 +1,8 @@
 package src.schedule;
 
 import src.db.client.DBClient;
-import src.db.repository.ScheduleRepository;
 import src.db.entities.ScheduleEntity;
+import src.db.repository.ScheduleRepository;
 
 import java.sql.SQLException;
 import java.time.DayOfWeek;

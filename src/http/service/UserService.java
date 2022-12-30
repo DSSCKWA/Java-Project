@@ -1,8 +1,8 @@
 package src.http.service;
 
 import src.db.client.DBClient;
-import src.db.repository.UserRepository;
 import src.db.entities.UserEntity;
+import src.db.repository.UserRepository;
 import src.http.constants.HttpStatus;
 import src.http.util.HttpException;
 import src.users.Permissions;

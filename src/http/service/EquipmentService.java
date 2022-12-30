@@ -1,10 +1,7 @@
 package src.http.service;
 
-import src.equipment.Equipment;
 import src.db.client.DBClient;
 import src.db.entities.EquipmentEntity;
-import src.db.entities.EquipmentEntity;
-import src.db.repository.EquipmentRepository;
 import src.db.repository.EquipmentRepository;
 import src.equipment.Equipment;
 import src.equipment.EquipmentStatus;
@@ -34,7 +31,7 @@ public class EquipmentService {
     public ArrayList<Equipment> getAllEquipment() {
         return equipmentRepository.toEquipmentList(equipmentRepository.getAllEquipment());
     }
-    
+
     public ArrayList<Equipment> getAllEquipmentByClinic(int clinicId) {
         return equipmentRepository.toEquipmentList(equipmentRepository.getEquipmentByClinicId(clinicId));
     }
