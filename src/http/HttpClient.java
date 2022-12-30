@@ -3,6 +3,7 @@ package src.http;
 import com.google.gson.Gson;
 import src.clinic.Clinic;
 import src.equipment.Equipment;
+import src.http.constants.HttpStatus;
 import src.users.User;
 import src.visit.Visit;
 
@@ -83,7 +84,7 @@ public class HttpClient {
                 .PUT(java.net.http.HttpRequest.BodyPublishers.ofString(json))
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
-        return response.statusCode() == 200;
+        return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
     public Clinic getClinic(int id) throws IOException, InterruptedException {
@@ -111,7 +112,7 @@ public class HttpClient {
                 .POST(java.net.http.HttpRequest.BodyPublishers.ofString(json))
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
-        return response.statusCode() == 201;
+        return response.statusCode() == HttpStatus.CREATED.getStatus();
     }
 
     public boolean deleteClinic(int id) throws IOException, InterruptedException {
@@ -122,7 +123,7 @@ public class HttpClient {
                 .DELETE()
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
-        return response.statusCode() == 200;
+        return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
     public boolean deleteUser(int id) throws IOException, InterruptedException {
@@ -133,7 +134,7 @@ public class HttpClient {
                 .DELETE()
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
-        return response.statusCode() == 200;
+        return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
     public boolean updateUser(User user) throws IOException, InterruptedException {
@@ -146,7 +147,7 @@ public class HttpClient {
                 .PUT(java.net.http.HttpRequest.BodyPublishers.ofString(json))
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
-        return response.statusCode() == 200;
+        return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
     public boolean addUser(User user) throws IOException, InterruptedException {
@@ -159,7 +160,7 @@ public class HttpClient {
                 .POST(java.net.http.HttpRequest.BodyPublishers.ofString(json))
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
-        return response.statusCode() == 201;
+        return response.statusCode() == HttpStatus.CREATED.getStatus();
     }
 
     public User getUserById(int id) throws IOException, InterruptedException {
@@ -187,7 +188,7 @@ public class HttpClient {
 
         Gson g = new Gson();
         String res = response.body();
-        if (response.statusCode() == 404) {
+        if (response.statusCode() == HttpStatus.NOT_FOUND.getStatus()) {
             return null;
         }
         System.out.println(res);
@@ -237,7 +238,7 @@ public class HttpClient {
                 .POST(java.net.http.HttpRequest.BodyPublishers.ofString(json))
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
-        return response.statusCode() == 201;
+        return response.statusCode() == HttpStatus.CREATED.getStatus();
     }
 
     public boolean updateEquipment(Equipment equipment) throws IOException, InterruptedException {
@@ -250,7 +251,7 @@ public class HttpClient {
                 .PUT(java.net.http.HttpRequest.BodyPublishers.ofString(json))
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
-        return response.statusCode() == 200;
+        return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
     public boolean deleteEquipment(int id) throws IOException, InterruptedException {
@@ -261,7 +262,7 @@ public class HttpClient {
                 .DELETE()
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
-        return response.statusCode() == 200;
+        return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
     public ArrayList<Visit> getVisits() throws IOException, InterruptedException {
@@ -290,7 +291,7 @@ public class HttpClient {
                 .POST(java.net.http.HttpRequest.BodyPublishers.ofString(json))
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
-        return response.statusCode() == 201;
+        return response.statusCode() == HttpStatus.CREATED.getStatus();
     }
 
     public boolean updateVisit(Visit visit) throws IOException, InterruptedException {
@@ -303,7 +304,7 @@ public class HttpClient {
                 .PUT(java.net.http.HttpRequest.BodyPublishers.ofString(json))
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
-        return response.statusCode() == 200;
+        return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
     public boolean deleteVisit(int id) throws IOException, InterruptedException {
@@ -314,7 +315,7 @@ public class HttpClient {
                 .DELETE()
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
-        return response.statusCode() == 200;
+        return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
     public ArrayList<Visit> getVisitsByDoctorId(int doctorId) throws IOException, InterruptedException {
