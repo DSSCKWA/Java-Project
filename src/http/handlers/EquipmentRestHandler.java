@@ -52,7 +52,7 @@ public class EquipmentRestHandler implements RestHandler {
                     int equipmentId = Integer.parseInt(paths[1]);
                     Equipment equipment = equipmentService.getEquipmentById(equipmentId);
                     if (equipment == null) {
-                        throw new HttpException(HttpStatus.NOT_FOUND, "Clinic does not exist");
+                        throw new HttpException(HttpStatus.NOT_FOUND, "Equipment does not exist");
                     } else {
                         equipmentBytes = gson.toJson(equipment).getBytes();
                     }
