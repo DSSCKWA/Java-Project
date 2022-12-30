@@ -118,11 +118,11 @@ public class AdminClinicsController  implements Initializable {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                    stage.setResizable(false);
-                    scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
+                        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                        stage.setResizable(false);
+                        scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
                 });
 
                 zDel.setOnAction((ActionEvent event)->{
@@ -156,6 +156,7 @@ public class AdminClinicsController  implements Initializable {
     void btnLogOutClicked(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../login/login.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -165,6 +166,7 @@ public class AdminClinicsController  implements Initializable {
     void btnStartClicked(ActionEvent event) throws Exception{
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("admin.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

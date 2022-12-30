@@ -83,3 +83,7 @@
 #btnLogOut:hover{
 -fx-background-color : #111111 ;
 }
+
+#btnLogIn:hover{
+-fx-background-color : #111111 ;
+}

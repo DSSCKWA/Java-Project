@@ -39,7 +39,6 @@ public class LoginController {
         Scene scene;
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../patient/patient.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -69,6 +68,7 @@ public class LoginController {
                     case PATIENT:
                         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../patient/patient.fxml")));
                         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                        stage.setResizable(false);
                         scene = new Scene(root);
                         stage.setScene(scene);
                         stage.show();
@@ -87,6 +87,16 @@ public class LoginController {
     @FXML
     void btnSignUpClicked(ActionEvent event) {
 
+    }
+
+    @FXML
+    void btnClickHereClicked(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../guest/guest.fxml")));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }
