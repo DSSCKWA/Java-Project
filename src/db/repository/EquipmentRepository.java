@@ -2,6 +2,7 @@ package src.db.repository;
 
 import src.db.client.DBClient;
 import src.db.entities.EquipmentEntity;
+import src.equipment.Equipment;
 import src.equipment.EquipmentStatus;
 
 import java.sql.PreparedStatement;
@@ -15,6 +16,23 @@ public class EquipmentRepository extends Repository {
 
     public EquipmentRepository(DBClient client) {
         super(client);
+    }
+
+    public Equipment toEquipment(EquipmentEntity equipmentEntity) {
+        return new Equipment(
+                equipmentEntity.getEquipmentId(),
+                equipmentEntity.getName(),
+                equipmentEntity.getStatus(),
+                equipmentEntity.getClinicId()
+        );
+    }
+
+    public ArrayList<Equipment> toEquipmentList(ArrayList<EquipmentEntity> equipmentEntities) {
+        ArrayList<Equipment> equipmentList = new ArrayList<>();
+        for (EquipmentEntity equipment : equipmentEntities) {
+            equipmentList.add(toEquipment(equipment));
+        }
+        return equipmentList;
     }
 
     public ArrayList<EquipmentEntity> getAllEquipment() {

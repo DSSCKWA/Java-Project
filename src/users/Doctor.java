@@ -1,53 +1,83 @@
 package src.users;
 
 import src.clinic.Clinic;
-import src.db.repository.ExpertiseRepository;
-import src.db.entities.*;
 import src.db.client.DBClient;
-import src.db.repository.DoctorsRepository;
 import src.db.entities.DoctorEntity;
+import src.db.entities.ExpertiseEntity;
+import src.db.entities.UserEntity;
+import src.db.repository.DoctorsRepository;
+import src.db.repository.ExpertiseRepository;
 import src.expertise.Expertise;
 import src.schedule.Schedule;
-import src.visit.Status;
 import src.visit.Visit;
+import src.visit.VisitStatus;
 
 import java.sql.SQLException;
 import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import java.time.LocalTime;
-import java.time.LocalDate;
 
-import static java.time.temporal.ChronoUnit.*;
+import static java.time.temporal.ChronoUnit.MINUTES;
 
 public class Doctor extends User {
-    private HashSet<Clinic> doctorClinics;
-    private HashSet<Schedule> doctorSchedules;
-    private HashSet<Visit> doctorVisits;
-    private HashSet<Expertise> doctorExpertise;
+    private ArrayList<Clinic> doctorClinics;
+    private ArrayList<Schedule> doctorSchedules;
+    private ArrayList<Expertise> doctorExpertise;
     private DBClient dbClientAutoCommit;
+
+    public Doctor(int id, String name, String lastName, String email, String password, String address, String city, int phoneNumber, ArrayList<Clinic> doctorClinics, ArrayList<Schedule> doctorSchedules, ArrayList<Expertise> doctorExpertise) {
+        super(id, name, lastName, email, password, address, city, phoneNumber, Permissions.DOCTOR);
+        this.doctorClinics = doctorClinics;
+        this.doctorSchedules = doctorSchedules;
+        this.doctorExpertise = doctorExpertise;
+    }
+
+    public Doctor(String name, String lastName, String email, String password, String address, String city, int phoneNumber, Permissions permissions, ArrayList<Clinic> doctorClinics, ArrayList<Schedule> doctorSchedules, ArrayList<Expertise> doctorExpertise) {
+        super(name, lastName, email, password, address, city, phoneNumber, permissions);
+        this.doctorClinics = doctorClinics;
+        this.doctorSchedules = doctorSchedules;
+        this.doctorExpertise = doctorExpertise;
+    }
+
+    public Doctor(int id, String firstName, String lastName, String email, String password, String address, String city, int phoneNumber, ArrayList<Clinic> doctorClinics, ArrayList<Schedule> doctorSchedules, ArrayList<Expertise> doctorExpertise, DBClient dbClientAutoCommit) {
+        super(id, firstName, lastName, email, password, address, city, phoneNumber, Permissions.DOCTOR);
+        this.doctorClinics = doctorClinics;
+        this.doctorSchedules = doctorSchedules;
+        this.doctorExpertise = doctorExpertise;
+        this.dbClientAutoCommit = dbClientAutoCommit;
+    }
 
     public Doctor(String firstName, String lastName, String email, String password, String address, String city, int phoneNumber, Permissions permissions) {
         super(firstName, lastName, email, password, address, city, phoneNumber, permissions);
     }
 
+    public Doctor(String name, String surname, String email, String password, String address, String city, int phoneNumber) {
+        super(name, surname, email, password, address, city, phoneNumber, Permissions.DOCTOR);
+//        super.insertToDB(); // chyba może zostac, co ?
+        this.doctorClinics = new ArrayList<>();
+        this.doctorSchedules = new ArrayList<>();
+        this.doctorExpertise = new ArrayList<>();
+        try {
+            dbClientAutoCommit = new DBClient(true);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     //<editor-fold desc="Getters">
 
-    public HashSet<Clinic> getDoctorClinics() {
+    public ArrayList<Clinic> getDoctorClinics() {
         return doctorClinics;
     }
 
-    public HashSet<Schedule> getDoctorSchedules() {
+    public ArrayList<Schedule> getDoctorSchedules() {
         return doctorSchedules;
     }
 
-    public HashSet<Visit> getDoctorVisits() {
-        return doctorVisits;
-    }
 
-    public HashSet<Expertise> getDoctorExpertise() {
+    public ArrayList<Expertise> getDoctorExpertise() {
         return doctorExpertise;
     }
 
@@ -59,99 +89,67 @@ public class Doctor extends User {
 
     //<editor-fold desc="Setters">
 
-    private List<String> expertiseId;
-    private HashSet<Integer> clinicId;
+//    public Doctor readDoctorFromDBById(int id) {
+//        ArrayList<DoctorEntity> doctors = new DoctorEntity().getDoctorEntityArrayByDoctorId(id);
+//        ArrayList<ExpertiseEntity> expertises = new ExpertiseEntity().getExpertiseEntityArrayListByDoctorId(id);
+//        UserEntity userEntity = new UserEntity().getUserEntityByUserId(id);
+//
+//        for (ExpertiseEntity exp : expertises) {
+//            this.expertiseId.add(exp.getAreaOfExpertise());
+//        }
+//
+//        for (DoctorEntity doc : doctors) {
+//            this.clinicId.add(doc.getClinicId());
+//        }
+//
+//        super.setId(id);
+//        super.setName(userEntity.getName());
+//        super.setSurname(userEntity.getSurname());
+//        super.setEmail(userEntity.getEmail());
+//        super.setPassword(userEntity.getPassword());
+//        super.setAddress(userEntity.getAddress());
+//        super.setCity(userEntity.getCity());
+//        super.setPhoneNumber(userEntity.getPhoneNumber());
+//        super.setPermissions(userEntity.getPermissions());
+//
+//        return this;
+//    }
 
-    public Doctor readDoctorFromDBById(int id) {
-        ArrayList<DoctorEntity> doctors = new DoctorEntity().getDoctorEntityArrayByDoctorId(id);
-        ArrayList<ExpertiseEntity> expertises = new ExpertiseEntity().getExpertiseEntityArrayListByDoctorId(id);
-        UserEntity userEntity = new UserEntity().getUserEntityByUserId(id);
-
-        for (ExpertiseEntity exp : expertises) {
-            this.expertiseId.add(exp.getAreaOfExpertise());
-        }
-
-        for (DoctorEntity doc : doctors) {
-            this.clinicId.add(doc.getClinicId());
-        }
-
-        super.setId(id);
-        super.setName(userEntity.getName());
-        super.setSurname(userEntity.getSurname());
-        super.setEmail(userEntity.getEmail());
-        super.setPassword(userEntity.getPassword());
-        super.setAddress(userEntity.getAddress());
-        super.setCity(userEntity.getCity());
-        super.setPhoneNumber(userEntity.getPhoneNumber());
-        super.setPermissions(userEntity.getPermissions());
-
-        return this;
-    }
-
-    public void setDoctorClinics(HashSet<Clinic> doctorClinics) {
+    public void setDoctorClinics(ArrayList<Clinic> doctorClinics) {
         this.doctorClinics = doctorClinics;
     }
 
-    public List<String> getExpertiseId() {
-        return expertiseId;
-    }
-
-    public void setDoctorSchedules(HashSet<Schedule> doctorSchedules) {
+    public void setDoctorSchedules(ArrayList<Schedule> doctorSchedules) {
         this.doctorSchedules = doctorSchedules;
     }
 
-    public void setDoctorVisits(HashSet<Visit> doctorVisits) {
-        this.doctorVisits = doctorVisits;
-    }
-
-    public void setDoctorExpertise(HashSet<Expertise> doctorexpertise) {
+    public void setDoctorExpertise(ArrayList<Expertise> doctorexpertise) {
         this.doctorExpertise = doctorexpertise;
     }
 
     //</editor-fold>
 
     //<editor-fold desc="Constructor">
-    public Doctor(String name, String surname, String email, String password, String address, String city, int phoneNumber) {
-        super(name, surname, email, password, address, city, phoneNumber, Permissions.DOCTOR);
-        super.insertToDB(); // chyba może zostac, co ?
-        this.doctorClinics = new HashSet<Clinic>();
-        this.doctorSchedules = new HashSet<Schedule>();
-        this.doctorVisits = new HashSet<Visit>();
-        this.doctorExpertise = new HashSet<Expertise>();
-        try {
-            dbClientAutoCommit = new DBClient(true);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
-    public Doctor(int id, String firstName, String lastName, String email, String password, String address, String city, int phoneNumber, Permissions permissions, HashSet<Clinic> doctorClinics, HashSet<Schedule> doctorSchedules, HashSet<Visit> doctorVisits, HashSet<Expertise> doctorExpertise, DBClient dbClientAutoCommit, List<String> expertiseId, HashSet<Integer> clinicId) {
-        super(id, firstName, lastName, email, password, address, city, phoneNumber, permissions);
-        this.doctorClinics = doctorClinics;
-        this.doctorSchedules = doctorSchedules;
-        this.doctorVisits = doctorVisits;
-        this.doctorExpertise = doctorExpertise;
-        this.dbClientAutoCommit = dbClientAutoCommit;
-        this.expertiseId = expertiseId;
-        this.clinicId = clinicId;
-    }
 
     //</editor-fold>
 
     //<editor-fold desc="Equals & HashCode">
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Doctor doctor = (Doctor) o;
-        return doctorClinics.equals(doctor.doctorClinics) && doctorSchedules.equals(doctor.doctorSchedules) && Objects.equals(doctorVisits, doctor.doctorVisits) && doctorExpertise.equals(doctor.doctorExpertise);
+        return Objects.equals(doctorClinics, doctor.doctorClinics) && Objects.equals(doctorSchedules, doctor.doctorSchedules) && Objects.equals(doctorExpertise, doctor.doctorExpertise) && Objects.equals(dbClientAutoCommit, doctor.dbClientAutoCommit);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), doctorClinics, doctorSchedules, doctorVisits, doctorExpertise);
+        return Objects.hash(super.hashCode(), doctorClinics, doctorSchedules, doctorExpertise, dbClientAutoCommit);
     }
+
     //</editor-fold>
 
     //<editor-fold desc="Database Handling">
@@ -181,7 +179,6 @@ public class Doctor extends User {
         return "Doctor{" +
                 "doctorClinics=" + doctorClinics +
                 ", doctorSchedules=" + doctorSchedules +
-                ", doctorVisits=" + doctorVisits +
                 ", doctorExpertise=" + doctorExpertise +
                 '}';
     }
@@ -212,7 +209,7 @@ public class Doctor extends User {
         this.removeFromAllClinicsDB(this);
     }
 
-    public boolean checkIfAvaliable(HashSet<Visit> doctorVisits, LocalDate date, LocalTime startTime, LocalTime endTime) {
+    public boolean checkIfAvaliable(ArrayList<Visit> doctorVisits, LocalDate date, LocalTime startTime, LocalTime endTime) {
         boolean ava = true;
         for (Visit x : doctorVisits) {
             if (date == x.getDate() && (((startTime.compareTo(x.getTime().plusMinutes(x.getDuration()))) < 0 && (startTime.compareTo(x.getTime())) > 0) || ((endTime.compareTo(x.getTime().plusMinutes(x.getDuration()))) < 0 && (endTime.compareTo(x.getTime())) > 0))) {
@@ -224,10 +221,10 @@ public class Doctor extends User {
     }
 
     public void cancelVisit(Visit visit) {
-        visit.setStatus(Status.CANCELED);
+        visit.setStatus(VisitStatus.CANCELED);
     }
 
-    public void postponeVisit(Visit visit, LocalDate date, LocalTime startTime, LocalTime endTime) {
+    public void postponeVisit(Visit visit, LocalDate date, LocalTime startTime, LocalTime endTime, ArrayList<Visit> doctorVisits) {
         if (checkIfAvaliable(doctorVisits, date, startTime, endTime)) {
             visit.setDate(date);
             visit.setTime(startTime);
@@ -236,7 +233,7 @@ public class Doctor extends User {
     }
 
     public void completeVisit(Visit visit) {
-        visit.setStatus(Status.COMPLETED);
+        visit.setStatus(VisitStatus.COMPLETED);
     }
 
     public void addToSchedule(int clinicId, DayOfWeek day, LocalTime startTime, LocalTime endTime) {
@@ -267,7 +264,7 @@ public class Doctor extends User {
 //                doctorSchedules.remove(schedule);
 //            }
 //        }
-    public void addVisit(Visit visit) {
+    public void addVisit(Visit visit, ArrayList<Visit> doctorVisits) {
         if (checkIfAvaliable(doctorVisits, visit.getDate(), visit.getTime(), visit.getTime().plusMinutes(visit.getDuration()))) {
             doctorVisits.add(visit);
         } else {

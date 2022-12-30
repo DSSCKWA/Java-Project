@@ -2,8 +2,8 @@ package src.http.service;
 
 import src.clinic.Clinic;
 import src.db.client.DBClient;
-import src.db.repository.ClinicRepository;
 import src.db.entities.ClinicEntity;
+import src.db.repository.ClinicRepository;
 import src.http.constants.HttpStatus;
 import src.http.util.HttpException;
 
@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 public class ClinicService {
-    private static final Logger LOGGER = Logger.getLogger(UserService.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ClinicService.class.getName());
     private static final DBClient dbClient;
 
     static {
@@ -45,7 +45,7 @@ public class ClinicService {
         return clinicRepository.toClinic(clinic);
     }
 
-    public Clinic updateUser(int clinicId, Map<String, String> clinicData) {
+    public Clinic updateClinic(int clinicId, Map<String, String> clinicData) {
         //TODO validate data
         ClinicEntity clinicEntity = toClinicEntity(clinicData);
         clinicEntity.setClinicId(clinicId);

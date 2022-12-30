@@ -2,13 +2,13 @@ package src.users;
 
 import src.clinic.Clinic;
 import src.db.client.DBClient;
+import src.db.entities.ClinicEntity;
+import src.db.entities.DoctorEntity;
+import src.db.entities.ExpertiseEntity;
 import src.db.repository.ClinicRepository;
 import src.db.repository.DoctorsRepository;
 import src.db.repository.ExpertiseRepository;
 import src.db.repository.UserRepository;
-import src.db.entities.ClinicEntity;
-import src.db.entities.DoctorEntity;
-import src.db.entities.ExpertiseEntity;
 import src.expertise.Expertise;
 
 import java.sql.SQLException;

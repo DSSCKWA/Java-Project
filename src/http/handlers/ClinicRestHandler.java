@@ -7,23 +7,21 @@ import src.gson.GsonConverter;
 import src.http.constants.Headers;
 import src.http.constants.HttpStatus;
 import src.http.service.ClinicService;
-import src.http.service.UserService;
 import src.http.util.HttpException;
 import src.http.util.HttpHandlerUtil;
-import src.users.User;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Logger;
 
-public class ClinicRestHanlder implements RestHandler {
-    private static final Logger LOGGER = Logger.getLogger(src.http.handlers.ClinicRestHanlder.class.getName());
+public class ClinicRestHandler implements RestHandler {
+    private static final Logger LOGGER = Logger.getLogger(ClinicRestHandler.class.getName());
     private static final Gson gson = GsonConverter.newGsonWriterConverter();
 
     private final ClinicService clinicService;
 
-    public ClinicRestHanlder(ClinicService clinicService) {
+    public ClinicRestHandler(ClinicService clinicService) {
         this.clinicService = clinicService;
     }
 
@@ -38,7 +36,11 @@ public class ClinicRestHanlder implements RestHandler {
                 try {
                     int clinicId = Integer.parseInt(paths[1]);
                     Clinic clinic = clinicService.getClinicById(clinicId);
-                    clinicBytes = gson.toJson(Objects.requireNonNullElse(clinic, "{}")).getBytes();
+                    if (clinic == null) {
+                        throw new HttpException(HttpStatus.NOT_FOUND, "Clinic does not exist");
+                    } else {
+                        clinicBytes = gson.toJson(clinic).getBytes();
+                    }
                 } catch (NumberFormatException e) {
                     throw new HttpException(HttpStatus.BAD_REQUEST, "Invalid payload");
                 }
@@ -91,7 +93,7 @@ public class ClinicRestHanlder implements RestHandler {
             if (clinic == null) {
                 throw new HttpException(HttpStatus.NOT_FOUND, "Clinic does not exist");
             }
-            clinic = clinicService.updateUser(clinicId, clinicData);
+            clinic = clinicService.updateClinic(clinicId, clinicData);
             byte[] clinicBytes = gson.toJson(clinic).getBytes();
             exchange.getResponseHeaders().set(Headers.contentType, Headers.appJson);
             exchange.sendResponseHeaders(HttpStatus.OK.getStatus(), clinicBytes.length);

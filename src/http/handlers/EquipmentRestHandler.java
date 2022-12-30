@@ -2,62 +2,59 @@ package src.http.handlers;
 
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
+import src.equipment.Equipment;
 import src.gson.GsonConverter;
 import src.http.constants.Headers;
 import src.http.constants.HttpStatus;
-import src.http.service.UserService;
+import src.http.service.ClinicService;
+import src.http.service.EquipmentService;
 import src.http.util.HttpException;
 import src.http.util.HttpHandlerUtil;
-import src.users.User;
 
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.logging.Logger;
 
-public class UserRestHandler implements RestHandler {
-    private static final Logger LOGGER = Logger.getLogger(UserRestHandler.class.getName());
+public class EquipmentRestHandler implements RestHandler {
+    private static final Logger LOGGER = Logger.getLogger(EquipmentRestHandler.class.getName());
     private static final Gson gson = GsonConverter.newGsonWriterConverter();
 
-    private final UserService userService;
+    private final ClinicService clinicService;
+    private final EquipmentService equipmentService;
 
-    public UserRestHandler(UserService userService) {
-        this.userService = userService;
+    public EquipmentRestHandler(EquipmentService equipmentService, ClinicService clinicService) {
+        this.equipmentService = equipmentService;
+        this.clinicService = clinicService;
     }
 
     @Override
     public void handleGet(HttpExchange exchange) {
-        LOGGER.info("HTTP User Handler [GET]");
+        LOGGER.info("HTTP Equipment Handler [GET]");
         String[] paths = exchange.getRequestURI().getPath().substring(1).split("/");
-        byte[] userBytes;
+        byte[] equipmentBytes;
         switch (paths.length) {
             case 1 -> {
                 String query = exchange.getRequestURI().getQuery();
                 if (query != null) {
                     Map<String, String> queryMap = HttpHandlerUtil.getQueryParams(query);
-                    if (queryMap.get("email") != null) {
-                        User user = userService.getUserByEmail(queryMap.get("email"));
-                        if (user == null) {
-                            throw new HttpException(HttpStatus.NOT_FOUND, "User does not exist");
-                        } else {
-                            userBytes = gson.toJson(user).getBytes();
-                        }
+                    if (queryMap.get("clinicId") != null) {
+                        equipmentBytes = gson.toJson(equipmentService.getAllEquipmentByClinic(Integer.parseInt(queryMap.get("clinicId")))).getBytes();
                     } else {
-                        userBytes = gson.toJson(userService.getAllUsers()).getBytes();
+                        equipmentBytes = gson.toJson(equipmentService.getAllEquipment()).getBytes();
                     }
                 } else {
-                    userBytes = gson.toJson(userService.getAllUsers()).getBytes();
+                    equipmentBytes = gson.toJson(equipmentService.getAllEquipment()).getBytes();
                 }
             }
             case 2 -> {
                 try {
-                    int userId = Integer.parseInt(paths[1]);
-                    User user = userService.getUserById(userId);
-                    if (user == null) {
-                        throw new HttpException(HttpStatus.NOT_FOUND, "User does not exist");
+                    int equipmentId = Integer.parseInt(paths[1]);
+                    Equipment equipment = equipmentService.getEquipmentById(equipmentId);
+                    if (equipment == null) {
+                        throw new HttpException(HttpStatus.NOT_FOUND, "Equipment does not exist");
                     } else {
-                        userBytes = gson.toJson(user).getBytes();
+                        equipmentBytes = gson.toJson(equipment).getBytes();
                     }
                 } catch (NumberFormatException e) {
                     throw new HttpException(HttpStatus.BAD_REQUEST, "Invalid payload");
@@ -67,8 +64,8 @@ public class UserRestHandler implements RestHandler {
         }
         try {
             exchange.getResponseHeaders().set(Headers.contentType, Headers.appJson);
-            exchange.sendResponseHeaders(HttpStatus.OK.getStatus(), userBytes.length);
-            exchange.getResponseBody().write(userBytes);
+            exchange.sendResponseHeaders(HttpStatus.OK.getStatus(), equipmentBytes.length);
+            exchange.getResponseBody().write(equipmentBytes);
             exchange.close();
         } catch (HttpException httpException) {
             throw httpException;
@@ -79,19 +76,19 @@ public class UserRestHandler implements RestHandler {
 
     @Override
     public void handlePost(HttpExchange exchange) {
-        LOGGER.info("HTTP User Handler [POST]");
+        LOGGER.info("HTTP Equipment Handler [POST]");
         try {
             final String body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
-            Map<String, String> userData = HttpHandlerUtil.validateRequestBody(body);
-            User user = userService.getUserByEmail(userData.get("email"));
-            if (user != null) {
-                throw new HttpException(HttpStatus.CONFLICT, "User already exists");
+            Map<String, String> equipmentData = HttpHandlerUtil.validateRequestBody(body);
+            int clinicId = Integer.parseInt(equipmentData.get("clinicId"));
+            if (clinicService.getClinicById(clinicId) == null) {
+                throw new HttpException(HttpStatus.NOT_FOUND, "Clinic does not exist");
             }
-            user = userService.addUser(userData);
-            byte[] userBytes = gson.toJson(user).getBytes();
+            Equipment equipment = equipmentService.addEquipment(equipmentData);
+            byte[] equipmentBytes = gson.toJson(equipment).getBytes();
             exchange.getResponseHeaders().set(Headers.contentType, Headers.appJson);
-            exchange.sendResponseHeaders(HttpStatus.CREATED.getStatus(), userBytes.length);
-            exchange.getResponseBody().write(userBytes);
+            exchange.sendResponseHeaders(HttpStatus.CREATED.getStatus(), equipmentBytes.length);
+            exchange.getResponseBody().write(equipmentBytes);
             exchange.close();
         } catch (HttpException httpException) {
             throw httpException;
@@ -102,24 +99,31 @@ public class UserRestHandler implements RestHandler {
 
     @Override
     public void handlePut(HttpExchange exchange) {
-        LOGGER.info("HTTP User Handler [PUT]");
+        LOGGER.info("HTTP Equipment Handler [PUT]");
         try {
             final String body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
-            Map<String, String> userData = HttpHandlerUtil.validateRequestBody(body);
+            Map<String, String> equipmentData = HttpHandlerUtil.validateRequestBody(body);
             String[] paths = exchange.getRequestURI().getPath().substring(1).split("/");
             if (paths.length != 2) {
                 throw new HttpException(HttpStatus.BAD_REQUEST, "Bad Request");
             }
-            int userId = Integer.parseInt(paths[1]);
-            User user = userService.getUserById(userId);
-            if (user == null) {
-                throw new HttpException(HttpStatus.NOT_FOUND, "User does not exist");
+
+            int equipmentId = Integer.parseInt(paths[1]);
+            Equipment equipment = equipmentService.getEquipmentById(equipmentId);
+            if (equipment == null) {
+                throw new HttpException(HttpStatus.NOT_FOUND, "Equipment does not exist");
             }
-            user = userService.updateUser(userId, userData);
-            byte[] userBytes = gson.toJson(user).getBytes();
+
+            int clinicId = Integer.parseInt(equipmentData.get("clinicId"));
+            if (clinicService.getClinicById(clinicId) == null) {
+                throw new HttpException(HttpStatus.NOT_FOUND, "Clinic does not exist");
+            }
+
+            equipment = equipmentService.updateEquipment(equipmentId, equipmentData);
+            byte[] equipmentBytes = gson.toJson(equipment).getBytes();
             exchange.getResponseHeaders().set(Headers.contentType, Headers.appJson);
-            exchange.sendResponseHeaders(HttpStatus.OK.getStatus(), userBytes.length);
-            exchange.getResponseBody().write(userBytes);
+            exchange.sendResponseHeaders(HttpStatus.OK.getStatus(), equipmentBytes.length);
+            exchange.getResponseBody().write(equipmentBytes);
             exchange.close();
         } catch (HttpException httpException) {
             throw httpException;
@@ -130,18 +134,18 @@ public class UserRestHandler implements RestHandler {
 
     @Override
     public void handleDelete(HttpExchange exchange) {
-        LOGGER.info("HTTP User Handler [DELETE]");
+        LOGGER.info("HTTP Equipment Handler [DELETE]");
         try {
             String[] paths = exchange.getRequestURI().getPath().substring(1).split("/");
             if (paths.length != 2) {
                 throw new HttpException(HttpStatus.BAD_REQUEST, "Bad Request");
             }
-            int userId = Integer.parseInt(paths[1]);
-            User user = userService.getUserById(userId);
-            if (user == null) {
-                throw new HttpException(HttpStatus.NOT_FOUND, "User does not exist");
+            int equipmentId = Integer.parseInt(paths[1]);
+            Equipment equipment = equipmentService.getEquipmentById(equipmentId);
+            if (equipment == null) {
+                throw new HttpException(HttpStatus.NOT_FOUND, "Equipment does not exist");
             }
-            userService.deleteUser(userId);
+            equipmentService.deleteEquipment(equipmentId);
             exchange.sendResponseHeaders(HttpStatus.OK.getStatus(), 0);
             exchange.close();
         } catch (HttpException httpException) {
