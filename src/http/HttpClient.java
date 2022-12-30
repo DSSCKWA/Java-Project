@@ -4,10 +4,12 @@ import com.google.gson.Gson;
 import src.clinic.Clinic;
 import src.equipment.Equipment;
 import src.users.User;
+import src.visit.Visit;
 
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -181,10 +183,13 @@ public class HttpClient {
     }
 
     private User getUser(HttpRequest request) throws IOException, InterruptedException {
-        java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 
         Gson g = new Gson();
         String res = response.body();
+        if (response.statusCode() == 404) {
+            return null;
+        }
         System.out.println(res);
         User user = g.fromJson(res, User.class);
         return user;
@@ -259,4 +264,88 @@ public class HttpClient {
         return response.statusCode() == 200;
     }
 
+    public ArrayList<Visit> getVisits() throws IOException, InterruptedException {
+        java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                .uri(java.net.URI.create(serverUrl + "/visits"))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .GET()
+                .build();
+        java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+
+        Gson g = new Gson();
+        String res = response.body();
+        System.out.println(res);
+        Visit[] visits = g.fromJson(res, Visit[].class);
+        return new ArrayList<>(Arrays.asList(visits));
+    }
+
+    public boolean addVisit(Visit visit) throws IOException, InterruptedException {
+        Gson g = new Gson();
+        String json = g.toJson(visit);
+        java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                .uri(java.net.URI.create(serverUrl + "/visits"))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .POST(java.net.http.HttpRequest.BodyPublishers.ofString(json))
+                .build();
+        java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() == 201;
+    }
+
+    public boolean updateVisit(Visit visit) throws IOException, InterruptedException {
+        Gson g = new Gson();
+        String json = g.toJson(visit);
+        java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                .uri(java.net.URI.create(serverUrl + "/visits/" + visit.getVisitId()))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .PUT(java.net.http.HttpRequest.BodyPublishers.ofString(json))
+                .build();
+        java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() == 200;
+    }
+
+    public boolean deleteVisit(int id) throws IOException, InterruptedException {
+        java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                .uri(java.net.URI.create(serverUrl + "/visits/" + id))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .DELETE()
+                .build();
+        java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() == 200;
+    }
+
+    public ArrayList<Visit> getVisitsByDoctorId(int doctorId) throws IOException, InterruptedException {
+        java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                .uri(java.net.URI.create(serverUrl + "/visits?doctor=" + doctorId))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .GET()
+                .build();
+        java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+
+        Gson g = new Gson();
+        String res = response.body();
+        System.out.println(res);
+        Visit[] visits = g.fromJson(res, Visit[].class);
+        return new ArrayList<>(Arrays.asList(visits));
+    }
+
+    public ArrayList<Visit> getVisitsByClientId(int clientId) throws IOException, InterruptedException {
+        java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                .uri(java.net.URI.create(serverUrl + "/visits?clientId=" + clientId))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .GET()
+                .build();
+        java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+
+        Gson g = new Gson();
+        String res = response.body();
+        System.out.println(res);
+        Visit[] visits = g.fromJson(res, Visit[].class);
+        return new ArrayList<>(Arrays.asList(visits));
+    }
 }
