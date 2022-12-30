@@ -8,7 +8,7 @@ public class Equipment {
 
     private int equipmentId;
     private String name;
-    private EquipmentStatus status;
+    private EquipmentStatus equipmentStatus;
     private int clinicId;
     private transient DBClient dbClientAutoCommit;
 
@@ -21,8 +21,8 @@ public class Equipment {
         return name;
     }
 
-    public EquipmentStatus getStatus() {
-        return status;
+    public EquipmentStatus getEquipmentStatus() {
+        return equipmentStatus;
     }
 
     public int getClinicId() {
@@ -39,8 +39,8 @@ public class Equipment {
         this.name = name;
     }
 
-    public void setStatus(EquipmentStatus status) {
-        this.status = status;
+    public void setEquipmentStatus(EquipmentStatus equipmentStatus) {
+        this.equipmentStatus = equipmentStatus;
     }
 
     public void setClinicId(int clinicId) {
@@ -52,14 +52,14 @@ public class Equipment {
     public Equipment(int equipmentId, String name, EquipmentStatus status, int clinicId) {
         this.equipmentId = equipmentId;
         this.name = name;
-        this.status = status;
+        this.equipmentStatus = status;
         this.clinicId = clinicId;
     }
     //</editor-fold>
 
     //<editor-fold desc="Database Handling">
     public void insertToDB() {
-        EquipmentEntity equipment = new EquipmentEntity(name, status, clinicId);
+        EquipmentEntity equipment = new EquipmentEntity(name, equipmentStatus, clinicId);
         EquipmentRepository equipmentRepository = new EquipmentRepository(dbClientAutoCommit);
         this.equipmentId = equipmentRepository.insertEquipment(equipment);
         equipment.setEquipmentId(equipmentId);
@@ -72,7 +72,7 @@ public class Equipment {
 
     public void updateDB() {
         EquipmentRepository equipmentRepository = new EquipmentRepository(dbClientAutoCommit);
-        equipmentRepository.updateEquipment(new EquipmentEntity(equipmentId, name, status, clinicId));
+        equipmentRepository.updateEquipment(new EquipmentEntity(equipmentId, name, equipmentStatus, clinicId));
     }
     //</editor-fold>
 
