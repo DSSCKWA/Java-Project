@@ -4,8 +4,6 @@ import com.sun.net.httpserver.HttpExchange;
 import src.http.constants.HttpStatus;
 import src.http.util.HttpException;
 
-import java.io.IOException;
-
 public interface RestHandler {
     void handleGet(HttpExchange exchange);
 

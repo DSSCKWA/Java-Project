@@ -2,8 +2,8 @@ package src.http.service;
 
 import src.clinic.Clinic;
 import src.db.client.DBClient;
-import src.db.repository.ClinicRepository;
 import src.db.entities.ClinicEntity;
+import src.db.repository.ClinicRepository;
 import src.http.constants.HttpStatus;
 import src.http.util.HttpException;
 

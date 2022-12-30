@@ -1,7 +1,10 @@
 package src.db.repository;
 
+import src.clinic.Clinic;
 import src.db.client.DBClient;
+import src.db.entities.ClinicEntity;
 import src.db.entities.ScheduleEntity;
+import src.schedule.Schedule;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +17,24 @@ import java.util.Locale;
 public class ScheduleRepository extends Repository {
     public ScheduleRepository(DBClient client) {
         super(client);
+    }
+
+    public Schedule toSchedule(ScheduleEntity scheduleEntity) {
+        return new Schedule(
+                scheduleEntity.getDoctorId(),
+                scheduleEntity.getClinicId(),
+                scheduleEntity.getDay(),
+                scheduleEntity.getStartHour(),
+                scheduleEntity.getEndHour()
+        );
+    }
+
+    public ArrayList<Schedule> toScheduleList(ArrayList<ScheduleEntity> scheduleEntities) {
+        ArrayList<Schedule> schedules = new ArrayList<>();
+        for (ScheduleEntity schedule : scheduleEntities) {
+            schedules.add(toSchedule(schedule));
+        }
+        return schedules;
     }
 
     public ArrayList<ScheduleEntity> getAllSchedules() {

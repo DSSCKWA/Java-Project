@@ -1,7 +1,8 @@
 package src.db.repository;
 
 import src.db.client.DBClient;
-import src.db.entities.DoctorEntity;
+import src.db.entities.*;
+import src.users.Doctor;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,6 +13,38 @@ import java.util.ArrayList;
 public class DoctorsRepository extends Repository {
     public DoctorsRepository(DBClient client) {
         super(client);
+    }
+
+    public Doctor toDoctor(int doctorId) {
+        UserRepository userRepository = new UserRepository(client);
+        DoctorsRepository doctorsRepository = new DoctorsRepository(client);
+        ClinicRepository clinicRepository = new ClinicRepository(client);
+        ExpertiseRepository expertiseRepository = new ExpertiseRepository(client);
+        ScheduleRepository scheduleRepository = new ScheduleRepository(client);
+
+        UserEntity userEntity = userRepository.getUserById(doctorId);
+        ArrayList<DoctorEntity> doctorEntities = doctorsRepository.getDoctorById(doctorId);
+        ArrayList<ClinicEntity> clinicEntities = new ArrayList<>();
+
+        for (DoctorEntity doctorEntity : doctorEntities) {
+            clinicEntities.add(clinicRepository.getClinicById(doctorEntity.getClinicId()));
+        }
+        ArrayList<ScheduleEntity> scheduleEntities = scheduleRepository.getSchedulesByDoctorId(doctorId);
+        ArrayList<ExpertiseEntity> expertiseEntities = expertiseRepository.getExpertiseByDoctorId(doctorId);
+
+        return new Doctor(
+                userEntity.getUserId(),
+                userEntity.getName(),
+                userEntity.getSurname(),
+                userEntity.getEmail(),
+                userEntity.getPassword(),
+                userEntity.getAddress(),
+                userEntity.getCity(),
+                userEntity.getPhoneNumber(),
+                clinicRepository.toClinicList(clinicEntities),
+                scheduleRepository.toScheduleList(scheduleEntities),
+                expertiseRepository.toExpertiseList(expertiseEntities)
+        );
     }
 
     public ArrayList<DoctorEntity> getAllDoctors() {

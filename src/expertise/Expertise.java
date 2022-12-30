@@ -1,8 +1,8 @@
 package src.expertise;
 
 import src.db.client.DBClient;
-import src.db.repository.ExpertiseRepository;
 import src.db.entities.ExpertiseEntity;
+import src.db.repository.ExpertiseRepository;
 import src.users.Doctor;
 
 import java.sql.SQLException;

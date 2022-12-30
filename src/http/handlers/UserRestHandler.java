@@ -10,9 +10,10 @@ import src.http.util.HttpException;
 import src.http.util.HttpHandlerUtil;
 import src.users.User;
 
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.logging.Logger;
 
 public class UserRestHandler implements RestHandler {
@@ -36,7 +37,12 @@ public class UserRestHandler implements RestHandler {
                 if (query != null) {
                     Map<String, String> queryMap = HttpHandlerUtil.getQueryParams(query);
                     if (queryMap.get("email") != null) {
-                        userBytes = gson.toJson(List.of(userService.getUserByEmail(queryMap.get("email")))).getBytes();
+                        User user = userService.getUserByEmail(queryMap.get("email"));
+                        if (user == null) {
+                            throw new HttpException(HttpStatus.NOT_FOUND, "User does not exist");
+                        } else {
+                            userBytes = gson.toJson(user).getBytes();
+                        }
                     } else {
                         userBytes = gson.toJson(userService.getAllUsers()).getBytes();
                     }
@@ -48,7 +54,11 @@ public class UserRestHandler implements RestHandler {
                 try {
                     int userId = Integer.parseInt(paths[1]);
                     User user = userService.getUserById(userId);
-                    userBytes = gson.toJson(Objects.requireNonNullElse(user, "{}")).getBytes();
+                    if (user == null) {
+                        throw new HttpException(HttpStatus.NOT_FOUND, "User does not exist");
+                    } else {
+                        userBytes = gson.toJson(user).getBytes();
+                    }
                 } catch (NumberFormatException e) {
                     throw new HttpException(HttpStatus.BAD_REQUEST, "Invalid payload");
                 }

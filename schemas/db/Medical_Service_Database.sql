@@ -120,14 +120,15 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 CREATE TABLE IF NOT EXISTS `visits` (
-  `status` enum('completed','pending','canceled','in_progress') NOT NULL,
+  `visit_id` int(10) NOT NULL AUTO_INCREMENT,
+  `status` enum('completed','pending','canceled','in_progress','pending_waiting_approval','canceled_waiting_approval') NOT NULL,
   `date` date NOT NULL,
   `time` time NOT NULL,
   `duration` int(5) NOT NULL,
   `rating` int(1) NOT NULL,
   `client_id` int(11) NOT NULL,
   `doctor_id` int(11) NOT NULL,
-  PRIMARY KEY (`date`,`time`,`client_id`,`doctor_id`),
+  PRIMARY KEY (`visit_id`),
   KEY `visits_ibfk_1` (`client_id`),
   KEY `visits_ibfk_2` (`doctor_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

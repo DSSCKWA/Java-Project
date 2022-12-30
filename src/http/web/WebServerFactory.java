@@ -1,13 +1,12 @@
 package src.http.web;
 
 import com.sun.net.httpserver.HttpServer;
-import src.http.handlers.ClinicRestHandler;
-import src.http.handlers.EquipmentRestHandler;
-import src.http.handlers.GlobalHttpHandler;
-import src.http.handlers.UserRestHandler;
+import src.http.handlers.*;
 import src.http.service.ClinicService;
 import src.http.service.EquipmentService;
 import src.http.service.UserService;
+import src.http.service.VisitService;
+import src.visit.VisitStatus;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -25,10 +24,12 @@ public class WebServerFactory {
             UserService userService = new UserService();
             ClinicService clinicService = new ClinicService();
             EquipmentService equipmentService = new EquipmentService();
+            VisitService visitService = new VisitService();
 
             server.createContext("/users", new GlobalHttpHandler(new UserRestHandler(userService)));
             server.createContext("/clinics", new GlobalHttpHandler(new ClinicRestHandler(clinicService)));
             server.createContext("/equipment", new GlobalHttpHandler(new EquipmentRestHandler(equipmentService, clinicService)));
+            server.createContext("/visits", new GlobalHttpHandler(new VisitRestHandler(visitService))); //TODO add doctor and user service for validation on post
 
             return server;
         } catch (IOException e) {

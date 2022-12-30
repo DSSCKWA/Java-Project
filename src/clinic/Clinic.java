@@ -1,8 +1,8 @@
 package src.clinic;
 
 import src.db.client.DBClient;
-import src.db.repository.ClinicRepository;
 import src.db.entities.ClinicEntity;
+import src.db.repository.ClinicRepository;
 
 import java.sql.SQLException;
 import java.util.Objects;

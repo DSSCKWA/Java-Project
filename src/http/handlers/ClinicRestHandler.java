@@ -36,7 +36,11 @@ public class ClinicRestHandler implements RestHandler {
                 try {
                     int clinicId = Integer.parseInt(paths[1]);
                     Clinic clinic = clinicService.getClinicById(clinicId);
-                    clinicBytes = gson.toJson(Objects.requireNonNullElse(clinic, "{}")).getBytes();
+                    if (clinic == null) {
+                        throw new HttpException(HttpStatus.NOT_FOUND, "Clinic does not exist");
+                    } else {
+                        clinicBytes = gson.toJson(clinic).getBytes();
+                    }
                 } catch (NumberFormatException e) {
                     throw new HttpException(HttpStatus.BAD_REQUEST, "Invalid payload");
                 }
