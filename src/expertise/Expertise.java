@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Expertise {
     private int doctorId;
     private String expertise;
-    private final DBClient dbClientAutoCommit;
+    private final transient DBClient dbClientAutoCommit;
 
     //<editor-fold desc="Getters">
     public int getDoctorId() {

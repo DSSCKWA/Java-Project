@@ -5,6 +5,7 @@ import src.db.repository.ExpertiseRepository;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ExpertiseEntity {
     private int doctorId;
@@ -43,6 +44,19 @@ public class ExpertiseEntity {
 
     public void setAreaOfExpertise(String areaOfExpertise) {
         this.areaOfExpertise = areaOfExpertise;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ExpertiseEntity that = (ExpertiseEntity) o;
+        return doctorId == that.doctorId && Objects.equals(areaOfExpertise, that.areaOfExpertise);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(doctorId, areaOfExpertise);
     }
 
     @Override
