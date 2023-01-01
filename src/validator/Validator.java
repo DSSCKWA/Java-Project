@@ -3,27 +3,17 @@ package src.validator;
 import java.util.regex.*;
 
 public class Validator {
-    public static boolean validMail(String input) {
-        Pattern mailPattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
-        Matcher mailCheck = mailPattern.matcher(input);
+    public static boolean isValidMail(String mail) {
+        Pattern mailPattern = Pattern.compile("[A-Za-z\\d._%+-]+@[A-Za-z\\d.-]+\\.[A-Za-z]{2,4}");
+        Matcher mailCheck = mailPattern.matcher(mail);
 
-        if(mailCheck.matches()) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return mailCheck.matches();
     }
-    
-    public static boolean validPhone(String input) {
-        Pattern phonePattern = Pattern.compile("^[1-9]{1}+[0-9]{8}");
-        Matcher phoneCheck = phonePattern.matcher(input);
 
-        if(phoneCheck.matches()) {
-            return true;
-        }
-        else {
-            return false;
-        }
+    public static boolean isValidPhone(String phone) {
+        Pattern phonePattern = Pattern.compile("^[1-9]\\d{8}");
+        Matcher phoneCheck = phonePattern.matcher(phone);
+
+        return phoneCheck.matches();
     }
 }
