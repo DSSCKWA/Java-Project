@@ -5,18 +5,18 @@ import com.sun.net.httpserver.HttpExchange;
 import src.gson.GsonConverter;
 import src.http.constants.Headers;
 import src.http.constants.HttpStatus;
+import src.http.service.UserService;
 import src.http.service.VisitService;
 import src.http.util.HttpException;
 import src.http.util.HttpHandlerUtil;
+import src.users.Permissions;
 import src.users.User;
 import src.visit.Visit;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.logging.Logger;
 
 public class VisitRestHandler implements RestHandler {
@@ -24,9 +24,11 @@ public class VisitRestHandler implements RestHandler {
     private static final Gson gson = GsonConverter.newGsonWriterConverter();
 
     private final VisitService visitService;
+    private final UserService userService;
 
-    public VisitRestHandler(VisitService visitService) {
+    public VisitRestHandler(VisitService visitService, UserService userService) {
         this.visitService = visitService;
+        this.userService = userService;
     }
 
     @Override
@@ -91,6 +93,17 @@ public class VisitRestHandler implements RestHandler {
             );
             if (visit != null) {
                 throw new HttpException(HttpStatus.CONFLICT, "Visit already exist");
+            }
+            User patient = userService.getUserById(Integer.parseInt(visitData.get("clientId")));
+            if (patient == null) {
+                throw new HttpException(HttpStatus.NOT_FOUND, "Client does not exist");
+            }
+            User doctor = userService.getUserById(Integer.parseInt(visitData.get("doctorId")));
+            if (doctor == null) {
+                throw new HttpException(HttpStatus.NOT_FOUND, "Doctor does not exist");
+            }
+            if (!doctor.getPermissions().equals(Permissions.DOCTOR)) {
+                throw new HttpException(HttpStatus.BAD_REQUEST, "This user is not a doctor");
             }
             visit = visitService.addVisit(visitData);
             byte[] visitBytes = gson.toJson(visit).getBytes();
