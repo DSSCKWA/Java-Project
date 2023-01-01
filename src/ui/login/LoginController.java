@@ -7,7 +7,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import src.ui.Singleton;
 import src.users.Permissions;
@@ -19,17 +21,18 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable{
-
+    private Parent root;
+    private Stage stage;
+    private Scene scene;
     @FXML
     private TextField tfEmail;
 
     @FXML
-    private TextField tfPassword;
+    private PasswordField pfPassword;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         Singleton.getInstance(null);
     }
 
@@ -38,14 +41,11 @@ public class LoginController implements Initializable{
         Stage mainWindow = (Stage) tfEmail.getScene().getWindow();
         String email = tfEmail.getText();
 
-        mainWindow = (Stage) tfPassword.getScene().getWindow();
-        String password = tfPassword.getText();
+        mainWindow = (Stage) pfPassword.getScene().getWindow();
+        String password = pfPassword.getText();
 
         System.out.println(email+":"+password);
 
-        Parent root;
-        Stage stage;
-        Scene scene;
 //        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../patient/patient.fxml")));
 //        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 //        scene = new Scene(root);

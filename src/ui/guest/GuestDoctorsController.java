@@ -95,6 +95,7 @@ public class GuestDoctorsController  implements Initializable {
     void btnStartClicked(ActionEvent event) throws Exception{
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("guest.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
