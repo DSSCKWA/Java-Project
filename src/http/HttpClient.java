@@ -1,6 +1,7 @@
 package src.http;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import src.clinic.Clinic;
 import src.equipment.Equipment;
 import src.http.constants.HttpStatus;
@@ -8,6 +9,7 @@ import src.users.User;
 import src.visit.Visit;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.net.URLEncoder;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -40,7 +42,8 @@ public class HttpClient {
 
         Gson g = new Gson();
         String res = response.body();
-        ArrayList<Clinic> clinics = g.fromJson(res, ArrayList.class);
+        Type type = new TypeToken<ArrayList<Clinic>>() {}.getType();
+        ArrayList<Clinic>clinics = g.fromJson(res, type);
         return clinics;
     }
 
@@ -55,7 +58,8 @@ public class HttpClient {
 
         Gson g = new Gson();
         String res = response.body();
-        ArrayList<User> users = g.fromJson(res, ArrayList.class);
+        Type type = new TypeToken<ArrayList<User>>() {}.getType();
+        ArrayList<User> users = g.fromJson(res, type);
         return users;
     }
 
@@ -70,7 +74,8 @@ public class HttpClient {
 
         Gson g = new Gson();
         String res = response.body();
-        ArrayList<Equipment> equipment = g.fromJson(res, ArrayList.class);
+        Type type = new TypeToken<ArrayList<Equipment>>() {}.getType();
+        ArrayList<Equipment> equipment = g.fromJson(res, type);
         return equipment;
     }
 

@@ -15,6 +15,10 @@ package src.ui.admin;
         import javafx.scene.layout.*;
         import javafx.scene.text.Text;
         import javafx.stage.Stage;
+        import src.clinic.Clinic;
+        import src.ui.Singleton;
+        import src.users.Permissions;
+        import src.users.User;
 
         import java.io.IOException;
         import java.net.URL;
@@ -26,17 +30,21 @@ public class AdminClinicsController  implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private Clinic clinic;
     @FXML
     private TextField tfAddress;
-
     @FXML
     private TextField tfCity;
-
+    @FXML
+    private TextField tfName;
     @FXML
     private Button btnCreate;
 
     @FXML
     private Text textTitle;
+
+    @FXML
+    private Text tFaliure;
 
     @FXML
     private VBox vBox1;
@@ -49,17 +57,25 @@ public class AdminClinicsController  implements Initializable {
 
     @FXML
     private AnchorPane anchorPane1;
+    @FXML
+    private AnchorPane anchorPane2;
 
     @FXML
     public void initialize(URL location, ResourceBundle resources){
 
-        ///TODO: client.getAllClinics()
+        tFaliure.setVisible(false);
+        ArrayList<Clinic> clinics = new ArrayList<Clinic>();
+        try {
+            clinics = Singleton.getClient().getClinics();
+        }catch(Exception e){
+            System.out.println("Error");
+        }
         int j=0;
-        for(int i=0;i<20;i++)
-        {
+        for (Clinic cli : clinics ) {
             Button x = new Button();
             x.setPrefSize(vBox1.getPrefWidth(),40);
-            x.setText("Button"+(i+1));
+            x.setText(cli.present());
+            System.out.println(cli.present());
             x.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
             vBox1.getChildren().add(x);
 
@@ -74,26 +90,47 @@ public class AdminClinicsController  implements Initializable {
             vBox3.getChildren().add(z);
 
             y.setOnAction((ActionEvent)->{
+                this.clinic=cli;
                 vBox1.getChildren().clear();
                 vBox2.getChildren().clear();
                 vBox3.getChildren().clear();
                 textTitle.setText("Clinic edition tool");
-                btnCreate.setText("Edit");
-                ///TODO: action event clinic data edition
-//                @FXML
-//                void btnCreateClicked(ActionEvent event) {
-//
-//                }
 
+                Button xDel = new Button();
+                xDel.setPrefSize(vBox1.getPrefWidth(),40);
+                xDel.setText(clinic.present());
+                xDel.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
+                vBox1.getChildren().add(xDel);
+
+                btnCreate.setText("Edit");
+                btnCreate.setOnAction((ActionEvent event)-> {
+                    tFaliure.setVisible(true);
+                    if(!Objects.equals(tfName.getText(), "") && !Objects.equals(tfAddress.getText(), "") && !Objects.equals(tfCity.getText(), "")) {
+                        try {
+                            clinic.setName(tfName.getText());
+                            clinic.setCity(tfCity.getText());
+                            clinic.setAddress(tfAddress.getText());
+                            Singleton.getClient().updateClinic(clinic);
+                            System.out.println(clinic);
+                            System.out.println(clinic.present());
+                            tFaliure.setVisible(false);
+                            Text tSuccess = new Text(600, 114, "Success");
+                            anchorPane2.getChildren().add(tSuccess);
+                        } catch (Exception e) {
+                            System.out.println("Error");
+                        }
+                    }
+                });
             });
             z.setOnAction((ActionEvent)->{
+                this.clinic=cli;
                 vBox1.getChildren().clear();
                 vBox2.getChildren().clear();
                 vBox3.getChildren().clear();
 
                 Button xDel = new Button();
                 xDel.setPrefSize(vBox1.getPrefWidth(),40);
-                xDel.setText("Button");
+                xDel.setText(clinic.present());
                 xDel.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
                 vBox1.getChildren().add(xDel);
 
@@ -118,20 +155,31 @@ public class AdminClinicsController  implements Initializable {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
+                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    stage.setResizable(false);
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                });
+
+                zDel.setOnAction((ActionEvent event)->{
+                    try {
+                        Singleton.getClient().deleteClinic(clinic.getClinicId());
+                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics.fxml")));
                         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                         stage.setResizable(false);
                         scene = new Scene(root);
                         stage.setScene(scene);
                         stage.show();
-                });
-
-                zDel.setOnAction((ActionEvent event)->{
-                    ///TODO: delete Clinic by server request
+                    } catch (Exception e) {
+                        ///TODO: maybe something
+                    }
                 });
 
             });
             j++;
         }
+
         anchorPane1.setPrefHeight(j*40);
         vBox1.setPrefHeight(j*40);
         vBox2.setPrefHeight(j*40);
@@ -149,8 +197,13 @@ public class AdminClinicsController  implements Initializable {
     }
 
     @FXML
-    void btnDoctorsClicked(ActionEvent event) {
-
+    void btnDoctorsClicked(ActionEvent event) throws IOException{
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminDoctors.fxml")));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
     @FXML
     void btnLogOutClicked(ActionEvent event) throws IOException {
@@ -163,7 +216,7 @@ public class AdminClinicsController  implements Initializable {
     }
 
     @FXML
-    void btnStartClicked(ActionEvent event) throws Exception{
+    void btnStartClicked(ActionEvent event) throws IOException{
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("admin.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setResizable(false);
@@ -173,12 +226,30 @@ public class AdminClinicsController  implements Initializable {
     }
 
     @FXML
-    void btnUsersClicked(ActionEvent event) {
-
+    void btnUsersClicked(ActionEvent event) throws IOException{
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminUsers.fxml")));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
     void btnCreateClicked(ActionEvent event) {
+
+        tFaliure.setVisible(true);
+        if(!Objects.equals(tfName.getText(), "") && !Objects.equals(tfAddress.getText(), "") && !Objects.equals(tfCity.getText(), "")) {
+            try {
+                ///TODO: something isn't working as intended
+                Singleton.getClient().addClinic(new Clinic(tfName.getText(), tfAddress.getText(), tfCity.getText()));
+                tFaliure.setVisible(false);
+                Text tSuccess = new Text(600, 114, "Success");
+                anchorPane2.getChildren().add(tSuccess);
+            } catch (Exception e) {
+                ///TODO: dunno what, but maybe something
+            }
+        }
 
     }
 

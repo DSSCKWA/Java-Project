@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminClinicsController">
+<HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminDoctorsController">
     <children>
         <AnchorPane prefHeight="526.0" prefWidth="223.0">
             <children>
@@ -84,71 +84,60 @@
             <children>
                 <VBox prefHeight="526.0" prefWidth="667.0">
                     <children>
-                        <AnchorPane fx:id="anchorPane2" prefHeight="298.0" prefWidth="667.0">
-                     <children>
-                        <Button fx:id="btnCreate" layoutX="601.0" layoutY="130.0" mnemonicParsing="false" onAction="#btnCreateClicked" text="Create" />
-                        <Text fx:id="textTitle" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clinic creation tool:">
-                           <font>
-                              <Font name="Arial" size="18.0" />
-                           </font>
-                        </Text>
-                        <Text layoutX="14.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:">
-                           <font>
-                              <Font name="Arial" size="14.0" />
-                           </font>
-                        </Text>
-                        <TextField fx:id="tfAddress" layoutX="234.0" layoutY="129.0" />
-                        <Text layoutX="14.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City:">
-                           <font>
-                              <Font name="Arial" size="14.0" />
-                           </font>
-                        </Text>
-                        <TextField fx:id="tfCity" layoutX="234.0" layoutY="95.0" />
-                        <Text layoutX="14.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
-                           <font>
-                              <Font name="Arial" size="14.0" />
-                           </font>
-                        </Text>
-                        <TextField fx:id="tfName" layoutX="234.0" layoutY="62.0" />
-                        <Text fx:id="tFaliure" fill="RED" layoutX="606.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Faliure">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Text>
-                     </children></AnchorPane>
-                  <AnchorPane prefHeight="23.0" prefWidth="667.0">
-                     <children>
-                        <HBox layoutX="8.0" layoutY="32.0" prefHeight="30.0" prefWidth="634.0" style="-fx-border-color: black; -fx-border-insets: black;">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Clinic Data" textAlignment="CENTER" wrappingWidth="470.0">
-                                 <font>
-                                    <Font name="Arial" size="18.0" />
-                                 </font>
-                              </Text>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Actions" textAlignment="CENTER" wrappingWidth="173.33653354644775">
-                                 <font>
-                                    <Font name="Arial" size="18.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </HBox>
-                     </children>
-                  </AnchorPane>
+                        <AnchorPane prefHeight="298.0" prefWidth="667.0">
+                            <children>
+                                <Button fx:id="btnFind" layoutX="601.0" layoutY="130.0" mnemonicParsing="false" onAction="#btnFindClicked" text="Find" />
+                                <Text fx:id="textTitle" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Engine">
+                                    <font>
+                                        <Font name="Arial" size="18.0" />
+                                    </font>
+                                </Text>
+                                <Text layoutX="14.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+                                    <font>
+                                        <Font name="Arial" size="14.0" />
+                                    </font>
+                                </Text>
+                                <TextField fx:id="tfName" layoutX="234.0" layoutY="63.0" />
+                                <Text layoutX="14.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:">
+                                    <font>
+                                        <Font name="Arial" size="14.0" />
+                                    </font>
+                                </Text>
+                                <TextField fx:id="tfSurname" layoutX="234.0" layoutY="117.0" />
+                            </children></AnchorPane>
+                        <AnchorPane prefHeight="23.0" prefWidth="667.0">
+                            <children>
+                                <HBox layoutX="8.0" layoutY="32.0" prefHeight="30.0" prefWidth="634.0" style="-fx-border-color: black; -fx-border-insets: black;">
+                                    <children>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor Data" textAlignment="CENTER" wrappingWidth="470.0">
+                                            <font>
+                                                <Font name="Arial" size="18.0" />
+                                            </font>
+                                        </Text>
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Actions" textAlignment="CENTER" wrappingWidth="173.33653354644775">
+                                            <font>
+                                                <Font name="Arial" size="18.0" />
+                                            </font>
+                                        </Text>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </AnchorPane>
                         <AnchorPane prefHeight="303.0" prefWidth="598.0">
-                     <children>
-                        <ScrollPane layoutX="8.0" prefHeight="295.0" prefWidth="659.0">
-                          <content>
-                            <AnchorPane fx:id="anchorPane1" minHeight="0.0" minWidth="0.0" prefHeight="417.0" prefWidth="636.0">
-                                 <children>
-                                    <VBox fx:id="vBox1" prefHeight="434.0" prefWidth="470.0">
-                                       <children>
-                                       </children></VBox>
-                                    <VBox fx:id="vBox2" layoutX="463.0" prefHeight="454.0" prefWidth="86.0" />
-                                    <VBox fx:id="vBox3" layoutX="549.0" prefHeight="454.0" prefWidth="86.0" />
-                                 </children></AnchorPane>
-                          </content>
-                        </ScrollPane>
-                     </children></AnchorPane>
+                            <children>
+                                <ScrollPane layoutX="8.0" prefHeight="295.0" prefWidth="659.0">
+                                    <content>
+                                        <AnchorPane fx:id="anchorPane1" minHeight="0.0" minWidth="0.0" prefHeight="417.0" prefWidth="636.0">
+                                            <children>
+                                                <VBox fx:id="vBox1" prefHeight="434.0" prefWidth="470.0">
+                                                    <children>
+                                                    </children></VBox>
+                                                <VBox fx:id="vBox2" layoutX="463.0" prefHeight="454.0" prefWidth="86.0" />
+                                                <VBox fx:id="vBox3" layoutX="549.0" prefHeight="454.0" prefWidth="86.0" />
+                                            </children></AnchorPane>
+                                    </content>
+                                </ScrollPane>
+                            </children></AnchorPane>
                     </children>
                 </VBox>
             </children>

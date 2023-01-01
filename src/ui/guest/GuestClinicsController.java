@@ -12,6 +12,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import src.clinic.Clinic;
+import src.ui.Singleton;
 
 import java.io.IOException;
 import java.net.URL;
@@ -41,13 +43,17 @@ public class GuestClinicsController  implements Initializable {
     @FXML
     public void initialize(URL location, ResourceBundle resources){
 
-        ///TODO: client.getAllClinics()
+        ArrayList<Clinic> clinics = new ArrayList<Clinic>();
+        try {
+            clinics = Singleton.getClient().getClinics();
+        }catch(Exception e){
+            System.out.println("Error");
+        }
         int j=0;
-        for(int i=0;i<20;i++)
-        {
+        for (Clinic cli : clinics ) {
             Button x = new Button();
             x.setPrefSize(vBox1.getPrefWidth(),40);
-            x.setText("Button"+(i+1));
+            x.setText(cli.present());
             x.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
             vBox1.getChildren().add(x);
             j++;
@@ -96,7 +102,25 @@ public class GuestClinicsController  implements Initializable {
     @FXML
     void btnSearchClicked(ActionEvent event) {
         vBox1.getChildren().clear();
-        ///TODO: search server query + modifying results
+
+        ///TODO: unlock after adding method httpClient.getClinics(String name,String city)
+//        ArrayList<Clinic> clinics = new ArrayList<Clinic>();
+//        try {
+//            clinics = Singleton.getClient().getClinics(tfName.getText(),tfCity.getText());
+//        }catch(Exception e){
+//            System.out.println("Error");
+//        }
+//        int j=0;
+//        for (Clinic cli : clinics ) {
+//            Button x = new Button();
+//            x.setPrefSize(vBox1.getPrefWidth(),40);
+//            x.setText(cli.present());
+//            x.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
+//            vBox1.getChildren().add(x);
+//            j++;
+//        }
+//        anchorPane1.setPrefHeight(j*40);
+//        vBox1.setPrefHeight(j*40);
     }
 
 }

@@ -187,4 +187,9 @@ public class User {
                 ", permission='" + permissions + '\'';
     }
     //</editor-fold>
+
+    public String present() {
+        return "ID: "+ id +
+                " " + name + " "+ surname +": "+ email +"  " + city + ": " + address;
+    }
 }

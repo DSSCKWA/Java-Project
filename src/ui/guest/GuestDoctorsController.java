@@ -12,6 +12,10 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import src.clinic.Clinic;
+import src.ui.Singleton;
+import src.users.Permissions;
+import src.users.User;
 
 import java.io.IOException;
 import java.net.URL;
@@ -39,20 +43,24 @@ public class GuestDoctorsController  implements Initializable {
     @FXML
     public void initialize(URL location, ResourceBundle resources){
 
-        ///TODO: client.getAllClinics()
-        int j=0;
-        for(int i=0;i<20;i++)
-        {
-            Button x = new Button();
-            x.setPrefSize(vBox1.getPrefWidth(),40);
-            x.setText("Button"+(i+1));
-            x.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
-            vBox1.getChildren().add(x);
-
-            j++;
-        }
-        anchorPane1.setPrefHeight(j*40);
-        vBox1.setPrefHeight(j*40);
+        ///TODO: unlock after adding method httpClient.getUsers(Permissions permission)
+//        ArrayList<User> doctors = new ArrayList<User>();
+//        try {
+//            doctors = Singleton.getClient().getUsers(Permissions.DOCTOR);
+//        }catch(Exception e){
+//            System.out.println("Error");
+//        }
+//        int j=0;
+//        for (User doc : doctors) {
+//            Button x = new Button();
+//            x.setPrefSize(vBox1.getPrefWidth(),40);
+//            x.setText(doc.present());
+//            x.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
+//            vBox1.getChildren().add(x);
+//            j++;
+//        }
+//        anchorPane1.setPrefHeight(j*40);
+//        vBox1.setPrefHeight(j*40);
     }
 
     @FXML
@@ -95,7 +103,25 @@ public class GuestDoctorsController  implements Initializable {
     @FXML
     void btnSearchClicked(ActionEvent event) {
         vBox1.getChildren().clear();
-        ///TODO: search server query + modifying results
+
+///TODO: unlock after adding method httpClient.getUsers(Permissions permission, String expertise, String city)
+//        ArrayList<User> doctors = new ArrayList<User>();
+//        try {
+//            doctors = Singleton.getClient().getUsers(Permissions.DOCTOR, tfExpertise.getText(), tfCity.getText());
+//        }catch(Exception e){
+//            System.out.println("Error");
+//        }
+//        int j=0;
+//        for (User doc : doctors) {
+//            Button x = new Button();
+//            x.setPrefSize(vBox1.getPrefWidth(),40);
+//            x.setText(doc.present());
+//            x.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
+//            vBox1.getChildren().add(x);
+//            j++;
+//        }
+//        anchorPane1.setPrefHeight(j*40);
+//        vBox1.setPrefHeight(j*40);
     }
 
 }

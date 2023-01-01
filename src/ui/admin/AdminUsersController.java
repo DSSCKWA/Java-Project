@@ -3,13 +3,12 @@ package src.ui.admin;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -17,22 +16,36 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class AdminController {
+public class AdminUsersController {
     private Stage stage;
     private Scene scene;
     private Parent root;
     @FXML
-    private Text email;
-
-    private static final double BUTTONS_PER_LINE = 8;
-    private static final double NUM_BUTTON_LINES = 8;
-    private static final double BUTTON_PADDING   = 5;
+    private AnchorPane anchorPane1;
 
     @FXML
-    private Text permission;
+    private Button btnFind;
 
     @FXML
-    void btnClinicsClicked(ActionEvent event) throws IOException{
+    private Text textTitle;
+
+    @FXML
+    private TextField tfName;
+
+    @FXML
+    private TextField tfSurname;
+
+    @FXML
+    private VBox vBox1;
+
+    @FXML
+    private VBox vBox2;
+
+    @FXML
+    private VBox vBox3;
+
+    @FXML
+    void btnClinicsClicked(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setResizable(false);
@@ -78,6 +91,11 @@ public class AdminController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    @FXML
+    void btnFindClicked(ActionEvent event) {
+
     }
 
 }

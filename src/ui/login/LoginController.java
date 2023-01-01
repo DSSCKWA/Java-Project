@@ -9,20 +9,29 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import src.http.service.UserService;
-import src.ui.MainUI;
+import src.ui.Singleton;
+import src.users.Permissions;
 import src.users.User;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class LoginController {
+public class LoginController implements Initializable{
 
     @FXML
     private TextField tfEmail;
 
     @FXML
     private TextField tfPassword;
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        Singleton.getInstance(null);
+    }
 
     @FXML
     public void btnConfirmClicked(ActionEvent event) throws IOException {
@@ -37,20 +46,23 @@ public class LoginController {
         Parent root;
         Stage stage;
         Scene scene;
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../patient/patient.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+//        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../patient/patient.fxml")));
+//        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+//        scene = new Scene(root);
+//        stage.setScene(scene);
+//        stage.show();
 
-
-        UserService userService=new UserService(); ///TODO: delete
-
-
-        if(userService.getUserByEmail(email)!=null){ ///TODO: client.getUserByEmail(email)
-            User user = userService.getUserByEmail(email);  ///TODO: client.getUserByEmail(email)
-            if(Objects.equals(user.getPassword(), password)) {
-                switch (user.getPermissions()) {
+        User user = new User(0,null,null,null,null,null,null,0,null);
+        try {
+            user = Singleton.getClient().getUserByEmail(email);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }finally {
+            if (Objects.equals(user.getPassword(), password)) {
+                Singleton.newUser(user);
+                Permissions permission = user.getPermissions();
+                System.out.println(user);
+                switch (permission) {
                     case ADMIN:
                         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../admin/admin.fxml")));
                         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -67,7 +79,7 @@ public class LoginController {
                         break;
                     case PATIENT:
                         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../patient/patient.fxml")));
-                        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setResizable(false);
                         scene = new Scene(root);
                         stage.setScene(scene);
@@ -76,17 +88,23 @@ public class LoginController {
                     default:
                         break;
                 }
-            }
-        }else{
 
-            ///TODO: Error info
+            } else {
+
+                ///TODO: Error info
+            }
         }
 
     }
 
     @FXML
-    void btnSignUpClicked(ActionEvent event) {
-
+    void btnSignUpClicked(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../sign_up/signUp.fxml")));
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -98,6 +116,7 @@ public class LoginController {
         stage.setScene(scene);
         stage.show();
     }
+
 
 }
 
