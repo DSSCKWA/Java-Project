@@ -4,45 +4,39 @@ import src.validator.Validator;
 
 public class ValidTest {
     public static void main(String[] args) {
-        if(Validator.validMail("k.kierepka01@gmail.com")) {
+        if (Validator.isValidMail("k.kierepka01@gmail.com")) {
             System.out.println("OK");
-        }
-        else {
+        } else {
             System.out.println("Err1");
         }
 
-        if(Validator.validMail("k.kierepka01gmail.com")) {
+        if (Validator.isValidMail("k.kierepka01gmail.com")) {
             System.out.println("Err2");
-        }
-        else {
+        } else {
             System.out.println("OK");
         }
 
-        if(Validator.validPhone("695542293")) {
+        if (Validator.isValidPhone("695542293")) {
             System.out.println("OK");
-        }
-        else {
+        } else {
             System.out.println("Err3");
         }
 
-        if(Validator.validPhone("k.kierepka01gmail.com")) {
+        if (Validator.isValidPhone("k.kierepka01gmail.com")) {
             System.out.println("Err4");
-        }
-        else {
+        } else {
             System.out.println("OK");
         }
 
-        if(Validator.validPhone("6955422934")) {
+        if (Validator.isValidPhone("6955422934")) {
             System.out.println("Err4");
-        }
-        else {
+        } else {
             System.out.println("OK");
         }
 
-        if(Validator.validPhone("095542293")) {
+        if (Validator.isValidPhone("095542293")) {
             System.out.println("Err5");
-        }
-        else {
+        } else {
             System.out.println("OK");
         }
     }
