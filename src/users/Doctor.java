@@ -4,8 +4,7 @@ import src.clinic.Clinic;
 import src.db.client.DBClient;
 import src.db.entities.DoctorEntity;
 import src.db.entities.ExpertiseEntity;
-import src.db.entities.UserEntity;
-import src.db.repository.DoctorsRepository;
+import src.db.repository.DoctorRepository;
 import src.db.repository.ExpertiseRepository;
 import src.expertise.Expertise;
 import src.schedule.Schedule;
@@ -17,7 +16,6 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import static java.time.temporal.ChronoUnit.MINUTES;
@@ -26,7 +24,7 @@ public class Doctor extends User {
     private ArrayList<Clinic> doctorClinics;
     private ArrayList<Schedule> doctorSchedules;
     private ArrayList<Expertise> doctorExpertise;
-    private DBClient dbClientAutoCommit;
+    private transient DBClient dbClientAutoCommit;
 
     public Doctor(int id, String name, String lastName, String email, String password, String address, String city, int phoneNumber, ArrayList<Clinic> doctorClinics, ArrayList<Schedule> doctorSchedules, ArrayList<Expertise> doctorExpertise) {
         super(id, name, lastName, email, password, address, city, phoneNumber, Permissions.DOCTOR);
@@ -155,22 +153,22 @@ public class Doctor extends User {
     //<editor-fold desc="Database Handling">
     public void insertToDB(Clinic clinic) {
         DoctorEntity doctor = new DoctorEntity(super.getId(), clinic.getClinicId());
-        DoctorsRepository doctorsRepository = new DoctorsRepository(dbClientAutoCommit);
-        doctorsRepository.insertDoctor(doctor);
+        DoctorRepository doctorRepository = new DoctorRepository(dbClientAutoCommit);
+        doctorRepository.insertDoctor(doctor);
         doctor.setDoctorId(super.getId());
     }
 
     // function which removes doctor from ALL clinics
     public void removeFromAllClinicsDB(Doctor doctor) {
-        DoctorsRepository doctorsRepository = new DoctorsRepository(dbClientAutoCommit);
-        doctorsRepository.deleteDoctorFromClinics(doctor.getId());
+        DoctorRepository doctorRepository = new DoctorRepository(dbClientAutoCommit);
+        doctorRepository.deleteDoctorFromClinics(doctor.getId());
     }
     //</editor-fold>
 
     // function which removes doctor from ONE specific clinic
     public void removeFromClinic(Clinic clinic) {
-        DoctorsRepository doctorsRepository = new DoctorsRepository(dbClientAutoCommit);
-        doctorsRepository.deleteDoctorFromClinic(this.getId(), clinic.getClinicId());
+        DoctorRepository doctorRepository = new DoctorRepository(dbClientAutoCommit);
+        doctorRepository.deleteDoctorFromClinic(this.getId(), clinic.getClinicId());
     }
 
     //<editor-fold desc="ToString">
