@@ -103,7 +103,7 @@ public class UserRepository extends Repository {
                 user.setPhoneNumber(rs.getInt("phone_number"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
-                Permissions.valueOf(rs.getString("permissions").toUpperCase(Locale.ROOT));
+                user.setPermissions(Permissions.valueOf(rs.getString("permissions").toUpperCase(Locale.ROOT)));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -126,7 +126,7 @@ public class UserRepository extends Repository {
                 user.setPhoneNumber(rs.getInt("phone_number"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
-                Permissions.valueOf(rs.getString("permissions").toUpperCase(Locale.ROOT));
+                user.setPermissions(Permissions.valueOf(rs.getString("permissions").toUpperCase(Locale.ROOT)));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

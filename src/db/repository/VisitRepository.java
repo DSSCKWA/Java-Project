@@ -2,10 +2,7 @@ package src.db.repository;
 
 import src.db.client.DBClient;
 import src.db.entities.*;
-import src.schedule.Schedule;
-import src.users.Doctor;
 import src.users.Patient;
-import src.users.User;
 import src.visit.Visit;
 import src.visit.VisitStatus;
 
@@ -24,14 +21,14 @@ public class VisitRepository extends Repository {
     }
 
     public Visit toVisit(VisitEntity visitEntity) {
-        DoctorsRepository doctorsRepository = new DoctorsRepository(client);
+        DoctorRepository doctorRepository = new DoctorRepository(client);
         UserRepository userRepository = new UserRepository(client);
         return new Visit(
                 visitEntity.getVisitId(),
                 visitEntity.getDate(),
                 visitEntity.getTime(),
                 visitEntity.getDuration(),
-                doctorsRepository.toDoctor(visitEntity.getDoctorId()),
+                doctorRepository.toDoctor(visitEntity.getDoctorId()),
                 new Patient(userRepository.toUser(userRepository.getUserById(visitEntity.getClientId()))),
                 visitEntity.getRating(),
                 visitEntity.getStatus()

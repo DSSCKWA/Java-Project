@@ -1,10 +1,11 @@
 package src.db.entities;
 
 import src.db.client.DBClient;
-import src.db.repository.DoctorsRepository;
+import src.db.repository.DoctorRepository;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class DoctorEntity {
     private int doctorId;
@@ -16,9 +17,9 @@ public class DoctorEntity {
     }
 
     public ArrayList<DoctorEntity> getDoctorEntityArrayByDoctorId(int id) {
-        DoctorsRepository db;
+        DoctorRepository db;
         try {
-            db = new DoctorsRepository(new DBClient(false));
+            db = new DoctorRepository(new DBClient(false));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -42,6 +43,19 @@ public class DoctorEntity {
 
     public void setClinicId(int clinicId) {
         this.clinicId = clinicId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DoctorEntity that = (DoctorEntity) o;
+        return doctorId == that.doctorId && clinicId == that.clinicId;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(doctorId, clinicId);
     }
 
     @Override

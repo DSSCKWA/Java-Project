@@ -5,7 +5,7 @@ import src.db.entities.DoctorEntity;
 import src.db.entities.ExpertiseEntity;
 import src.db.entities.UserEntity;
 import src.db.repository.ClinicRepository;
-import src.db.repository.DoctorsRepository;
+import src.db.repository.DoctorRepository;
 import src.db.repository.ExpertiseRepository;
 import src.db.repository.UserRepository;
 import src.users.Permissions;
@@ -30,7 +30,7 @@ public class DBClient_Test {
             DBClient dbClientNoAutoCommit = new DBClient(false);
             UserRepository userRepository = new UserRepository(dbClientNoAutoCommit);
             ClinicRepository clinicRepository = new ClinicRepository(dbClientNoAutoCommit);
-            DoctorsRepository doctorsRepository = new DoctorsRepository(dbClientNoAutoCommit);
+            DoctorRepository doctorRepository = new DoctorRepository(dbClientNoAutoCommit);
             ExpertiseRepository expertiseRepository = new ExpertiseRepository(dbClientNoAutoCommit);
             clinic.setAddress("updated address");
             clinicRepository.updateClinic(clinic);
@@ -38,10 +38,10 @@ public class DBClient_Test {
             UserEntity user = new UserEntity("name", "surname", "address", "city", 1234567, "mail", "password", Permissions.DOCTOR);
             int userId = userRepository.insertUser(user);
             user.setUserId(userId);
-            doctorsRepository.insertDoctor(new DoctorEntity(userId, clinicId));
+            doctorRepository.insertDoctor(new DoctorEntity(userId, clinicId));
             expertiseRepository.insertExpertise(new ExpertiseEntity(userId, "nothing"));
             dbClientNoAutoCommit.getConnection().commit();
-            System.out.println(doctorsRepository.getDoctorById(userId));
+            System.out.println(doctorRepository.getDoctorById(userId));
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

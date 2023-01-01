@@ -15,7 +15,7 @@ public class Schedule {
     private DayOfWeek day; // jednostki czasu
     private LocalTime startTime;// jednostki czasu
     private LocalTime endTime;// jednostki czasu
-    private final DBClient dbClientAutoCommit;
+    private final transient DBClient dbClientAutoCommit;
 
     //<editor-fold desc="Getters">
     public int getDoctorId() {

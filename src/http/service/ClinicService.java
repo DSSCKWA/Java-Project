@@ -61,8 +61,8 @@ public class ClinicService {
         try {
             ClinicEntity clinic = new ClinicEntity(
                     clinicData.get("name"),
-                    clinicData.get("city"),
-                    clinicData.get("address")
+                    clinicData.get("address"),
+                    clinicData.get("city")
             );
             if (clinicData.get("clinicId") != null) {
                 clinic.setClinicId(Integer.parseInt(clinicData.get("clinicId")));

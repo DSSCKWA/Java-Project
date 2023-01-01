@@ -32,6 +32,10 @@ public class UserService {
         return userRepository.toUserList(userRepository.getAllUsers());
     }
 
+    public ArrayList<User> getUsersByPermission(Permissions permissions) {
+        return userRepository.toUserList(userRepository.getUsersByPermissions(permissions));
+    }
+
     public User getUserById(int userId) {
         UserEntity user = userRepository.getUserById(userId);
         if (user.equals(new UserEntity())) {
