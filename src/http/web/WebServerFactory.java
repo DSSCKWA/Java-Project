@@ -3,7 +3,6 @@ package src.http.web;
 import com.sun.net.httpserver.HttpServer;
 import src.http.handlers.*;
 import src.http.service.*;
-import src.visit.VisitStatus;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -23,12 +22,14 @@ public class WebServerFactory {
             EquipmentService equipmentService = new EquipmentService();
             VisitService visitService = new VisitService();
             DoctorService doctorService = new DoctorService();
+            ExpertiseService expertiseService = new ExpertiseService();
 
             server.createContext("/users", new GlobalHttpHandler(new UserRestHandler(userService)));
             server.createContext("/clinics", new GlobalHttpHandler(new ClinicRestHandler(clinicService)));
             server.createContext("/equipment", new GlobalHttpHandler(new EquipmentRestHandler(equipmentService, clinicService)));
-            server.createContext("/visits", new GlobalHttpHandler(new VisitRestHandler(visitService))); //TODO add doctor and user service for validation on post
+            server.createContext("/visits", new GlobalHttpHandler(new VisitRestHandler(visitService, userService)));
             server.createContext("/doctors", new GlobalHttpHandler(new DoctorRestHandler(doctorService, userService, clinicService)));
+            server.createContext("/expertise", new GlobalHttpHandler(new ExpertiseRestHandler(expertiseService, userService)));
 
             return server;
         } catch (IOException e) {
