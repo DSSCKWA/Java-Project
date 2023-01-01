@@ -13,7 +13,6 @@ import src.http.util.HttpHandlerUtil;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
-import java.util.Objects;
 import java.util.logging.Logger;
 
 public class EquipmentRestHandler implements RestHandler {
@@ -41,7 +40,7 @@ public class EquipmentRestHandler implements RestHandler {
                     if (queryMap.get("clinicId") != null) {
                         equipmentBytes = gson.toJson(equipmentService.getAllEquipmentByClinic(Integer.parseInt(queryMap.get("clinicId")))).getBytes();
                     } else {
-                        equipmentBytes = gson.toJson(equipmentService.getAllEquipment()).getBytes();
+                        throw new HttpException(HttpStatus.BAD_REQUEST, "Unsupported query");
                     }
                 } else {
                     equipmentBytes = gson.toJson(equipmentService.getAllEquipment()).getBytes();
@@ -81,7 +80,7 @@ public class EquipmentRestHandler implements RestHandler {
             final String body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
             Map<String, String> equipmentData = HttpHandlerUtil.validateRequestBody(body);
             int clinicId = Integer.parseInt(equipmentData.get("clinicId"));
-            if (clinicService.getClinicById(clinicId) == null) {
+            if (clinicService.getClinic(clinicId) == null) {
                 throw new HttpException(HttpStatus.NOT_FOUND, "Clinic does not exist");
             }
             Equipment equipment = equipmentService.addEquipment(equipmentData);
@@ -115,7 +114,7 @@ public class EquipmentRestHandler implements RestHandler {
             }
 
             int clinicId = Integer.parseInt(equipmentData.get("clinicId"));
-            if (clinicService.getClinicById(clinicId) == null) {
+            if (clinicService.getClinic(clinicId) == null) {
                 throw new HttpException(HttpStatus.NOT_FOUND, "Clinic does not exist");
             }
 

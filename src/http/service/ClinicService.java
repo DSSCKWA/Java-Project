@@ -30,8 +30,8 @@ public class ClinicService {
         return clinicRepository.toClinicList(clinicRepository.getAllClinics());
     }
 
-    public Clinic getClinicById(int clinicId) {
-        ClinicEntity clinic = clinicRepository.getClinicById(clinicId);
+    public Clinic getClinic(int clinicId) {
+        ClinicEntity clinic = clinicRepository.getClinic(clinicId);
         if (clinic.equals(new ClinicEntity())) {
             return null;
         }

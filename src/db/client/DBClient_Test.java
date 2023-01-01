@@ -41,7 +41,7 @@ public class DBClient_Test {
             doctorRepository.insertDoctor(new DoctorEntity(userId, clinicId));
             expertiseRepository.insertExpertise(new ExpertiseEntity(userId, "nothing"));
             dbClientNoAutoCommit.getConnection().commit();
-            System.out.println(doctorRepository.getDoctorById(userId));
+            System.out.println(doctorRepository.getDoctor(userId));
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

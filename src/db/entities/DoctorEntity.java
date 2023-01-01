@@ -23,7 +23,7 @@ public class DoctorEntity {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return db.getDoctorById(id);
+        return db.getDoctor(id);
     }
 
     public DoctorEntity() {

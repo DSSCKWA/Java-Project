@@ -88,7 +88,7 @@ public class UserRepository extends Repository {
         return users;
     }
 
-    public UserEntity getUserById(int userId) {
+    public UserEntity getUser(int userId) {
         String query = "SELECT * FROM users WHERE user_id = ?";
         UserEntity user = new UserEntity();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
@@ -111,7 +111,7 @@ public class UserRepository extends Repository {
         return user;
     }
 
-    public UserEntity getUserByEmail(String email) {
+    public UserEntity getUser(String email) {
         String query = "SELECT * FROM users WHERE email = ?";
         UserEntity user = new UserEntity();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {

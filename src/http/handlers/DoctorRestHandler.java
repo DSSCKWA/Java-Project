@@ -47,7 +47,7 @@ public class DoctorRestHandler implements RestHandler {
             case 2 -> {
                 try {
                     int doctorId = Integer.parseInt(paths[1]);
-                    User user = userService.getUserById(doctorId);
+                    User user = userService.getUser(doctorId);
                     if (user == null) {
                         throw new HttpException(HttpStatus.NOT_FOUND, "Doctor does not exist");
                     } else if (!user.getPermissions().equals(Permissions.DOCTOR)) {
@@ -81,18 +81,18 @@ public class DoctorRestHandler implements RestHandler {
             Map<String, String> doctorData = HttpHandlerUtil.validateRequestBody(body);
             int doctorId = Integer.parseInt(doctorData.get("doctorId"));
             int clinicId = Integer.parseInt(doctorData.get("clinicId"));
-            User user = userService.getUserById(doctorId);
+            User user = userService.getUser(doctorId);
             if (user == null) {
                 throw new HttpException(HttpStatus.NOT_FOUND, "Doctor does not exist");
             }
             if (!user.getPermissions().equals(Permissions.DOCTOR)) {
                 throw new HttpException(HttpStatus.BAD_REQUEST, "This user is not a doctor");
             }
-            Clinic clinic = clinicService.getClinicById(clinicId);
+            Clinic clinic = clinicService.getClinic(clinicId);
             if (clinic == null) {
                 throw new HttpException(HttpStatus.NOT_FOUND, "Clinic does not exist");
             }
-            Doctor doctor = doctorService.getDoctorInClinic(doctorId, clinicId);
+            Doctor doctor = doctorService.getDoctor(doctorId, clinicId);
             if (doctor != null) {
                 throw new HttpException(HttpStatus.CONFLICT, "Doctor already exists in this clinic");
             }
@@ -124,28 +124,23 @@ public class DoctorRestHandler implements RestHandler {
                 throw new HttpException(HttpStatus.BAD_REQUEST, "Bad Request");
             }
             int doctorId = Integer.parseInt(paths[1]);
-            doctorService.getDoctorsById(doctorId);
+            doctorService.getDoctors(doctorId);
             String query = exchange.getRequestURI().getQuery();
             if (query != null) {
                 Map<String, String> queryMap = HttpHandlerUtil.getQueryParams(query);
                 if (queryMap.get("clinicId") != null) {
                     int clinicId = Integer.parseInt(queryMap.get("clinicId"));
-                    Doctor doctor = doctorService.getDoctorInClinic(doctorId, clinicId);
+                    Doctor doctor = doctorService.getDoctor(doctorId, clinicId);
                     if (doctor == null) {
                         throw new HttpException(HttpStatus.NOT_FOUND, "Doctor does not exist in this clinic");
                     } else {
                         doctorService.deleteDoctor(doctorId, clinicId);
                     }
                 } else {
-                    ArrayList<Doctor> doctors = doctorService.getDoctorsById(doctorId);
-                    if (doctors.size() == 0) {
-                        throw new HttpException(HttpStatus.NOT_FOUND, "Doctor does not exist");
-                    } else {
-                        doctorService.deleteAllDoctorEntries(doctorId);
-                    }
+                    throw new HttpException(HttpStatus.BAD_REQUEST, "Unsupported query");
                 }
             } else {
-                ArrayList<Doctor> doctors = doctorService.getDoctorsById(doctorId);
+                ArrayList<Doctor> doctors = doctorService.getDoctors(doctorId);
                 if (doctors.size() == 0) {
                     throw new HttpException(HttpStatus.NOT_FOUND, "Doctor does not exist");
                 } else {

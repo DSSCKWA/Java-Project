@@ -29,7 +29,7 @@ public class VisitRepository extends Repository {
                 visitEntity.getTime(),
                 visitEntity.getDuration(),
                 doctorRepository.toDoctor(visitEntity.getDoctorId()),
-                new Patient(userRepository.toUser(userRepository.getUserById(visitEntity.getClientId()))),
+                new Patient(userRepository.toUser(userRepository.getUser(visitEntity.getClientId()))),
                 visitEntity.getRating(),
                 visitEntity.getStatus()
         );
@@ -88,7 +88,7 @@ public class VisitRepository extends Repository {
         return visit;
     }
 
-    public VisitEntity getVisitDateTime(int doctorId, int clientId, LocalDate date, LocalTime time) {
+    public VisitEntity getVisit(int doctorId, int clientId, LocalDate date, LocalTime time) {
         String query = "SELECT * FROM visits WHERE doctor_id = ? and client_id = ? and date = ? and time = ?";
         VisitEntity visit = new VisitEntity();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {

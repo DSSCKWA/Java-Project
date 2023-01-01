@@ -46,7 +46,7 @@ public class VisitRestHandler implements RestHandler {
                     } else if (queryMap.get("clientId") != null) {
                         visitBytes = gson.toJson(visitService.getVisitsByClientId(Integer.parseInt(queryMap.get("clientId")))).getBytes();
                     } else {
-                        visitBytes = gson.toJson(visitService.getAllVisits()).getBytes();
+                        throw new HttpException(HttpStatus.BAD_REQUEST, "Unsupported query");
                     }
                 } else {
                     visitBytes = gson.toJson(visitService.getAllVisits()).getBytes();
@@ -85,7 +85,7 @@ public class VisitRestHandler implements RestHandler {
         try {
             final String body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
             Map<String, String> visitData = HttpHandlerUtil.validateRequestBody(body);
-            Visit visit = visitService.getVisitByDateTime(
+            Visit visit = visitService.getVisit(
                     Integer.parseInt(visitData.get("doctorId")),
                     Integer.parseInt(visitData.get("clientId")),
                     LocalDate.parse(visitData.get("date")),
@@ -94,11 +94,11 @@ public class VisitRestHandler implements RestHandler {
             if (visit != null) {
                 throw new HttpException(HttpStatus.CONFLICT, "Visit already exist");
             }
-            User patient = userService.getUserById(Integer.parseInt(visitData.get("clientId")));
+            User patient = userService.getUser(Integer.parseInt(visitData.get("clientId")));
             if (patient == null) {
                 throw new HttpException(HttpStatus.NOT_FOUND, "Client does not exist");
             }
-            User doctor = userService.getUserById(Integer.parseInt(visitData.get("doctorId")));
+            User doctor = userService.getUser(Integer.parseInt(visitData.get("doctorId")));
             if (doctor == null) {
                 throw new HttpException(HttpStatus.NOT_FOUND, "Doctor does not exist");
             }
