@@ -2,6 +2,7 @@ package src.db.entities;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.util.Objects;
 
 public class ScheduleEntity {
     private int doctorId;
@@ -59,6 +60,19 @@ public class ScheduleEntity {
 
     public void setEndHour(LocalTime endHour) {
         this.endHour = endHour;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ScheduleEntity that = (ScheduleEntity) o;
+        return doctorId == that.doctorId && clinicId == that.clinicId && day == that.day && Objects.equals(startHour, that.startHour) && Objects.equals(endHour, that.endHour);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(doctorId, clinicId, day, startHour, endHour);
     }
 
     @Override

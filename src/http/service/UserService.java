@@ -36,16 +36,16 @@ public class UserService {
         return userRepository.toUserList(userRepository.getUsersByPermissions(permissions));
     }
 
-    public User getUserById(int userId) {
-        UserEntity user = userRepository.getUserById(userId);
+    public User getUser(int userId) {
+        UserEntity user = userRepository.getUser(userId);
         if (user.equals(new UserEntity())) {
             return null;
         }
         return userRepository.toUser(user);
     }
 
-    public User getUserByEmail(String email) {
-        UserEntity user = userRepository.getUserByEmail(email);
+    public User getUser(String email) {
+        UserEntity user = userRepository.getUser(email);
         if (user.equals(new UserEntity())) {
             return null;
         }

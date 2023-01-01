@@ -91,7 +91,7 @@ public class ClinicRepository extends Repository {
         return clinics;
     }
 
-    public ClinicEntity getClinicById(int clinicId) {
+    public ClinicEntity getClinic(int clinicId) {
         String query = "SELECT * FROM clinics WHERE clinic_id = ?";
         ClinicEntity clinic = new ClinicEntity();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {

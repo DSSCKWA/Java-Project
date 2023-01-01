@@ -2,7 +2,6 @@ package src.db.repository;
 
 import src.db.client.DBClient;
 import src.db.entities.*;
-import src.equipment.Equipment;
 import src.users.Doctor;
 
 import java.sql.PreparedStatement;
@@ -23,15 +22,15 @@ public class DoctorRepository extends Repository {
         ExpertiseRepository expertiseRepository = new ExpertiseRepository(client);
         ScheduleRepository scheduleRepository = new ScheduleRepository(client);
 
-        UserEntity userEntity = userRepository.getUserById(doctorId);
-        ArrayList<DoctorEntity> doctorEntities = doctorRepository.getDoctorById(doctorId);
+        UserEntity userEntity = userRepository.getUser(doctorId);
+        ArrayList<DoctorEntity> doctorEntities = doctorRepository.getDoctor(doctorId);
         ArrayList<ClinicEntity> clinicEntities = new ArrayList<>();
 
         for (DoctorEntity doctorEntity : doctorEntities) {
-            clinicEntities.add(clinicRepository.getClinicById(doctorEntity.getClinicId()));
+            clinicEntities.add(clinicRepository.getClinic(doctorEntity.getClinicId()));
         }
-        ArrayList<ScheduleEntity> scheduleEntities = scheduleRepository.getSchedulesByDoctorId(doctorId);
-        ArrayList<ExpertiseEntity> expertiseEntities = expertiseRepository.getExpertiseByDoctorId(doctorId);
+        ArrayList<ScheduleEntity> scheduleEntities = scheduleRepository.getSchedules(doctorId);
+        ArrayList<ExpertiseEntity> expertiseEntities = expertiseRepository.getExpertise(doctorId);
 
         return new Doctor(
                 userEntity.getUserId(),
@@ -73,7 +72,7 @@ public class DoctorRepository extends Repository {
         return doctor;
     }
 
-    public ArrayList<DoctorEntity> getDoctorById(int doctorId) {
+    public ArrayList<DoctorEntity> getDoctor(int doctorId) {
         String query = "SELECT * FROM doctors WHERE doctor_id = ?";
         ArrayList<DoctorEntity> expertises = new ArrayList<>();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
@@ -91,7 +90,7 @@ public class DoctorRepository extends Repository {
         return expertises;
     }
 
-    public DoctorEntity getDoctorInClinic(int doctorId, int clinicId) {
+    public DoctorEntity getDoctor(int doctorId, int clinicId) {
         String query = "SELECT * FROM doctors WHERE doctor_id = ? and clinic_id = ?";
         DoctorEntity doctor = new DoctorEntity();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {

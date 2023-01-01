@@ -49,7 +49,7 @@ public class UserEntity {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return db.getUserById(userId);
+        return db.getUser(userId);
     }
 
     public UserEntity() {

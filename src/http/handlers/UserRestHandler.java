@@ -11,9 +11,7 @@ import src.http.util.HttpHandlerUtil;
 import src.users.User;
 
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.logging.Logger;
 
 public class UserRestHandler implements RestHandler {
@@ -37,14 +35,14 @@ public class UserRestHandler implements RestHandler {
                 if (query != null) {
                     Map<String, String> queryMap = HttpHandlerUtil.getQueryParams(query);
                     if (queryMap.get("email") != null) {
-                        User user = userService.getUserByEmail(queryMap.get("email"));
+                        User user = userService.getUser(queryMap.get("email"));
                         if (user == null) {
                             throw new HttpException(HttpStatus.NOT_FOUND, "User does not exist");
                         } else {
                             userBytes = gson.toJson(user).getBytes();
                         }
                     } else {
-                        userBytes = gson.toJson(userService.getAllUsers()).getBytes();
+                        throw new HttpException(HttpStatus.BAD_REQUEST, "Unsupported query");
                     }
                 } else {
                     userBytes = gson.toJson(userService.getAllUsers()).getBytes();
@@ -53,7 +51,7 @@ public class UserRestHandler implements RestHandler {
             case 2 -> {
                 try {
                     int userId = Integer.parseInt(paths[1]);
-                    User user = userService.getUserById(userId);
+                    User user = userService.getUser(userId);
                     if (user == null) {
                         throw new HttpException(HttpStatus.NOT_FOUND, "User does not exist");
                     } else {
@@ -83,7 +81,7 @@ public class UserRestHandler implements RestHandler {
         try {
             final String body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
             Map<String, String> userData = HttpHandlerUtil.validateRequestBody(body);
-            User user = userService.getUserByEmail(userData.get("email"));
+            User user = userService.getUser(userData.get("email"));
             if (user != null) {
                 throw new HttpException(HttpStatus.CONFLICT, "User already exists");
             }
@@ -111,7 +109,7 @@ public class UserRestHandler implements RestHandler {
                 throw new HttpException(HttpStatus.BAD_REQUEST, "Bad Request");
             }
             int userId = Integer.parseInt(paths[1]);
-            User user = userService.getUserById(userId);
+            User user = userService.getUser(userId);
             if (user == null) {
                 throw new HttpException(HttpStatus.NOT_FOUND, "User does not exist");
             }
@@ -137,7 +135,7 @@ public class UserRestHandler implements RestHandler {
                 throw new HttpException(HttpStatus.BAD_REQUEST, "Bad Request");
             }
             int userId = Integer.parseInt(paths[1]);
-            User user = userService.getUserById(userId);
+            User user = userService.getUser(userId);
             if (user == null) {
                 throw new HttpException(HttpStatus.NOT_FOUND, "User does not exist");
             }

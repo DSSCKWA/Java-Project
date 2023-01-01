@@ -40,17 +40,17 @@ public class ExpertiseRestHandler implements RestHandler {
             if (query != null) {
                 Map<String, String> queryMap = HttpHandlerUtil.getQueryParams(query);
                 if (queryMap.get("doctorId") != null && queryMap.get("areaOfExpertise") == null) {
-                    expertiseBytes = gson.toJson(expertiseService.getExpertiseByDoctorId(Integer.parseInt(queryMap.get("doctorId")))).getBytes();
+                    expertiseBytes = gson.toJson(expertiseService.getExpertise(Integer.parseInt(queryMap.get("doctorId")))).getBytes();
                 } else if (queryMap.get("doctorId") == null && queryMap.get("areaOfExpertise") != null) {
-                    expertiseBytes = gson.toJson(expertiseService.getExpertiseByArea(queryMap.get("areaOfExpertise"))).getBytes();
+                    expertiseBytes = gson.toJson(expertiseService.getExpertise(queryMap.get("areaOfExpertise"))).getBytes();
                 } else if (queryMap.get("doctorId") != null && queryMap.get("areaOfExpertise") != null) {
-                    Expertise expertise = expertiseService.getExpertiseByIdAndArea(Integer.parseInt(queryMap.get("doctorId")), queryMap.get("areaOfExpertise"));
+                    Expertise expertise = expertiseService.getExpertise(Integer.parseInt(queryMap.get("doctorId")), queryMap.get("areaOfExpertise"));
                     if (expertise == null) {
                         throw new HttpException(HttpStatus.NOT_FOUND, "Expertise does not exist for this doctor");
                     }
                     expertiseBytes = gson.toJson(expertise).getBytes();
                 } else {
-                    expertiseBytes = gson.toJson(expertiseService.getAllExpertises()).getBytes();
+                    throw new HttpException(HttpStatus.BAD_REQUEST, "Unsupported query");
                 }
             } else {
                 expertiseBytes = gson.toJson(expertiseService.getAllExpertises()).getBytes();
@@ -76,11 +76,11 @@ public class ExpertiseRestHandler implements RestHandler {
         try {
             final String body = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
             Map<String, String> expertiseData = HttpHandlerUtil.validateRequestBody(body);
-            Expertise expertise = expertiseService.getExpertiseByIdAndArea(Integer.parseInt(expertiseData.get("doctorId")), expertiseData.get("areaOfExpertise"));
+            Expertise expertise = expertiseService.getExpertise(Integer.parseInt(expertiseData.get("doctorId")), expertiseData.get("areaOfExpertise"));
             if (expertise != null) {
                 throw new HttpException(HttpStatus.CONFLICT, "Expertise already exist for this doctor");
             }
-            User user = userService.getUserById(Integer.parseInt(expertiseData.get("doctorId")));
+            User user = userService.getUser(Integer.parseInt(expertiseData.get("doctorId")));
             if (user == null) {
                 throw new HttpException(HttpStatus.NOT_FOUND, "User does not exist");
             }
@@ -116,23 +116,23 @@ public class ExpertiseRestHandler implements RestHandler {
                 if (query != null) {
                     Map<String, String> queryMap = HttpHandlerUtil.getQueryParams(query);
                     if (queryMap.get("doctorId") != null && queryMap.get("areaOfExpertise") == null) {
-                        ArrayList<Expertise> expertises = expertiseService.getExpertiseByDoctorId(Integer.parseInt(queryMap.get("doctorId")));
+                        ArrayList<Expertise> expertises = expertiseService.getExpertise(Integer.parseInt(queryMap.get("doctorId")));
                         if (expertises.size() == 0) {
                             throw new HttpException(HttpStatus.NOT_FOUND, "Expertises does not exist for this doctor");
                         }
-                        expertiseService.deleteExpertiseByDoctorId(Integer.parseInt(queryMap.get("doctorId")));
+                        expertiseService.deleteExpertise(Integer.parseInt(queryMap.get("doctorId")));
                     } else if (queryMap.get("doctorId") == null && queryMap.get("areaOfExpertise") != null) {
-                        ArrayList<Expertise> expertises = expertiseService.getExpertiseByArea(queryMap.get("areaOfExpertise"));
+                        ArrayList<Expertise> expertises = expertiseService.getExpertise(queryMap.get("areaOfExpertise"));
                         if (expertises.size() == 0) {
                             throw new HttpException(HttpStatus.NOT_FOUND, "Expertises does not exist");
                         }
-                        expertiseService.deleteExpertiseByArea(queryMap.get("areaOfExpertise"));
+                        expertiseService.deleteExpertise(queryMap.get("areaOfExpertise"));
                     } else if (queryMap.get("doctorId") != null && queryMap.get("areaOfExpertise") != null) {
-                        Expertise expertise = expertiseService.getExpertiseByIdAndArea(Integer.parseInt(queryMap.get("doctorId")), queryMap.get("areaOfExpertise"));
+                        Expertise expertise = expertiseService.getExpertise(Integer.parseInt(queryMap.get("doctorId")), queryMap.get("areaOfExpertise"));
                         if (expertise == null) {
                             throw new HttpException(HttpStatus.NOT_FOUND, "Expertise does not exist for this doctor");
                         }
-                        expertiseService.deleteExpertiseByIdAndArea(Integer.parseInt(queryMap.get("doctorId")), queryMap.get("areaOfExpertise"));
+                        expertiseService.deleteExpertise(Integer.parseInt(queryMap.get("doctorId")), queryMap.get("areaOfExpertise"));
                     } else {
                         throw new HttpException(HttpStatus.BAD_REQUEST, "Invalid request");
                     }

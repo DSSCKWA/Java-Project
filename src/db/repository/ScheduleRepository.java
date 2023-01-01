@@ -1,8 +1,6 @@
 package src.db.repository;
 
-import src.clinic.Clinic;
 import src.db.client.DBClient;
-import src.db.entities.ClinicEntity;
 import src.db.entities.ScheduleEntity;
 import src.schedule.Schedule;
 
@@ -57,11 +55,12 @@ public class ScheduleRepository extends Repository {
         return schedules;
     }
 
-    public ArrayList<ScheduleEntity> getSchedulesByClinicId(int clinicId) {
-        String query = "SELECT * FROM schedule WHERE clinic_id = ?";
+    public ArrayList<ScheduleEntity> getSchedules(int doctorId, int clinicId) {
+        String query = "SELECT * FROM schedule WHERE doctor_id = ? and clinic_id = ?";
         ArrayList<ScheduleEntity> schedules = new ArrayList<>();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
-            stmt.setInt(1, clinicId);
+            stmt.setInt(1, doctorId);
+            stmt.setInt(2, clinicId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 schedules.add(new ScheduleEntity(
@@ -78,7 +77,7 @@ public class ScheduleRepository extends Repository {
         return schedules;
     }
 
-    public ArrayList<ScheduleEntity> getSchedulesByDoctorId(int doctorId) {
+    public ArrayList<ScheduleEntity> getSchedules(int doctorId) {
         String query = "SELECT * FROM schedule WHERE doctor_id = ?";
         ArrayList<ScheduleEntity> schedules = new ArrayList<>();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
@@ -97,6 +96,27 @@ public class ScheduleRepository extends Repository {
             throw new RuntimeException(e);
         }
         return schedules;
+    }
+
+    public ScheduleEntity getSchedule(int doctorId, int clinicId, DayOfWeek day) {
+        String query = "SELECT * FROM schedule WHERE doctor_id = ? and clinic_id = ? and day = ?";
+        ScheduleEntity schedule = new ScheduleEntity();
+        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+            stmt.setInt(1, doctorId);
+            stmt.setInt(2, clinicId);
+            stmt.setString(3, day.toString());
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                schedule.setDoctorId(rs.getInt("doctor_id"));
+                schedule.setClinicId(rs.getInt("clinic_id"));
+                schedule.setDay(DayOfWeek.valueOf(rs.getString("day").toUpperCase(Locale.ROOT)));
+                schedule.setStartHour(rs.getTime("start_hour").toLocalTime());
+                schedule.setEndHour(rs.getTime("end_hour").toLocalTime());
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return schedule;
     }
 
     public void insertSchedule(ScheduleEntity schedule) {
@@ -133,6 +153,16 @@ public class ScheduleRepository extends Repository {
             stmt.setInt(1, doctorId);
             stmt.setInt(2, clinicId);
             stmt.setString(3, day.toString().toLowerCase(Locale.ROOT));
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteSchedule(int doctorId) {
+        String query = "DELETE FROM schedule where doctor_id = ?";
+        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+            stmt.setInt(1, doctorId);
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
