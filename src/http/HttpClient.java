@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import src.clinic.Clinic;
 import src.equipment.Equipment;
+import src.expertise.Expertise;
 import src.gson.GsonConverter;
 import src.http.constants.HttpStatus;
 import src.users.Doctor;
@@ -426,4 +427,110 @@ public class HttpClient {
         HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
         return response.statusCode() == HttpStatus.OK.getStatus() || response.statusCode() == HttpStatus.NOT_FOUND.getStatus();
     }
+
+    public ArrayList<Expertise> getExpertiseByArea(String areaOfExpertise) throws IOException, InterruptedException {
+        java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                .uri(java.net.URI.create(serverUrl + "/expertises?areaOfExpertise=" + areaOfExpertise))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .GET()
+                .build();
+
+        java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        String res = response.body();
+        Type type = new TypeToken<ArrayList<Expertise>>() {
+        }.getType();
+        ArrayList<Expertise> expertises = g.fromJson(res, type);
+        return expertises;
+    }
+
+    public Expertise getExpertise(int doctorId, String areaOfExpertise) throws IOException, InterruptedException {
+        java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                .uri(java.net.URI.create(serverUrl + "/expertises?doctorId=" + doctorId + "&areaOfExpertise=" + areaOfExpertise))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .GET()
+                .build();
+
+        java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        String res = response.body();
+        if (response.statusCode() == HttpStatus.NOT_FOUND.getStatus() || response.statusCode() == HttpStatus.BAD_REQUEST.getStatus()) {
+            return null;
+        }
+        Expertise expertise = g.fromJson(res, Expertise.class);
+        return expertise;
+    }
+
+    public ArrayList<Expertise> getExpertiseByDoctorId(int doctorId) throws IOException, InterruptedException {
+        java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                .uri(java.net.URI.create(serverUrl + "/expertises?doctorId=" + doctorId))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .GET()
+                .build();
+
+        java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        String res = response.body();
+        Type type = new TypeToken<ArrayList<Expertise>>() {
+        }.getType();
+        ArrayList<Expertise> expertises = g.fromJson(res, type);
+        return expertises;
+    }
+
+    public boolean addExpertise(int doctorId, String areaOfExpertise) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + "/expertises/" ))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString("{\"doctorId\":" + doctorId + ",\"areaOfExpertise\":\"" + areaOfExpertise + "\"}"))
+                .build();
+        HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() == HttpStatus.CREATED.getStatus();
+    }
+
+    public boolean removeExpertise(int doctorId, String areaOfExpertise) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + "/expertises/" + doctorId + "?areaOfExpertise=" + areaOfExpertise))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .DELETE()
+                .build();
+        HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() == HttpStatus.OK.getStatus() || response.statusCode() == HttpStatus.NOT_FOUND.getStatus();
+    }
+
+    public boolean removeExpertiseByDoctorId(int doctorId) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + "/expertises/?doctorId=" + doctorId))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .DELETE()
+                .build();
+        HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() == HttpStatus.OK.getStatus();
+    }
+
+    public boolean removeExpertiseByAreaOfExpertise(String areaOfExpertise) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + "/expertises/?areaOfExpertise=" + areaOfExpertise))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .DELETE()
+                .build();
+        HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() == HttpStatus.OK.getStatus();
+    }
+
+    public boolean removeExpertiseByDoctorIdAndAreaOfExpertise(int doctorId, String areaOfExpertise) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + "/expertises/?doctorId=" + URLEncoder.encode(String.valueOf(doctorId), StandardCharsets.UTF_8) + "&areaOfExpertise=" + areaOfExpertise))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .DELETE()
+                .build();
+        HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() == HttpStatus.OK.getStatus();
+    }
+
+
 }
