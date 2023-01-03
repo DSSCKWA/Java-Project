@@ -12,6 +12,7 @@ import src.visit.Visit;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.net.URI;
 import java.net.URLEncoder;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -341,7 +342,7 @@ public class HttpClient {
         return getVisits(request);
     }
 
-    private ArrayList<Visit> getVisits(HttpRequest request) throws IOException, InterruptedException {
+    public ArrayList<Visit> getVisits(HttpRequest request) throws IOException, InterruptedException {
         HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 
         String res = response.body();
@@ -352,7 +353,7 @@ public class HttpClient {
         return visits;
     }
 
-    private ArrayList<Doctor> getDoctors() throws IOException, InterruptedException {
+    public ArrayList<Doctor> getDoctors() throws IOException, InterruptedException {
         java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
                 .uri(java.net.URI.create(serverUrl + "/doctors"))
                 .timeout(Duration.ofMinutes(1))
@@ -370,7 +371,7 @@ public class HttpClient {
         return doctors;
     }
 
-    private Doctor getDoctorById(int id) throws IOException, InterruptedException {
+    public Doctor getDoctorById(int id) throws IOException, InterruptedException {
         java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
                 .uri(java.net.URI.create(serverUrl + "/doctors/" + id))
                 .timeout(Duration.ofMinutes(1))
@@ -391,5 +392,38 @@ public class HttpClient {
         System.out.println(res);
         Doctor doctor = g.fromJson(res, Doctor.class);
         return doctor;
+    }
+
+    public boolean addDoctorToClinic(int doctorId, int clinicId) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + "/doctors/" ))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString("{\"doctorId\":" + doctorId + ",\"clinicId\":" + clinicId + "}"))
+                .build();
+        HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() == HttpStatus.CREATED.getStatus();
+    }
+
+    public boolean removeDoctorFromClinics(int doctorId) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + "/doctors/" + doctorId))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .DELETE()
+                .build();
+        HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() == HttpStatus.OK.getStatus();
+    }
+
+    public boolean removeDoctorFromClinic(int doctorId, int clinicId) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + "/doctors/" + doctorId + "?clinicId=" + clinicId))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .DELETE()
+                .build();
+        HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() == HttpStatus.OK.getStatus() || response.statusCode() == HttpStatus.NOT_FOUND.getStatus();
     }
 }
