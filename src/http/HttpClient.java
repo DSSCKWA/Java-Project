@@ -6,6 +6,7 @@ import src.clinic.Clinic;
 import src.equipment.Equipment;
 import src.gson.GsonConverter;
 import src.http.constants.HttpStatus;
+import src.users.Doctor;
 import src.users.User;
 import src.visit.Visit;
 
@@ -349,5 +350,46 @@ public class HttpClient {
         }.getType();
         ArrayList<Visit> visits = g.fromJson(res, type);
         return visits;
+    }
+
+    private ArrayList<Doctor> getDoctors() throws IOException, InterruptedException {
+        java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                .uri(java.net.URI.create(serverUrl + "/doctors"))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .GET()
+                .build();
+
+        java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+
+        String res = response.body();
+
+        Type type = new TypeToken<ArrayList<Doctor>>() {
+        }.getType();
+        ArrayList<Doctor> doctors = g.fromJson(res, type);
+        return doctors;
+    }
+
+    private Doctor getDoctorById(int id) throws IOException, InterruptedException {
+        java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                .uri(java.net.URI.create(serverUrl + "/doctors/" + id))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .GET()
+                .build();
+        return getDoctor(request);
+    }
+
+    private Doctor getDoctor(HttpRequest request) throws IOException, InterruptedException {
+        HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+
+        String res = response.body();
+        if (response.statusCode() == HttpStatus.NOT_FOUND.getStatus() || response.statusCode() == HttpStatus.BAD_REQUEST.getStatus()) {
+            return null;
+        }
+
+        System.out.println(res);
+        Doctor doctor = g.fromJson(res, Doctor.class);
+        return doctor;
     }
 }
