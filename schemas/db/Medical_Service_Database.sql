@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 05 Gru 2022, 21:18
+-- Czas generowania: 03 Sty 2023, 22:52
 -- Wersja serwera: 10.4.24-MariaDB
 -- Wersja PHP: 7.4.29
 
@@ -35,7 +35,8 @@ CREATE TABLE IF NOT EXISTS `clinics` (
   `name` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `city` varchar(255) NOT NULL,
-  PRIMARY KEY (`clinic_id`)
+  PRIMARY KEY (`clinic_id`),
+  KEY `city` (`city`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -48,7 +49,8 @@ CREATE TABLE IF NOT EXISTS `doctors` (
   `doctor_id` int(11) NOT NULL,
   `clinic_id` int(11) NOT NULL,
   PRIMARY KEY (`doctor_id`,`clinic_id`),
-  KEY `doctors_ibfk_1` (`clinic_id`)
+  KEY `doctors_ibfk_1` (`clinic_id`) USING BTREE,
+  KEY `doctor_id` (`doctor_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -63,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `equipment` (
   `status` enum('IN_USE','IN_REPAIR','DECOMISSIONED','BROKEN') NOT NULL,
   `clinic_id` int(10) NOT NULL,
   PRIMARY KEY (`equipment_id`),
-  KEY `clinic_id` (`clinic_id`)
+  KEY `clinic_id` (`clinic_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -75,7 +77,9 @@ CREATE TABLE IF NOT EXISTS `equipment` (
 CREATE TABLE IF NOT EXISTS `expertise` (
   `doctor_id` int(11) NOT NULL,
   `area_of_expertise` varchar(255) NOT NULL,
-  PRIMARY KEY (`doctor_id`,`area_of_expertise`)
+  PRIMARY KEY (`doctor_id`,`area_of_expertise`),
+  KEY `doctor_id` (`doctor_id`) USING BTREE,
+  KEY `area_of_expertise` (`area_of_expertise`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -91,7 +95,9 @@ CREATE TABLE IF NOT EXISTS `schedule` (
   `start_hour` time NOT NULL,
   `end_hour` time NOT NULL,
   PRIMARY KEY (`doctor_id`,`clinic_id`,`day`),
-  KEY `clinic_id` (`clinic_id`)
+  KEY `clinic_id` (`clinic_id`) USING BTREE,
+  KEY `doctor_id` (`doctor_id`) USING BTREE,
+  KEY `day` (`day`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -110,8 +116,30 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(255) NOT NULL,
   `password` varchar(30) NOT NULL,
   `permissions` enum('admin','moderator','patient','doctor','guest') NOT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `email` (`email`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `users`
+--
+
+INSERT INTO `users` (`user_id`, `name`, `surname`, `address`, `city`, `phone_number`, `email`, `password`, `permissions`) VALUES
+(1, 'admin', 'admin', 'Adminowa 5', 'Admin', 123456789, 'admin@gmail.com', 'admin', 'admin');
+
+--
+-- Wyzwalacze `users`
+--
+DROP TRIGGER IF EXISTS `permission_guard`;
+DELIMITER $$
+CREATE TRIGGER `permission_guard` BEFORE UPDATE ON `users` FOR EACH ROW BEGIN
+SET @doctors = (SELECT doctors.doctor_id FROM `doctors` WHERE doctors.doctor_id = OLD.user_id);
+IF OLD.permissions = 'doctor' AND NEW.permissions != 'doctor' AND @doctors IS NOT null THEN
+SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'ERROR: Trying to change permissions of an active doctor';
+END IF;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -129,8 +157,8 @@ CREATE TABLE IF NOT EXISTS `visits` (
   `client_id` int(11) NOT NULL,
   `doctor_id` int(11) NOT NULL,
   PRIMARY KEY (`visit_id`),
-  KEY `visits_ibfk_1` (`client_id`),
-  KEY `visits_ibfk_2` (`doctor_id`)
+  KEY `visits_ibfk_1` (`client_id`) USING BTREE,
+  KEY `visits_ibfk_2` (`doctor_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
