@@ -60,6 +60,7 @@ public class VisitRepository extends Repository {
                         rs.getInt("rating")
                 ));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -82,6 +83,7 @@ public class VisitRepository extends Repository {
                 visit.setClientId(rs.getInt("client_id"));
                 visit.setDoctorId(rs.getInt("doctor_id"));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -107,6 +109,7 @@ public class VisitRepository extends Repository {
                 visit.setClientId(rs.getInt("client_id"));
                 visit.setDoctorId(rs.getInt("doctor_id"));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -131,6 +134,7 @@ public class VisitRepository extends Repository {
                         rs.getInt("rating")
                 ));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -155,6 +159,7 @@ public class VisitRepository extends Repository {
                         rs.getInt("rating")
                 ));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -178,6 +183,7 @@ public class VisitRepository extends Repository {
                 if (rs.next()) {
                     visitId = rs.getInt(1);
                 }
+                rs.close();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

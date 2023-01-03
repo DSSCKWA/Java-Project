@@ -56,6 +56,7 @@ public class UserRepository extends Repository {
                         rs.getString("password"),
                         Permissions.valueOf(rs.getString("permissions").toUpperCase(Locale.ROOT))
                 ));
+                rs.close();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -82,6 +83,7 @@ public class UserRepository extends Repository {
                         Permissions.valueOf(rs.getString("permissions").toUpperCase(Locale.ROOT))
                 ));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -105,6 +107,7 @@ public class UserRepository extends Repository {
                 user.setPassword(rs.getString("password"));
                 user.setPermissions(Permissions.valueOf(rs.getString("permissions").toUpperCase(Locale.ROOT)));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -128,6 +131,7 @@ public class UserRepository extends Repository {
                 user.setPassword(rs.getString("password"));
                 user.setPermissions(Permissions.valueOf(rs.getString("permissions").toUpperCase(Locale.ROOT)));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -152,6 +156,7 @@ public class UserRepository extends Repository {
                 if (rs.next()) {
                     userId = rs.getInt(1);
                 }
+                rs.close();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

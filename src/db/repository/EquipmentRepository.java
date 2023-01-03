@@ -48,6 +48,7 @@ public class EquipmentRepository extends Repository {
                         rs.getInt("clinic_id")
                 ));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -68,6 +69,7 @@ public class EquipmentRepository extends Repository {
                         rs.getInt("clinic_id")
                 ));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -86,6 +88,7 @@ public class EquipmentRepository extends Repository {
                 equipment.setName(rs.getString("name"));
                 equipment.setStatus(EquipmentStatus.valueOf(rs.getString("status").toUpperCase(Locale.ROOT)));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -106,6 +109,7 @@ public class EquipmentRepository extends Repository {
                         rs.getInt("clinic_id")
                 ));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -125,6 +129,7 @@ public class EquipmentRepository extends Repository {
                 if (rs.next()) {
                     equipmentId = rs.getInt(1);
                 }
+                rs.close();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

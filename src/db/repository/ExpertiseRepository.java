@@ -41,6 +41,7 @@ public class ExpertiseRepository extends Repository {
                         rs.getString("area_of_expertise")
                 ));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -59,6 +60,7 @@ public class ExpertiseRepository extends Repository {
                         rs.getString("area_of_expertise")
                 ));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -77,6 +79,7 @@ public class ExpertiseRepository extends Repository {
                         rs.getString("area_of_expertise")
                 ));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -94,6 +97,7 @@ public class ExpertiseRepository extends Repository {
                 expertise.setDoctorId(rs.getInt("doctor_id"));
                 expertise.setAreaOfExpertise(rs.getString("area_of_expertise"));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

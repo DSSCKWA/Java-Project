@@ -66,6 +66,7 @@ public class DoctorRepository extends Repository {
                         rs.getInt("clinic_id")
                 ));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -84,6 +85,7 @@ public class DoctorRepository extends Repository {
                         rs.getInt("clinic_id")
                 ));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -101,6 +103,7 @@ public class DoctorRepository extends Repository {
                 doctor.setDoctorId(rs.getInt("doctor_id"));
                 doctor.setClinicId(rs.getInt("clinic_id"));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -119,6 +122,7 @@ public class DoctorRepository extends Repository {
                         rs.getInt("clinic_id")
                 ));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

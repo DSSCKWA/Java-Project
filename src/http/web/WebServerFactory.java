@@ -14,7 +14,7 @@ public class WebServerFactory {
     public static HttpServer createServer() {
         try {
             final HttpServer server = HttpServer.create(new InetSocketAddress("localhost", 8080), 0);
-            Executor executor = Executors.newFixedThreadPool(25);
+            Executor executor = Executors.newFixedThreadPool(10);
             server.setExecutor(executor);
             UserService userService = new UserService();
             ClinicService clinicService = new ClinicService();

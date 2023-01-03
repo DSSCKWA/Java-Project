@@ -31,11 +31,11 @@ public class VisitService {
 
     private static final VisitRepository visitRepository = new VisitRepository(dbClient);
 
-    public ArrayList<Visit> getAllVisits() {
+    public synchronized ArrayList<Visit> getAllVisits() {
         return visitRepository.toVisitList(visitRepository.getAllVisits());
     }
 
-    public Visit getVisitById(int visitId) {
+    public synchronized Visit getVisitById(int visitId) {
         VisitEntity visit = visitRepository.getVisitByVisitId(visitId);
         if (visit.equals(new VisitEntity())) {
             return null;
@@ -43,7 +43,7 @@ public class VisitService {
         return visitRepository.toVisit(visit);
     }
 
-    public Visit getVisit(int doctorId, int clientId, LocalDate date, LocalTime time) {
+    public synchronized Visit getVisit(int doctorId, int clientId, LocalDate date, LocalTime time) {
         VisitEntity visit = visitRepository.getVisit(doctorId, clientId, date, time);
         if (visit.equals(new VisitEntity())) {
             return null;
@@ -51,22 +51,22 @@ public class VisitService {
         return visitRepository.toVisit(visit);
     }
 
-    public ArrayList<Visit> getVisitsByDoctorId(int doctorId) {
+    public synchronized ArrayList<Visit> getVisitsByDoctorId(int doctorId) {
         return visitRepository.toVisitList(visitRepository.getVisitsByDoctorId(doctorId));
     }
 
-    public ArrayList<Visit> getVisitsByClientId(int clientId) {
+    public synchronized ArrayList<Visit> getVisitsByClientId(int clientId) {
         return visitRepository.toVisitList(visitRepository.getVisitsByClientId(clientId));
     }
 
-    public Visit addVisit(Map<String, String> visitData) {
+    public synchronized Visit addVisit(Map<String, String> visitData) {
         VisitEntity visit = toVisitEntity(visitData);
         int visitId = visitRepository.insertVisit(visit);
         visit.setVisitId(visitId);
         return visitRepository.toVisit(visit);
     }
 
-    public Visit updateVisit(int visitId, Map<String, String> visitData) {
+    public synchronized Visit updateVisit(int visitId, Map<String, String> visitData) {
         //TODO validate data
         VisitEntity visitEntity = toVisitEntity(visitData);
         visitEntity.setVisitId(visitId);

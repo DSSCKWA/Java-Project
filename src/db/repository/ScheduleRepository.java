@@ -49,6 +49,7 @@ public class ScheduleRepository extends Repository {
                         rs.getTime("end_hour").toLocalTime()
                 ));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -71,6 +72,7 @@ public class ScheduleRepository extends Repository {
                         rs.getTime("end_hour").toLocalTime()
                 ));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -92,6 +94,7 @@ public class ScheduleRepository extends Repository {
                         rs.getTime("end_hour").toLocalTime()
                 ));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -113,6 +116,7 @@ public class ScheduleRepository extends Repository {
                 schedule.setStartHour(rs.getTime("start_hour").toLocalTime());
                 schedule.setEndHour(rs.getTime("end_hour").toLocalTime());
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

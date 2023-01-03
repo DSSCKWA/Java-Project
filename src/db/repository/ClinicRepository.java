@@ -45,6 +45,7 @@ public class ClinicRepository extends Repository {
                         rs.getString("city")
                 ));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -65,6 +66,7 @@ public class ClinicRepository extends Repository {
                         rs.getString("city")
                 ));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -85,6 +87,7 @@ public class ClinicRepository extends Repository {
                         rs.getString("city")
                 ));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -103,6 +106,7 @@ public class ClinicRepository extends Repository {
                 clinic.setAddress(rs.getString("address"));
                 clinic.setCity(rs.getString("city"));
             }
+            rs.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -122,7 +126,9 @@ public class ClinicRepository extends Repository {
                 if (rs.next()) {
                     clinicId = rs.getInt(1);
                 }
+                rs.close();
             }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

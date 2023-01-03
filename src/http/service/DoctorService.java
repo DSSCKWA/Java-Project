@@ -27,11 +27,11 @@ public class DoctorService {
 
     private static final DoctorRepository doctorRepository = new DoctorRepository(dbClient);
 
-    public ArrayList<Doctor> getDoctors(int doctorId) {
+    public synchronized ArrayList<Doctor> getDoctors(int doctorId) {
         return doctorRepository.toDoctorList(doctorRepository.getDoctor(doctorId));
     }
 
-    public Doctor getDoctor(int doctorId, int clinicId) {
+    public synchronized Doctor getDoctor(int doctorId, int clinicId) {
         DoctorEntity doctor = doctorRepository.getDoctor(doctorId, clinicId);
         if (doctor.equals(new DoctorEntity())) {
             return null;
@@ -43,7 +43,7 @@ public class DoctorService {
         return doctorRepository.toDoctor(user.getId());
     }
 
-    public ArrayList<Doctor> usersToDoctors(ArrayList<User> users) {
+    public synchronized ArrayList<Doctor> usersToDoctors(ArrayList<User> users) {
         ArrayList<Doctor> doctors = new ArrayList<>();
         for (User user : users) {
             doctors.add(doctorRepository.toDoctor(user.getId()));
@@ -51,17 +51,17 @@ public class DoctorService {
         return doctors;
     }
 
-    public Doctor addDoctor(Map<String, String> doctorData) {
+    public synchronized Doctor addDoctor(Map<String, String> doctorData) {
         DoctorEntity doctor = toDoctorEntity(doctorData);
         doctorRepository.insertDoctor(doctor);
         return doctorRepository.toDoctor(doctor.getDoctorId());
     }
 
-    public void deleteDoctor(int doctorId, int clinicId) {
+    public synchronized void deleteDoctor(int doctorId, int clinicId) {
         doctorRepository.deleteDoctorFromClinic(doctorId, clinicId);
     }
 
-    public void deleteAllDoctorEntries(int doctorId) {
+    public synchronized void deleteAllDoctorEntries(int doctorId) {
         doctorRepository.deleteDoctorFromClinics(doctorId);
     }
 
