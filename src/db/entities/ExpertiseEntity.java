@@ -27,7 +27,7 @@ public class ExpertiseEntity {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return db.getExpertiseByDoctorId(doctorId);
+        return db.getExpertise(doctorId);
     }
 
     public int getDoctorId() {

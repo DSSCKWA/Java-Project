@@ -12,7 +12,6 @@ import src.http.util.HttpHandlerUtil;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
-import java.util.Objects;
 import java.util.logging.Logger;
 
 public class ClinicRestHandler implements RestHandler {
@@ -35,7 +34,7 @@ public class ClinicRestHandler implements RestHandler {
             case 2 -> {
                 try {
                     int clinicId = Integer.parseInt(paths[1]);
-                    Clinic clinic = clinicService.getClinicById(clinicId);
+                    Clinic clinic = clinicService.getClinic(clinicId);
                     if (clinic == null) {
                         throw new HttpException(HttpStatus.NOT_FOUND, "Clinic does not exist");
                     } else {
@@ -89,7 +88,7 @@ public class ClinicRestHandler implements RestHandler {
                 throw new HttpException(HttpStatus.BAD_REQUEST, "Bad Request");
             }
             int clinicId = Integer.parseInt(paths[1]);
-            Clinic clinic = clinicService.getClinicById(clinicId);
+            Clinic clinic = clinicService.getClinic(clinicId);
             if (clinic == null) {
                 throw new HttpException(HttpStatus.NOT_FOUND, "Clinic does not exist");
             }
@@ -115,7 +114,7 @@ public class ClinicRestHandler implements RestHandler {
                 throw new HttpException(HttpStatus.BAD_REQUEST, "Bad Request");
             }
             int clinicId = Integer.parseInt(paths[1]);
-            Clinic clinic = clinicService.getClinicById(clinicId);
+            Clinic clinic = clinicService.getClinic(clinicId);
             if (clinic == null) {
                 throw new HttpException(HttpStatus.NOT_FOUND, "Clinic does not exist");
             }

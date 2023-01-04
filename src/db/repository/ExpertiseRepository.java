@@ -3,7 +3,6 @@ package src.db.repository;
 import src.expertise.Expertise;
 import src.db.client.DBClient;
 import src.db.entities.ExpertiseEntity;
-import src.db.entities.ExpertiseEntity;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,7 +47,7 @@ public class ExpertiseRepository extends Repository {
         return expertises;
     }
 
-    public ArrayList<ExpertiseEntity> getExpertiseByDoctorId(int doctorId) {
+    public ArrayList<ExpertiseEntity> getExpertise(int doctorId) {
         String query = "SELECT * FROM expertise WHERE doctor_id = ?";
         ArrayList<ExpertiseEntity> expertises = new ArrayList<>();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
@@ -66,7 +65,7 @@ public class ExpertiseRepository extends Repository {
         return expertises;
     }
 
-    public ArrayList<ExpertiseEntity> getExpertisesByArea(String areaOfExpertise) {
+    public ArrayList<ExpertiseEntity> getExpertise(String areaOfExpertise) {
         String query = "SELECT * FROM expertise WHERE area_of_expertise = ?";
         ArrayList<ExpertiseEntity> expertises = new ArrayList<>();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
@@ -84,7 +83,7 @@ public class ExpertiseRepository extends Repository {
         return expertises;
     }
 
-    public ExpertiseEntity getExpertisesByIdAndArea(int doctorId, String areaOfExpertise) {
+    public ExpertiseEntity getExpertise(int doctorId, String areaOfExpertise) {
         String query = "SELECT * FROM expertise WHERE doctor_id = ? AND area_of_expertise = ?";
         ExpertiseEntity expertise = new ExpertiseEntity();
         try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {

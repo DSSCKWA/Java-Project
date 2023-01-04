@@ -2,7 +2,9 @@ package src.gson;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import src.gson.adapters.LocalDateDeserializer;
 import src.gson.adapters.LocalDateSerializer;
+import src.gson.adapters.LocalTimeDeserializer;
 import src.gson.adapters.LocalTimeSerializer;
 
 import java.time.LocalDate;
@@ -14,6 +16,14 @@ public class GsonConverter {
                 .setPrettyPrinting()
                 .registerTypeAdapter(LocalDate.class, new LocalDateSerializer())
                 .registerTypeAdapter(LocalTime.class, new LocalTimeSerializer())
+                .create();
+    }
+
+    public static Gson newGsonReaderConverter() {
+        return new GsonBuilder()
+                .setPrettyPrinting()
+                .registerTypeAdapter(LocalDate.class, new LocalDateDeserializer())
+                .registerTypeAdapter(LocalTime.class, new LocalTimeDeserializer())
                 .create();
     }
 }

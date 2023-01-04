@@ -30,18 +30,18 @@ public class ExpertiseService {
         return expertiseRepository.toExpertiseList(expertiseRepository.getAllExpertises());
     }
 
-    public ArrayList<Expertise> getExpertiseByDoctorId(int doctorId) {
-        ArrayList<ExpertiseEntity> expertise = expertiseRepository.getExpertiseByDoctorId(doctorId);
+    public ArrayList<Expertise> getExpertise(int doctorId) {
+        ArrayList<ExpertiseEntity> expertise = expertiseRepository.getExpertise(doctorId);
         return expertiseRepository.toExpertiseList(expertise);
     }
 
-    public ArrayList<Expertise> getExpertiseByArea(String areaOfExpertise) {
-        ArrayList<ExpertiseEntity> expertise = expertiseRepository.getExpertisesByArea(areaOfExpertise);
+    public ArrayList<Expertise> getExpertise(String areaOfExpertise) {
+        ArrayList<ExpertiseEntity> expertise = expertiseRepository.getExpertise(areaOfExpertise);
         return expertiseRepository.toExpertiseList(expertise);
     }
 
-    public Expertise getExpertiseByIdAndArea(int doctorId, String areaOfExpertise) {
-        ExpertiseEntity expertise = expertiseRepository.getExpertisesByIdAndArea(doctorId, areaOfExpertise);
+    public Expertise getExpertise(int doctorId, String areaOfExpertise) {
+        ExpertiseEntity expertise = expertiseRepository.getExpertise(doctorId, areaOfExpertise);
         if (expertise.equals(new ExpertiseEntity())) {
             return null;
         }
@@ -54,15 +54,15 @@ public class ExpertiseService {
         return expertiseRepository.toExpertise(expertise);
     }
 
-    public void deleteExpertiseByDoctorId(int doctorId) {
+    public void deleteExpertise(int doctorId) {
         expertiseRepository.deleteExpertise(doctorId);
     }
 
-    public void deleteExpertiseByArea(String areaOfExpertise) {
+    public void deleteExpertise(String areaOfExpertise) {
         expertiseRepository.deleteExpertise(areaOfExpertise);
     }
 
-    public void deleteExpertiseByIdAndArea(int doctorId, String areaOfExpertise) {
+    public void deleteExpertise(int doctorId, String areaOfExpertise) {
         expertiseRepository.deleteExpertise(doctorId, areaOfExpertise);
     }
 

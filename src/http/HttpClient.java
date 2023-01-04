@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import src.clinic.Clinic;
 import src.equipment.Equipment;
+import src.gson.GsonConverter;
 import src.http.constants.HttpStatus;
 import src.users.User;
 import src.visit.Visit;
@@ -21,6 +22,7 @@ import java.util.Arrays;
 public class HttpClient {
     private final String serverUrl;
     private final java.net.http.HttpClient httpClient;
+    private final Gson g = GsonConverter.newGsonReaderConverter();
 
     public HttpClient(String serverUrl) {
         this.serverUrl = serverUrl;
@@ -40,14 +42,14 @@ public class HttpClient {
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
 
-        Gson g = new Gson();
         String res = response.body();
-        Type type = new TypeToken<ArrayList<Clinic>>() {}.getType();
-        ArrayList<Clinic>clinics = g.fromJson(res, type);
+        Type type = new TypeToken<ArrayList<Clinic>>() {
+        }.getType();
+        ArrayList<Clinic> clinics = g.fromJson(res, type);
         return clinics;
     }
 
-    public  ArrayList<User> getUsers() throws IOException, InterruptedException {
+    public ArrayList<User> getUsers() throws IOException, InterruptedException {
         java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
                 .uri(java.net.URI.create(serverUrl + "/users"))
                 .timeout(Duration.ofMinutes(1))
@@ -56,9 +58,9 @@ public class HttpClient {
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
 
-        Gson g = new Gson();
         String res = response.body();
-        Type type = new TypeToken<ArrayList<User>>() {}.getType();
+        Type type = new TypeToken<ArrayList<User>>() {
+        }.getType();
         ArrayList<User> users = g.fromJson(res, type);
         return users;
     }
@@ -72,15 +74,15 @@ public class HttpClient {
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
 
-        Gson g = new Gson();
         String res = response.body();
-        Type type = new TypeToken<ArrayList<Equipment>>() {}.getType();
+        Type type = new TypeToken<ArrayList<Equipment>>() {
+        }.getType();
         ArrayList<Equipment> equipment = g.fromJson(res, type);
         return equipment;
     }
 
     public boolean updateClinic(Clinic clinic) throws IOException, InterruptedException {
-        Gson g = new Gson();
+
         String json = g.toJson(clinic);
         java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
                 .uri(java.net.URI.create(serverUrl + "/clinics/" + clinic.getClinicId()))
@@ -101,14 +103,13 @@ public class HttpClient {
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
 
-        Gson g = new Gson();
         String res = response.body();
         Clinic clinic = g.fromJson(res, Clinic.class);
         return clinic;
     }
 
     public boolean addClinic(Clinic clinic) throws IOException, InterruptedException {
-        Gson g = new Gson();
+
         String json = g.toJson(clinic);
         java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
                 .uri(java.net.URI.create(serverUrl + "/clinics"))
@@ -143,7 +144,7 @@ public class HttpClient {
     }
 
     public boolean updateUser(User user) throws IOException, InterruptedException {
-        Gson g = new Gson();
+
         String json = g.toJson(user);
         java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
                 .uri(java.net.URI.create(serverUrl + "/users/" + user.getId()))
@@ -156,7 +157,7 @@ public class HttpClient {
     }
 
     public boolean addUser(User user) throws IOException, InterruptedException {
-        Gson g = new Gson();
+
         String json = g.toJson(user);
         java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
                 .uri(java.net.URI.create(serverUrl + "/users"))
@@ -191,7 +192,6 @@ public class HttpClient {
     private User getUser(HttpRequest request) throws IOException, InterruptedException {
         HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 
-        Gson g = new Gson();
         String res = response.body();
         if (response.statusCode() == HttpStatus.NOT_FOUND.getStatus()) {
             return null;
@@ -210,11 +210,12 @@ public class HttpClient {
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
 
-        Gson g = new Gson();
         String res = response.body();
         System.out.println(res);
-        Equipment[] equipment = g.fromJson(res, Equipment[].class);
-        return new ArrayList<>(Arrays.asList(equipment));
+        Type type = new TypeToken<ArrayList<Equipment>>() {
+        }.getType();
+        ArrayList<Equipment> equipment = g.fromJson(res, type);
+        return equipment;
     }
 
     public Equipment getEquipmentById(int id) throws IOException, InterruptedException {
@@ -225,8 +226,10 @@ public class HttpClient {
                 .GET()
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == HttpStatus.NOT_FOUND.getStatus()) {
+            return null;
+        }
 
-        Gson g = new Gson();
         String res = response.body();
         System.out.println(res);
         Equipment equipment = g.fromJson(res, Equipment.class);
@@ -234,7 +237,7 @@ public class HttpClient {
     }
 
     public boolean addEquipment(Equipment equipment) throws IOException, InterruptedException {
-        Gson g = new Gson();
+
         String json = g.toJson(equipment);
         java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
                 .uri(java.net.URI.create(serverUrl + "/equipment"))
@@ -247,7 +250,7 @@ public class HttpClient {
     }
 
     public boolean updateEquipment(Equipment equipment) throws IOException, InterruptedException {
-        Gson g = new Gson();
+
         String json = g.toJson(equipment);
         java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
                 .uri(java.net.URI.create(serverUrl + "/equipment/" + equipment.getEquipmentId()))
@@ -281,7 +284,7 @@ public class HttpClient {
     }
 
     public boolean addVisit(Visit visit) throws IOException, InterruptedException {
-        Gson g = new Gson();
+
         String json = g.toJson(visit);
         java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
                 .uri(java.net.URI.create(serverUrl + "/visits"))
@@ -294,7 +297,7 @@ public class HttpClient {
     }
 
     public boolean updateVisit(Visit visit) throws IOException, InterruptedException {
-        Gson g = new Gson();
+
         String json = g.toJson(visit);
         java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
                 .uri(java.net.URI.create(serverUrl + "/visits/" + visit.getVisitId()))
@@ -340,10 +343,11 @@ public class HttpClient {
     private ArrayList<Visit> getVisits(HttpRequest request) throws IOException, InterruptedException {
         HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 
-        Gson g = new Gson();
         String res = response.body();
         System.out.println(res);
-        Visit[] visits = g.fromJson(res, Visit[].class);
-        return new ArrayList<>(Arrays.asList(visits));
+        Type type = new TypeToken<ArrayList<Visit>>() {
+        }.getType();
+        ArrayList<Visit> visits = g.fromJson(res, type);
+        return visits;
     }
 }

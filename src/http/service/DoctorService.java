@@ -2,7 +2,6 @@ package src.http.service;
 
 import src.db.client.DBClient;
 import src.db.entities.DoctorEntity;
-import src.db.entities.UserEntity;
 import src.db.repository.DoctorRepository;
 import src.http.constants.HttpStatus;
 import src.http.util.HttpException;
@@ -28,12 +27,12 @@ public class DoctorService {
 
     private static final DoctorRepository doctorRepository = new DoctorRepository(dbClient);
 
-    public ArrayList<Doctor> getDoctorsById(int doctorId) {
-        return doctorRepository.toDoctorList(doctorRepository.getDoctorById(doctorId));
+    public ArrayList<Doctor> getDoctors(int doctorId) {
+        return doctorRepository.toDoctorList(doctorRepository.getDoctor(doctorId));
     }
 
-    public Doctor getDoctorInClinic(int doctorId, int clinicId) {
-        DoctorEntity doctor = doctorRepository.getDoctorInClinic(doctorId, clinicId);
+    public Doctor getDoctor(int doctorId, int clinicId) {
+        DoctorEntity doctor = doctorRepository.getDoctor(doctorId, clinicId);
         if (doctor.equals(new DoctorEntity())) {
             return null;
         }

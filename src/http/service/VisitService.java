@@ -43,8 +43,8 @@ public class VisitService {
         return visitRepository.toVisit(visit);
     }
 
-    public Visit getVisitByDateTime(int doctorId, int clientId, LocalDate date, LocalTime time) {
-        VisitEntity visit = visitRepository.getVisitDateTime(doctorId, clientId, date, time);
+    public Visit getVisit(int doctorId, int clientId, LocalDate date, LocalTime time) {
+        VisitEntity visit = visitRepository.getVisit(doctorId, clientId, date, time);
         if (visit.equals(new VisitEntity())) {
             return null;
         }
