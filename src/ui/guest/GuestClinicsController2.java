@@ -1,11 +1,9 @@
 package src.ui.guest;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,9 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import src.clinic.Clinic;
-import src.ui.ButtonTableCreator;
 import src.ui.Singleton;
 
 import java.io.IOException;
@@ -38,7 +34,7 @@ public class GuestClinicsController2 implements Initializable {
     @FXML
     private TableColumn<?, ?> tcName;
     @FXML
-    private TableColumn<?, ?> tcCX;
+    private TableColumn<Clinic, Void> tcCX;
 
     @FXML
     private TableView<Clinic> tvTable;
@@ -73,11 +69,7 @@ public class GuestClinicsController2 implements Initializable {
         }
         int j = 0;
         for (Clinic cli : clinics) {
-
-
             tvTable.getItems().add(cli);
-
-
             j++;
         }
         Button but1 = new Button("Elo");
@@ -86,7 +78,26 @@ public class GuestClinicsController2 implements Initializable {
             System.out.println("its ok my dudes");
         });
         //ButtonTableCreator.addButtonToTable(tvTable, but1, tcCX);
-        //tcCX.setCellFactory
+        tcCX.setCellFactory(tableColumn -> new TableCell<>() {
+            private final Button editButton = new Button("Edit");
+
+            {
+                editButton.setOnAction((ActionEvent event) -> {
+                    Clinic clinic = getTableView().getItems().get(getIndex());
+                    //TODO edit clinic
+                });
+            }
+
+            @Override
+            public void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(editButton);
+                }
+            }
+        });
 
 
     }
@@ -158,7 +169,3 @@ public class GuestClinicsController2 implements Initializable {
     }
 
 }
-
-
-
-
