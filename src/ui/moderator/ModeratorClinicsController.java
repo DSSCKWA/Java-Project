@@ -1,32 +1,32 @@
-package src.ui.admin;
+package src.ui.moderator;
 
-        import javafx.event.ActionEvent;
-        import javafx.fxml.FXML;
-        import javafx.fxml.FXMLLoader;
-        import javafx.fxml.Initializable;
-        import javafx.geometry.Insets;
-        import javafx.scene.Node;
-        import javafx.scene.Parent;
-        import javafx.scene.Scene;
-        import javafx.scene.control.Button;
-        import javafx.scene.control.ListView;
-        import javafx.scene.control.ScrollPane;
-        import javafx.scene.control.TextField;
-        import javafx.scene.layout.*;
-        import javafx.scene.text.Text;
-        import javafx.stage.Stage;
-        import src.clinic.Clinic;
-        import src.ui.Singleton;
-        import src.users.Permissions;
-        import src.users.User;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.*;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import src.clinic.Clinic;
+import src.ui.Singleton;
+import src.users.Permissions;
+import src.users.User;
 
-        import java.io.IOException;
-        import java.net.URL;
-        import java.util.ArrayList;
-        import java.util.Objects;
-        import java.util.ResourceBundle;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class AdminClinicsController  implements Initializable {
+public class ModeratorClinicsController  implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -117,7 +117,7 @@ public class AdminClinicsController  implements Initializable {
                             Text tSuccess = new Text(600, 114, "Success");
                             anchorPane2.getChildren().add(tSuccess);
                             wait(800);
-                            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics.fxml")));
+                            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorClinics.fxml")));
                             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                             stage.setResizable(false);
                             scene = new Scene(root);
@@ -195,7 +195,7 @@ public class AdminClinicsController  implements Initializable {
 
     @FXML
     void btnClinicsClicked(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorClinics.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
@@ -205,7 +205,7 @@ public class AdminClinicsController  implements Initializable {
 
     @FXML
     void btnDoctorsClicked(ActionEvent event) throws IOException{
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminDoctors.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorDoctors.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
@@ -224,17 +224,7 @@ public class AdminClinicsController  implements Initializable {
 
     @FXML
     void btnStartClicked(ActionEvent event) throws IOException{
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("admin.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setResizable(false);
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void btnUsersClicked(ActionEvent event) throws IOException{
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminUsers.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderator.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
@@ -248,25 +238,26 @@ public class AdminClinicsController  implements Initializable {
         tFaliure.setVisible(true);
         if(!Objects.equals(tfName.getText(), "") && !Objects.equals(tfAddress.getText(), "") && !Objects.equals(tfCity.getText(), "")) {
             try {
-                ///TODO: something isn't working as intended
+
                 Singleton.getClient().addClinic(new Clinic(tfName.getText(), tfAddress.getText(), tfCity.getText()));
                 tFaliure.setVisible(false);
                 Text tSuccess = new Text(600, 114, "Success");
                 anchorPane2.getChildren().add(tSuccess);
                 wait(800);
-                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics.fxml")));
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorClinics.fxml")));
                 stage = (Stage)((Node)event.getSource()).getScene().getWindow();
                 stage.setResizable(false);
                 scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
             } catch (Exception e) {
-                ///TODO: dunno what, but maybe something
+
             }
         }
 
     }
 
 }
+
 
 

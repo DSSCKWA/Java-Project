@@ -72,10 +72,20 @@ public class LoginController implements Initializable{
                         stage.show();
                         break;
                     case DOCTOR:
+                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../doctor/doctor.fxml")));
+                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setResizable(false);
+                        scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
                         break;
                     case MODERATOR:
-                        break;
-                    case GUEST:
+                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../moderator/moderator.fxml")));
+                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setResizable(false);
+                        scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
                         break;
                     case PATIENT:
                         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../patient/patient.fxml")));

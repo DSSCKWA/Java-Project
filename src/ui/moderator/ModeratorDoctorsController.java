@@ -1,4 +1,4 @@
-package src.ui.admin;
+package src.ui.moderator;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class AdminDoctorsController implements Initializable {
+public class ModeratorDoctorsController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -170,7 +170,7 @@ public class AdminDoctorsController implements Initializable {
                 vBox1.setPrefHeight(g*40);
                 vBox2.setPrefHeight(g*40);
                 vBox3.setPrefHeight(g*40);
-                });
+            });
 
 
             j++;
@@ -186,7 +186,7 @@ public class AdminDoctorsController implements Initializable {
 
     @FXML
     void btnClinicsClicked(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorClinics.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
@@ -196,7 +196,7 @@ public class AdminDoctorsController implements Initializable {
 
     @FXML
     void btnDoctorsClicked(ActionEvent event) throws IOException{
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminDoctors.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorDoctors.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
@@ -215,17 +215,7 @@ public class AdminDoctorsController implements Initializable {
 
     @FXML
     void btnStartClicked(ActionEvent event) throws IOException{
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("admin.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setResizable(false);
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void btnUsersClicked(ActionEvent event) throws IOException{
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminUsers.fxml")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderator.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
