@@ -9,3 +9,4 @@ out/
 .idea/dataSources/
 .idea/dataSources.local.xml
 .idea/uiDesigner.xml
+src/config/config.json
