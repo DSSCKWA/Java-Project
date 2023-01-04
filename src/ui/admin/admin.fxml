@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -11,11 +12,14 @@
 
 <HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminController">
    <children>
-      <AnchorPane prefHeight="526.0" prefWidth="223.0">
+      <AnchorPane prefHeight="526.0" prefWidth="202.0">
          <children>
             <VBox prefHeight="526.0" prefWidth="202.0" style="-fx-background-color: #A41F03;">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="223.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../logo/logo.png" />
+                     </image></ImageView>
                   <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0" style=" -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Start" textFill="WHITE">
                      <opaqueInsets>
                         <Insets />
@@ -63,7 +67,7 @@
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0" id="btnLogOut"  stylesheets="@../css/adminStyling.css" text="Log Out" textFill="WHITE">
+                  <Button id="btnLogOut" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0" stylesheets="@../css/adminStyling.css" text="Log Out" textFill="WHITE">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -78,7 +82,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="405.0" prefWidth="447.0">
+      <AnchorPane prefHeight="526.0" prefWidth="686.0">
          <children>
             <VBox prefHeight="526.0" prefWidth="667.0">
                <children>

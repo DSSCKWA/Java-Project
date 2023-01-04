@@ -28,7 +28,7 @@ public class AdminDoctorsController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    private User user;
+    private Doctor user;
     @FXML
     private AnchorPane anchorPane1;
 
@@ -56,130 +56,122 @@ public class AdminDoctorsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-//        tFaliure.setVisible(false);
-//        ///TODO:unlock after adding method httpClient.getDoctors() or httpClient.getUsersByPermission(Permission permission)
-//        ///TODO: but first finnish this, cuz it aint even halfway there bruv
-//        ArrayList<User> doctors = new ArrayList<User>();
-//        try {
-//            doctors = Singleton.getClient().getDoctors();
-//        }catch(Exception e){
-//            System.out.println("Error");
-//        }
-//        int j=0;
-//        for (User user : doctors ) {
-//            Button x = new Button();
-//            x.setPrefSize(vBox1.getPrefWidth(),40);
-//            x.setText(user.present());
-//            System.out.println(user.present());
-//            x.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
-//            vBox1.getChildren().add(x);
-//
-//            Button y = new Button("Edit");
-//            y.setPrefSize(vBox2.getPrefWidth(),40);
-//            y.setStyle("-fx-background-color: #A7E6EC;"+"-fx-border-color: black;"+"-fx-border-width: 1;"+"-fx-cursor: hand;");
-//            vBox2.getChildren().add(y);
-//
-//            Button z = new Button("Delete");
-//            z.setPrefSize(vBox3.getPrefWidth(),40);
-//            z.setStyle("-fx-background-color: #F54465;"+"-fx-border-color: black;"+"-fx-border-width: 1;"+"-fx-cursor: hand;");
-//            vBox3.getChildren().add(z);
-//
-//            y.setOnAction((ActionEvent)->{
-//                this.user=user;
-//                vBox1.getChildren().clear();
-//                vBox2.getChildren().clear();
-//                vBox3.getChildren().clear();
-//                textTitle.setText("Doctor edition tool");
-//
-//                Button xDel = new Button();
-//                xDel.setPrefSize(vBox1.getPrefWidth(),40);
-//                xDel.setText(user.present());
-//                xDel.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
-//                vBox1.getChildren().add(xDel);
-//
-//                btnFind.setText("Edit");
-//                btnFind.setOnAction((ActionEvent event)-> {
-//                    tFaliure.setVisible(true);
-//                    if(!Objects.equals(tfName.getText(), "") && !Objects.equals(tfAddress.getText(), "") && !Objects.equals(tfCity.getText(), "")) {
-//                        try {
-//                            clinic.setName(tfName.getText());
-//                            clinic.setCity(tfCity.getText());
-//                            clinic.setAddress(tfAddress.getText());
-//                            Singleton.getClient().updateClinic(clinic);
-//                            System.out.println(clinic);
-//                            System.out.println(clinic.present());
-//                            tFaliure.setVisible(false);
-//                            Text tSuccess = new Text(600, 114, "Success");
-//                            anchorPane2.getChildren().add(tSuccess);
-//                        } catch (Exception e) {
-//                            System.out.println("Error");
-//                        }
-//                    }
-//                });
-//            });
-//            z.setOnAction((ActionEvent)->{
-//                this.user=user;
-//                vBox1.getChildren().clear();
-//                vBox2.getChildren().clear();
-//                vBox3.getChildren().clear();
-//
-//                Button xDel = new Button();
-//                xDel.setPrefSize(vBox1.getPrefWidth(),40);
-//                xDel.setText(user.present());
-//                xDel.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
-//                vBox1.getChildren().add(xDel);
-//
-//                Button yDel = new Button("Cancel");
-//                yDel.setPrefSize(vBox2.getPrefWidth(),40);
-//                yDel.setStyle("-fx-background-color: #A7E6EC;"+"-fx-border-color: black;"+"-fx-border-width: 1;"+"-fx-cursor: hand;");
-//                vBox2.getChildren().add(yDel);
-//
-//                Button zDel = new Button("Delete");
-//                zDel.setPrefSize(vBox3.getPrefWidth(),40);
-//                zDel.setStyle("-fx-background-color: #F54465;"+"-fx-border-color: black;"+"-fx-border-width: 1;"+"-fx-cursor: hand;");
-//                vBox3.getChildren().add(zDel);
-//
-//                anchorPane1.setPrefHeight(40);
-//                vBox1.setPrefHeight(40);
-//                vBox2.setPrefHeight(40);
-//                vBox3.setPrefHeight(40);
-//
-//                yDel.setOnAction((ActionEvent event)->{
-//                    try {
-//                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics.fxml")));
-//                    } catch (IOException e) {
-//                        throw new RuntimeException(e);
-//                    }
-//                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//                    stage.setResizable(false);
-//                    scene = new Scene(root);
-//                    stage.setScene(scene);
-//                    stage.show();
-//                });
-//
-//                zDel.setOnAction((ActionEvent event)->{
-//                    try {
-//                        ///TODO:Deleting a doctor with his clinic connections, visits and stuff
-//                        Singleton.getClient().deleteDoctor(clinic.getClinicId());
-//                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics.fxml")));
-//                        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-//                        stage.setResizable(false);
-//                        scene = new Scene(root);
-//                        stage.setScene(scene);
-//                        stage.show();
-//                    } catch (Exception e) {
-//                        ///TODO: maybe something
-//                    }
-//                });
-//
-//            });
-//            j++;
-//        }
-//
-//        anchorPane1.setPrefHeight(j*40);
-//        vBox1.setPrefHeight(j*40);
-//        vBox2.setPrefHeight(j*40);
-//        vBox3.setPrefHeight(j*40);
+        ///TODO:unlock after adding method httpClient.getDoctors() or httpClient.getUsersByPermission(Permission permission)
+        ///TODO: but first finnish this, cuz it aint even halfway there bruv
+        ArrayList<Doctor> doctors = new ArrayList<Doctor>();
+        try {
+            doctors = Singleton.getClient().getDoctors();
+        }catch(Exception e){
+            System.out.println("Error");
+        }
+        int j=0;
+        for (Doctor usr : doctors ) {
+            Button x = new Button();
+            x.setPrefSize(vBox1.getPrefWidth(),40);
+            x.setText(usr.present());
+            System.out.println(usr.present());
+            x.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
+            vBox1.getChildren().add(x);
+
+            Button y = new Button("Add to clinic");
+            y.setPrefSize(vBox2.getPrefWidth(),40);
+            y.setStyle("-fx-background-color: #A7E6EC;"+"-fx-border-color: black;"+"-fx-border-width: 1;"+"-fx-cursor: hand;");
+            vBox2.getChildren().add(y);
+
+            Button z = new Button("Remove form clinic");
+            z.setPrefSize(vBox3.getPrefWidth(),40);
+            z.setStyle("-fx-background-color: #F54465;"+"-fx-border-color: black;"+"-fx-border-width: 1;"+"-fx-cursor: hand;");
+            vBox3.getChildren().add(z);
+
+            y.setOnAction((ActionEvent)->{
+                this.user=usr;
+                vBox1.getChildren().clear();
+                vBox2.getChildren().clear();
+                vBox3.getChildren().clear();
+                ArrayList<Clinic> clinics = user.getDoctorClinics();
+                int g=0;
+                for (Clinic cli : clinics ) {
+                    Button x = new Button();
+                    x.setPrefSize(vBox1.getPrefWidth(),40);
+                    x.setText(cli.present());
+                    System.out.println(cli.present());
+                    x.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
+                    vBox1.getChildren().add(x);
+
+                    Button y = new Button("Edit");
+                    y.setPrefSize(vBox2.getPrefWidth(),40);
+                    y.setStyle("-fx-background-color: #A7E6EC;"+"-fx-border-color: black;"+"-fx-border-width: 1;"+"-fx-cursor: hand;");
+                    vBox2.getChildren().add(y);
+
+                    Button z = new Button("Delete");
+                    z.setPrefSize(vBox3.getPrefWidth(),40);
+                    z.setStyle("-fx-background-color: #F54465;"+"-fx-border-color: black;"+"-fx-border-width: 1;"+"-fx-cursor: hand;");
+                    vBox3.getChildren().add(z);
+                });
+            });
+            z.setOnAction((ActionEvent)->{
+                this.user=user;
+                vBox1.getChildren().clear();
+                vBox2.getChildren().clear();
+                vBox3.getChildren().clear();
+
+                Button xDel = new Button();
+                xDel.setPrefSize(vBox1.getPrefWidth(),40);
+                xDel.setText(user.present());
+                xDel.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
+                vBox1.getChildren().add(xDel);
+
+                Button yDel = new Button("Cancel");
+                yDel.setPrefSize(vBox2.getPrefWidth(),40);
+                yDel.setStyle("-fx-background-color: #A7E6EC;"+"-fx-border-color: black;"+"-fx-border-width: 1;"+"-fx-cursor: hand;");
+                vBox2.getChildren().add(yDel);
+
+                Button zDel = new Button("Delete");
+                zDel.setPrefSize(vBox3.getPrefWidth(),40);
+                zDel.setStyle("-fx-background-color: #F54465;"+"-fx-border-color: black;"+"-fx-border-width: 1;"+"-fx-cursor: hand;");
+                vBox3.getChildren().add(zDel);
+
+                anchorPane1.setPrefHeight(40);
+                vBox1.setPrefHeight(40);
+                vBox2.setPrefHeight(40);
+                vBox3.setPrefHeight(40);
+
+                yDel.setOnAction((ActionEvent event)->{
+                    try {
+                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics.fxml")));
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    stage.setResizable(false);
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                });
+
+                zDel.setOnAction((ActionEvent event)->{
+                    try {
+                        ///TODO:Deleting a doctor with his clinic connections, visits and stuff
+                        Singleton.getClient().deleteDoctor(clinic.getClinicId());
+                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics.fxml")));
+                        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                        stage.setResizable(false);
+                        scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                    } catch (Exception e) {
+                        ///TODO: maybe something
+                    }
+                });
+
+            });
+            j++;
+        }
+
+        anchorPane1.setPrefHeight(j*40);
+        vBox1.setPrefHeight(j*40);
+        vBox2.setPrefHeight(j*40);
+        vBox3.setPrefHeight(j*40);
 
     }
     @FXML

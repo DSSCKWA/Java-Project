@@ -5,6 +5,7 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -14,11 +15,14 @@
 
 <HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.patient.PatientNewVisitController">
     <children>
-        <AnchorPane prefHeight="526.0" prefWidth="223.0">
+        <AnchorPane prefHeight="526.0" prefWidth="203.0">
             <children>
                 <VBox prefHeight="526.0" prefWidth="202.0" style="-fx-background-color: #A41F03;">
                     <children>
-                        <ImageView fitHeight="150.0" fitWidth="223.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fitHeight="196.0" fitWidth="223.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../logo/logo.png" />
+                     </image></ImageView>
                         <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0" style="-fx-background-color: #A41F03; -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Start" textFill="WHITE">
                             <opaqueInsets>
                                 <Insets />
@@ -110,7 +114,7 @@
                                                 <Font name="Arial" size="18.0" />
                                             </font>
                                         </Text>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Actions" textAlignment="CENTER" wrappingWidth="173.33653354644775">
+                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Actions" textAlignment="CENTER" wrappingWidth="198.13658237457275">
                                             <font>
                                                 <Font name="Arial" size="18.0" />
                                             </font>
@@ -121,7 +125,7 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="303.0" prefWidth="598.0">
                             <children>
-                                <ScrollPane layoutX="8.0" prefHeight="295.0" prefWidth="659.0">
+                                <ScrollPane layoutX="8.0" prefHeight="295.0" prefWidth="670.0">
                                     <content>
                                         <AnchorPane fx:id="anchorPane1" minHeight="0.0" minWidth="0.0" prefHeight="417.0" prefWidth="636.0">
                                             <children>

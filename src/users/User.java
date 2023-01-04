@@ -189,7 +189,7 @@ public class User {
     //</editor-fold>
 
     public String present() {
-        return "ID: "+ id +
+        return "ID: "+ id +": "+permissions+
                 " " + name + " "+ surname +": "+ email +"  " + city + ": " + address;
     }
 }
