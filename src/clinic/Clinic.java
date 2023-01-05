@@ -133,4 +133,8 @@ public class Clinic {
                 '}';
     }
     //</editor-fold>
+    public String present() {
+        return "ID: "+ clinicId +
+                " " + name + "  " + city + ": " + address;
+    }
 }

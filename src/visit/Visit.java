@@ -147,4 +147,13 @@ public class Visit {
                 ", duration=" + duration +
                 '}';
     }
+
+    public String present()
+    {
+        return visitId +
+                ": " + doctor +
+                "  " + date +
+                ": " + time +
+                "  " + duration;
+    }
 }

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.patient.PatientNewVisitController">
+    <children>
+        <AnchorPane prefHeight="526.0" prefWidth="203.0">
+            <children>
+                <VBox prefHeight="526.0" prefWidth="202.0" style="-fx-background-color: #A41F03;">
+                    <children>
+                        <ImageView fitHeight="196.0" fitWidth="223.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../logo/logo.png" />
+                     </image></ImageView>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0" style="-fx-background-color: #A41F03; -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Start" textFill="WHITE">
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <padding>
+                                <Insets left="50.0" />
+                            </padding>
+                            <font>
+                                <Font name="Arial Bold" size="14.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                        </Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnMyVisitsClicked" prefHeight="50.0" prefWidth="226.0" style="-fx-background-color: #A41F03; -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="My Visits" textFill="WHITE">
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <padding>
+                                <Insets left="50.0" />
+                            </padding>
+                            <font>
+                                <Font name="Arial Bold" size="14.0" />
+                            </font>
+                        </Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnNewVisitClicked" prefHeight="50.0" prefWidth="224.0" style="-fx-background-color: #A41F03; -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="New Visit" textFill="WHITE">
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <padding>
+                                <Insets left="50.0" />
+                            </padding>
+                            <font>
+                                <Font name="Arial Bold" size="14.0" />
+                            </font>
+                        </Button>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0" style="-fx-background-color: #A41F03; -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Log Out" textFill="WHITE">
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                            <padding>
+                                <Insets left="50.0" />
+                            </padding>
+                            <font>
+                                <Font name="Arial Bold" size="14.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+        <AnchorPane prefHeight="405.0" prefWidth="447.0">
+            <children>
+                <VBox prefHeight="526.0" prefWidth="685.0">
+                    <children>
+                        <AnchorPane prefHeight="146.0" prefWidth="678.0">
+                            <children>
+                                <Text fx:id="textTitle" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search engine">
+                                    <font>
+                                        <Font name="Arial" size="18.0" />
+                                    </font>
+                                </Text>
+                                <Text layoutX="382.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expertise:">
+                                    <font>
+                                        <Font name="Arial" size="14.0" />
+                                    </font>
+                                </Text>
+                                <TextField fx:id="tfExpertise" layoutX="382.0" layoutY="84.0" />
+                                <Text layoutX="212.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City:">
+                                    <font>
+                                        <Font name="Arial" size="14.0" />
+                                    </font>
+                                </Text>
+                                <TextField fx:id="tfCity" layoutX="212.0" layoutY="84.0" />
+                        <DatePicker fx:id="tfDate" layoutX="14.0" layoutY="84.0" />
+                        <Text layoutX="14.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </Text>
+                            </children></AnchorPane>
+                        <AnchorPane prefHeight="378.0" prefWidth="686.0">
+                     <children>
+                        <TableView fx:id="tvTable" layoutX="-1.0" layoutY="-1.0" prefHeight="378.0" prefWidth="686.0">
+                          <columns>
+                            <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="100.0" prefWidth="117.59996336698532" text="Name" />
+                            <TableColumn fx:id="tcSurname" maxWidth="300.0" minWidth="100.0" prefWidth="111.20001220703125" text="Surname" />
+                              <TableColumn fx:id="tcCity" maxWidth="300.0" minWidth="100.0" prefWidth="111.99998474121094" text="City" />
+                              <TableColumn fx:id="tcExpertise" maxWidth="300.0" minWidth="100.0" prefWidth="140.79998779296875" text="Expertise" />
+                              <TableColumn fx:id="tcTime" maxWidth="300.0" minWidth="100.0" prefWidth="100.0" text="Time" />
+                              <TableColumn fx:id="tcSchedule" maxWidth="300.0" minWidth="87.2000732421875" prefWidth="87.2000732421875" text="Schedule" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </children>
+</HBox>
