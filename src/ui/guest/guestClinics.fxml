@@ -2,7 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -12,61 +13,71 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.guest.GuestClinicsController">
+<HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="src.ui.guest.GuestClinicsController">
     <children>
         <AnchorPane prefHeight="526.0" prefWidth="202.0">
             <children>
-                <VBox prefHeight="526.0" prefWidth="202.0" style="-fx-background-color: #A41F03;">
+                <VBox prefHeight="526.0" prefWidth="182.0" style="-fx-background-color: #A41F03;">
                     <children>
                         <ImageView fitHeight="196.0" fitWidth="209.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../logo/logo.png" />
-                     </image></ImageView>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0" stylesheets="@../css/adminStyling.css" text="Start" textFill="WHITE">
+                            <image>
+                                <Image url="@../logo/logo.png"/>
+                            </image>
+                        </ImageView>
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
+                                onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0"
+                                stylesheets="@../css/adminStyling.css" text="Start" textFill="WHITE">
                             <opaqueInsets>
-                                <Insets />
+                                <Insets/>
                             </opaqueInsets>
                             <padding>
-                                <Insets left="50.0" />
+                                <Insets left="50.0"/>
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0" />
+                                <Font name="Arial Bold" size="14.0"/>
                             </font>
                             <VBox.margin>
-                                <Insets />
+                                <Insets/>
                             </VBox.margin>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnClinicsClicked" prefHeight="50.0" prefWidth="226.0" stylesheets="@../css/adminStyling.css" text="Clinics" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
+                                onAction="#btnClinicsClicked" prefHeight="50.0" prefWidth="226.0"
+                                stylesheets="@../css/adminStyling.css" text="Clinics" textFill="WHITE">
                             <opaqueInsets>
-                                <Insets />
+                                <Insets/>
                             </opaqueInsets>
                             <padding>
-                                <Insets left="50.0" />
+                                <Insets left="50.0"/>
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0" />
+                                <Font name="Arial Bold" size="14.0"/>
                             </font>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnDoctorsClicked" prefHeight="50.0" prefWidth="224.0" stylesheets="@../css/adminStyling.css" text="Doctors" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
+                                onAction="#btnDoctorsClicked" prefHeight="50.0" prefWidth="224.0"
+                                stylesheets="@../css/adminStyling.css" text="Doctors" textFill="WHITE">
                             <opaqueInsets>
-                                <Insets />
+                                <Insets/>
                             </opaqueInsets>
                             <padding>
-                                <Insets left="50.0" />
+                                <Insets left="50.0"/>
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0" />
+                                <Font name="Arial Bold" size="14.0"/>
                             </font>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogInClicked" prefHeight="50.0" prefWidth="222.0" stylesheets="@../css/adminStyling.css" text="Log In" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
+                                onAction="#btnLogInClicked" prefHeight="50.0" prefWidth="222.0"
+                                stylesheets="@../css/adminStyling.css" text="Log In" textFill="WHITE">
                             <opaqueInsets>
-                                <Insets />
+                                <Insets/>
                             </opaqueInsets>
                             <padding>
-                                <Insets left="50.0" />
+                                <Insets left="50.0"/>
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0" />
+                                <Font name="Arial Bold" size="14.0"/>
                             </font>
                         </Button>
                     </children>
@@ -75,55 +86,39 @@
         </AnchorPane>
         <AnchorPane prefHeight="526.0" prefWidth="686.0">
             <children>
-                <VBox prefHeight="526.0" prefWidth="667.0">
+                <VBox prefHeight="526.0" prefWidth="686.0">
                     <children>
-                        <AnchorPane prefHeight="298.0" prefWidth="667.0">
+                        <AnchorPane prefHeight="262.0" prefWidth="686.0">
                             <children>
-                                <Button fx:id="btnSearch" layoutX="601.0" layoutY="130.0" mnemonicParsing="false" onAction="#btnSearchClicked" text="Search" />
-                                <Text fx:id="textTitle" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search engine">
+                                <Text layoutX="24.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                                      text="Search Engine">
                                     <font>
-                                        <Font name="Arial" size="18.0" />
+                                        <Font size="18.0"/>
                                     </font>
                                 </Text>
-                                <Text layoutX="14.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
-                                    <font>
-                                        <Font name="Arial" size="14.0" />
-                                    </font>
-                                </Text>
-                                <TextField fx:id="tfName" layoutX="14.0" layoutY="84.0" />
-                                <Text layoutX="198.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City:">
-                                    <font>
-                                        <Font name="Arial" size="14.0" />
-                                    </font>
-                                </Text>
-                                <TextField fx:id="tfCity" layoutX="198.0" layoutY="84.0" />
-                            </children></AnchorPane>
-                        <AnchorPane prefHeight="23.0" prefWidth="667.0">
-                            <children>
-                                <HBox layoutX="8.0" layoutY="32.0" prefHeight="30.0" prefWidth="634.0" style="-fx-border-color: black; -fx-border-insets: black;">
-                                    <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Clinic Details" textAlignment="CENTER" wrappingWidth="672.4000244140625">
-                                            <font>
-                                                <Font name="Arial" size="18.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </HBox>
+                                <Text layoutX="24.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                                      text="Name:"/>
+                                <Text layoutX="24.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                                      text="City:"/>
+                                <TextField fx:id="tfName" layoutX="108.0" layoutY="76.0" onAction="#tfNameChanged"/>
+                                <TextField fx:id="tfCity" layoutX="109.0" layoutY="115.0" onAction="#tfCityChanged"/>
                             </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="303.0" prefWidth="598.0">
+                        <AnchorPane prefHeight="402.0" prefWidth="686.0">
                             <children>
-                                <ScrollPane layoutX="8.0" prefHeight="295.0" prefWidth="674.0">
-                                    <content>
-                                        <AnchorPane fx:id="anchorPane1" minHeight="0.0" minWidth="0.0" prefHeight="417.0" prefWidth="636.0">
-                                            <children>
-                                                <VBox fx:id="vBox1" prefHeight="434.0" prefWidth="637.0">
-                                                    <children>
-                                                    </children></VBox>
-                                            </children></AnchorPane>
-                                    </content>
-                                </ScrollPane>
-                            </children></AnchorPane>
+                                <TableView fx:id="tvTable" layoutX="7.0" layoutY="8.0" prefHeight="322.0"
+                                           prefWidth="671.0">
+                                    <columns>
+                                        <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="100.0"
+                                                     prefWidth="149.5999665260315" text="Name"/>
+                                        <TableColumn fx:id="tcCity" maxWidth="300.0" minWidth="100.0"
+                                                     prefWidth="241.60003662109375" text="City"/>
+                                        <TableColumn fx:id="tcAddress" maxWidth="300.0" minWidth="100.0"
+                                                     prefWidth="262.3999938964844" text="Address"/>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </AnchorPane>
                     </children>
                 </VBox>
             </children>

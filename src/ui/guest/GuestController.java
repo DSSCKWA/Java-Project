@@ -11,15 +11,16 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class GuestController{
+public class GuestController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+
     @FXML
     void btnClinicsClicked(ActionEvent event) throws IOException {
 
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("guestClinics2.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("guestClinics.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
@@ -27,18 +28,19 @@ public class GuestController{
     }
 
     @FXML
-    void btnDoctorsClicked(ActionEvent event) throws IOException{
+    void btnDoctorsClicked(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("guestDoctors.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
     void btnLogInClicked(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../login/login.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
@@ -46,16 +48,17 @@ public class GuestController{
     }
 
     @FXML
-    void btnStartClicked(ActionEvent event) throws Exception{
+    void btnStartClicked(ActionEvent event) throws Exception {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("guest.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
-    void btnSearchClicked(ActionEvent event) throws Exception{
+    void btnSearchClicked(ActionEvent event) throws Exception {
 
     }
 }
