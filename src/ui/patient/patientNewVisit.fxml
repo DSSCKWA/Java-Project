@@ -104,6 +104,11 @@
                               <Font name="Arial" size="14.0" />
                            </font>
                         </Text>
+                        <Text fx:id="txPickDate" fill="RED" layoutX="62.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pick a date!">
+                           <font>
+                              <Font name="Arial" size="15.0" />
+                           </font>
+                        </Text>
                             </children></AnchorPane>
                         <AnchorPane prefHeight="378.0" prefWidth="686.0">
                      <children>

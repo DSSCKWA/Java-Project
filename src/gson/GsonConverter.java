@@ -19,11 +19,13 @@ public class GsonConverter {
                 .create();
     }
 
-    public static Gson newGsonReaderConverter() {
+    public static Gson newGsonRWConverter() {
         return new GsonBuilder()
                 .setPrettyPrinting()
                 .registerTypeAdapter(LocalDate.class, new LocalDateDeserializer())
                 .registerTypeAdapter(LocalTime.class, new LocalTimeDeserializer())
+                .registerTypeAdapter(LocalDate.class, new LocalDateSerializer())
+                .registerTypeAdapter(LocalTime.class, new LocalTimeSerializer())
                 .create();
     }
 }

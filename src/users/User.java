@@ -106,11 +106,7 @@ public class User {
         this.city = city;
         this.phoneNumber = phoneNumber;
         this.permissions = permissions;
-        try {
-            dbClientAutoCommit = new DBClient(true);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        dbClientAutoCommit = new DBClient(true);
     }
 
     public User(int id, String name, String lastName, String email, String password, String address, String city, int phoneNumber, Permissions permissions) {
@@ -123,11 +119,7 @@ public class User {
         this.city = city;
         this.phoneNumber = phoneNumber;
         this.permissions = permissions;
-        try {
-            dbClientAutoCommit = new DBClient(true);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        dbClientAutoCommit = new DBClient(true);
     }
 
     //</editor-fold>
@@ -189,7 +181,7 @@ public class User {
     //</editor-fold>
 
     public String present() {
-        return "ID: "+ id +": "+permissions+
-                " " + name + " "+ surname +": "+ email +"  " + city + ": " + address;
+        return "ID: " + id + ": " + permissions +
+                " " + name + " " + surname + ": " + email + "  " + city + ": " + address;
     }
 }

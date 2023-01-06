@@ -18,11 +18,7 @@ public class DoctorEntity {
 
     public ArrayList<DoctorEntity> getDoctorEntityArrayByDoctorId(int id) {
         DoctorRepository db;
-        try {
-            db = new DoctorRepository(new DBClient(false));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        db = new DoctorRepository(new DBClient(false));
         return db.getDoctor(id);
     }
 

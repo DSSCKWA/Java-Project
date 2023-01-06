@@ -68,11 +68,7 @@ public class Schedule {
         this.day = day;
         this.startTime = startTime;
         this.endTime = endTime;
-        try {
-            dbClientAutoCommit = new DBClient(true);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        dbClientAutoCommit = new DBClient(true);
     }
     //</editor-fold>
 
