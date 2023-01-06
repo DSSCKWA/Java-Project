@@ -81,6 +81,7 @@ public class PatientMyVisitsController implements Initializable {
                 {
                     rateBox.getItems().addAll("1", "2", "3", "4", "5");
                     rateBox.setValue("5");
+                    rateBox.valueProperty().addListener((observableValue, oldValue, newValue) -> getTableView().getItems().get(getIndex()).setDesiredRating(newValue));
                 }
 
                 @Override
@@ -106,9 +107,7 @@ public class PatientMyVisitsController implements Initializable {
                         try {
                             VisitRow visitRow = getTableView().getItems().get(getIndex());
                             Visit visit = visitRow.getVisit();
-
-                            visit.setRating(Integer.parseInt("0")); // TODO get value from combobox
-                            
+                            visit.setRating(Integer.parseInt(visitRow.getDesiredRating()));
                             Singleton.getClient().updateVisit(visit);
                             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("patientMyVisits.fxml")));
                             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -190,6 +189,7 @@ public class PatientMyVisitsController implements Initializable {
         private final Doctor doctor;
         private final Patient patient;
         private final Visit visit;
+        private String desiredRating = "5";
 
         public VisitRow(Visit visit, Doctor doctor, User patient) {
 
@@ -242,6 +242,14 @@ public class PatientMyVisitsController implements Initializable {
 
         public Visit getVisit() {
             return visit;
+        }
+
+        public String getDesiredRating() {
+            return desiredRating;
+        }
+
+        public void setDesiredRating(String desiredRating) {
+            this.desiredRating = desiredRating;
         }
     }
 }
