@@ -96,18 +96,19 @@
                                         <Font name="Arial" size="18.0" />
                                     </font>
                                 </Text>
-                                <Text layoutX="14.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+                                <Text layoutX="14.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
                                     <font>
                                         <Font name="Arial" size="14.0" />
                                     </font>
                                 </Text>
-                                <TextField fx:id="tfName" layoutX="234.0" layoutY="63.0" />
-                                <Text layoutX="14.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:">
+                                <TextField fx:id="tfName" layoutX="234.0" layoutY="50.0" />
+                                <Text layoutX="14.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:">
                                     <font>
                                         <Font name="Arial" size="14.0" />
                                     </font>
                                 </Text>
-                                <TextField fx:id="tfSurname" layoutX="234.0" layoutY="117.0" />
+                                <TextField fx:id="tfSurname" layoutX="234.0" layoutY="95.0" />
+                        <Button fx:id="btnCancel" layoutX="523.0" layoutY="95.0" mnemonicParsing="false" onAction="#btnCancelClicked" text="Cancel" />
                             </children></AnchorPane>
                         <AnchorPane prefHeight="202.0" prefWidth="686.0">
                      <children>

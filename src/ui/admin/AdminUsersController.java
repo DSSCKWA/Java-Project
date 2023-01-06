@@ -25,17 +25,14 @@ import src.users.User;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class AdminUsersController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
 
-    private User user;
+    private User userMain;
 
 
     @FXML
@@ -63,7 +60,7 @@ public class AdminUsersController implements Initializable {
     private AnchorPane anchorPane1;
 
     @FXML
-    private Button btnFind;
+    private Button btnCancel;
 
     @FXML
     private Text textTitle;
@@ -91,15 +88,6 @@ public class AdminUsersController implements Initializable {
     @FXML
     private TextField tfSurname;
 
-    @FXML
-    private VBox vBox1;
-
-    @FXML
-    private VBox vBox2;
-
-    @FXML
-    private VBox vBox3;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -108,7 +96,7 @@ public class AdminUsersController implements Initializable {
         cboxPermission.setVisible(false);
 
         tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        tcSurname.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tcSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         tcCity.setCellValueFactory(new PropertyValueFactory<>("city"));
         tcEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         tcPermission.setCellValueFactory(new PropertyValueFactory<>("permissions")); ///TODO fix so it shows in TableView
@@ -155,10 +143,12 @@ public class AdminUsersController implements Initializable {
                     btnConfirm.setVisible(true);
                     cboxPermission.getItems().clear();
                     cboxPermission.getItems().addAll(
+                            "ADMIN",
                             "MODERATOR",
                             "DOCTOR",
                             "PATIENT"
                     );
+                    cboxPermission.setValue("PATIENT");
                     cboxPermission.setVisible(true);
 
                     textName.setVisible(false);
@@ -168,23 +158,9 @@ public class AdminUsersController implements Initializable {
 
                     filteredUsers.setPredicate(user2 -> user2.equals(user));
                     tvUser.setItems(filteredUsers);
-                    btnConfirm.setOnAction((ActionEvent event1) -> {
 
-                        try {
-                            user.setPermissions(Permissions.valueOf(cboxPermission.getValue().toString().toUpperCase(Locale.ROOT)));
-                            System.out.println(user.getPermissions());
-                            Singleton.getClient().updateUser(user);
-                            ///TODO: it doesnt want to switch dunno why
-                            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminUsers.fxml")));
-                            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                            stage.setResizable(false);
-                            scene = new Scene(root);
-                            stage.setScene(scene);
-                            stage.show();
-                        } catch (Exception e) {
-                            System.out.println("Error");
-                        }
-                    });
+                    userMain = user;
+
 
                 });
             }
@@ -252,10 +228,26 @@ public class AdminUsersController implements Initializable {
     }
 
     @FXML
-    void btnFindClicked(ActionEvent event) {
-
+    void btnCancelClicked(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminUsers.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
-
+    @FXML
+    void btnConfirmClicked(ActionEvent event) throws IOException, InterruptedException {
+        userMain.setPermissions(Permissions.valueOf(cboxPermission.getValue().toString().toUpperCase(Locale.ROOT)));
+        System.out.println(userMain.getPermissions());
+        Singleton.getClient().updateUser(userMain);
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminUsers.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }
 
