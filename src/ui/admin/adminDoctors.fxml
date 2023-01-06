@@ -2,7 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -86,11 +87,10 @@
         </AnchorPane>
         <AnchorPane prefHeight="405.0" prefWidth="447.0">
             <children>
-                <VBox prefHeight="526.0" prefWidth="667.0">
+                <VBox prefHeight="526.0" prefWidth="686.0">
                     <children>
-                        <AnchorPane prefHeight="298.0" prefWidth="667.0">
+                        <AnchorPane prefHeight="159.0" prefWidth="686.0">
                             <children>
-                                <Button fx:id="btnFind" layoutX="601.0" layoutY="130.0" mnemonicParsing="false" onAction="#btnFindClicked" text="Find" />
                                 <Text fx:id="textTitle" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Engine">
                                     <font>
                                         <Font name="Arial" size="18.0" />
@@ -109,39 +109,31 @@
                                 </Text>
                                 <TextField fx:id="tfSurname" layoutX="234.0" layoutY="117.0" />
                             </children></AnchorPane>
-                        <AnchorPane prefHeight="23.0" prefWidth="667.0">
-                            <children>
-                                <HBox layoutX="8.0" layoutY="32.0" prefHeight="30.0" prefWidth="634.0" style="-fx-border-color: black; -fx-border-insets: black;">
-                                    <children>
-                                        <Text fx:id="tDoctorData" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor Data" textAlignment="CENTER" wrappingWidth="470.0">
-                                            <font>
-                                                <Font name="Arial" size="18.0" />
-                                            </font>
-                                        </Text>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Actions" textAlignment="CENTER" wrappingWidth="198.13658237457275">
-                                            <font>
-                                                <Font name="Arial" size="18.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </HBox>
-                            </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="303.0" prefWidth="598.0">
-                            <children>
-                                <ScrollPane layoutX="8.0" prefHeight="295.0" prefWidth="670.0">
-                                    <content>
-                                        <AnchorPane fx:id="anchorPane1" minHeight="0.0" minWidth="0.0" prefHeight="418.0" prefWidth="656.0">
-                                            <children>
-                                                <VBox fx:id="vBox1" prefHeight="434.0" prefWidth="470.0">
-                                                    <children>
-                                                    </children></VBox>
-                                                <VBox fx:id="vBox2" layoutX="463.0" prefHeight="454.0" prefWidth="94.0" />
-                                                <VBox fx:id="vBox3" layoutX="557.0" prefHeight="454.0" prefWidth="98.0" />
-                                            </children></AnchorPane>
-                                    </content>
-                                </ScrollPane>
-                            </children></AnchorPane>
+                        <AnchorPane prefHeight="202.0" prefWidth="686.0">
+                     <children>
+                        <TableView fx:id="tvDoctor" layoutX="5.0" layoutY="-2.0" prefHeight="196.0" prefWidth="672.0">
+                          <columns>
+                            <TableColumn fx:id="tcSurname" maxWidth="300.0" minWidth="100.0" prefWidth="113.59996318817139" text="Surname" />
+                            <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="100.0" prefWidth="117.60003662109375" text="Name" />
+                              <TableColumn fx:id="tcEmail" maxWidth="300.0" minWidth="100.0" prefWidth="179.99998474121094" text="Email" />
+                              <TableColumn fx:id="tcAdd" maxWidth="300.0" minWidth="100.0" prefWidth="123.2000732421875" text="Add to Clinic" />
+                              <TableColumn fx:id="tcRemove" maxWidth="300.0" minWidth="100.0" prefWidth="128.00006103515625" text="Remove from Clinic" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="187.0" prefWidth="686.0">
+                     <children>
+                        <TableView fx:id="tvClinic" layoutX="6.0" prefHeight="176.0" prefWidth="672.0">
+                          <columns>
+                            <TableColumn fx:id="tcCName" maxWidth="300.0" minWidth="100.0" prefWidth="127.99998760223389" text="Name" />
+                            <TableColumn fx:id="tcCCity" maxWidth="300.0" minWidth="100.0" prefWidth="146.3999481201172" text="City" />
+                              <TableColumn fx:id="tcCAddress" maxWidth="300.0" minWidth="100.0" prefWidth="196.00006103515625" text="Address" />
+                              <TableColumn fx:id="tcAR" maxWidth="300.0" minWidth="100.0" prefWidth="193.5999755859375" text="Add/Remove" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
                     </children>
                 </VBox>
             </children>
