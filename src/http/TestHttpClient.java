@@ -61,6 +61,20 @@ public class TestHttpClient {
 //        System.out.println(httpClient.getEquipment());
 //        System.out.println(httpClient.getEquipmentById(5));
 
-        System.out.println(httpClient.getVisits());
+//        System.out.println(httpClient.getVisits());
+
+
+//        int doctorId = 3;
+//        int clinicId = 1;
+//        //System.out.println(httpClient.addDoctorToClinic(doctorId, clinicId));
+//        System.out.println(httpClient.removeDoctorFromClinic(3, 1));
+
+        System.out.println(httpClient.getExpertise(1, "abc"));
+        System.out.println(httpClient.getExpertiseByArea("abc"));
+        System.out.println(httpClient.getExpertiseByDoctorId(1));
+
+        System.out.println(httpClient.addExpertise(1, "ddd"));
+        System.out.println(httpClient.removeExpertiseByDoctorIdAndAreaOfExpertise(1, "abc"));
+        System.out.println(httpClient.getExpertiseByDoctorId(1));
     }
 }
