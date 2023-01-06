@@ -130,11 +130,10 @@
                         <TableView fx:id="tvClinic" layoutX="4.0" layoutY="-2.0" prefHeight="214.0" prefWidth="678.0">
                           <columns>
                             <TableColumn fx:id="tcName" maxWidth="400.0" minWidth="100.0" prefWidth="88.80003643035889" text="Name" />
-                            <TableColumn fx:id="tcCity" maxWidth="400.0" minWidth="100.0" prefWidth="94.39996337890625" text="City" />
-                              <TableColumn fx:id="tcAddress" maxWidth="400.0" minWidth="100.0" prefWidth="126.39994812011719" text="Address" />
-                              <TableColumn fx:id="tcAdd" maxWidth="400.0" minWidth="100.0" prefWidth="132.800048828125" text="Add" />
-                              <TableColumn fx:id="tcTransfer" maxWidth="400.0" minWidth="100.0" prefWidth="116.7999267578125" text="Transfer" />
-                              <TableColumn fx:id="tcEdit" maxWidth="400.0" minWidth="100.0" prefWidth="111.199951171875" text="Edit" />
+                            <TableColumn fx:id="tcCity" maxWidth="400.0" minWidth="100.0" prefWidth="120.79998779296875" text="City" />
+                              <TableColumn fx:id="tcAddress" maxWidth="400.0" minWidth="100.0" prefWidth="156.7999725341797" text="Address" />
+                              <TableColumn fx:id="tcAdd" maxWidth="400.0" minWidth="100.0" prefWidth="140.0" text="Add" />
+                              <TableColumn fx:id="tcTransfer" maxWidth="400.0" minWidth="100.0" prefWidth="151.20001220703125" text="Transfer" />
                           </columns>
                         </TableView>
                      </children></AnchorPane>
@@ -142,9 +141,10 @@
                      <children>
                         <TableView fx:id="tvEquipment" layoutX="6.0" prefHeight="178.0" prefWidth="678.0">
                            <columns>
-                              <TableColumn fx:id="tcEName" maxWidth="400.0" minWidth="100.0" prefWidth="184.79997539520264" text="Name" />
-                              <TableColumn fx:id="tcStatus" maxWidth="400.0" minWidth="100.0" prefWidth="373.6000213623047" text="Status" />
-                              <TableColumn fx:id="tcAction" maxWidth="400.0" minWidth="100.0" prefWidth="112.800048828125" text="Action" />
+                              <TableColumn fx:id="tcEName" maxWidth="400.0" minWidth="100.0" prefWidth="191.19999980926514" text="Name" />
+                              <TableColumn fx:id="tcStatus" maxWidth="400.0" minWidth="100.0" prefWidth="121.59996032714844" text="Status" />
+                              <TableColumn fx:id="tcClinicName" maxWidth="400.0" minWidth="33.60009765625" prefWidth="145.5999755859375" text="Clinic Name" />
+                              <TableColumn fx:id="tcAction" maxWidth="400.0" minWidth="33.60009765625" prefWidth="212.79998779296875" text="Action" />
                            </columns>
                         </TableView>
                      </children>

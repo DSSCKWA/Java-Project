@@ -16,11 +16,24 @@ import javafx.stage.Stage;
 import src.clinic.Clinic;
 import src.equipment.Equipment;
 import src.equipment.EquipmentStatus;
+import src.expertise.Expertise;
+import src.schedule.Schedule;
 import src.ui.Singleton;
+import src.ui.patient.PatientMyVisitsController;
+import src.ui.patient.PatientNewVisitController;
+import src.users.Doctor;
+import src.users.Patient;
 import src.users.Permissions;
+import src.users.User;
+import src.visit.Visit;
+import src.visit.VisitStatus;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
@@ -43,7 +56,7 @@ public class DoctorEquipmentController implements Initializable {
     @FXML
     private ComboBox<String> cboxStatus;
     @FXML
-    private TableColumn<Equipment, Void> tcAction;
+    private TableColumn<EquipmentRow, Void> tcAction;
 
     @FXML
     private TableColumn<Clinic, Void> tcAdd;
@@ -65,6 +78,9 @@ public class DoctorEquipmentController implements Initializable {
 
     @FXML
     private TableColumn<?, ?> tcStatus;
+
+    @FXML
+    private TableColumn<?, ?> tcClinicName;
 
     @FXML
     private TableColumn<Clinic, Void> tcTransfer;
@@ -103,7 +119,7 @@ public class DoctorEquipmentController implements Initializable {
     private TableView<Clinic> tvClinic;
 
     @FXML
-    private TableView<Equipment> tvEquipment;
+    private TableView<EquipmentRow> tvEquipment;
 
 
     @FXML
@@ -145,99 +161,89 @@ public class DoctorEquipmentController implements Initializable {
             tvClinic.setItems(sortedClinics);
         });
 
-        tcEdit.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button editButton = new Button("Edit");
+        tvClinic.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
 
-            {
-                editButton.setOnAction((ActionEvent event) -> {
-                    Clinic clinic = getTableView().getItems().get(getIndex());
 
-                    clin = clinic;
-                    filteredClinics.setPredicate(clinic2 -> clinic2.equals(clinic));
-                    tvClinic.setItems(filteredClinics);
+                tcEName.setCellValueFactory(new PropertyValueFactory<>("name"));
+                tcStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+                tcClinicName.setCellValueFactory(new PropertyValueFactory<>("clinicName"));
 
-                    tcEName.setCellValueFactory(new PropertyValueFactory<>("name"));
-                    tcStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+                try {
+                    final ArrayList<Equipment> equipments = Singleton.getClient().getEquipmentByClinicId(newSelection.getClinicId());
+                    ArrayList<DoctorEquipmentController.EquipmentRow> equipmentRows = new ArrayList<>();
 
-                    ArrayList<Equipment> equipments = new ArrayList<Equipment>();
-                    try {
-                        equipments = Singleton.getClient().getEquipmentByClinicId(clinic.getClinicId());
-                    } catch (Exception e) {
-                        System.out.println("Error" + e.getMessage());
+                    for (Equipment equipmentTmp : equipments) {
+                        Clinic clinicTmp = Singleton.getClient().getClinic(equipmentTmp.getClinicId());
+                        equipmentRows.add(new DoctorEquipmentController.EquipmentRow(clinicTmp, equipmentTmp));
                     }
-                    tvEquipment.getItems().addAll(equipments);
 
-                    FilteredList<Equipment> filteredEquipments = new FilteredList<>(tvEquipment.getItems(), b -> true);
+                    tvEquipment.getItems().clear();
+                    tvEquipment.getItems().addAll(equipmentRows);
+                } catch (Exception e) {
+                    System.out.println("Error" + e.getMessage());
+                }
 
-                    tfCEName.textProperty().addListener((observable, oldValue, newValue) -> {
-                        filteredClinics.setPredicate(equipment -> {
-                            if (newValue.isEmpty() || newValue.isBlank()) return true;
-                            return equipment.getName().contains(newValue);
+
+                FilteredList<EquipmentRow> filteredEquipments = new FilteredList<>(tvEquipment.getItems(), b -> true);
+
+                tfCEName.textProperty().addListener((observable, oldValue, newValue) -> {
+                    filteredClinics.setPredicate(equipment -> {
+                        if (newValue.isEmpty() || newValue.isBlank()) return true;
+                        return equipment.getName().contains(newValue);
+                    });
+                    SortedList<EquipmentRow> sortedEquipments = new SortedList<>(filteredEquipments);
+                    sortedEquipments.comparatorProperty().bind(tvEquipment.comparatorProperty());
+                    tvEquipment.setItems(sortedEquipments);
+                });
+
+                tcAction.setCellFactory(tableColumn -> new TableCell<>() {
+                    private final Button actionButton = new Button("Edit");
+
+                    {
+                        actionButton.setOnAction((ActionEvent event) -> {
+                            EquipmentRow equipmentRow = getTableView().getItems().get(getIndex());
+
+                            filteredEquipments.setPredicate(equipment2 -> equipment2.equals(equipmentRow));
+                            tvEquipment.setItems(filteredEquipments);
+
+                            textCreate.setText("Edition Tool");
+                            btnConfirm.setText("Edit");
+                            textCreate.setVisible(true);
+                            textEName.setVisible(true);
+                            textEStatus.setVisible(true);
+                            tfEName.setVisible(true);
+                            cboxStatus.setVisible(true);
+                            btnCancel.setVisible(true);
+                            btnConfirm.setVisible(true);
+
+                            textSearch.setVisible(false);
+                            textCEName.setVisible(false);
+                            textCName.setVisible(false);
+                            tfCEName.setVisible(false);
+                            tfCName.setVisible(false);
+
+
+                            eq = equipmentRow.getEquipment();
+                            tfEName.setText(eq.getName());
+                            cboxStatus.setValue("IN_USE");
+
                         });
-                        SortedList<Equipment> sortedEquipments = new SortedList<>(filteredEquipments);
-                        sortedEquipments.comparatorProperty().bind(tvEquipment.comparatorProperty());
-                        tvEquipment.setItems(sortedEquipments);
-                    });
+                    }
 
-                    tcAction.setCellFactory(tableColumn -> new TableCell<>() {
-                        private final Button actionButton = new Button("Edit");
-
-                        {
-                            actionButton.setOnAction((ActionEvent event) -> {
-                                Equipment equipment = getTableView().getItems().get(getIndex());
-
-                                filteredEquipments.setPredicate(equipment2 -> equipment2.equals(equipment));
-                                tvEquipment.setItems(filteredEquipments);
-
-                                textCreate.setText("Edition Tool");
-                                btnConfirm.setText("Edit");
-                                textCreate.setVisible(true);
-                                textEName.setVisible(true);
-                                textEStatus.setVisible(true);
-                                tfEName.setVisible(true);
-                                cboxStatus.setVisible(true);
-                                btnCancel.setVisible(true);
-                                btnConfirm.setVisible(true);
-
-                                textSearch.setVisible(false);
-                                textCEName.setVisible(false);
-                                textCName.setVisible(false);
-                                tfCEName.setVisible(false);
-                                tfCName.setVisible(false);
-
-                                eq = equipment;
-
-                            });
+                    @Override
+                    public void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            setGraphic(actionButton);
                         }
-
-                        @Override
-                        public void updateItem(Void item, boolean empty) {
-                            super.updateItem(item, empty);
-                            if (empty) {
-                                setGraphic(null);
-                            } else {
-                                setGraphic(actionButton);
-                            }
-                        }
-
-                    });
-
+                    }
 
                 });
             }
-
-            @Override
-            public void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    setGraphic(editButton);
-                }
-            }
-
         });
-
 
         tcAdd.setCellFactory(tableColumn -> new TableCell<>() {
             private final Button addButton = new Button("Add new");
@@ -261,6 +267,11 @@ public class DoctorEquipmentController implements Initializable {
                     textCName.setVisible(false);
                     tfCEName.setVisible(false);
                     tfCName.setVisible(false);
+
+                    tcAdd.setVisible(false);
+                    tcEdit.setVisible(false);
+                    tcTransfer.setVisible(false);
+                    tcAction.setVisible(false);
 
                 });
 
@@ -292,24 +303,35 @@ public class DoctorEquipmentController implements Initializable {
 
                     tcEName.setCellValueFactory(new PropertyValueFactory<>("name"));
                     tcStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+                    tcClinicName.setCellValueFactory(new PropertyValueFactory<>("clinicName"));
 
-                    ArrayList<Equipment> equipments = new ArrayList<Equipment>();
+                    tcAdd.setVisible(false);
+                    tcEdit.setVisible(false);
+                    tcTransfer.setVisible(false);
+
                     try {
-                        equipments = Singleton.getClient().getEquipment();
+                        ArrayList<Equipment> equipments = Singleton.getClient().getEquipment();
                         equipments.removeAll(Singleton.getClient().getEquipmentByClinicId(clinic.getClinicId()));
+                        ArrayList<DoctorEquipmentController.EquipmentRow> equipmentRows = new ArrayList<>();
+
+                        for (Equipment equipmentTmp : equipments) {
+                            Clinic clinicTmp = Singleton.getClient().getClinic(equipmentTmp.getClinicId());
+                            equipmentRows.add(new DoctorEquipmentController.EquipmentRow(clinicTmp, equipmentTmp));
+                        }
+                        tvEquipment.getItems().clear();
+                        tvEquipment.getItems().addAll(equipmentRows);
                     } catch (Exception e) {
                         System.out.println("Error" + e.getMessage());
                     }
-                    tvEquipment.getItems().addAll(equipments);
 
-                    FilteredList<Equipment> filteredEquipments = new FilteredList<>(tvEquipment.getItems(), b -> true);
+                    FilteredList<EquipmentRow> filteredEquipments = new FilteredList<>(tvEquipment.getItems(), b -> true);
 
                     tfCEName.textProperty().addListener((observable, oldValue, newValue) -> {
                         filteredClinics.setPredicate(equipment -> {
                             if (newValue.isEmpty() || newValue.isBlank()) return true;
                             return equipment.getName().contains(newValue);
                         });
-                        SortedList<Equipment> sortedEquipments = new SortedList<>(filteredEquipments);
+                        SortedList<EquipmentRow> sortedEquipments = new SortedList<>(filteredEquipments);
                         sortedEquipments.comparatorProperty().bind(tvEquipment.comparatorProperty());
                         tvEquipment.setItems(sortedEquipments);
                     });
@@ -319,12 +341,12 @@ public class DoctorEquipmentController implements Initializable {
 
                         {
                             actionButton.setOnAction((ActionEvent event) -> {
-                                Equipment equipment = getTableView().getItems().get(getIndex());
+                                EquipmentRow equipmentRow = getTableView().getItems().get(getIndex());
 
-                                filteredEquipments.setPredicate(equipment2 -> equipment2.equals(equipment));
+                                filteredEquipments.setPredicate(equipment2 -> equipment2.equals(equipmentRow));
                                 tvEquipment.setItems(filteredEquipments);
 
-                                eq = equipment;
+                                eq = equipmentRow.getEquipment();
 
                                 eq.setClinicId(clinic.getClinicId());
                                 try {
@@ -442,7 +464,7 @@ public class DoctorEquipmentController implements Initializable {
     @FXML
     void btnConfirmClicked(ActionEvent event) throws IOException, InterruptedException {
         if (Objects.equals(btnConfirm.getText(), "Edit")) {
-            eq.setName(tfCEName.getText());
+            eq.setName(tfEName.getText());
             eq.setEquipmentStatus(EquipmentStatus.valueOf(cboxStatus.getValue().toString().toUpperCase(Locale.ROOT)));
             Singleton.getClient().updateEquipment(eq);
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorEquipment.fxml")));
@@ -459,6 +481,48 @@ public class DoctorEquipmentController implements Initializable {
             stage.show();
         }
 
+    }
+
+    public static class EquipmentRow {
+        private final String name;
+
+        private final String status;
+
+        private final String clinicName;
+
+        private final Clinic clinic;
+        private final Equipment equipment;
+
+
+        public EquipmentRow(Clinic clinic, Equipment equipment) {
+
+            this.name = equipment.getName();
+            this.clinicName = clinic.getName();
+            this.status = equipment.getEquipmentStatus().toString();
+            this.clinic = clinic;
+            this.equipment = equipment;
+
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public String getClinicName() {
+            return clinicName;
+        }
+
+        public Clinic getClinic() {
+            return clinic;
+        }
+
+        public Equipment getEquipment() {
+            return equipment;
+        }
     }
 
 }

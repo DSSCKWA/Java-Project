@@ -1,24 +1,20 @@
 package src.ui.moderator;
 
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.*;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import src.clinic.Clinic;
 import src.ui.Singleton;
-import src.users.Permissions;
-import src.users.User;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,206 +22,191 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class ModeratorClinicsController  implements Initializable {
+public class ModeratorClinicsController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    private Clinic clinic;
-    @FXML
-    private TextField tfAddress;
-    @FXML
-    private TextField tfCity;
-    @FXML
-    private TextField tfName;
-    @FXML
-    private Button btnCreate;
 
     @FXML
-    private Text textTitle;
+    private AnchorPane anchorPane2;
+
+    @FXML
+    private Button btnCreate;
 
     @FXML
     private Text tFaliure;
 
     @FXML
-    private VBox vBox1;
+    private Text textAddress;
 
     @FXML
-    private VBox vBox2;
+    private Text textCity;
 
     @FXML
-    private VBox vBox3;
+    private Text textName;
 
     @FXML
-    private AnchorPane anchorPane1;
-    @FXML
-    private AnchorPane anchorPane2;
+    private TableColumn<?, ?> tcAddress;
 
     @FXML
-    public void initialize(URL location, ResourceBundle resources){
+    private TableColumn<?, ?> tcCity;
 
-        tFaliure.setVisible(false);
+    @FXML
+    private TableColumn<Clinic, Void> tcDelete;
+
+    @FXML
+    private TableColumn<Clinic, Void> tcEdit;
+
+    @FXML
+    private TableColumn<?, ?> tcName;
+
+    @FXML
+    private TableView<Clinic> tvTable;
+
+    @FXML
+    private Text textTitle;
+
+    @FXML
+    private TextField tfAddress;
+
+    @FXML
+    private TextField tfCity;
+
+    @FXML
+    private TextField tfName;
+
+    public void initialize(URL location, ResourceBundle resources) {
+
+        tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tcCity.setCellValueFactory(new PropertyValueFactory<>("city"));
+        tcAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+
         ArrayList<Clinic> clinics = new ArrayList<Clinic>();
         try {
             clinics = Singleton.getClient().getClinics();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Error");
         }
-        int j=0;
-        for (Clinic cli : clinics ) {
-            Button x = new Button();
-            x.setPrefSize(vBox1.getPrefWidth(),40);
-            x.setText(cli.present());
-            System.out.println(cli.present());
-            x.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
-            vBox1.getChildren().add(x);
 
-            Button y = new Button("Edit");
-            y.setPrefSize(vBox2.getPrefWidth(),40);
-            y.setStyle("-fx-background-color: #A7E6EC;"+"-fx-border-color: black;"+"-fx-border-width: 1;"+"-fx-cursor: hand;");
-            vBox2.getChildren().add(y);
+        tvTable.getItems().addAll(clinics);
 
-            Button z = new Button("Delete");
-            z.setPrefSize(vBox3.getPrefWidth(),40);
-            z.setStyle("-fx-background-color: #F54465;"+"-fx-border-color: black;"+"-fx-border-width: 1;"+"-fx-cursor: hand;");
-            vBox3.getChildren().add(z);
+        FilteredList<Clinic> filteredClinics = new FilteredList<>(tvTable.getItems(), b -> true);
 
-            y.setOnAction((ActionEvent)->{
-                this.clinic=cli;
-                vBox1.getChildren().clear();
-                vBox2.getChildren().clear();
-                vBox3.getChildren().clear();
-                textTitle.setText("Clinic edition tool");
+        tcEdit.setCellFactory(tableColumn -> new TableCell<>() {
+            private final Button editButton = new Button("Edit");
 
-                Button xDel = new Button();
-                xDel.setPrefSize(vBox1.getPrefWidth(),40);
-                xDel.setText(clinic.present());
-                xDel.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
-                vBox1.getChildren().add(xDel);
+            {
+                editButton.setOnAction((ActionEvent event) -> {
+                    Clinic clinic = getTableView().getItems().get(getIndex());
 
-                btnCreate.setText("Edit");
-                btnCreate.setOnAction((ActionEvent event)-> {
-                    tFaliure.setVisible(true);
-                    if(!Objects.equals(tfName.getText(), "") && !Objects.equals(tfAddress.getText(), "") && !Objects.equals(tfCity.getText(), "")) {
-                        try {
-                            clinic.setName(tfName.getText());
-                            clinic.setCity(tfCity.getText());
-                            clinic.setAddress(tfAddress.getText());
-                            Singleton.getClient().updateClinic(clinic);
-                            System.out.println(clinic);
-                            System.out.println(clinic.present());
-                            tFaliure.setVisible(false);
-                            Text tSuccess = new Text(600, 114, "Success");
-                            anchorPane2.getChildren().add(tSuccess);
-                            wait(800);
-                            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorClinics.fxml")));
-                            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                            stage.setResizable(false);
-                            scene = new Scene(root);
-                            stage.setScene(scene);
-                            stage.show();
-                        } catch (Exception e) {
-                            System.out.println("Error");
+                    textTitle.setText("Clinic edition tool");
+                    btnCreate.setText("Edit");
+
+                    filteredClinics.setPredicate(clinic2 -> clinic2.equals(clinic));
+                    tvTable.setItems(filteredClinics);
+
+
+                    ///TODO: take this into outside actionListener
+                    btnCreate.setOnAction((ActionEvent event1) -> {
+                        tFaliure.setVisible(true);
+                        if (!Objects.equals(tfName.getText(), "") && !Objects.equals(tfAddress.getText(), "") && !Objects.equals(tfCity.getText(), "")) {
+                            try {
+                                clinic.setName(tfName.getText());
+                                clinic.setCity(tfCity.getText());
+                                clinic.setAddress(tfAddress.getText());
+                                Singleton.getClient().updateClinic(clinic);
+                                System.out.println(clinic);
+                                System.out.println(clinic.present());
+                                tFaliure.setVisible(false);
+                                Text tSuccess = new Text(600, 114, "Success");
+                                anchorPane2.getChildren().add(tSuccess);
+                                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics.fxml")));
+                                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                stage.setResizable(false);
+                                scene = new Scene(root);
+                                stage.setScene(scene);
+                                stage.show();
+                            } catch (Exception e) {
+                                System.out.println("Error");
+                            }
                         }
-                    }
+                    });
                 });
-            });
-            z.setOnAction((ActionEvent)->{
-                this.clinic=cli;
-                vBox1.getChildren().clear();
-                vBox2.getChildren().clear();
-                vBox3.getChildren().clear();
+            }
 
-                Button xDel = new Button();
-                xDel.setPrefSize(vBox1.getPrefWidth(),40);
-                xDel.setText(clinic.present());
-                xDel.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
-                vBox1.getChildren().add(xDel);
+            @Override
+            public void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(editButton);
+                }
+            }
 
-                Button yDel = new Button("Cancel");
-                yDel.setPrefSize(vBox2.getPrefWidth(),40);
-                yDel.setStyle("-fx-background-color: #A7E6EC;"+"-fx-border-color: black;"+"-fx-border-width: 1;"+"-fx-cursor: hand;");
-                vBox2.getChildren().add(yDel);
+        });
 
-                Button zDel = new Button("Delete");
-                zDel.setPrefSize(vBox3.getPrefWidth(),40);
-                zDel.setStyle("-fx-background-color: #F54465;"+"-fx-border-color: black;"+"-fx-border-width: 1;"+"-fx-cursor: hand;");
-                vBox3.getChildren().add(zDel);
 
-                anchorPane1.setPrefHeight(40);
-                vBox1.setPrefHeight(40);
-                vBox2.setPrefHeight(40);
-                vBox3.setPrefHeight(40);
+        tcDelete.setCellFactory(tableColumn -> new TableCell<>() {
+            private final Button deleteButton = new Button("Delete");
 
-                yDel.setOnAction((ActionEvent event)->{
-                    try {
-                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics.fxml")));
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                    stage.setResizable(false);
-                    scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
+            {
+                tFaliure.setVisible(false);
+
+                deleteButton.setOnAction((ActionEvent event) -> {
+                    Clinic clinic = getTableView().getItems().get(getIndex());
+
+                    textTitle.setText("Confirm Delete operation");
+                    textAddress.setVisible(false);
+                    textCity.setVisible(false);
+                    textName.setVisible(false);
+                    tfName.setVisible(false);
+                    tfCity.setVisible(false);
+                    tfAddress.setVisible(false);
+                    btnCreate.setText("Confirm");
+
+                    filteredClinics.setPredicate(clinic2 -> clinic2.equals(clinic));
+                    tvTable.setItems(filteredClinics);
+
+                    btnCreate.setOnAction((ActionEvent event1) -> {
+                        tFaliure.setVisible(true);
+                        if (!Objects.equals(tfName.getText(), "") && !Objects.equals(tfAddress.getText(), "") && !Objects.equals(tfCity.getText(), "")) {
+                            try {
+                                Singleton.getClient().deleteClinic(clinic.getClinicId());
+                                System.out.println(clinic);
+                                System.out.println(clinic.present());
+                                tFaliure.setText("Success");
+                                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics.fxml")));
+                                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                stage.setResizable(false);
+                                scene = new Scene(root);
+                                stage.setScene(scene);
+                                stage.show();
+                            } catch (Exception e) {
+                                System.out.println("Error");
+                            }
+                        }
+                    });
                 });
+            }
 
-                zDel.setOnAction((ActionEvent event)->{
-                    try {
-                        Singleton.getClient().deleteClinic(clinic.getClinicId());
-                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics.fxml")));
-                        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                        stage.setResizable(false);
-                        scene = new Scene(root);
-                        stage.setScene(scene);
-                        stage.show();
-                    } catch (Exception e) {
-                        ///TODO: maybe something
-                    }
-                });
+            @Override
+            public void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(deleteButton);
+                }
+            }
 
-            });
-            j++;
-        }
-
-        anchorPane1.setPrefHeight(j*40);
-        vBox1.setPrefHeight(j*40);
-        vBox2.setPrefHeight(j*40);
-        vBox3.setPrefHeight(j*40);
+        });
     }
 
     @FXML
     void btnClinicsClicked(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorClinics.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setResizable(false);
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void btnDoctorsClicked(ActionEvent event) throws IOException{
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorDoctors.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setResizable(false);
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-    @FXML
-    void btnLogOutClicked(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../login/login.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        stage.setResizable(false);
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    @FXML
-    void btnStartClicked(ActionEvent event) throws IOException{
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderator.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
@@ -236,28 +217,62 @@ public class ModeratorClinicsController  implements Initializable {
     void btnCreateClicked(ActionEvent event) {
 
         tFaliure.setVisible(true);
-        if(!Objects.equals(tfName.getText(), "") && !Objects.equals(tfAddress.getText(), "") && !Objects.equals(tfCity.getText(), "")) {
+        if (!Objects.equals(tfName.getText(), "") && !Objects.equals(tfAddress.getText(), "") && !Objects.equals(tfCity.getText(), "")) {
             try {
-
                 Singleton.getClient().addClinic(new Clinic(tfName.getText(), tfAddress.getText(), tfCity.getText()));
                 tFaliure.setVisible(false);
                 Text tSuccess = new Text(600, 114, "Success");
                 anchorPane2.getChildren().add(tSuccess);
-                wait(800);
                 root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorClinics.fxml")));
-                stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setResizable(false);
                 scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
-            } catch (Exception e) {
-
+            } catch (Exception ignored) {
             }
         }
 
     }
 
+    @FXML
+    void btnDoctorsClicked(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorDoctors.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void btnLogOutClicked(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../login/login.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void btnStartClicked(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderator.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void btnExpertiseClicked(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorExpertise.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }
-
-
-
