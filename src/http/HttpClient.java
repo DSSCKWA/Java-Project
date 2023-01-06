@@ -352,7 +352,7 @@ public class HttpClient {
 
     public ArrayList<Visit> getVisitsByDoctorId(int doctorId) throws IOException, InterruptedException {
         java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
-                .uri(java.net.URI.create(serverUrl + "/visits?doctor=" + doctorId))
+                .uri(java.net.URI.create(serverUrl + "/visits?doctorId=" + doctorId))
                 .timeout(Duration.ofMinutes(1))
                 .header("Content-Type", "application/json")
                 .GET()

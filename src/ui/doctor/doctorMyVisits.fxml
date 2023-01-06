@@ -2,14 +2,18 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.doctor.DoctorController">
+<HBox prefHeight="526.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.doctor.DoctorMyVisitsController">
     <children>
         <AnchorPane prefHeight="526.0" prefWidth="203.0">
             <children>
@@ -93,12 +97,69 @@
                 </VBox>
             </children>
         </AnchorPane>
-        <AnchorPane prefHeight="405.0" prefWidth="447.0">
+        <AnchorPane prefHeight="526.0" prefWidth="649.0">
             <children>
-                <VBox prefHeight="526.0" prefWidth="686.0">
+                <VBox prefHeight="526.0" prefWidth="667.0">
                     <children>
-                        <AnchorPane prefHeight="223.0" prefWidth="447.0" />
-                        <AnchorPane prefHeight="303.0" prefWidth="598.0" />
+                        <AnchorPane prefHeight="242.0" prefWidth="667.0">
+                            <children>
+                                <TableView fx:id="tvTable" layoutY="70.0" prefHeight="174.0" prefWidth="667.0">
+                                    <columns>
+                                        <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="67.20002591609955" prefWidth="67.20002591609955" text="Name" />
+                                        <TableColumn fx:id="tcSurname" maxWidth="300.0" minWidth="68.0" prefWidth="68.0" text="Surname" />
+                                        <TableColumn fx:id="tcDate" maxWidth="300.0" minWidth="76.800048828125" prefWidth="79.199951171875" text="Date" />
+                                        <TableColumn fx:id="tcTime" maxWidth="300.0" minWidth="60.7999267578125" prefWidth="91.99998474121094" text="Time" />
+                                        <TableColumn fx:id="tcStatus" maxWidth="300.0" minWidth="80.0" prefWidth="108.800048828125" text="Status" />
+                                        <TableColumn fx:id="tcRating" maxWidth="300.0" minWidth="63.199951171875" prefWidth="63.199951171875" text="Rating" />
+                                        <TableColumn fx:id="tcPick" maxWidth="300.0" minWidth="68.0" prefWidth="76.80001831054688" text="Pick Rating" />
+                                        <TableColumn fx:id="tcAction" maxWidth="300.0" minWidth="68.0" prefWidth="126.4000244140625" text="Action" />
+                                        <TableColumn fx:id="tcEdit" maxWidth="300.0" minWidth="68.0" prefWidth="126.4000244140625" text="Edit" />
+                                    </columns>
+                                </TableView>
+                                <DatePicker fx:id="dpDate" layoutX="29.0" layoutY="30.0" />
+                                <Text fx:id="txPickDate" layoutX="68.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pick new date" wrappingWidth="97.76092529296875">
+                                    <font>
+                                        <Font name="Arial" size="14.0" />
+                                    </font>
+                                </Text>
+                                <Text layoutX="292.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Visits" wrappingWidth="82.56097412109375">
+                                    <font>
+                                        <Font name="Arial" size="18.0" />
+                                    </font>
+                                </Text>
+                                <Button fx:id="btConfirm" layoutX="496.0" layoutY="30.0" mnemonicParsing="false" onAction="#btnConfirm" text="Confirm" />
+                                <Button fx:id="btCancel" layoutX="582.0" layoutY="30.0" mnemonicParsing="false" onAction="#btnCancel" text="Cancel" />
+                            </children>
+                        </AnchorPane>
+                  <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="282.0" prefWidth="667.0">
+                     <children>
+                        <TableView fx:id="tvTablePatients" layoutY="70.0" prefHeight="211.0" prefWidth="667.0">
+                           <columns>
+                              <TableColumn fx:id="tcNamePatient" maxWidth="300.0" minWidth="67.20002591609955" prefWidth="67.20002591609955" text="Name" />
+                              <TableColumn fx:id="tcSurnamePatient" maxWidth="300.0" minWidth="68.0" prefWidth="68.0" text="Surname" />
+                              <TableColumn fx:id="tcDatePatient" maxWidth="300.0" minWidth="76.800048828125" prefWidth="79.199951171875" text="Date" />
+                              <TableColumn fx:id="tcTimePatient" maxWidth="300.0" minWidth="60.7999267578125" prefWidth="91.99998474121094" text="Time" />
+                              <TableColumn fx:id="tcStatusPatient" maxWidth="300.0" minWidth="80.0" prefWidth="108.800048828125" text="Status" />
+                              <TableColumn fx:id="tcAcceptPatient" maxWidth="300.0" minWidth="63.199951171875" prefWidth="63.199951171875" text="Accept" />
+                              <TableColumn fx:id="tcActionPatient" maxWidth="300.0" minWidth="68.0" prefWidth="76.80001831054688" text="Action" />
+                              <TableColumn fx:id="tcEditPatient" maxWidth="300.0" minWidth="68.0" prefWidth="100.0" text="Edit" />
+                           </columns>
+                        </TableView>
+                        <DatePicker fx:id="dpDatePatient" layoutX="29.0" layoutY="30.0" />
+                        <Text fx:id="txPickDatePatient" layoutX="68.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pick new date" wrappingWidth="97.76092529296875">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="285.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Patients" wrappingWidth="97.76092529296875">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="btConfirmPatient" layoutX="496.0" layoutY="30.0" mnemonicParsing="false" onAction="#btnConfirmPatient" text="Confirm" />
+                        <Button fx:id="btCancelPatient" layoutX="582.0" layoutY="30.0" mnemonicParsing="false" onAction="#btnCancelPatient" text="Cancel" />
+                     </children>
+                  </AnchorPane>
                     </children>
                 </VBox>
             </children>
