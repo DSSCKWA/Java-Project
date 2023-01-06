@@ -45,11 +45,7 @@ public class Patient extends User {
         );
 
         VisitRepository db;
-        try {
-            db = new VisitRepository(new DBClient(true));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        db = new VisitRepository(new DBClient(true));
 
         db.insertVisit(vTable);
     }
@@ -68,11 +64,7 @@ public class Patient extends User {
         );
 
         VisitRepository db;
-        try {
-            db = new VisitRepository(new DBClient(true));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        db = new VisitRepository(new DBClient(true));
 
         db.updateVisit(vTable);
 
@@ -94,11 +86,7 @@ public class Patient extends User {
         );
 
         VisitRepository db;
-        try {
-            db = new VisitRepository(new DBClient(true));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        db = new VisitRepository(new DBClient(true));
 
         db.updateVisit(vTable);
 
@@ -120,11 +108,7 @@ public class Patient extends User {
         );
 
         VisitRepository db;
-        try {
-            db = new VisitRepository(new DBClient(true));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        db = new VisitRepository(new DBClient(true));
 
         db.updateVisit(vTable);
     }

@@ -4,10 +4,7 @@ import src.db.client.DBClient;
 import src.db.entities.*;
 import src.users.Doctor;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class DoctorRepository extends Repository {
@@ -58,7 +55,7 @@ public class DoctorRepository extends Repository {
     public ArrayList<DoctorEntity> getAllDoctors() {
         String query = "SELECT * FROM doctors";
         ArrayList<DoctorEntity> doctor = new ArrayList<>();
-        try (Statement stmt = client.getConnection().createStatement()) {
+        try (Connection connection = client.getConnection(); Statement stmt = connection.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 doctor.add(new DoctorEntity(
@@ -75,7 +72,7 @@ public class DoctorRepository extends Repository {
     public ArrayList<DoctorEntity> getDoctor(int doctorId) {
         String query = "SELECT * FROM doctors WHERE doctor_id = ?";
         ArrayList<DoctorEntity> expertises = new ArrayList<>();
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, doctorId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -93,7 +90,7 @@ public class DoctorRepository extends Repository {
     public DoctorEntity getDoctor(int doctorId, int clinicId) {
         String query = "SELECT * FROM doctors WHERE doctor_id = ? and clinic_id = ?";
         DoctorEntity doctor = new DoctorEntity();
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, doctorId);
             stmt.setInt(2, clinicId);
             ResultSet rs = stmt.executeQuery();
@@ -110,7 +107,7 @@ public class DoctorRepository extends Repository {
     public ArrayList<DoctorEntity> getDoctorByClinic(int clinicId) {
         String query = "SELECT * FROM doctors WHERE clinic_id = ?";
         ArrayList<DoctorEntity> doctors = new ArrayList<>();
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, clinicId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -127,7 +124,7 @@ public class DoctorRepository extends Repository {
 
     public void insertDoctor(DoctorEntity doctor) {
         String query = "INSERT INTO doctors(doctor_id, clinic_id) VALUES (?,?)";
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, doctor.getDoctorId());
             stmt.setInt(2, doctor.getClinicId());
             stmt.executeUpdate();
@@ -138,7 +135,7 @@ public class DoctorRepository extends Repository {
 
     public void deleteDoctorFromClinics(int doctorId) {
         String query = "DELETE FROM doctors where doctor_id = ?";
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, doctorId);
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -148,7 +145,7 @@ public class DoctorRepository extends Repository {
 
     public void deleteDoctorFromClinic(int doctorId, int clinicId) {
         String query = "DELETE FROM doctors where doctor_id = ? and clinic_id = ?";
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, doctorId);
             stmt.setInt(2, clinicId);
             stmt.executeUpdate();

@@ -16,20 +16,16 @@ public class DBClient_Test {
     public static void main(String[] args) {
         int clinicId = 0;
         ClinicEntity clinic = new ClinicEntity("name", "street name", "city name");
-        try {
-            DBClient dbClientAutoCommit = new DBClient(true);
-            ClinicRepository clinicRepository = new ClinicRepository(dbClientAutoCommit);
-            clinicId = clinicRepository.insertClinic(clinic);
-            clinic.setClinicId(clinicId);
-            System.out.println(clinicRepository.getAllClinics());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        DBClient dbClientAutoCommit = new DBClient(true);
+        ClinicRepository clinicRepository = new ClinicRepository(dbClientAutoCommit);
+        clinicId = clinicRepository.insertClinic(clinic);
+        clinic.setClinicId(clinicId);
+        System.out.println(clinicRepository.getAllClinics());
 
         try {
             DBClient dbClientNoAutoCommit = new DBClient(false);
             UserRepository userRepository = new UserRepository(dbClientNoAutoCommit);
-            ClinicRepository clinicRepository = new ClinicRepository(dbClientNoAutoCommit);
+            clinicRepository = new ClinicRepository(dbClientNoAutoCommit);
             DoctorRepository doctorRepository = new DoctorRepository(dbClientNoAutoCommit);
             ExpertiseRepository expertiseRepository = new ExpertiseRepository(dbClientNoAutoCommit);
             clinic.setAddress("updated address");

@@ -22,11 +22,7 @@ public class VisitService {
     private static final DBClient dbClient;
 
     static {
-        try {
-            dbClient = new DBClient(true);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        dbClient = new DBClient(true);
     }
 
     private static final VisitRepository visitRepository = new VisitRepository(dbClient);

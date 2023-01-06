@@ -17,11 +17,7 @@ public class ExpertiseService {
     private static final DBClient dbClient;
 
     static {
-        try {
-            dbClient = new DBClient(true);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        dbClient = new DBClient(true);
     }
 
     private static final ExpertiseRepository expertiseRepository = new ExpertiseRepository(dbClient);

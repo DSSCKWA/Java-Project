@@ -20,12 +20,13 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class HttpClient {
     private final String serverUrl;
     private final java.net.http.HttpClient httpClient;
-    private final Gson g = GsonConverter.newGsonReaderConverter();
+    private final Gson g = GsonConverter.newGsonRWConverter();
 
     public HttpClient(String serverUrl) {
         this.serverUrl = serverUrl;
@@ -288,7 +289,19 @@ public class HttpClient {
 
     public boolean addVisit(Visit visit) throws IOException, InterruptedException {
 
-        String json = g.toJson(visit);
+        HashMap<String, String> newVisit = new HashMap<>();
+        newVisit.put("date", visit.getDate().toString());
+        newVisit.put("time", visit.getTime().toString());
+        newVisit.put("duration", Integer.toString(visit.getDuration()));
+        newVisit.put("doctorId", Integer.toString(visit.getDoctor().getId()));
+        newVisit.put("clientId", Integer.toString(visit.getPatient().getId()));
+        newVisit.put("rating", Integer.toString(visit.getRating()));
+        newVisit.put("visitStatus", visit.getVisitStatus().toString());
+
+        String json = g.toJson(newVisit);
+
+        System.out.println(json);
+
         java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
                 .uri(java.net.URI.create(serverUrl + "/visits"))
                 .timeout(Duration.ofMinutes(1))
@@ -301,7 +314,16 @@ public class HttpClient {
 
     public boolean updateVisit(Visit visit) throws IOException, InterruptedException {
 
-        String json = g.toJson(visit);
+        HashMap<String, String> updatedVisit = new HashMap<>();
+        updatedVisit.put("date", visit.getDate().toString());
+        updatedVisit.put("time", visit.getTime().toString());
+        updatedVisit.put("duration", Integer.toString(visit.getDuration()));
+        updatedVisit.put("doctorId", Integer.toString(visit.getDoctor().getId()));
+        updatedVisit.put("clientId", Integer.toString(visit.getPatient().getId()));
+        updatedVisit.put("rating", Integer.toString(visit.getRating()));
+        updatedVisit.put("visitStatus", visit.getVisitStatus().toString());
+
+        String json = g.toJson(updatedVisit);
         java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
                 .uri(java.net.URI.create(serverUrl + "/visits/" + visit.getVisitId()))
                 .timeout(Duration.ofMinutes(1))
@@ -397,7 +419,7 @@ public class HttpClient {
 
     public boolean addDoctorToClinic(int doctorId, int clinicId) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(serverUrl + "/doctors/" ))
+                .uri(URI.create(serverUrl + "/doctors/"))
                 .timeout(Duration.ofMinutes(1))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString("{\"doctorId\":" + doctorId + ",\"clinicId\":" + clinicId + "}"))
@@ -479,7 +501,7 @@ public class HttpClient {
 
     public boolean addExpertise(int doctorId, String areaOfExpertise) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(serverUrl + "/expertises/" ))
+                .uri(URI.create(serverUrl + "/expertises/"))
                 .timeout(Duration.ofMinutes(1))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString("{\"doctorId\":" + doctorId + ",\"areaOfExpertise\":\"" + areaOfExpertise + "\"}"))

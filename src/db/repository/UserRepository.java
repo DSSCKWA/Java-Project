@@ -5,10 +5,7 @@ import src.db.entities.UserEntity;
 import src.users.Permissions;
 import src.users.User;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -42,7 +39,7 @@ public class UserRepository extends Repository {
     public ArrayList<UserEntity> getAllUsers() {
         String query = "SELECT * FROM users";
         ArrayList<UserEntity> users = new ArrayList<>();
-        try (Statement stmt = client.getConnection().createStatement()) {
+        try (Connection connection = client.getConnection(); Statement stmt = connection.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 users.add(new UserEntity(
@@ -66,7 +63,7 @@ public class UserRepository extends Repository {
     public ArrayList<UserEntity> getUsersByPermissions(Permissions permissions) {
         String query = "SELECT * FROM users WHERE permissions = ?";
         ArrayList<UserEntity> users = new ArrayList<>();
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, permissions.toString().toLowerCase(Locale.ROOT));
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -91,7 +88,7 @@ public class UserRepository extends Repository {
     public UserEntity getUser(int userId) {
         String query = "SELECT * FROM users WHERE user_id = ?";
         UserEntity user = new UserEntity();
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, userId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -114,7 +111,7 @@ public class UserRepository extends Repository {
     public UserEntity getUser(String email) {
         String query = "SELECT * FROM users WHERE email = ?";
         UserEntity user = new UserEntity();
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, email);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -137,7 +134,7 @@ public class UserRepository extends Repository {
     public int insertUser(UserEntity user) {
         String query = "INSERT INTO users(name,surname,address,city,phone_number,email,password,permissions) VALUES (?,?,?,?,?,?,?,?)";
         int userId = 0;
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, user.getName());
             stmt.setString(2, user.getSurname());
             stmt.setString(3, user.getAddress());
@@ -161,7 +158,7 @@ public class UserRepository extends Repository {
 
     public void updateUser(UserEntity user) {
         String query = "UPDATE users SET name = ?, surname = ?, address = ?, city = ?, phone_number = ?, email = ?, password = ?, permissions = ? WHERE user_id = ?";
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, user.getName());
             stmt.setString(2, user.getSurname());
             stmt.setString(3, user.getAddress());
@@ -179,7 +176,7 @@ public class UserRepository extends Repository {
 
     public void deleteUserById(int userId) {
         String query = "DELETE FROM users where user_id = ?";
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, userId);
             stmt.executeUpdate();
         } catch (SQLException e) {

@@ -68,11 +68,7 @@ public class Clinic {
         this.name = name;
         this.address = address;
         this.city = city;
-        try {
-            dbClientAutoCommit = new DBClient(true);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        dbClientAutoCommit = new DBClient(true);
     }
 
     public Clinic(int clinicId, String name, String address, String city) {
@@ -80,11 +76,7 @@ public class Clinic {
         this.name = name;
         this.address = address;
         this.city = city;
-        try {
-            dbClientAutoCommit = new DBClient(true);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        dbClientAutoCommit = new DBClient(true);
     }
     //</editor-fold>
 
@@ -132,9 +124,10 @@ public class Clinic {
                 ", city='" + city + '\'' +
                 '}';
     }
+
     //</editor-fold>
     public String present() {
-        return "ID: "+ clinicId +
+        return "ID: " + clinicId +
                 " " + name + "  " + city + ": " + address;
     }
 }

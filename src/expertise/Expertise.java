@@ -37,11 +37,7 @@ public class Expertise {
     public Expertise(int doctorId, String expertise) {
         this.doctorId = doctorId;
         this.expertise = expertise;
-        try {
-            dbClientAutoCommit = new DBClient(true);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        dbClientAutoCommit = new DBClient(true);
     }
     //</editor-fold>
 
