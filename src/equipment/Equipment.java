@@ -55,6 +55,13 @@ public class Equipment {
         this.equipmentStatus = status;
         this.clinicId = clinicId;
     }
+
+    public Equipment(String name, EquipmentStatus status, int clinicId) {
+        this.equipmentId = 0;
+        this.name = name;
+        this.equipmentStatus = status;
+        this.clinicId = clinicId;
+    }
     //</editor-fold>
 
     //<editor-fold desc="Database Handling">

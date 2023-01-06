@@ -105,6 +105,8 @@ public class AdminClinicsController implements Initializable {
                     filteredClinics.setPredicate(clinic2 -> clinic2.equals(clinic));
                     tvTable.setItems(filteredClinics);
 
+
+                    ///TODO: take this into outside actionListener
                     btnCreate.setOnAction((ActionEvent event1) -> {
                         tFaliure.setVisible(true);
                         if (!Objects.equals(tfName.getText(), "") && !Objects.equals(tfAddress.getText(), "") && !Objects.equals(tfCity.getText(), "")) {
