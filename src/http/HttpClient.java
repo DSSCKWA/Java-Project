@@ -7,6 +7,8 @@ import src.equipment.Equipment;
 import src.expertise.Expertise;
 import src.gson.GsonConverter;
 import src.http.constants.HttpStatus;
+import src.http.service.DoctorService;
+import src.schedule.Schedule;
 import src.users.Doctor;
 import src.users.User;
 import src.visit.Visit;
@@ -18,10 +20,13 @@ import java.net.URLEncoder;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
+import java.time.DayOfWeek;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class HttpClient {
     private final String serverUrl;
@@ -347,7 +352,7 @@ public class HttpClient {
 
     public ArrayList<Visit> getVisitsByDoctorId(int doctorId) throws IOException, InterruptedException {
         java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
-                .uri(java.net.URI.create(serverUrl + "/visits?doctor=" + doctorId))
+                .uri(java.net.URI.create(serverUrl + "/visits?doctorId=" + doctorId))
                 .timeout(Duration.ofMinutes(1))
                 .header("Content-Type", "application/json")
                 .GET()
@@ -554,5 +559,131 @@ public class HttpClient {
         return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
+    public ArrayList<Schedule> getDoctorSchedule(int doctorId) throws IOException, InterruptedException {
+        java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                .uri(java.net.URI.create(serverUrl + "/schedules?doctorId=" + doctorId))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .GET()
+                .build();
+
+        java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        String res = response.body();
+        Type type = new TypeToken<ArrayList<Schedule>>() {
+        }.getType();
+        ArrayList<Schedule> schedules = g.fromJson(res, type);
+        return schedules;
+    }
+
+    public ArrayList<Schedule> getDoctorScheduleInClinic(int doctorId, int clinicId) {
+        ArrayList<Schedule> schedules = new ArrayList<>();
+        try {
+            java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                    .uri(java.net.URI.create(serverUrl + "/schedules?doctorId=" + doctorId + "&clinicId=" + clinicId))
+                    .timeout(Duration.ofMinutes(1))
+                    .header("Content-Type", "application/json")
+                    .GET()
+                    .build();
+
+            schedules = getSchedules(schedules, request);
+        } catch (IOException | InterruptedException ex) {
+            Logger.getLogger(DoctorService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return schedules;
+    }
+
+    private ArrayList<Schedule> getSchedules(ArrayList<Schedule> schedules, HttpRequest request) throws IOException, InterruptedException {
+        HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        String res = response.body();
+        Type type = new TypeToken<ArrayList<Schedule>>() {
+        }.getType();
+        schedules = g.fromJson(res, type);
+        return schedules;
+    }
+
+//    public ArrayList<Schedule> getDoctorScheduleByDay(int doctorId, int clinicId, DayOfWeek day) {
+//        ArrayList<Schedule> schedules = new ArrayList<>();
+//        try {
+//            java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+//                    .uri(java.net.URI.create(serverUrl + "/schedules?doctorId=" + doctorId + "&clinicId=" + clinicId + "&day=" + day))
+//                    .timeout(Duration.ofMinutes(1))
+//                    .header("Content-Type", "application/json")
+//                    .GET()
+//                    .build();
+//
+//            schedules = getSchedules(schedules, request);
+//        } catch (IOException | InterruptedException ex) {
+//            Logger.getLogger(DoctorService.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        return schedules;
+//    }
+
+    public Schedule getDoctorScheduleByDay(int doctorId, int clinicId, DayOfWeek day) {
+        try {
+            java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
+                    .uri(java.net.URI.create(serverUrl + "/schedules?doctorId=" + doctorId + "&clinicId=" + clinicId + "&day=" + day))
+                    .timeout(Duration.ofMinutes(1))
+                    .header("Content-Type", "application/json")
+                    .GET()
+                    .build();
+
+            HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+            String res = response.body();
+            Type type = new TypeToken<Schedule>() {
+            }.getType();
+            Schedule schedule = g.fromJson(res, type);
+            return schedule;
+        } catch (IOException | InterruptedException ex) {
+            Logger.getLogger(DoctorService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    public boolean addSchedule(Schedule schedule) throws IOException, InterruptedException {
+        String json = g.toJson(schedule);
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + "/schedules"))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(json))
+                .build();
+        HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        System.out.println(response.statusCode());
+        return response.statusCode() == HttpStatus.CREATED.getStatus();
+    }
+
+    public boolean updateSchedule(Schedule schedule) throws IOException, InterruptedException {
+        String json = g.toJson(schedule);
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + "/schedule"))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .method("PUT", HttpRequest.BodyPublishers.ofString(json))
+                .build();
+        HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() == HttpStatus.OK.getStatus();
+    }
+
+    public boolean removeDoctorSchedules(int doctorId) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + "/schedule?doctorId=" + doctorId))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .DELETE()
+                .build();
+        HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() == HttpStatus.OK.getStatus();
+    }
+
+    public boolean removeSchedule(int doctorId, int clinicId, DayOfWeek day) throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(serverUrl + "/schedule?doctorId=" + doctorId + "&clinicId=" + clinicId + "&day=" + day))
+                .timeout(Duration.ofMinutes(1))
+                .header("Content-Type", "application/json")
+                .DELETE()
+                .build();
+        HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        return response.statusCode() == HttpStatus.OK.getStatus();
+    }
 
 }

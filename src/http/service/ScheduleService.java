@@ -53,6 +53,7 @@ public class ScheduleService {
 
     public Schedule updateSchedule(Map<String, String> scheduleData) {
         //TODO validate data
+        System.out.println(scheduleData);
         ScheduleEntity scheduleEntity = toScheduleEntity(scheduleData);
         scheduleRepository.updateSchedule(scheduleEntity);
         return scheduleRepository.toSchedule(scheduleEntity);
@@ -72,8 +73,8 @@ public class ScheduleService {
                     Integer.parseInt(scheduleData.get("doctorId")),
                     Integer.parseInt(scheduleData.get("clinicId")),
                     DayOfWeek.valueOf(scheduleData.get("day").toUpperCase(Locale.ROOT)),
-                    LocalTime.parse(scheduleData.get("startHour")),
-                    LocalTime.parse(scheduleData.get("endHour"))
+                    LocalTime.parse(scheduleData.get("startTime")),
+                    LocalTime.parse(scheduleData.get("endTime"))
             );
         } catch (NumberFormatException e) {
             throw new HttpException(HttpStatus.BAD_REQUEST, "Invalid payload");
