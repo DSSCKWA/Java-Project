@@ -22,11 +22,7 @@ public class ExpertiseEntity {
     public ArrayList<ExpertiseEntity> getExpertiseEntityArrayListByDoctorId(int doctorId) {
         ExpertiseRepository db;
         this.doctorId = doctorId;
-        try {
-            db = new ExpertiseRepository(new DBClient(false));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        db = new ExpertiseRepository(new DBClient(false));
         return db.getExpertise(doctorId);
     }
 

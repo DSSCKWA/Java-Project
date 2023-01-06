@@ -5,10 +5,7 @@ import src.db.entities.EquipmentEntity;
 import src.equipment.Equipment;
 import src.equipment.EquipmentStatus;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -38,7 +35,7 @@ public class EquipmentRepository extends Repository {
     public ArrayList<EquipmentEntity> getAllEquipment() {
         String query = "SELECT * FROM equipment";
         ArrayList<EquipmentEntity> equipment = new ArrayList<>();
-        try (Statement stmt = client.getConnection().createStatement()) {
+        try (Connection connection = client.getConnection(); Statement stmt = connection.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 equipment.add(new EquipmentEntity(
@@ -57,7 +54,7 @@ public class EquipmentRepository extends Repository {
     public ArrayList<EquipmentEntity> getEquipmentByName(String name) {
         String query = "SELECT * FROM equipment WHERE name = ?";
         ArrayList<EquipmentEntity> equipment = new ArrayList<>();
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, name);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -77,7 +74,7 @@ public class EquipmentRepository extends Repository {
     public EquipmentEntity getEquipmentById(int equipmentId) {
         String query = "SELECT * FROM equipment WHERE equipment_id = ?";
         EquipmentEntity equipment = new EquipmentEntity();
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, equipmentId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -95,7 +92,7 @@ public class EquipmentRepository extends Repository {
     public ArrayList<EquipmentEntity> getEquipmentByClinicId(int clinicId) {
         String query = "SELECT * FROM equipment WHERE clinic_id = ?";
         ArrayList<EquipmentEntity> equipment = new ArrayList<>();
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, clinicId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -115,7 +112,7 @@ public class EquipmentRepository extends Repository {
     public int insertEquipment(EquipmentEntity equipment) {
         String query = "INSERT INTO equipment(name,status,clinic_id) VALUES (?,?,?)";
         int equipmentId = 0;
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, equipment.getName());
             stmt.setString(2, equipment.getStatus().toString().toLowerCase(Locale.ROOT));
             stmt.setInt(3, equipment.getClinicId());
@@ -134,7 +131,7 @@ public class EquipmentRepository extends Repository {
 
     public void updateEquipment(EquipmentEntity equipment) {
         String query = "UPDATE equipment SET name = ?, status = ?, clinic_id = ? WHERE equipment_id = ?";
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, equipment.getName());
             stmt.setString(2, equipment.getStatus().toString().toLowerCase(Locale.ROOT));
             stmt.setInt(3, equipment.getClinicId());
@@ -147,7 +144,7 @@ public class EquipmentRepository extends Repository {
 
     public void deleteEquipmentById(int equipmentId) {
         String query = "DELETE FROM equipment where equipment_id = ?";
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, equipmentId);
             stmt.executeUpdate();
         } catch (SQLException e) {

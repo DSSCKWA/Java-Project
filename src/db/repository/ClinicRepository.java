@@ -4,10 +4,7 @@ import src.clinic.Clinic;
 import src.db.client.DBClient;
 import src.db.entities.ClinicEntity;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ClinicRepository extends Repository {
@@ -35,7 +32,7 @@ public class ClinicRepository extends Repository {
     public ArrayList<ClinicEntity> getAllClinics() {
         String query = "SELECT * FROM clinics";
         ArrayList<ClinicEntity> clinics = new ArrayList<>();
-        try (Statement stmt = client.getConnection().createStatement()) {
+        try (Connection connection = client.getConnection(); Statement stmt = connection.createStatement()) {
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 clinics.add(new ClinicEntity(
@@ -54,7 +51,7 @@ public class ClinicRepository extends Repository {
     public ArrayList<ClinicEntity> getClinicsByAddress(String address) {
         String query = "SELECT * FROM clinics WHERE address = ?";
         ArrayList<ClinicEntity> clinics = new ArrayList<>();
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, address);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -74,7 +71,7 @@ public class ClinicRepository extends Repository {
     public ArrayList<ClinicEntity> getClinicsByCity(String city) {
         String query = "SELECT * FROM clinics WHERE city = ?";
         ArrayList<ClinicEntity> clinics = new ArrayList<>();
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, city);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -94,7 +91,7 @@ public class ClinicRepository extends Repository {
     public ClinicEntity getClinic(int clinicId) {
         String query = "SELECT * FROM clinics WHERE clinic_id = ?";
         ClinicEntity clinic = new ClinicEntity();
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, clinicId);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -112,7 +109,7 @@ public class ClinicRepository extends Repository {
     public int insertClinic(ClinicEntity clinic) {
         String query = "INSERT INTO clinics(name,address,city) VALUES (?,?,?)";
         int clinicId = 0;
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, clinic.getName());
             stmt.setString(2, clinic.getAddress());
             stmt.setString(3, clinic.getCity());
@@ -131,7 +128,7 @@ public class ClinicRepository extends Repository {
 
     public void updateClinic(ClinicEntity clinic) {
         String query = "UPDATE clinics SET name = ?, address = ?, city = ? WHERE clinic_id = ?";
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setString(1, clinic.getName());
             stmt.setString(2, clinic.getAddress());
             stmt.setString(3, clinic.getCity());
@@ -144,7 +141,7 @@ public class ClinicRepository extends Repository {
 
     public void deleteClinicById(int clinicId) {
         String query = "DELETE FROM clinics where clinic_id = ?";
-        try (PreparedStatement stmt = client.getConnection().prepareStatement(query)) {
+        try (Connection connection = client.getConnection(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, clinicId);
             stmt.executeUpdate();
         } catch (SQLException e) {

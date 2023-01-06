@@ -1,142 +1,151 @@
 package src.ui.patient;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
-        import javafx.fxml.FXML;
-        import javafx.fxml.FXMLLoader;
-        import javafx.fxml.Initializable;
-        import javafx.geometry.Insets;
-        import javafx.scene.Node;
-        import javafx.scene.Parent;
-        import javafx.scene.Scene;
-        import javafx.scene.control.*;
-        import javafx.scene.layout.*;
-        import javafx.scene.text.Text;
-        import javafx.stage.Stage;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import src.ui.Singleton;
+import src.users.Doctor;
+import src.users.Patient;
+import src.users.User;
 import src.visit.Visit;
+import src.visit.VisitStatus;
 
 import java.io.IOException;
-        import java.net.URL;
-        import java.util.ArrayList;
-        import java.util.Objects;
-        import java.util.ResourceBundle;
+import java.net.URL;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class PatientMyVisitsController  implements Initializable {
+public class PatientMyVisitsController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
     @FXML
-    private TextField tfExpertise;
+    private TableColumn<?, ?> tcDate;
 
     @FXML
-    private TextField tfCity;
+    private TableColumn<?, ?> tcName;
 
     @FXML
-    private Text textTitle;
-    @FXML
-    private DatePicker tfDate;
-    @FXML
-    private VBox vBox1;
-
-    private VBox vBox2;
+    private TableColumn<VisitRow, Void> tcRate;
 
     @FXML
-    private VBox vBox3;
+    private TableColumn<VisitRow, String> tcPick;
 
     @FXML
-    private AnchorPane anchorPane1;
+    private TableColumn<?, ?> tcRating;
 
     @FXML
-    public void initialize(URL location, ResourceBundle resources){
+    private TableColumn<?, ?> tcStatus;
 
-        ///TODO: client.getAllClinics()
-        ArrayList<Visit> visits = new ArrayList<>();
+    @FXML
+    private TableColumn<?, ?> tcSurname;
+
+    @FXML
+    private TableColumn<?, ?> tcTime;
+
+    @FXML
+    private TableView<VisitRow> tvTable;
+
+    @FXML
+    public void initialize(URL location, ResourceBundle resources) {
+        tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tcSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        tcDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        tcTime.setCellValueFactory(new PropertyValueFactory<>("time"));
+        tcStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        tcRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
         try {
-            visits = Singleton.getClient().getVisits();
-        } catch (IOException | InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        int j=0;
-        for(Visit vis : visits)
-        {
-            Button x = new Button();
-            x.setPrefSize(vBox1.getPrefWidth(),40);
-            x.setText(vis.present());
-            x.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
-            vBox1.getChildren().add(x);
+            final ArrayList<Visit> visits = Singleton.getClient().getVisitsByClientId(Singleton.getUser().getId());
+            ArrayList<VisitRow> visitRows = new ArrayList<>();
 
-            Button y = new Button(vis.getRating()+"/5");
-            y.setPrefSize(vBox2.getPrefWidth(),40);
-            y.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
-            vBox2.getChildren().add(y);
+            for (Visit visit : visits) {
+                Doctor doctor = Singleton.getClient().getDoctorById(visit.getDoctor().getId());
+                visitRows.add(new VisitRow(visit, doctor, Singleton.getUser()));
+            }
+            tvTable.getItems().addAll(visitRows);
 
-            Button z = new Button("Rate");
-            z.setPrefSize(vBox3.getPrefWidth(),40);
-            z.setStyle("-fx-background-color: #F54465;"+"-fx-border-color: black;"+"-fx-border-width: 1;"+"-fx-cursor: hand;");
-            vBox3.getChildren().add(z);
+            tcPick.setCellFactory(tableColumn -> new TableCell<>() {
+                private final ComboBox<String> rateBox = new ComboBox<>();
 
-            z.setOnAction((ActionEvent)->{
-                vBox1.getChildren().clear();
-                vBox2.getChildren().clear();
-                vBox3.getChildren().clear();
+                {
+                    rateBox.getItems().addAll("1", "2", "3", "4", "5");
+                    rateBox.setValue("5");
+                }
 
-                Button xDel = new Button();
-                xDel.setPrefSize(vBox1.getPrefWidth(),40);
-                xDel.setText(vis.present());
-                xDel.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
-                vBox1.getChildren().add(xDel);
-
-                ObservableList<String> options =
-                        FXCollections.observableArrayList(
-                                "1","2","3","4","5"
-                        );
-                ComboBox yDel = new ComboBox(options);
-                yDel.setPrefSize(vBox2.getPrefWidth(),40);
-                yDel.setStyle("-fx-background-color: #F54465;"+"-fx-border-color: black;"+"-fx-border-width: 1;"+"-fx-cursor: hand;");
-                vBox2.getChildren().add(yDel);
-
-                Button zDel = new Button("Confirm");
-                zDel.setPrefSize(vBox3.getPrefWidth(),40);
-                zDel.setStyle("-fx-background-color: #F54465;"+"-fx-border-color: black;"+"-fx-border-width: 1;"+"-fx-cursor: hand;");
-                vBox3.getChildren().add(zDel);
-
-                anchorPane1.setPrefHeight(40);
-                vBox1.setPrefHeight(40);
-                vBox2.setPrefHeight(40);
-                vBox3.setPrefHeight(40);
-
-                zDel.setOnAction((javafx.event.ActionEvent event)->{
-
-                    vis.setRating((int) yDel.getValue());
-
-                    try {
-                        Singleton.getClient().updateVisit(vis);
-                        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("patientMyVisits.fxml")));
-                        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                        stage.setResizable(false);
-                        scene = new Scene(root);
-                        stage.setScene(scene);
-                        stage.show();
-                    } catch (IOException | InterruptedException e) {
-                        throw new RuntimeException(e);
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        if (getTableView().getItems().get(getIndex()).status.equals(VisitStatus.COMPLETED.toString().toLowerCase())) {
+                            setGraphic(rateBox);
+                        } else {
+                            setGraphic(null);
+                        }
                     }
-                });
-
+                }
             });
-            j++;
+
+            tcRate.setCellFactory(tableColumn -> new TableCell<>() {
+                private final Button rateButton = new Button("Rate");
+
+                {
+                    rateButton.setOnAction((ActionEvent event) -> {
+                        try {
+                            VisitRow visitRow = getTableView().getItems().get(getIndex());
+                            Visit visit = visitRow.getVisit();
+
+                            visit.setRating(Integer.parseInt("0")); // TODO get value from combobox
+                            
+                            Singleton.getClient().updateVisit(visit);
+                            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("patientMyVisits.fxml")));
+                            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                            stage.setResizable(false);
+                            scene = new Scene(root);
+                            stage.setScene(scene);
+                            stage.show();
+                        } catch (IOException | InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+                }
+
+                @Override
+                public void updateItem(Void item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setGraphic(null);
+                    } else {
+                        if (getTableView().getItems().get(getIndex()).status.equals(VisitStatus.COMPLETED.toString().toLowerCase())) {
+                            setGraphic(rateButton);
+                        } else {
+                            setGraphic(null);
+                        }
+                    }
+                }
+            });
+
+        } catch (Exception e) {
+            System.out.println("Error " + e.getMessage());
         }
-        anchorPane1.setPrefHeight(j*40);
-        vBox1.setPrefHeight(j*40);
-        vBox1.setPrefHeight(j*40);
-        vBox3.setPrefHeight(j*40);
     }
 
     @FXML
     void btnMyVisitsClicked(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("patientMyVisits.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
@@ -144,32 +153,95 @@ public class PatientMyVisitsController  implements Initializable {
     }
 
     @FXML
-    void btnNewVisitClicked(ActionEvent event) throws IOException{
+    void btnNewVisitClicked(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("patientNewVisit.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
+
     @FXML
     void btnLogOutClicked(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../login/login.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
     @FXML
-    void btnStartClicked(ActionEvent event) throws Exception{
+    void btnStartClicked(ActionEvent event) throws Exception {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("patient.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
+
+    public static class VisitRow {
+        private final String name;
+        private final String surname;
+        private final String date;
+        private final String time;
+        private final String status;
+        private final String rating;
+        private final Doctor doctor;
+        private final Patient patient;
+        private final Visit visit;
+
+        public VisitRow(Visit visit, Doctor doctor, User patient) {
+
+            this.name = doctor.getName();
+            this.surname = doctor.getSurname();
+            this.date = visit.getDate().toString();
+            this.time = visit.getTime().toString() + "-" + visit.getTime().plusMinutes(visit.getDuration()).toString();
+
+            switch (visit.getVisitStatus()) {
+                case CANCELED_WAITING_APPROVAL, PENDING_WAITING_APPROVAL -> status = "awaiting approval";
+                default -> status = visit.getStatus().toString().toLowerCase();
+            }
+            this.rating = Integer.toString(visit.getRating());
+            this.doctor = doctor;
+            this.patient = new Patient(patient);
+            this.visit = visit;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getSurname() {
+            return surname;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        public String getTime() {
+            return time;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+        public String getRating() {
+            return rating;
+        }
+
+        public Doctor getDoctor() {
+            return doctor;
+        }
+
+        public Patient getPatient() {
+            return patient;
+        }
+
+        public Visit getVisit() {
+            return visit;
+        }
+    }
 }
-
-
-

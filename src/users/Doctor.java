@@ -58,11 +58,7 @@ public class Doctor extends User {
         this.doctorClinics = new ArrayList<>();
         this.doctorSchedules = new ArrayList<>();
         this.doctorExpertise = new ArrayList<>();
-        try {
-            dbClientAutoCommit = new DBClient(true);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        dbClientAutoCommit = new DBClient(true);
     }
     //<editor-fold desc="Getters">
 

@@ -44,11 +44,7 @@ public class UserEntity {
     public UserEntity getUserEntityByUserId(int userId) {
         UserRepository db;
         this.userId = userId;
-        try {
-            db = new UserRepository(new DBClient(false));
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        db = new UserRepository(new DBClient(false));
         return db.getUser(userId);
     }
 
