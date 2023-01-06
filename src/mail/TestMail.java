@@ -1,5 +1,6 @@
 package src.mail;
 
+import src.config.Config;
 import src.users.Doctor;
 import src.users.Patient;
 import src.users.Permissions;
@@ -11,7 +12,8 @@ import java.time.LocalTime;
 
 public class TestMail {
     public static void main(String[] args) {
-        Mail mail = new Mail("dssckwabot@gmail.com", "Delta Szwadron Super Cool Komando Wilków Alfa Bot", "");
+        Config config = Config.getConfig();
+        Mail mail = new Mail(config.getEmail(), config.getSender(), config.getPassword());
 //        mail.sendEmail("dawidgorski0000@gmail.com", "Test subject", "Test email message");
         LocalDate date = LocalDate.of(2022, 12, 14);
         LocalTime time = LocalTime.of(14, 00);

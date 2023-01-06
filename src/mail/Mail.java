@@ -61,6 +61,12 @@ public class Mail {
         return false;
     }
 
+    public void userCreated(User user) {
+        String subject = "Welcome " + user.getName() + " " + user.getSurname();
+        String message = "Hello " + user.getName() + " " + user.getSurname() + "! \n\n You account has been successfully created.";
+        this.sendEmail(user.getEmail(), subject, message);
+    }
+
     public void visitReminder(Visit visit) {
         String subject = "Upcoming medical appointment on " + visit.getDate();
         String message = "Hello " + visit.getPatient().getName() + " " + visit.getPatient().getSurname() + "! \n\nWe would like to remind you about the upcoming visit to " + visit.getDoctor().getName() + " " + visit.getDoctor().getSurname() + " doctor. The visit will take place on " + visit.getDate() + " at " + visit.getTime() + ".\nRemember to change the date of your visit if the current one does not suit you.";

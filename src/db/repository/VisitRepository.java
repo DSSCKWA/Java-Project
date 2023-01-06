@@ -63,6 +63,29 @@ public class VisitRepository extends Repository {
         return visits;
     }
 
+    public ArrayList<VisitEntity> getAllUncompletedVisits() {
+        String query = "SELECT * FROM visits where status != 'completed'";
+        ArrayList<VisitEntity> visits = new ArrayList<>();
+        try (Statement stmt = client.getConnection().createStatement()) {
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                visits.add(new VisitEntity(
+                        rs.getInt("visit_id"),
+                        VisitStatus.valueOf(rs.getString("status").toUpperCase(Locale.ROOT)),
+                        rs.getDate("date").toLocalDate(),
+                        rs.getTime("time").toLocalTime(),
+                        rs.getInt("duration"),
+                        rs.getInt("client_id"),
+                        rs.getInt("doctor_id"),
+                        rs.getInt("rating")
+                ));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return visits;
+    }
+
     public VisitEntity getVisitByVisitId(int visitId) {
         String query = "SELECT * FROM visits WHERE visit_id = ?";
         VisitEntity visit = new VisitEntity();
