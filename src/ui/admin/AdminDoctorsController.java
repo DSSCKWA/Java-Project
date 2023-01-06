@@ -1,5 +1,7 @@
 package src.ui.admin;
 
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,8 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -18,6 +20,7 @@ import src.ui.Singleton;
 import src.users.Doctor;
 import src.users.User;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -29,6 +32,40 @@ public class AdminDoctorsController implements Initializable {
     private Scene scene;
     private Parent root;
     private Doctor user;
+
+    @FXML
+    private Button btnCancel;
+    @FXML
+    private TableView<Clinic> tvClinic;
+    @FXML
+    private TableView<Doctor> tvDoctor;
+
+    @FXML
+    private TableColumn<Clinic, Void> tcAR;
+
+    @FXML
+    private TableColumn<Doctor, Void> tcAdd;
+
+    @FXML
+    private TableColumn<?, ?> tcCAddress;
+
+    @FXML
+    private TableColumn<?, ?> tcCCity;
+
+    @FXML
+    private TableColumn<?, ?> tcCName;
+
+    @FXML
+    private TableColumn<?, ?> tcEmail;
+
+    @FXML
+    private TableColumn<?, ?> tcName;
+
+    @FXML
+    private TableColumn<Doctor, Void> tcRemove;
+
+    @FXML
+    private TableColumn<?, ?> tcSurname;
     @FXML
     private AnchorPane anchorPane1;
 
@@ -59,135 +96,219 @@ public class AdminDoctorsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ///TODO:unlock after adding method httpClient.getDoctors() or httpClient.getUsersByPermission(Permission permission)
-        ///TODO: but first finnish this, cuz it aint even halfway there bruv
+        btnCancel.setVisible(false);
+        tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tcSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        tcEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+
         ArrayList<Doctor> doctors = new ArrayList<Doctor>();
         try {
-            ///TODO: uncomment when added
-            //doctors = Singleton.getClient().getDoctors();
-        }catch(Exception e){
+            doctors = Singleton.getClient().getDoctors();
+        } catch (Exception e) {
             System.out.println("Error");
         }
-        int j=0;
-        for (Doctor usr : doctors ) {
-            Button x = new Button();
-            x.setPrefSize(vBox1.getPrefWidth(),40);
-            x.setText(usr.present());
-            System.out.println(usr.present());
-            x.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
-            vBox1.getChildren().add(x);
+        int j = 0;
+        tvDoctor.getItems().addAll(doctors);
 
-            Button y = new Button("Add to clinic");
-            y.setPrefSize(vBox2.getPrefWidth(),40);
-            y.setStyle("-fx-background-color: #A7E6EC;"+"-fx-border-color: black;"+"-fx-border-width: 1;"+"-fx-cursor: hand;");
-            vBox2.getChildren().add(y);
+        FilteredList<Doctor> filteredDoctors = new FilteredList<>(tvDoctor.getItems(), b -> true);
 
-            Button z = new Button("Remove from clinic");
-            z.setPrefSize(vBox3.getPrefWidth(),40);
-            z.setStyle("-fx-background-color: #F54465;"+"-fx-border-color: black;"+"-fx-border-width: 1;"+"-fx-cursor: hand;");
-            vBox3.getChildren().add(z);
-
-            y.setOnAction((ActionEvent)->{
-                this.user=usr;
-                tDoctorData.setText("Clinic Data");
-                vBox1.getChildren().clear();
-                vBox2.getChildren().clear();
-                vBox3.getChildren().clear();
-                ArrayList<Clinic> clinics = null;
-                try {
-                    clinics = Singleton.getClient().getClinics();
-                } catch (IOException | InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                ArrayList<Clinic> clinics1 = user.getDoctorClinics();
-                clinics.removeAll(clinics1);
-
-                int g=0;
-                for (Clinic cli : clinics ) {
-                    Button x1 = new Button();
-                    x1.setPrefSize(vBox1.getPrefWidth(), 40);
-                    x1.setText(cli.present());
-                    System.out.println(cli.present());
-                    x1.setStyle("-fx-background-color: transparent;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
-                    vBox1.getChildren().add(x);
-
-                    Button y1 = new Button("");
-                    y1.setPrefSize(vBox2.getPrefWidth(), 40);
-                    y1.setStyle("-fx-background-color: transparent;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
-                    vBox2.getChildren().add(y);
-
-                    Button z1 = new Button("Add");
-                    z1.setPrefSize(vBox3.getPrefWidth(), 40);
-                    z1.setStyle("-fx-background-color: #F54465;" + "-fx-border-color: black;" + "-fx-border-width: 1;" + "-fx-cursor: hand;");
-                    vBox3.getChildren().add(z);
-                    g++;
-
-                    z1.setOnAction((ActionEvent event1)->{
-                        ///TODO: https request to add new Doctor-Clinic connection
-                    });
-                }
-                anchorPane1.setPrefHeight(g*40);
-                vBox1.setPrefHeight(g*40);
-                vBox2.setPrefHeight(g*40);
-                vBox3.setPrefHeight(g*40);
+        tfSurname.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredDoctors.setPredicate(doctor -> {
+                if (newValue.isEmpty() || newValue.isBlank()) return doctor.getName().contains(tfName.getText());
+                return doctor.getSurname().contains(newValue) && doctor.getName().contains(tfName.getText());
             });
+            SortedList<Doctor> sortedDoctors = new SortedList<>(filteredDoctors);
+            sortedDoctors.comparatorProperty().bind(tvDoctor.comparatorProperty());
+            tvDoctor.setItems(sortedDoctors);
 
-            z.setOnAction((ActionEvent)->{
-                this.user=usr;
-                tDoctorData.setText("Clinic Data");
-                vBox1.getChildren().clear();
-                vBox2.getChildren().clear();
-                vBox3.getChildren().clear();
+        });
 
-                ArrayList<Clinic> clinics = user.getDoctorClinics();
 
-                int g=0;
-                for (Clinic cli : clinics ) {
-                    Button x1 = new Button();
-                    x1.setPrefSize(vBox1.getPrefWidth(), 40);
-                    x1.setText(cli.present());
-                    System.out.println(cli.present());
-                    x1.setStyle("-fx-background-color: transparent;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
-                    vBox1.getChildren().add(x);
+        tfName.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredDoctors.setPredicate(doctor -> {
+                if (newValue.isEmpty() || newValue.isBlank()) return doctor.getSurname().contains(tfSurname.getText());
+                return doctor.getName().contains(newValue) && doctor.getSurname().contains(tfSurname.getText());
+            });
+            SortedList<Doctor> sortedDoctors = new SortedList<>(filteredDoctors);
+            sortedDoctors.comparatorProperty().bind(tvDoctor.comparatorProperty());
+            tvDoctor.setItems(sortedDoctors);
+        });
 
-                    Button y1 = new Button("");
-                    y1.setPrefSize(vBox2.getPrefWidth(), 40);
-                    y1.setStyle("-fx-background-color: transparent;" + "-fx-border-color: black;" + "-fx-border-width: 1;");
-                    vBox2.getChildren().add(y);
+        tcAdd.setCellFactory(tableColumn -> new TableCell<>() {
+            private final Button addButton = new Button("Add");
 
-                    Button z1 = new Button("Remove");
-                    z1.setPrefSize(vBox3.getPrefWidth(), 40);
-                    z1.setStyle("-fx-background-color: #F54465;" + "-fx-border-color: black;" + "-fx-border-width: 1;" + "-fx-cursor: hand;");
-                    vBox3.getChildren().add(z);
+            {
+                addButton.setOnAction((ActionEvent event) -> {
+                    Doctor doctor = getTableView().getItems().get(getIndex());
 
-                    z1.setOnAction((ActionEvent event1)->{
-                        ///TODO: https request to remove Doctor-Clinic connection (only if possble)
+                    tcAdd.setVisible(false);
+                    tcRemove.setVisible(false);
+                    btnCancel.setVisible(true);
+
+                    filteredDoctors.setPredicate(doctor2 -> doctor2.equals(doctor));
+                    tvDoctor.setItems(filteredDoctors);
+
+
+                    tcCAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+                    tcCCity.setCellValueFactory(new PropertyValueFactory<>("city"));
+                    tcCName.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+                    ArrayList<Clinic> clinics = new ArrayList<Clinic>();
+                    try {
+                        ArrayList<Clinic> rnd = doctor.getDoctorClinics();
+                        clinics = Singleton.getClient().getClinics();
+                        clinics.removeAll(rnd);
+                    } catch (Exception e) {
+                        System.out.println("Error");
+                    }
+                    int j = 0;
+                    tvClinic.getItems().addAll(clinics);
+
+                    FilteredList<Clinic> filteredClinics = new FilteredList<>(tvClinic.getItems(), b -> true);
+                    addButton.setVisible(false);
+
+                    tcAR.setCellFactory(tableColumn -> new TableCell<>() {
+                        private final Button addCButton = new Button("Add");
+
+                        {
+                            addCButton.setOnAction((ActionEvent event) -> {
+                                Clinic clinic = getTableView().getItems().get(getIndex());
+
+                                filteredClinics.setPredicate(clinic2 -> clinic2.equals(clinic));
+                                tvClinic.setItems(filteredClinics);
+
+                                try {
+                                    Singleton.getClient().addDoctorToClinic(doctor.getId(), clinic.getClinicId());
+                                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminDoctors.fxml")));
+                                    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                    stage.setResizable(false);
+                                    scene = new Scene(root);
+                                    stage.setScene(scene);
+                                    stage.show();
+                                } catch (IOException | InterruptedException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void updateItem(Void item, boolean empty) {
+                            super.updateItem(item, empty);
+                            if (empty) {
+                                setGraphic(null);
+                            } else {
+                                setGraphic(addCButton);
+                            }
+                        }
+
                     });
 
-                    g++;
-                }
-                anchorPane1.setPrefHeight(g*40);
-                vBox1.setPrefHeight(g*40);
-                vBox2.setPrefHeight(g*40);
-                vBox3.setPrefHeight(g*40);
+
                 });
+            }
+
+            @Override
+            public void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(addButton);
+                }
+            }
+
+        });
 
 
-            j++;
-        }
-        anchorPane1.setPrefHeight(j*40);
-        vBox1.setPrefHeight(j*40);
-        vBox2.setPrefHeight(j*40);
-        vBox3.setPrefHeight(j*40);
+        tcRemove.setCellFactory(tableColumn -> new TableCell<>() {
+            private final Button removeButton = new Button("Remove");
+
+            {
+                removeButton.setOnAction((ActionEvent event) -> {
+                    removeButton.setVisible(false);
+                    tcAdd.setVisible(false);
+                    tcRemove.setVisible(false);
+                    btnCancel.setVisible(true);
+                    Doctor doctor = getTableView().getItems().get(getIndex());
+
+                    filteredDoctors.setPredicate(doctor2 -> doctor2.equals(doctor));
+                    tvDoctor.setItems(filteredDoctors);
+
+
+                    tcCAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+                    tcCCity.setCellValueFactory(new PropertyValueFactory<>("city"));
+                    tcCName.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+                    ArrayList<Clinic> clinics = new ArrayList<Clinic>();
+                    try {
+                        clinics = doctor.getDoctorClinics();
+                    } catch (Exception e) {
+                        System.out.println("Error");
+                    }
+                    int j = 0;
+                    tvClinic.getItems().addAll(clinics);
+
+                    FilteredList<Clinic> filteredClinics = new FilteredList<>(tvClinic.getItems(), b -> true);
+
+
+                    tcAR.setCellFactory(tableColumn -> new TableCell<>() {
+                        private final Button removeCButton = new Button("Remove");
+
+                        {
+                            removeCButton.setOnAction((ActionEvent event) -> {
+                                Clinic clinic = getTableView().getItems().get(getIndex());
+
+                                filteredClinics.setPredicate(clinic2 -> clinic2.equals(clinic));
+                                tvClinic.setItems(filteredClinics);
+
+                                try {
+                                    Singleton.getClient().removeDoctorFromClinic(doctor.getId(), clinic.getClinicId());
+                                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminDoctors.fxml")));
+                                    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                                    stage.setResizable(false);
+                                    scene = new Scene(root);
+                                    stage.setScene(scene);
+                                    stage.show();
+                                } catch (IOException | InterruptedException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            });
+                        }
+
+                        @Override
+                        public void updateItem(Void item, boolean empty) {
+                            super.updateItem(item, empty);
+                            if (empty) {
+                                setGraphic(null);
+                            } else {
+                                setGraphic(removeCButton);
+                            }
+                        }
+
+                    });
+
+
+                });
+            }
+
+            @Override
+            public void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(removeButton);
+                }
+            }
+
+        });
     }
-
-
 
 
     @FXML
     void btnClinicsClicked(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
@@ -195,9 +316,9 @@ public class AdminDoctorsController implements Initializable {
     }
 
     @FXML
-    void btnDoctorsClicked(ActionEvent event) throws IOException{
+    void btnDoctorsClicked(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminDoctors.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
@@ -207,16 +328,16 @@ public class AdminDoctorsController implements Initializable {
     @FXML
     void btnLogOutClicked(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../login/login.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
     @FXML
-    void btnStartClicked(ActionEvent event) throws IOException{
+    void btnStartClicked(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("admin.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
@@ -224,9 +345,9 @@ public class AdminDoctorsController implements Initializable {
     }
 
     @FXML
-    void btnUsersClicked(ActionEvent event) throws IOException{
+    void btnUsersClicked(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminUsers.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
@@ -234,10 +355,14 @@ public class AdminDoctorsController implements Initializable {
     }
 
     @FXML
-    void btnFindClicked(ActionEvent event) {
-
+    void btnCancelClicked(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminDoctors.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
-
 
 }
 
