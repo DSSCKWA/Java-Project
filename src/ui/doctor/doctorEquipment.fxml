@@ -2,6 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -98,15 +101,52 @@
             <children>
                 <VBox prefHeight="526.0" prefWidth="686.0">
                     <children>
-                        <AnchorPane prefHeight="148.0" prefWidth="686.0">
+                        <AnchorPane prefHeight="137.0" prefWidth="686.0">
                      <children>
-                        <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Engine">
+                        <Text fx:id="textSearch" layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Engine">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Text>
+                        <Text fx:id="textCName" layoutX="32.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clinic Name:" />
+                        <Text fx:id="textCEName" layoutX="32.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipment Name:" />
+                        <TextField fx:id="tfCEName" layoutX="132.0" layoutY="48.0" />
+                        <TextField fx:id="tfCName" layoutX="132.0" layoutY="82.0" />
+                        <Text fx:id="textCreate" layoutX="317.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Creation Tool">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="textEName" layoutX="317.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipment Name:" />
+                        <TextField fx:id="tfEName" layoutX="425.0" layoutY="48.0" />
+                        <Text fx:id="textEStatus" layoutX="317.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status:" />
+                        <TextField fx:id="tfEStatus" layoutX="425.0" layoutY="82.0" />
+                        <Button fx:id="btnConfirm" layoutX="604.0" layoutY="48.0" mnemonicParsing="false" onAction="#btnConfirmClicked" text="Confirm" />
+                        <Button fx:id="btnCancel" layoutX="604.0" layoutY="82.0" mnemonicParsing="false" onAction="#btnCancelClicked" prefHeight="26.0" prefWidth="59.0" text="Cancel" />
                      </children></AnchorPane>
-                        <AnchorPane prefHeight="303.0" prefWidth="598.0" />
+                        <AnchorPane prefHeight="241.0" prefWidth="686.0">
+                     <children>
+                        <TableView layoutX="4.0" layoutY="-2.0" prefHeight="214.0" prefWidth="678.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="Name" />
+                            <TableColumn prefWidth="75.0" text="City" />
+                              <TableColumn prefWidth="75.0" text="Address" />
+                              <TableColumn prefWidth="75.0" text="Add" />
+                              <TableColumn prefWidth="255.20001220703125" text="Transfer" />
+                              <TableColumn prefWidth="111.199951171875" text="Edit" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TableView layoutX="6.0" prefHeight="178.0" prefWidth="678.0">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="C1" />
+                              <TableColumn prefWidth="75.0" text="C2" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
                     </children>
                 </VBox>
             </children>
