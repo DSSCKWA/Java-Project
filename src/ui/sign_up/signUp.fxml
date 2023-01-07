@@ -13,11 +13,11 @@
 
 <AnchorPane prefHeight="526.0" prefWidth="318.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.sign_up.SignUpController">
    <children>
-      <VBox prefHeight="526.0" prefWidth="417.0">
+      <VBox prefHeight="526.0" prefWidth="417.0" style="-fx-background-color: #e91e63;">
          <children>
             <HBox prefHeight="114.0" prefWidth="418.0">
                <children>
-                  <AnchorPane prefHeight="114.0" prefWidth="418.0" style="-fx-background-color: #A41F03;">
+                  <AnchorPane prefHeight="114.0" prefWidth="418.0" style="-fx-background-color: #c2185b;">
                      <children>
                         <ImageView fitHeight="114.0" fitWidth="142.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -25,7 +25,7 @@
                            </image></ImageView>
                         <Text fill="WHITE" layoutX="149.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIGN UP FORM" wrappingWidth="225.33667755126953">
                            <font>
-                              <Font name="Arial" size="30.0" />
+                              <Font name="Leelawadee UI" size="30.0" />
                            </font>
                         </Text>
                      </children>
@@ -34,57 +34,87 @@
             </HBox>
             <AnchorPane fx:id="AnchorPane1" prefHeight="415.0" prefWidth="418.0">
                <children>
-                  <Text layoutX="32.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" wrappingWidth="43.69342041015625">
+                  <Text fill="WHITE" layoutX="32.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" wrappingWidth="43.69342041015625">
                      <font>
-                        <Font name="Arial" size="14.0" />
+                        <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text layoutX="32.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:" wrappingWidth="66.8934326171875">
+                  <Text fill="WHITE" layoutX="32.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:" wrappingWidth="66.8934326171875">
                      <font>
-                        <Font name="Arial" size="14.0" />
+                        <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text layoutX="32.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" wrappingWidth="66.8934326171875">
+                  <Text fill="WHITE" layoutX="32.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" wrappingWidth="66.8934326171875">
                      <font>
-                        <Font name="Arial" size="14.0" />
+                        <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text layoutX="32.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City:" wrappingWidth="66.8934326171875">
+                  <Text fill="WHITE" layoutX="32.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City:" wrappingWidth="66.8934326171875">
                      <font>
-                        <Font name="Arial" size="14.0" />
+                        <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text layoutX="32.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number:" wrappingWidth="98.09344482421875">
+                  <Text fill="WHITE" layoutX="32.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number:" wrappingWidth="98.09344482421875">
                      <font>
-                        <Font name="Arial" size="14.0" />
+                        <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text layoutX="32.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" wrappingWidth="83.69342041015625">
+                  <Text fill="WHITE" layoutX="32.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" wrappingWidth="83.69342041015625">
                      <font>
-                        <Font name="Arial" size="14.0" />
+                        <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text layoutX="32.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="83.69342041015625">
+                  <Text fill="WHITE" layoutX="32.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="83.69342041015625">
                      <font>
-                        <Font name="Arial" size="14.0" />
+                        <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text layoutX="32.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repeat Password:" wrappingWidth="117.29339599609375">
+                  <Text fill="WHITE" layoutX="32.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repeat Password:" wrappingWidth="117.29339599609375">
                      <font>
-                        <Font name="Arial" size="14.0" />
+                        <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Button fx:id="btnSubmit" layoutX="315.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnSubmitClicked" text="Submit" />
-                  <TextField fx:id="tfName" layoutX="155.0" layoutY="27.0" />
-                  <TextField fx:id="tfSurname" layoutX="155.0" layoutY="62.0" />
-                  <TextField fx:id="tfAddress" layoutX="155.0" layoutY="96.0" />
-                  <TextField fx:id="tfCity" layoutX="155.0" layoutY="132.0" />
-                  <TextField fx:id="tfPhoneNumber" layoutX="155.0" layoutY="168.0" />
-                  <TextField fx:id="tfEmail" layoutX="155.0" layoutY="206.0" />
-                  <Text fx:id="tWarning" fill="#ff0808" layoutX="91.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Something went wrong, please try again" />
-                  <PasswordField fx:id="pfPassword" layoutX="156.0" layoutY="246.0" />
-                  <PasswordField fx:id="pfPasswordConfirm" layoutX="157.0" layoutY="286.0" />
-                  <Button layoutX="28.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnCancelClicked" text="Cancel" />
+                  <Button fx:id="btnSubmit" layoutX="314.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnSubmitClicked" style="-fx-background-color: #c2185b;" text="SUBMIT" textFill="WHITE">
+                     <font>
+                        <Font name="Leelawadee UI" size="14.0" />
+                     </font></Button>
+                  <TextField fx:id="tfName" layoutX="155.0" layoutY="25.0" promptText="Name:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></TextField>
+                  <TextField fx:id="tfSurname" layoutX="155.0" layoutY="60.0" promptText="Surname:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></TextField>
+                  <TextField fx:id="tfAddress" layoutX="155.0" layoutY="95.0" promptText="Address:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></TextField>
+                  <TextField fx:id="tfCity" layoutX="155.0" layoutY="130.0" promptText="City:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></TextField>
+                  <TextField fx:id="tfPhoneNumber" layoutX="155.0" layoutY="165.0" promptText="Phone Number:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></TextField>
+                  <TextField fx:id="tfEmail" layoutX="155.0" layoutY="200.0" promptText="Email:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></TextField>
+                  <Text fx:id="tWarning" layoutX="102.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Something went wrong, please try again" />
+                  <PasswordField fx:id="pfPassword" layoutX="156.0" layoutY="235.0" promptText="Password:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></PasswordField>
+                  <PasswordField fx:id="pfPasswordConfirm" layoutX="157.0" layoutY="270.0" promptText="Repeat Password:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></PasswordField>
+                  <Button layoutX="31.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnCancelClicked" style="-fx-background-color: #c2185b;" text="CANCEL" textFill="WHITE">
+                     <font>
+                        <Font name="Leelawadee UI" size="14.0" />
+                     </font></Button>
                </children>
             </AnchorPane>
          </children>

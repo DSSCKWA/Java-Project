@@ -237,7 +237,7 @@ public class AdminClinicsController implements Initializable {
 
     @FXML
     void btnDoctorsClicked(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminDoctors")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminDoctors.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);

@@ -13,147 +13,141 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="src.ui.admin.AdminClinicsController">
+<HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminClinicsController">
     <children>
-        <AnchorPane prefHeight="526.0" prefWidth="203.0">
+        <AnchorPane prefHeight="526.0" prefWidth="202.0">
             <children>
-                <VBox prefHeight="526.0" prefWidth="202.0" style="-fx-background-color: #A41F03;">
-                    <children>
-                        <ImageView fitHeight="196.0" fitWidth="211.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../logo/logo.png"/>
-                            </image>
-                        </ImageView>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                                onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0"
-                                style="-fx-background-color: #A41F03; -fx-cursor: hand;"
-                                stylesheets="@../css/adminStyling.css" text="Start" textFill="WHITE">
-                            <opaqueInsets>
-                                <Insets/>
-                            </opaqueInsets>
-                            <padding>
-                                <Insets left="50.0"/>
-                            </padding>
-                            <font>
-                                <Font name="Arial Bold" size="14.0"/>
-                            </font>
-                            <VBox.margin>
-                                <Insets/>
-                            </VBox.margin>
-                        </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                                onAction="#btnClinicsClicked" prefHeight="50.0" prefWidth="226.0"
-                                style="-fx-background-color: #A41F03; -fx-cursor: hand;"
-                                stylesheets="@../css/adminStyling.css" text="Clinics" textFill="WHITE">
-                            <opaqueInsets>
-                                <Insets/>
-                            </opaqueInsets>
-                            <padding>
-                                <Insets left="50.0"/>
-                            </padding>
-                            <font>
-                                <Font name="Arial Bold" size="14.0"/>
-                            </font>
-                        </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                                onAction="#btnDoctorsClicked" prefHeight="50.0" prefWidth="224.0"
-                                style="-fx-background-color: #A41F03; -fx-cursor: hand;"
-                                stylesheets="@../css/adminStyling.css" text="Doctors" textFill="WHITE">
-                            <opaqueInsets>
-                                <Insets/>
-                            </opaqueInsets>
-                            <padding>
-                                <Insets left="50.0"/>
-                            </padding>
-                            <font>
-                                <Font name="Arial Bold" size="14.0"/>
-                            </font>
-                        </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                                onAction="#btnUsersClicked" prefHeight="50.0" prefWidth="222.0"
-                                style="-fx-background-color: #A41F03; -fx-cursor: hand;"
-                                stylesheets="@../css/adminStyling.css" text="Users" textFill="WHITE">
-                            <opaqueInsets>
-                                <Insets/>
-                            </opaqueInsets>
-                            <padding>
-                                <Insets left="50.0"/>
-                            </padding>
-                            <font>
-                                <Font name="Arial Bold" size="14.0"/>
-                            </font>
-                        </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                                onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0"
-                                style="-fx-background-color: #A41F03; -fx-cursor: hand;"
-                                stylesheets="@../css/adminStyling.css" text="Log Out" textFill="WHITE">
-                            <opaqueInsets>
-                                <Insets/>
-                            </opaqueInsets>
-                            <padding>
-                                <Insets left="50.0"/>
-                            </padding>
-                            <font>
-                                <Font name="Arial Bold" size="14.0"/>
-                            </font>
-                        </Button>
-                    </children>
-                </VBox>
+            <VBox prefHeight="526.0" prefWidth="202.0" style="-fx-background-color: #e91e63;">
+               <children>
+                  <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../logo/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0" style=" -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Start" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font name="Leelawadee UI Bold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnClinicsClicked" prefHeight="50.0" prefWidth="204.0" stylesheets="@../css/adminStyling.css" text="Clinics" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font name="Leelawadee UI Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnDoctorsClicked" prefHeight="50.0" prefWidth="224.0" stylesheets="@../css/adminStyling.css" text="Doctors" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font name="Leelawadee UI Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnUsersClicked" prefHeight="50.0" prefWidth="222.0" stylesheets="@../css/adminStyling.css" text="Users" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font name="Leelawadee UI Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button id="btnLogOut" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0" stylesheets="@../css/adminStyling.css" text="Log Out" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font name="Arial Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
             </children>
         </AnchorPane>
-        <AnchorPane prefHeight="526.0" prefWidth="685.0">
+        <AnchorPane prefHeight="526.0" prefWidth="686.0">
             <children>
-                <VBox prefHeight="526.0" prefWidth="686.0">
+                <VBox layoutX="-1.0" prefHeight="526.0" prefWidth="688.0">
                     <children>
-                        <AnchorPane fx:id="anchorPane2" prefHeight="202.0" prefWidth="667.0">
+                  <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #c2185b;">
+                     <children>
+                        <Text fill="WHITE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="CLINIC PANEL:" wrappingWidth="478.93670654296875">
+                           <font>
+                              <Font name="Leelawadee UI" size="38.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                        <AnchorPane fx:id="anchorPane2" prefHeight="202.0" prefWidth="668.0" style="-fx-background-color: #e91e63;">
                             <children>
-                                <Button fx:id="btnCreate" layoutX="601.0" layoutY="130.0" mnemonicParsing="false"
-                                        onAction="#btnCreateClicked" text="Create"/>
-                                <Text fx:id="textTitle" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE"
-                                      strokeWidth="0.0" text="Clinic creation tool:">
+                                <Button fx:id="btnCreate" layoutX="563.0" layoutY="43.0" mnemonicParsing="false" onAction="#btnCreateClicked" style="-fx-background-color: #c2185b;" text="CREATE" textFill="WHITE">
+                           <font>
+                              <Font name="Leelawadee UI" size="18.0" />
+                           </font></Button>
+                                <Text fx:id="textAddress" fill="WHITE" layoutX="14.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:">
                                     <font>
-                                        <Font name="Arial" size="18.0"/>
+                                        <Font name="Leelawadee UI" size="18.0" />
                                     </font>
                                 </Text>
-                                <Text fx:id="textAddress" layoutX="14.0" layoutY="147.0" strokeType="OUTSIDE"
-                                      strokeWidth="0.0" text="Address:">
+                                <TextField fx:id="tfAddress" layoutX="234.0" layoutY="85.0" promptText="Address:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></TextField>
+                                <Text fx:id="textCity" fill="WHITE" layoutX="14.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City:">
                                     <font>
-                                        <Font name="Arial" size="14.0"/>
+                                        <Font name="Leelawadee UI" size="18.0" />
                                     </font>
                                 </Text>
-                                <TextField fx:id="tfAddress" layoutX="234.0" layoutY="129.0"/>
-                                <Text fx:id="textCity" layoutX="14.0" layoutY="113.0" strokeType="OUTSIDE"
-                                      strokeWidth="0.0" text="City:">
+                                <TextField fx:id="tfCity" layoutX="234.0" layoutY="50.0" promptText="City:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></TextField>
+                                <Text fx:id="textName" fill="WHITE" layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
                                     <font>
-                                        <Font name="Arial" size="14.0"/>
+                                        <Font name="Leelawadee" size="18.0" />
                                     </font>
                                 </Text>
-                                <TextField fx:id="tfCity" layoutX="234.0" layoutY="95.0"/>
-                                <Text fx:id="textName" layoutX="14.0" layoutY="80.0" strokeType="OUTSIDE"
-                                      strokeWidth="0.0" text="Name:">
+                                <TextField fx:id="tfName" layoutX="234.0" layoutY="15.0" promptText="Name:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></TextField>
+                                <Text fx:id="tFaliure" fill="#870f4f" layoutX="580.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FALIURE">
                                     <font>
-                                        <Font name="Arial" size="14.0"/>
-                                    </font>
-                                </Text>
-                                <TextField fx:id="tfName" layoutX="234.0" layoutY="62.0"/>
-                                <Text fx:id="tFaliure" fill="RED" layoutX="606.0" layoutY="114.0" strokeType="OUTSIDE"
-                                      strokeWidth="0.0" text="Faliure">
-                                    <font>
-                                        <Font size="14.0"/>
+                                        <Font name="Leelawadee UI" size="14.0" />
                                     </font>
                                 </Text>
                             </children>
                         </AnchorPane>
-                        <AnchorPane prefHeight="322.0" prefWidth="667.0">
+                        <AnchorPane prefHeight="322.0" prefWidth="66.0" style="-fx-background-color: #e91e63;">
                             <children>
-                                <TableView fx:id="tvTable" layoutX="4.0" prefHeight="338.0" prefWidth="672.0">
+                                <TableView fx:id="tvTable" layoutX="8.0" layoutY="10.0" prefHeight="292.0" prefWidth="672.0" style="-fx-background-color: #e91e63;">
                                     <columns>
-                                        <TableColumn fx:id="tcName" prefWidth="104.79997235536575" text="Name"/>
-                                        <TableColumn fx:id="tcCity" prefWidth="190.4000244140625" text="City"/>
-                                        <TableColumn fx:id="tcAddress" prefWidth="205.60015869140625" text="Address"/>
-                                        <TableColumn fx:id="tcEdit" prefWidth="80.7998046875" text="Edit"/>
-                                        <TableColumn fx:id="tcDelete" prefWidth="92.0" text="Delete"/>
+                                        <TableColumn fx:id="tcName" prefWidth="104.79997235536575" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;" text="Name" />
+                                        <TableColumn fx:id="tcCity" prefWidth="190.4000244140625" style="-fx-background-color: #c2185b;" text="City" />
+                                        <TableColumn fx:id="tcAddress" prefWidth="205.60015869140625" style="-fx-background-color: #c2185b;" text="Address" />
+                                        <TableColumn fx:id="tcEdit" prefWidth="80.7998046875" style="-fx-background-color: #c2185b;" text="Edit" />
+                                        <TableColumn fx:id="tcDelete" prefWidth="92.0" style="-fx-background-color: #c2185b;" text="Delete" />
                                     </columns>
                                 </TableView>
                             </children>
