@@ -77,6 +77,7 @@ public class AdminClinicsController implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
 
+        tFaliure.setVisible(false);
         tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tcCity.setCellValueFactory(new PropertyValueFactory<>("city"));
         tcAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
@@ -205,7 +206,7 @@ public class AdminClinicsController implements Initializable {
 
     @FXML
     void btnClinicsClicked(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics")));
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
