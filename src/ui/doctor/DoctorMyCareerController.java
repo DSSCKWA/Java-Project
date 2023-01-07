@@ -69,7 +69,7 @@ public class DoctorMyCareerController implements Initializable {
     private TableColumn<?, ?> tcDay;
 
     @FXML
-    private TableColumn<Schedule, Void> tcEdit;
+    private TableColumn<ScheduleRow, Void> tcEdit;
 
     @FXML
     private TableColumn<?, ?> tcEnd;
@@ -78,13 +78,16 @@ public class DoctorMyCareerController implements Initializable {
     private TableColumn<?, ?> tcName;
 
     @FXML
-    private TableColumn<Schedule, Void> tcRemove;
+    private TableColumn<ScheduleRow, Void> tcRemove;
 
     @FXML
     private TableColumn<?, ?> tcStart;
 
     @FXML
     private Text textStartM;
+
+    @FXML
+    private Text textError;
 
 
     @FXML
@@ -118,7 +121,7 @@ public class DoctorMyCareerController implements Initializable {
     private TableView<Clinic> tvClinic;
 
     @FXML
-    private TableView<Schedule> tvSchedule;
+    private TableView<ScheduleRow> tvSchedule;
 
 
     @FXML
@@ -130,7 +133,7 @@ public class DoctorMyCareerController implements Initializable {
         tcStart.setCellValueFactory(new PropertyValueFactory<>("startHour"));
         tcEnd.setCellValueFactory(new PropertyValueFactory<>("endHour"));
 
-
+        textError.setVisible(false);
         cboxDay.setVisible(false);
         textDay.setVisible(false);
         textEnd.setVisible(false);
@@ -148,7 +151,8 @@ public class DoctorMyCareerController implements Initializable {
 
         ArrayList<Clinic> clinics = new ArrayList<Clinic>();
         try {
-            clinics = ((Doctor) Singleton.getUser()).getDoctorClinics();
+
+            clinics = Singleton.getClient().getDoctorById(Singleton.getUser().getId()).getDoctorClinics();
         } catch (Exception e) {
             System.out.println("Error" + e.getMessage());
         }
@@ -160,29 +164,31 @@ public class DoctorMyCareerController implements Initializable {
             if (newSelection != null) {
                 clin = newSelection;
                 try {
-                    final ArrayList<Schedule> schedules = Singleton.getClient().getDoctorScheduleInClinic(((Doctor) Singleton.getUser()).getId(), newSelection.getClinicId());
-
+                    final ArrayList<Schedule> schedules2 = Singleton.getClient().getDoctorScheduleInClinic(Singleton.getUser().getId(), newSelection.getClinicId());
+                    ArrayList<ScheduleRow> schedulesRow = new ArrayList<>();
+                    Doctor d = Singleton.getClient().getDoctorById(Singleton.getUser().getId());
+                    for (Schedule s : schedules2) {
+                        schedulesRow.add(new ScheduleRow(d, s));
+                    }
                     tvSchedule.getItems().clear();
-                    tvSchedule.getItems().addAll(schedules);
+                    tvSchedule.getItems().addAll(schedulesRow);
                 } catch (Exception e) {
                     System.out.println("Error" + e.getMessage());
                 }
 
 
-                FilteredList<Schedule> filteredSchedules = new FilteredList<>(tvSchedule.getItems(), b -> true);
+                FilteredList<ScheduleRow> filteredSchedules = new FilteredList<>(tvSchedule.getItems(), b -> true);
 
                 tcEdit.setCellFactory(tableColumn -> new TableCell<>() {
                     private final Button editButton = new Button("Edit");
 
                     {
                         editButton.setOnAction((ActionEvent event) -> {
-                            Schedule schedule = getTableView().getItems().get(getIndex());
+                            ScheduleRow scheduleRow = getTableView().getItems().get(getIndex());
 
-                            filteredSchedules.setPredicate(schedule2 -> schedule2.equals(schedule));
+                            filteredSchedules.setPredicate(schedule2 -> schedule2.equals(scheduleRow));
                             tvSchedule.setItems(filteredSchedules);
 
-                            //cboxDay.setVisible(true);
-                            //textDay.setVisible(true);
                             tcAddSchedule.setVisible(false);
                             textEnd.setVisible(true);
                             textStart.setVisible(true);
@@ -199,7 +205,7 @@ public class DoctorMyCareerController implements Initializable {
                             textTitle.setText("Editor Tool");
 
 
-                            sched = schedule;
+                            sched = scheduleRow.getSchedule();
                         });
                     }
 
@@ -219,12 +225,12 @@ public class DoctorMyCareerController implements Initializable {
 
                     {
                         removeButton.setOnAction((ActionEvent event) -> {
-                            Schedule schedule = getTableView().getItems().get(getIndex());
+                            ScheduleRow scheduleRow = getTableView().getItems().get(getIndex());
 
-                            filteredSchedules.setPredicate(schedule2 -> schedule2.equals(schedule));
+                            filteredSchedules.setPredicate(schedule2 -> schedule2.equals(scheduleRow));
                             tvSchedule.setItems(filteredSchedules);
 
-                            sched = schedule;
+                            sched = scheduleRow.getSchedule();
                             try {
                                 Singleton.getClient().removeSchedule(sched.getDoctorId(), sched.getClinicId(), sched.getDay());
                                 root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyCareer.fxml")));
@@ -269,9 +275,9 @@ public class DoctorMyCareerController implements Initializable {
 
                     ArrayList<String> usedDays = new ArrayList<>();
 
-                    cboxDay.getItems().addAll("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday");
+                    cboxDay.getItems().addAll("MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY");
 
-                    ArrayList<Schedule> tmp = Singleton.getClient().getDoctorScheduleInClinic(((Doctor) Singleton.getUser()).getId(), clin.getClinicId());
+                    ArrayList<Schedule> tmp = Singleton.getClient().getDoctorScheduleInClinic(Singleton.getUser().getId(), clin.getClinicId());
                     for (Schedule s : tmp) {
                         usedDays.add(s.getDay().toString());
                     }
@@ -321,6 +327,7 @@ public class DoctorMyCareerController implements Initializable {
     @FXML
     void btnCreateClicked(ActionEvent event) throws IOException, InterruptedException {
         if (Objects.equals(btnCreate.getText(), "Edit")) {
+            textError.setVisible(true);
             sched.setEndTime(LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText())));
             sched.setStartTime(LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())));
             Singleton.getClient().updateSchedule(sched);
@@ -331,7 +338,8 @@ public class DoctorMyCareerController implements Initializable {
             stage.setScene(scene);
             stage.show();
         } else {
-            Singleton.getClient().addSchedule(new Schedule(((Doctor) Singleton.getUser()).getId(), clin.getClinicId(), DayOfWeek.valueOf(cboxDay.getValue().toString().toUpperCase(Locale.ROOT)), LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())), LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText()))));
+            textError.setVisible(true);
+            Singleton.getClient().addSchedule(new Schedule(Singleton.getUser().getId(), clin.getClinicId(), DayOfWeek.valueOf(cboxDay.getValue().toString().toUpperCase(Locale.ROOT)), LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())), LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText()))));
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyCareer.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setResizable(false);
@@ -400,6 +408,62 @@ public class DoctorMyCareerController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static class ScheduleRow {
+
+        private final Schedule schedule;
+
+        private final String startHour;
+        private final String endHour;
+
+        private final DayOfWeek day;
+
+        private final Doctor doctor;
+
+
+        public ScheduleRow(Doctor doctor, Schedule schedule) {
+
+            this.day = schedule.getDay();
+            this.startHour = schedule.getStartTime().toString();
+            this.endHour = schedule.getEndTime().toString();
+            this.doctor = doctor;
+            this.schedule = schedule;
+
+        }
+
+        public Schedule getSchedule() {
+            return schedule;
+        }
+
+        public String getStartHour() {
+            return startHour;
+        }
+
+        public String getEndHour() {
+            return endHour;
+        }
+
+        public DayOfWeek getDay() {
+            return day;
+        }
+
+        public Doctor getDoctor() {
+            return doctor;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            ScheduleRow that = (ScheduleRow) o;
+            return Objects.equals(schedule, that.schedule) && Objects.equals(startHour, that.startHour) && Objects.equals(endHour, that.endHour) && day == that.day && Objects.equals(doctor, that.doctor);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(schedule, startHour, endHour, day, doctor);
+        }
     }
 
 }

@@ -121,6 +121,11 @@
                         <Text fx:id="textEndM" layoutX="441.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Minute:" />
                         <TextField fx:id="tfStartM" layoutX="512.0" layoutY="41.0" prefHeight="26.0" prefWidth="57.0" />
                         <TextField fx:id="tfEndM" layoutX="512.0" layoutY="77.0" prefHeight="26.0" prefWidth="57.0" />
+                        <Text fx:id="textError" fill="RED" layoutX="580.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid Input">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </Text>
                      </children></AnchorPane>
                         <AnchorPane prefHeight="208.0" prefWidth="686.0">
                      <children>
