@@ -2,15 +2,19 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="src.ui.doctor.DoctorMyCareerController">
+<HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.doctor.DoctorMyCareerController">
     <children>
         <AnchorPane prefHeight="526.0" prefWidth="203.0">
             <children>
@@ -18,94 +22,76 @@
                     <children>
                         <ImageView fitHeight="196.0" fitWidth="241.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../logo/logo.png"/>
+                                <Image url="@../logo/logo.png" />
                             </image>
                         </ImageView>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                                onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0"
-                                style="-fx-background-color: #A41F03; -fx-cursor: hand;"
-                                stylesheets="@../css/adminStyling.css" text="Start" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0" style="-fx-background-color: #A41F03; -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Start" textFill="WHITE">
                             <opaqueInsets>
-                                <Insets/>
+                                <Insets />
                             </opaqueInsets>
                             <padding>
-                                <Insets left="50.0"/>
+                                <Insets left="50.0" />
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0"/>
+                                <Font name="Arial Bold" size="14.0" />
                             </font>
                             <VBox.margin>
-                                <Insets/>
+                                <Insets />
                             </VBox.margin>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                                onAction="#btnMyVisitsClicked" prefHeight="50.0" prefWidth="226.0"
-                                style="-fx-background-color: #A41F03; -fx-cursor: hand;"
-                                stylesheets="@../css/adminStyling.css" text="My Visits" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnMyVisitsClicked" prefHeight="50.0" prefWidth="226.0" style="-fx-background-color: #A41F03; -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="My Visits" textFill="WHITE">
                             <opaqueInsets>
-                                <Insets/>
+                                <Insets />
                             </opaqueInsets>
                             <padding>
-                                <Insets left="50.0"/>
+                                <Insets left="50.0" />
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0"/>
+                                <Font name="Arial Bold" size="14.0" />
                             </font>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                                onAction="#btnNewVisitClicked" prefHeight="50.0" prefWidth="224.0"
-                                style="-fx-background-color: #A41F03; -fx-cursor: hand;"
-                                stylesheets="@../css/adminStyling.css" text="New Visit" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnNewVisitClicked" prefHeight="50.0" prefWidth="224.0" style="-fx-background-color: #A41F03; -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="New Visit" textFill="WHITE">
                             <opaqueInsets>
-                                <Insets/>
+                                <Insets />
                             </opaqueInsets>
                             <padding>
-                                <Insets left="50.0"/>
+                                <Insets left="50.0" />
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0"/>
+                                <Font name="Arial Bold" size="14.0" />
                             </font>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                                onAction="#btnEquipmentClicked" prefHeight="50.0" prefWidth="224.0"
-                                style="-fx-background-color: #A41F03; -fx-cursor: hand;"
-                                stylesheets="@../css/adminStyling.css" text="Equipment" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnEquipmentClicked" prefHeight="50.0" prefWidth="224.0" style="-fx-background-color: #A41F03; -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Equipment" textFill="WHITE">
                             <opaqueInsets>
-                                <Insets/>
+                                <Insets />
                             </opaqueInsets>
                             <padding>
-                                <Insets left="50.0"/>
+                                <Insets left="50.0" />
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0"/>
+                                <Font name="Arial Bold" size="14.0" />
                             </font>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                                onAction="#btnMyCareerClicked" prefHeight="50.0" prefWidth="224.0"
-                                style="-fx-background-color: #A41F03; -fx-cursor: hand;"
-                                stylesheets="@../css/adminStyling.css" text="My Career" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnMyCareerClicked" prefHeight="50.0" prefWidth="224.0" style="-fx-background-color: #A41F03; -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="My Career" textFill="WHITE">
                             <opaqueInsets>
-                                <Insets/>
+                                <Insets />
                             </opaqueInsets>
                             <padding>
-                                <Insets left="50.0"/>
+                                <Insets left="50.0" />
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0"/>
+                                <Font name="Arial Bold" size="14.0" />
                             </font>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                                onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0"
-                                style="-fx-background-color: #A41F03; -fx-cursor: hand;"
-                                stylesheets="@../css/adminStyling.css" text="Log Out" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0" style="-fx-background-color: #A41F03; -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Log Out" textFill="WHITE">
                             <opaqueInsets>
-                                <Insets/>
+                                <Insets />
                             </opaqueInsets>
                             <padding>
-                                <Insets left="50.0"/>
+                                <Insets left="50.0" />
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0"/>
+                                <Font name="Arial Bold" size="14.0" />
                             </font>
                         </Button>
                     </children>
@@ -116,8 +102,55 @@
             <children>
                 <VBox prefHeight="526.0" prefWidth="686.0">
                     <children>
-                        <AnchorPane prefHeight="223.0" prefWidth="447.0"/>
-                        <AnchorPane prefHeight="303.0" prefWidth="598.0"/>
+                        <AnchorPane prefHeight="142.0" prefWidth="686.0">
+                     <children>
+                        <Text fx:id="textDay" layoutX="93.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Day:" wrappingWidth="27.7366943359375" />
+                        <Button fx:id="btnCreate" layoutX="593.0" layoutY="38.0" mnemonicParsing="false" onAction="#btnCreateClicked" text="Create" />
+                        <Button fx:id="btnCancel" layoutX="593.0" layoutY="78.0" mnemonicParsing="false" onAction="#btnCancelClicked" text="Cancel" />
+                        <Text fx:id="textStart" layoutX="297.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Hour:" />
+                        <TextField fx:id="tfEnd" layoutX="363.0" layoutY="77.0" prefHeight="26.0" prefWidth="58.0" />
+                        <TextField fx:id="tfStart" layoutX="363.0" layoutY="38.0" prefHeight="26.0" prefWidth="57.0" />
+                        <Text fx:id="textEnd" layoutX="297.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Hour:" />
+                        <ComboBox fx:id="cboxDay" layoutX="131.0" layoutY="78.0" prefWidth="150.0" />
+                        <Text fx:id="textTitle" layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Creator Tool">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="textStartM" layoutX="437.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Minute:" />
+                        <Text fx:id="textEndM" layoutX="441.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Minute:" />
+                        <TextField fx:id="tfStartM" layoutX="512.0" layoutY="41.0" prefHeight="26.0" prefWidth="57.0" />
+                        <TextField fx:id="tfEndM" layoutX="512.0" layoutY="77.0" prefHeight="26.0" prefWidth="57.0" />
+                        <Text fx:id="textError" fill="RED" layoutX="580.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid Input">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </Text>
+                     </children></AnchorPane>
+                        <AnchorPane prefHeight="208.0" prefWidth="686.0">
+                     <children>
+                        <TableView fx:id="tvClinic" layoutX="4.0" layoutY="8.0" prefHeight="196.0" prefWidth="680.0">
+                          <columns>
+                            <TableColumn fx:id="tcName" prefWidth="127.19999980926514" text="Name" />
+                            <TableColumn fx:id="tcCity" prefWidth="143.19993591308594" text="City" />
+                              <TableColumn fx:id="tcAddress" prefWidth="268.79998779296875" text="Address" />
+                              <TableColumn fx:id="tcAddSchedule" prefWidth="130.4000244140625" text="Add Schedule" />
+                          </columns>
+                        </TableView>
+                     </children></AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TableView fx:id="tvSchedule" layoutX="3.0" prefHeight="196.0" prefWidth="680.0">
+                          <columns>
+                            <TableColumn fx:id="tcDay" prefWidth="131.20000004768372" text="Day" />
+                            <TableColumn fx:id="tcStart" prefWidth="144.7999725341797" text="Start Hour" />
+                              <TableColumn fx:id="tcEnd" prefWidth="134.4000244140625" text="End Hour" />
+                              <TableColumn fx:id="tcEdit" prefWidth="142.40008544921875" text="Edit" />
+                              <TableColumn fx:id="tcRemove" prefWidth="117.5999755859375" text="Remove" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
                     </children>
                 </VBox>
             </children>
