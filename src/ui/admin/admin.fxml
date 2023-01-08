@@ -13,9 +13,9 @@
 
 <HBox maxHeight="526.0" maxWidth="889.0" prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminController">
    <children>
-      <AnchorPane prefHeight="526.0" prefWidth="202.0" style="-fx-background-color: #e91e63;">
+      <AnchorPane prefHeight="526.0" prefWidth="202.0" style="-fx-background-color: #2196f3;">
          <children>
-            <VBox prefHeight="526.0" prefWidth="202.0" style="-fx-background-color: #e91e63;">
+            <VBox prefHeight="526.0" prefWidth="202.0" style="-fx-background-color: #2196f3;">
                <children>
                   <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -83,7 +83,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="526.0" prefWidth="685.0" style="-fx-background-color: rgb(194,24,91);">
+      <AnchorPane prefHeight="526.0" prefWidth="685.0" style="-fx-background-color: #2196f3;">
          <children>
             <ImageView fitHeight="526.0" fitWidth="693.0" mouseTransparent="true" opacity="0.3" pickOnBounds="true">
                <image>
@@ -93,7 +93,7 @@
                   <Rectangle2D width="829.0" />
                </viewport>
             </ImageView>
-            <AnchorPane prefHeight="100.0" prefWidth="693.0" style="-fx-background-color: #c2185b;">
+            <AnchorPane prefHeight="100.0" prefWidth="693.0" style="-fx-background-color: #0d47a1;">
                <children>
                   <Text fill="WHITE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="LOGGED IN AS:" wrappingWidth="478.93670654296875">
                      <font>
@@ -111,11 +111,11 @@
                            <font>
                               <Font name="Leelawadee UI" size="18.0" />
                            </font></Text>
-                        <Text fx:id="email" fill="WHITE" layoutX="275.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                        <Text fx:id="email" fill="WHITE" layoutX="275.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" underline="true">
                            <font>
                               <Font size="18.0" />
                            </font></Text>
-                        <Text fx:id="permission" fill="WHITE" layoutX="275.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
+                        <Text fx:id="permission" fill="WHITE" layoutX="275.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin" underline="true">
                            <font>
                               <Font name="Leelawadee UI" size="18.0" />
                            </font></Text>

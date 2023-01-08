@@ -13,17 +13,17 @@
 
 <AnchorPane prefHeight="526.0" prefWidth="318.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.sign_up.SignUpController">
    <children>
-      <VBox prefHeight="526.0" prefWidth="417.0" style="-fx-background-color: #e91e63;">
+      <VBox prefHeight="526.0" prefWidth="417.0" style="-fx-background-color: #2196f3;">
          <children>
             <HBox prefHeight="114.0" prefWidth="418.0">
                <children>
-                  <AnchorPane prefHeight="114.0" prefWidth="418.0" style="-fx-background-color: #c2185b;">
+                  <AnchorPane prefHeight="114.0" prefWidth="418.0" style="-fx-background-color: #0d47a1;">
                      <children>
                         <ImageView fitHeight="114.0" fitWidth="142.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../logo/logo.png" />
                            </image></ImageView>
-                        <Text fill="WHITE" layoutX="149.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIGN UP FORM" wrappingWidth="225.33667755126953">
+                        <Text fill="WHITE" layoutX="149.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIGN UP FORM:" wrappingWidth="225.33667755126953">
                            <font>
                               <Font name="Leelawadee UI" size="30.0" />
                            </font>
@@ -74,44 +74,47 @@
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Button fx:id="btnSubmit" layoutX="314.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnSubmitClicked" style="-fx-background-color: #c2185b;" text="SUBMIT" textFill="WHITE">
+                  <Button fx:id="btnSubmit" layoutX="314.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnSubmitClicked" style="-fx-background-color: #0d47a1;" text="SUBMIT" textFill="WHITE">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font></Button>
-                  <TextField fx:id="tfName" layoutX="155.0" layoutY="25.0" promptText="Name:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                  <TextField fx:id="tfName" layoutX="155.0" layoutY="25.0" promptText="Name:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></TextField>
-                  <TextField fx:id="tfSurname" layoutX="155.0" layoutY="60.0" promptText="Surname:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                  <TextField fx:id="tfSurname" layoutX="155.0" layoutY="60.0" promptText="Surname:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></TextField>
-                  <TextField fx:id="tfAddress" layoutX="155.0" layoutY="95.0" promptText="Address:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                  <TextField fx:id="tfAddress" layoutX="155.0" layoutY="95.0" promptText="Address:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></TextField>
-                  <TextField fx:id="tfCity" layoutX="155.0" layoutY="130.0" promptText="City:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                  <TextField fx:id="tfCity" layoutX="155.0" layoutY="130.0" promptText="City:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></TextField>
-                  <TextField fx:id="tfPhoneNumber" layoutX="155.0" layoutY="165.0" promptText="Phone Number:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                  <TextField fx:id="tfPhoneNumber" layoutX="155.0" layoutY="165.0" promptText="Phone Number:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></TextField>
-                  <TextField fx:id="tfEmail" layoutX="155.0" layoutY="200.0" promptText="Email:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                  <TextField fx:id="tfEmail" layoutX="155.0" layoutY="200.0" promptText="Email:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></TextField>
-                  <Text fx:id="tWarning" layoutX="102.0" layoutY="394.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Something went wrong, please try again" />
-                  <PasswordField fx:id="pfPassword" layoutX="156.0" layoutY="235.0" promptText="Password:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                  <Text fx:id="tWarning" fill="#f44336" layoutX="75.0" layoutY="393.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Something went wrong, please try again">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Text>
+                  <PasswordField fx:id="pfPassword" layoutX="156.0" layoutY="235.0" promptText="Password:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></PasswordField>
-                  <PasswordField fx:id="pfPasswordConfirm" layoutX="157.0" layoutY="270.0" promptText="Repeat Password:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                  <PasswordField fx:id="pfPasswordConfirm" layoutX="155.0" layoutY="272.0" promptText="Repeat Password:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></PasswordField>
-                  <Button layoutX="31.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnCancelClicked" style="-fx-background-color: #c2185b;" text="CANCEL" textFill="WHITE">
+                  <Button layoutX="31.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnCancelClicked" style="-fx-background-color: #0d47a1;" text="CANCEL" textFill="WHITE">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font></Button>

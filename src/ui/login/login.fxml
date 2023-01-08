@@ -11,11 +11,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="301.0" style="-fx-background-color: #e91e63;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.login.LoginController">
+<AnchorPane prefHeight="400.0" prefWidth="301.0" style="-fx-background-color: #2196f3;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.login.LoginController">
    <children>
       <VBox prefHeight="400.0" prefWidth="301.0">
          <children>
-            <AnchorPane prefHeight="114.0" prefWidth="168.0" style="-fx-background-color: #c2185b;">
+            <AnchorPane prefHeight="114.0" prefWidth="168.0" style="-fx-background-color: #0d47a1;">
                <children>
                   <ImageView fitHeight="114.0" fitWidth="142.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -36,7 +36,7 @@
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="tfEmail" layoutX="116.0" layoutY="31.0" promptText="Email:" style="-fx-background-color: #f48fb1; -fx-text-fill: #000000;">
+                  <TextField fx:id="tfEmail" layoutX="116.0" layoutY="31.0" promptText="Email:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -46,7 +46,7 @@
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Label>
-                  <Button layoutX="120.0" layoutY="150.0" mnemonicParsing="false" onAction="#btnConfirmClicked" style="-fx-cursor: hand; -fx-background-color: #c2185b;" text="CONFIRM" textFill="WHITE">
+                  <Button layoutX="120.0" layoutY="150.0" mnemonicParsing="false" onAction="#btnConfirmClicked" style="-fx-cursor: hand; -fx-background-color: #0d47a1;" text="CONFIRM" textFill="WHITE">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
@@ -71,14 +71,14 @@
                         <Font name="Arial" size="14.0" />
                      </font>
                   </Text>
-                  <PasswordField fx:id="pfPassword" layoutX="116.0" layoutY="76.0" promptText="Password:" style="-fx-background-color: #f48fb1; -fx-text-fill: #000000;">
+                  <PasswordField fx:id="pfPassword" layoutX="116.0" layoutY="76.0" promptText="Password:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </PasswordField>
-                  <Text fx:id="tInvalidInput" fill="#0d47a1" layoutX="115.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVALID INPUT">
+                  <Text fx:id="tInvalidInput" fill="#f44336" layoutX="109.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVALID INPUT">
                      <font>
-                        <Font name="Leelawadee UI" size="14.0" />
+                        <Font name="Leelawadee UI Bold" size="14.0" />
                      </font>
                   </Text>
                </children>

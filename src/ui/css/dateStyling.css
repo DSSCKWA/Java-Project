@@ -1,0 +1,13 @@
+.date-picker > .text-field {
+    -fx-text-fill: white;
+    -fx-background-color: #bbdefb;
+}
+
+.date-picker:editable > .arrow-button,
+.date-picker > .arrow-button {
+    -fx-opacity: 0;
+}
+
+.date-picker {
+    -fx-font: bold normal 12px "System";
+}

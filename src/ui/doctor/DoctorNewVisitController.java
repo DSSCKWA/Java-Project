@@ -75,6 +75,7 @@ public class DoctorNewVisitController implements Initializable {
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        txPickDate.setVisible(false);
         tcSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         tcCity.setCellValueFactory(new PropertyValueFactory<>("city"));
         tcExpertise.setCellValueFactory(new PropertyValueFactory<>("expertise"));

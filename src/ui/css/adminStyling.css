@@ -1,15 +1,16 @@
 .button
 {
--fx-background-color : #e91e63;
+-fx-background-color : #2196f3;
 }
 .button:hover
 {
 -fx-cursor: hand;
--fx-background-color : #f8bbd0 ;
+-fx-background-color : #64b5f6
+;
 }
 .button:pressed
 {
--fx-background-color : #f06292 ;
+-fx-background-color : #1976d2 ;
 }
 
 .table-view .column-header,
@@ -81,9 +82,9 @@
 }
 
 #btnLogOut:hover{
--fx-background-color : #880e4f;
+-fx-background-color : #f44336;
 }
 
 #btnLogIn:hover{
--fx-background-color : #880e4f ;
+-fx-background-color : #f44336;
 }
