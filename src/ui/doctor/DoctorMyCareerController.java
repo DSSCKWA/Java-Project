@@ -1,39 +1,25 @@
 package src.ui.doctor;
 
 import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import src.clinic.Clinic;
-import src.equipment.Equipment;
 import src.schedule.Schedule;
-import src.ui.Singleton;
+import src.ui.Session;
 import src.users.Doctor;
-import src.users.Patient;
-import src.users.Permissions;
-import src.users.User;
-import src.visit.Visit;
-import src.visit.VisitStatus;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.time.DayOfWeek;
-import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -152,7 +138,7 @@ public class DoctorMyCareerController implements Initializable {
         ArrayList<Clinic> clinics = new ArrayList<Clinic>();
         try {
 
-            clinics = Singleton.getClient().getDoctorById(Singleton.getUser().getId()).getDoctorClinics();
+            clinics = Session.getClient().getDoctorById(Session.getUser().getId()).getDoctorClinics();
         } catch (Exception e) {
             System.out.println("Error" + e.getMessage());
         }
@@ -164,9 +150,9 @@ public class DoctorMyCareerController implements Initializable {
             if (newSelection != null) {
                 clin = newSelection;
                 try {
-                    final ArrayList<Schedule> schedules2 = Singleton.getClient().getDoctorScheduleInClinic(Singleton.getUser().getId(), newSelection.getClinicId());
+                    final ArrayList<Schedule> schedules2 = Session.getClient().getDoctorScheduleInClinic(Session.getUser().getId(), newSelection.getClinicId());
                     ArrayList<ScheduleRow> schedulesRow = new ArrayList<>();
-                    Doctor d = Singleton.getClient().getDoctorById(Singleton.getUser().getId());
+                    Doctor d = Session.getClient().getDoctorById(Session.getUser().getId());
                     for (Schedule s : schedules2) {
                         schedulesRow.add(new ScheduleRow(d, s));
                     }
@@ -232,7 +218,7 @@ public class DoctorMyCareerController implements Initializable {
 
                             sched = scheduleRow.getSchedule();
                             try {
-                                Singleton.getClient().removeSchedule(sched.getDoctorId(), sched.getClinicId(), sched.getDay());
+                                Session.getClient().removeSchedule(sched.getDoctorId(), sched.getClinicId(), sched.getDay());
                                 root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyCareer.fxml")));
                                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                                 stage.setResizable(false);
@@ -277,7 +263,7 @@ public class DoctorMyCareerController implements Initializable {
 
                     cboxDay.getItems().addAll("MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY");
 
-                    ArrayList<Schedule> tmp = Singleton.getClient().getDoctorScheduleInClinic(Singleton.getUser().getId(), clin.getClinicId());
+                    ArrayList<Schedule> tmp = Session.getClient().getDoctorScheduleInClinic(Session.getUser().getId(), clin.getClinicId());
                     for (Schedule s : tmp) {
                         usedDays.add(s.getDay().toString());
                     }
@@ -330,7 +316,7 @@ public class DoctorMyCareerController implements Initializable {
             textError.setVisible(true);
             sched.setEndTime(LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText())));
             sched.setStartTime(LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())));
-            Singleton.getClient().updateSchedule(sched);
+            Session.getClient().updateSchedule(sched);
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyCareer.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setResizable(false);
@@ -339,7 +325,7 @@ public class DoctorMyCareerController implements Initializable {
             stage.show();
         } else {
             textError.setVisible(true);
-            Singleton.getClient().addSchedule(new Schedule(Singleton.getUser().getId(), clin.getClinicId(), DayOfWeek.valueOf(cboxDay.getValue().toString().toUpperCase(Locale.ROOT)), LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())), LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText()))));
+            Session.getClient().addSchedule(new Schedule(Session.getUser().getId(), clin.getClinicId(), DayOfWeek.valueOf(cboxDay.getValue().toString().toUpperCase(Locale.ROOT)), LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())), LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText()))));
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyCareer.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setResizable(false);

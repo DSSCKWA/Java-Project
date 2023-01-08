@@ -16,11 +16,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import src.clinic.Clinic;
-import src.ui.Singleton;
+import src.ui.Session;
 import src.users.Doctor;
-import src.users.User;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -103,7 +101,7 @@ public class AdminDoctorsController implements Initializable {
 
         ArrayList<Doctor> doctors = new ArrayList<Doctor>();
         try {
-            doctors = Singleton.getClient().getDoctors();
+            doctors = Session.getClient().getDoctors();
         } catch (Exception e) {
             System.out.println("Error");
         }
@@ -156,7 +154,7 @@ public class AdminDoctorsController implements Initializable {
                     ArrayList<Clinic> clinics = new ArrayList<Clinic>();
                     try {
                         ArrayList<Clinic> rnd = doctor.getDoctorClinics();
-                        clinics = Singleton.getClient().getClinics();
+                        clinics = Session.getClient().getClinics();
                         clinics.removeAll(rnd);
                     } catch (Exception e) {
                         System.out.println("Error");
@@ -178,7 +176,7 @@ public class AdminDoctorsController implements Initializable {
                                 tvClinic.setItems(filteredClinics);
 
                                 try {
-                                    Singleton.getClient().addDoctorToClinic(doctor.getId(), clinic.getClinicId());
+                                    Session.getClient().addDoctorToClinic(doctor.getId(), clinic.getClinicId());
                                     root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminDoctors.fxml")));
                                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                                     stage.setResizable(false);
@@ -262,7 +260,7 @@ public class AdminDoctorsController implements Initializable {
                                 tvClinic.setItems(filteredClinics);
 
                                 try {
-                                    Singleton.getClient().removeDoctorFromClinic(doctor.getId(), clinic.getClinicId());
+                                    Session.getClient().removeDoctorFromClinic(doctor.getId(), clinic.getClinicId());
                                     root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminDoctors.fxml")));
                                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                                     stage.setResizable(false);
@@ -365,4 +363,3 @@ public class AdminDoctorsController implements Initializable {
     }
 
 }
-

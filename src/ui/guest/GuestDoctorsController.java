@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -18,13 +17,8 @@ import javafx.stage.Stage;
 import src.clinic.Clinic;
 import src.expertise.Expertise;
 import src.schedule.Schedule;
-import src.ui.Singleton;
-import src.ui.doctor.DoctorMyVisitsController;
+import src.ui.Session;
 import src.users.Doctor;
-import src.users.Patient;
-import src.users.Permissions;
-import src.users.User;
-import src.visit.Visit;
 
 import java.io.IOException;
 import java.net.URL;
@@ -83,11 +77,11 @@ public class GuestDoctorsController implements Initializable {
 
         ArrayList<DoctorRow> doctorRows = new ArrayList<DoctorRow>();
         try {
-            ArrayList<Doctor> doctorS = Singleton.getClient().getDoctors();
+            ArrayList<Doctor> doctorS = Session.getClient().getDoctors();
             for (Doctor doc : doctorS) {
                 for (Schedule sch : doc.getDoctorSchedules()) {
                     for (Expertise ex : doc.getDoctorExpertise()) {
-                        doctorRows.add(new DoctorRow(sch, doc, Singleton.getClient().getClinic(sch.getClinicId()), ex.getExpertise()));
+                        doctorRows.add(new DoctorRow(sch, doc, Session.getClient().getClinic(sch.getClinicId()), ex.getExpertise()));
                     }
                 }
             }
@@ -241,6 +235,3 @@ public class GuestDoctorsController implements Initializable {
     }
 
 }
-
-
-

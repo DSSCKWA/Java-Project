@@ -1,7 +1,5 @@
 package src.ui.admin;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
@@ -14,12 +12,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import src.clinic.Clinic;
-import src.ui.Singleton;
-import src.users.Doctor;
+import src.ui.Session;
 import src.users.Permissions;
 import src.users.User;
 
@@ -102,7 +97,7 @@ public class AdminUsersController implements Initializable {
         tcPermission.setCellValueFactory(new PropertyValueFactory<>("permissions")); ///TODO fix so it shows in TableView
         ArrayList<User> users = new ArrayList<User>();
         try {
-            users = Singleton.getClient().getUsers();
+            users = Session.getClient().getUsers();
         } catch (Exception e) {
             System.out.println("Error");
         }
@@ -241,7 +236,7 @@ public class AdminUsersController implements Initializable {
     void btnConfirmClicked(ActionEvent event) throws IOException, InterruptedException {
         userMain.setPermissions(Permissions.valueOf(cboxPermission.getValue().toString().toUpperCase(Locale.ROOT)));
         System.out.println(userMain.getPermissions());
-        Singleton.getClient().updateUser(userMain);
+        Session.getClient().updateUser(userMain);
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminUsers.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
@@ -250,4 +245,3 @@ public class AdminUsersController implements Initializable {
         stage.show();
     }
 }
-

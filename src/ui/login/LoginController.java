@@ -9,10 +9,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import src.ui.Singleton;
+import src.ui.Session;
 import src.users.Permissions;
 import src.users.User;
 
@@ -40,7 +39,7 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         tInvalidInput.setVisible(false);
-        Singleton.getInstance(null);
+        Session.getInstance(null);
     }
 
     @FXML
@@ -61,12 +60,12 @@ public class LoginController implements Initializable {
 
         User user = new User(0, null, null, null, null, null, null, 0, null);
         try {
-            user = Singleton.getClient().getUserByEmail(email);
+            user = Session.getClient().getUserByEmail(email);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } finally {
             if (!(user == null) && Objects.equals(user.getPassword(), password)) {
-                Singleton.newUser(user);
+                Session.newUser(user);
                 Permissions permission = user.getPermissions();
                 System.out.println(user);
                 switch (permission) {
@@ -140,4 +139,3 @@ public class LoginController implements Initializable {
 
 
 }
-
