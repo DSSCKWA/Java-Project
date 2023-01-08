@@ -1,21 +1,24 @@
 package src.ui.guest;
 
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import src.clinic.Clinic;
-import src.ui.Singleton;
-import src.users.Permissions;
-import src.users.User;
+import src.expertise.Expertise;
+import src.schedule.Schedule;
+import src.ui.Session;
+import src.users.Doctor;
 
 import java.io.IOException;
 import java.net.URL;
@@ -41,26 +44,78 @@ public class GuestDoctorsController implements Initializable {
     private AnchorPane anchorPane1;
 
     @FXML
+    private TableColumn<?, ?> tcCity;
+
+    @FXML
+    private TableColumn<?, ?> tcDay;
+
+    @FXML
+    private TableColumn<?, ?> tcExpertise;
+
+    @FXML
+    private TableColumn<?, ?> tcName;
+
+    @FXML
+    private TableColumn<?, ?> tcSurname;
+
+    @FXML
+    private TableColumn<?, ?> tcWH;
+
+    @FXML
+    private TableView<DoctorRow> tvTable;
+
+    @FXML
     public void initialize(URL location, ResourceBundle resources) {
 
-        ///TODO: unlock after adding method httpClient.getUsers(Permissions permission)
-//        ArrayList<User> doctors = new ArrayList<User>();
-//        try {
-//            doctors = Singleton.getClient().getUsers(Permissions.DOCTOR);
-//        }catch(Exception e){
-//            System.out.println("Error");
-//        }
-//        int j=0;
-//        for (User doc : doctors) {
-//            Button x = new Button();
-//            x.setPrefSize(vBox1.getPrefWidth(),40);
-//            x.setText(doc.present());
-//            x.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
-//            vBox1.getChildren().add(x);
-//            j++;
-//        }
-//        anchorPane1.setPrefHeight(j*40);
-//        vBox1.setPrefHeight(j*40);
+        tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tcCity.setCellValueFactory(new PropertyValueFactory<>("city"));
+        tcWH.setCellValueFactory(new PropertyValueFactory<>("workingHours"));
+        tcDay.setCellValueFactory(new PropertyValueFactory<>("day"));
+        tcSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
+        tcExpertise.setCellValueFactory(new PropertyValueFactory<>("expertise"));
+
+
+        ArrayList<DoctorRow> doctorRows = new ArrayList<DoctorRow>();
+        try {
+            ArrayList<Doctor> doctorS = Session.getClient().getDoctors();
+            for (Doctor doc : doctorS) {
+                for (Schedule sch : doc.getDoctorSchedules()) {
+                    for (Expertise ex : doc.getDoctorExpertise()) {
+                        doctorRows.add(new DoctorRow(sch, doc, Session.getClient().getClinic(sch.getClinicId()), ex.getExpertise()));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error" + e.getMessage());
+        }
+        tvTable.getItems().addAll(doctorRows);
+
+        FilteredList<DoctorRow> filteredDoctorRows = new FilteredList<>(tvTable.getItems(), b -> true);
+
+
+        tfExpertise.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredDoctorRows.setPredicate(doctorRow -> {
+                if (newValue.isEmpty() || newValue.isBlank()) return doctorRow.getCity().contains(tfCity.getText());
+                return doctorRow.getExpertise().contains(newValue) && doctorRow.getCity().contains(tfCity.getText());
+            });
+            SortedList<DoctorRow> sortedDoctors = new SortedList<>(filteredDoctorRows);
+            sortedDoctors.comparatorProperty().bind(tvTable.comparatorProperty());
+            tvTable.setItems(sortedDoctors);
+
+        });
+
+
+        tfCity.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredDoctorRows.setPredicate(doctorRow -> {
+                if (newValue.isEmpty() || newValue.isBlank())
+                    return doctorRow.getExpertise().contains(tfExpertise.getText());
+                return doctorRow.getCity().contains(newValue) && doctorRow.getExpertise().contains(tfExpertise.getText());
+            });
+            SortedList<DoctorRow> sortedDoctors = new SortedList<>(filteredDoctorRows);
+            sortedDoctors.comparatorProperty().bind(tvTable.comparatorProperty());
+            tvTable.setItems(sortedDoctors);
+        });
+
     }
 
     @FXML
@@ -102,31 +157,81 @@ public class GuestDoctorsController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    void btnSearchClicked(ActionEvent event) {
-        vBox1.getChildren().clear();
+    public static class DoctorRow {
+        private final String name;
+        private final String surname;
+        private final String workingHours;
+        private final String day;
+        private final String city;
+        private final Doctor doctor;
+        private final Clinic clinic;
+        private final Schedule schedule;
 
-///TODO: unlock after adding method httpClient.getUsers(Permissions permission, String expertise, String city)
-//        ArrayList<User> doctors = new ArrayList<User>();
-//        try {
-//            doctors = Singleton.getClient().getUsers(Permissions.DOCTOR, tfExpertise.getText(), tfCity.getText());
-//        }catch(Exception e){
-//            System.out.println("Error");
-//        }
-//        int j=0;
-//        for (User doc : doctors) {
-//            Button x = new Button();
-//            x.setPrefSize(vBox1.getPrefWidth(),40);
-//            x.setText(doc.present());
-//            x.setStyle("-fx-background-color: transparent;"+"-fx-border-color: black;"+"-fx-border-width: 1;");
-//            vBox1.getChildren().add(x);
-//            j++;
-//        }
-//        anchorPane1.setPrefHeight(j*40);
-//        vBox1.setPrefHeight(j*40);
+        private final String expertise;
+
+
+        public DoctorRow(Schedule schedule, Doctor doctor, Clinic clinic, String expertise) {
+
+            this.name = doctor.getName();
+            this.surname = doctor.getSurname();
+            this.day = schedule.getDay().toString();
+            this.workingHours = (schedule.getStartTime().toString() + " - " + schedule.getEndTime().toString());
+            this.city = clinic.getCity();
+            this.doctor = doctor;
+            this.clinic = clinic;
+            this.schedule = schedule;
+            this.expertise = expertise;
+
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getSurname() {
+            return surname;
+        }
+
+        public String getWorkingHours() {
+            return workingHours;
+        }
+
+        public String getDay() {
+            return day;
+        }
+
+        public String getCity() {
+            return city;
+        }
+
+        public Doctor getDoctor() {
+            return doctor;
+        }
+
+        public Clinic getClinic() {
+            return clinic;
+        }
+
+        public Schedule getSchedule() {
+            return schedule;
+        }
+
+        public String getExpertise() {
+            return expertise;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            DoctorRow doctorRow = (DoctorRow) o;
+            return Objects.equals(name, doctorRow.name) && Objects.equals(surname, doctorRow.surname) && Objects.equals(workingHours, doctorRow.workingHours) && Objects.equals(day, doctorRow.day) && Objects.equals(city, doctorRow.city) && Objects.equals(doctor, doctorRow.doctor) && Objects.equals(clinic, doctorRow.clinic) && Objects.equals(schedule, doctorRow.schedule) && Objects.equals(expertise, doctorRow.expertise);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(name, surname, workingHours, day, city, doctor, clinic, schedule, expertise);
+        }
     }
 
 }
-
-
-

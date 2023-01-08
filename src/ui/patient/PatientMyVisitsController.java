@@ -14,7 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import src.ui.Singleton;
+import src.ui.Session;
 import src.users.Doctor;
 import src.users.Patient;
 import src.users.User;
@@ -94,12 +94,12 @@ public class PatientMyVisitsController implements Initializable {
         tcRating.setCellValueFactory(new PropertyValueFactory<>("rating"));
 
         try {
-            final ArrayList<Visit> visits = Singleton.getClient().getVisitsByClientId(Singleton.getUser().getId());
+            final ArrayList<Visit> visits = Session.getClient().getVisitsByClientId(Session.getUser().getId());
             ArrayList<VisitRow> visitRows = new ArrayList<>();
 
             for (Visit visit : visits) {
-                Doctor doctor = Singleton.getClient().getDoctorById(visit.getDoctor().getId());
-                visitRows.add(new VisitRow(visit, doctor, Singleton.getUser()));
+                Doctor doctor = Session.getClient().getDoctorById(visit.getDoctor().getId());
+                visitRows.add(new VisitRow(visit, doctor, Session.getUser()));
             }
             tvTable.getItems().addAll(visitRows);
             FilteredList<VisitRow> filteredVisits = new FilteredList<>(tvTable.getItems(), b -> true);
@@ -136,7 +136,7 @@ public class PatientMyVisitsController implements Initializable {
                             VisitRow visitRow = getTableView().getItems().get(getIndex());
                             Visit visit = visitRow.getVisit();
                             visit.setRating(Integer.parseInt(visitRow.getDesiredRating()));
-                            Singleton.getClient().updateVisit(visit);
+                            Session.getClient().updateVisit(visit);
                             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("patientMyVisits.fxml")));
                             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setResizable(false);
@@ -157,7 +157,7 @@ public class PatientMyVisitsController implements Initializable {
                             VisitRow visitRow = getTableView().getItems().get(getIndex());
                             Visit visit = visitRow.getVisit();
                             visit.setVisitStatus(VisitStatus.CANCELED_WAITING_APPROVAL);
-                            Singleton.getClient().updateVisit(visit);
+                            Session.getClient().updateVisit(visit);
                             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("patientMyVisits.fxml")));
                             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setResizable(false);
@@ -297,7 +297,7 @@ public class PatientMyVisitsController implements Initializable {
         Visit visit = selectedVisit.getVisit();
         visit.setDate(dpDate.getValue());
         visit.setVisitStatus(VisitStatus.PENDING_WAITING_APPROVAL);
-        Singleton.getClient().updateVisit(visit);
+        Session.getClient().updateVisit(visit);
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("patientMyVisits.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);

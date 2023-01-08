@@ -1,13 +1,11 @@
 package src.ui.guest;
 
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -16,10 +14,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import src.clinic.Clinic;
-import src.ui.ButtonTableCreator;
-import src.ui.Singleton;
+import src.ui.Session;
 
 import java.io.IOException;
 import java.net.URL;
@@ -69,7 +65,7 @@ public class GuestClinicsController implements Initializable {
 
         ArrayList<Clinic> clinics = new ArrayList<Clinic>();
         try {
-            clinics = Singleton.getClient().getClinics();
+            clinics = Session.getClient().getClinics();
         } catch (Exception e) {
             System.out.println("Error");
         }
@@ -176,7 +172,3 @@ public class GuestClinicsController implements Initializable {
     }
 
 }
-
-
-
-

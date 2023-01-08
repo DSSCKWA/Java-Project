@@ -20,7 +20,7 @@ import javafx.stage.Stage;
 import src.clinic.Clinic;
 import src.expertise.Expertise;
 import src.schedule.Schedule;
-import src.ui.Singleton;
+import src.ui.Session;
 import src.users.Doctor;
 import src.users.Patient;
 import src.users.User;
@@ -98,7 +98,7 @@ public class PatientNewVisitController implements Initializable {
         });
 
         try {
-            final ArrayList<Doctor> doctors = Singleton.getClient().getDoctors();
+            final ArrayList<Doctor> doctors = Session.getClient().getDoctors();
             tfDate.valueProperty().addListener((observableValue, localDate, pickedDate) -> {
                 txPickDate.setVisible(pickedDate == null);
                 if (pickedDate != null) {
@@ -116,9 +116,9 @@ public class PatientNewVisitController implements Initializable {
                 {
                     scheduleButton.setOnAction((ActionEvent event) -> {
                         NewVisit newVisit = getTableView().getItems().get(getIndex());
-                        User user = Singleton.getUser();
+                        User user = Session.getUser();
                         try {
-                            Singleton.getClient().addVisit(new Visit(
+                            Session.getClient().addVisit(new Visit(
                                     tfDate.getValue(),
                                     newVisit.getStartTime(),
                                     (int) Duration.between(newVisit.getStartTime(), newVisit.getEndTime()).toMinutes(),
@@ -304,14 +304,14 @@ public class PatientNewVisitController implements Initializable {
 
     private void updateVisitList(ArrayList<Doctor> doctors, LocalDate pickedDate) {
         try {
-            ArrayList<Visit> visits = Singleton.getClient().getVisits();
+            ArrayList<Visit> visits = Session.getClient().getVisits();
             ArrayList<NewVisit> newVisits = new ArrayList<>();
             for (Doctor doctor : doctors) {
                 for (Schedule schedule : doctor.getDoctorSchedules()) {
                     if (!schedule.getDay().equals(pickedDate.getDayOfWeek())) {
                         continue;
                     }
-                    Clinic clinic = Singleton.getClient().getClinic(schedule.getClinicId());
+                    Clinic clinic = Session.getClient().getClinic(schedule.getClinicId());
 
                     LocalTime start = schedule.getStartTime();
                     LocalTime next = start.plusMinutes(30);
