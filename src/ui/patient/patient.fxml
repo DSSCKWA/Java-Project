@@ -29,7 +29,7 @@
                                 <Insets left="50.0" />
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0" />
+                                <Font name="Leelawadee UI Bold" size="14.0" />
                             </font>
                             <VBox.margin>
                                 <Insets />
@@ -43,7 +43,7 @@
                                 <Insets left="50.0" />
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0" />
+                                <Font name="Leelawadee UI Bold" size="14.0" />
                             </font>
                         </Button>
                         <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnNewVisitClicked" prefHeight="50.0" prefWidth="225.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="New Visit" textFill="WHITE">
@@ -54,7 +54,7 @@
                                 <Insets left="50.0" />
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0" />
+                                <Font name="Leelawadee UI Bold" size="14.0" />
                             </font>
                         </Button>
                         <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Log Out" textFill="WHITE">
@@ -65,7 +65,7 @@
                                 <Insets left="50.0" />
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0" />
+                                <Font name="Leelawadee UI Bold" size="14.0" />
                             </font>
                         </Button>
                     </children>

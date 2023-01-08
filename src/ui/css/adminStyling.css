@@ -19,11 +19,14 @@
     -fx-background-color:   #2D75E8;
 }
 .table-view .column-header .label{
-
    -fx-text-fill: white;
    -fx-font-weight: bold;
    -fx-alignment: CENTER_LEFT;
 }
+.table-view .columns {
+    -fx-background-color:   #2D75E8;
+}
+
 .table-view .cell{
    -fx-cell-size: 30;
   -fx-alignment: center-left;
@@ -31,9 +34,14 @@
   -fx-alignment: CENTER_LEFT;
 }
 
+.table-row-cell {
+    -fx-background-color:  #2D75E8;
+ }
+
 .table-row-cell:selected {
     -fx-background-color:  rgb(127, 172, 243);
  }
+
  .table-row-cell:selected .text {
         -fx-fill : white ;
 

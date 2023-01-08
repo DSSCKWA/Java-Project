@@ -78,7 +78,7 @@
                   <Insets left="50.0" />
                </padding>
                <font>
-                  <Font name="Arial Bold" size="14.0" />
+                  <Font name="Leelawadee UI Bold" size="14.0" />
                </font>
             </Button>
          </children>
@@ -108,12 +108,12 @@
                      <children>
                         <TableView fx:id="tvUser" layoutX="10.0" layoutY="101.0" prefHeight="259.0" prefWidth="666.0" style="-fx-background-color: #2196f3;" stylesheets="@../css/tableStyling.css">
                           <columns>
-                            <TableColumn fx:id="tcSurname" maxWidth="300.0" minWidth="100.0" prefWidth="104.800048828125" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Surname" />
-                            <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="100.0" prefWidth="104.00006103515625" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Name" />
-                              <TableColumn fx:id="tcEmail" maxWidth="300.0" minWidth="100.0" prefWidth="132.80001831054688" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Email" />
-                              <TableColumn fx:id="tcCity" maxWidth="300.0" minWidth="100.0" prefWidth="92.0" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="City" />
-                              <TableColumn fx:id="tcPermission" maxWidth="300.0" minWidth="100.0" prefWidth="107.20001220703125" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Permission" />
-                              <TableColumn fx:id="tcModify" maxWidth="300.0" minWidth="100.0" prefWidth="113.60009765625" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Modify Permission" />
+                            <TableColumn fx:id="tcSurname" maxWidth="300.0" minWidth="100.0" prefWidth="104.800048828125" styleClass="tableContent" text="Surname" />
+                            <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="100.0" prefWidth="104.00006103515625" styleClass="tableContent" text="Name" />
+                              <TableColumn fx:id="tcEmail" maxWidth="300.0" minWidth="100.0" prefWidth="132.80001831054688" styleClass="tableContent" text="Email" />
+                              <TableColumn fx:id="tcCity" maxWidth="300.0" minWidth="100.0" prefWidth="92.0" styleClass="tableContent" text="City" />
+                              <TableColumn fx:id="tcPermission" maxWidth="300.0" minWidth="100.0" prefWidth="107.20001220703125" styleClass="tableContent" text="Permission" />
+                              <TableColumn fx:id="tcModify" maxWidth="300.0" minWidth="100.0" prefWidth="113.60009765625" styleClass="tableContent" text="Modify Permission" />
                           </columns>
                         </TableView>
                                 <Text fx:id="textName" fill="WHITE" layoutX="20.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">

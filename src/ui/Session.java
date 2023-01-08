@@ -5,7 +5,7 @@ import src.users.User;
 
 public class Session {
     private static Session instance;
-    private static HttpClient httpsClient = new HttpClient("http://localhost:8080");
+    private static HttpClient httpsClient = new HttpClient("http://localhost:8081");
     private static User user;
 
     // Make the constructor private to prevent direct instantiation

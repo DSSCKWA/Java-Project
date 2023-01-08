@@ -68,7 +68,7 @@
                   </Button>
                   <Text fill="WHITE" layoutX="20.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Just want to browse?" wrappingWidth="131.509765625">
                      <font>
-                        <Font name="Arial" size="14.0" />
+                        <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
                   <PasswordField fx:id="pfPassword" layoutX="116.0" layoutY="76.0" promptText="Password:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">

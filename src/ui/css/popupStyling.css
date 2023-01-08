@@ -1,0 +1,16 @@
+.button {
+    -fx-background-color : #1976d2 ;
+    -fx-font: bold normal 12px "Leelawadee UI";
+    -fx-text-fill: #ffffff;
+}
+
+.root {
+    -fx-font: bold normal 12px "Leelawadee UI";
+    -fx-background-color : #2196f3;
+    -fx-text-fill: #ffffff;
+}
+
+.label {
+    -fx-font: bold normal 12px "Leelawadee UI";
+    -fx-text-fill: #ffffff;
+}

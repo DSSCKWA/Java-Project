@@ -76,7 +76,7 @@
                         <Insets left="50.0" />
                      </padding>
                      <font>
-                        <Font name="Arial Bold" size="14.0" />
+                        <Font name="Leelawadee UI Bold" size="14.0" />
                      </font>
                   </Button>
                </children>

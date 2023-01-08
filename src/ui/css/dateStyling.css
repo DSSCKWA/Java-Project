@@ -5,9 +5,42 @@
 
 .date-picker:editable > .arrow-button,
 .date-picker > .arrow-button {
-    -fx-opacity: 0;
+    -fx-opacity: 0.5;
 }
 
 .date-picker {
     -fx-font: bold normal 12px "System";
+}
+
+.calendar-grid {
+    -fx-background-color: #2196f3;
+}
+
+
+.calendar-header {
+    -fx-background-color: #0d47a1;
+    -fx-base: #0d47a1;
+    -fx-text-fill: white;
+}
+
+
+.date-picker-popup {
+    -fx-text-fill: white;
+    -fx-background-color: #0d47a1;
+    -fx-background-insets: 0, 1;
+    -fx-background-radius: 0;
+    -fx-alignment: CENTER; 
+    -fx-spacing: 0; 
+    -fx-padding: 0.083333em; 
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 12, 0.0 , 0 , 8 );
+}
+
+.date-picker > .text-field {
+    -fx-text-fill: white;
+}
+
+.date-picker-popup > .month-year-pane {
+    -fx-background-color: #0d47a1;
+    -fx-base: #1d1d1d ;
+    -fx-mark-highlight-color: -fx-light-text-color ;
 }

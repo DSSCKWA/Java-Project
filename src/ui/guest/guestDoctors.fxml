@@ -32,7 +32,7 @@
                         <Insets left="50.0" />
                      </padding>
                      <font>
-                        <Font name="Arial Bold" size="14.0" />
+                        <Font name="Leelawadee UI Bold" size="14.0" />
                      </font>
                      <VBox.margin>
                         <Insets />
@@ -46,7 +46,7 @@
                         <Insets left="50.0" />
                      </padding>
                      <font>
-                        <Font name="Arial Bold" size="14.0" />
+                        <Font name="Leelawadee UI Bold" size="14.0" />
                      </font>
                   </Button>
                   <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnDoctorsClicked" prefHeight="50.0" prefWidth="224.0" stylesheets="@../css/adminStyling.css" text="Doctors" textFill="WHITE">
@@ -57,7 +57,7 @@
                         <Insets left="50.0" />
                      </padding>
                      <font>
-                        <Font name="Arial Bold" size="14.0" />
+                        <Font name="Leelawadee UI Bold" size="14.0" />
                      </font>
                   </Button>
                   <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogInClicked" prefHeight="50.0" prefWidth="222.0" stylesheets="@../css/adminStyling.css" text="Log In" textFill="WHITE">
@@ -68,7 +68,7 @@
                         <Insets left="50.0" />
                      </padding>
                      <font>
-                        <Font name="Arial Bold" size="14.0" />
+                        <Font name="Leelawadee UI Bold" size="14.0" />
                      </font>
                   </Button>
                </children>
@@ -90,10 +90,6 @@
                   </AnchorPane>
                         <AnchorPane prefHeight="298.0" prefWidth="667.0">
                             <children>
-                                <Button fx:id="btnSearch" layoutX="500.0" layoutY="40.0" mnemonicParsing="false" onAction="#btnSearchClicked" style="-fx-background-color: #0d47a1;" text="SEARCH" textFill="WHITE">
-                           <font>
-                              <Font name="Leelawadee UI" size="18.0" />
-                           </font></Button>
                                 <Text fx:id="textTitle" fill="WHITE" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:">
                                     <font>
                                         <Font name="Leelawadee UI" size="18.0" />

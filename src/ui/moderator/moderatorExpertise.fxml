@@ -17,7 +17,7 @@
     <children>
         <AnchorPane prefHeight="526.0" prefWidth="202.0">
             <children>
-                <VBox prefHeight="526.0" prefWidth="202.0" style="-fx-background-color: #A41F03;">
+                <VBox prefHeight="598.0" prefWidth="203.0" style="-fx-background-color: #2196f3;">
                     <children>
                         <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -32,7 +32,7 @@
                                 <Insets left="50.0" />
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0" />
+                                <Font name="Leelawadee UI Bold" size="14.0" />
                             </font>
                             <VBox.margin>
                                 <Insets />
@@ -46,7 +46,7 @@
                                 <Insets left="50.0" />
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0" />
+                                <Font name="Leelawadee UI Bold" size="14.0" />
                             </font>
                         </Button>
                         <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnDoctorsClicked" prefHeight="50.0" prefWidth="224.0" stylesheets="@../css/adminStyling.css" text="Doctors" textFill="WHITE">
@@ -57,7 +57,7 @@
                                 <Insets left="50.0" />
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0" />
+                                <Font name="Leelawadee UI Bold" size="14.0" />
                             </font>
                         </Button>
                         <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnExpertiseClicked" prefHeight="50.0" prefWidth="224.0" stylesheets="@../css/adminStyling.css" text="Expertise" textFill="WHITE">
@@ -68,7 +68,7 @@
                                 <Insets left="50.0" />
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0" />
+                                <Font name="Leelawadee UI Bold" size="14.0" />
                             </font>
                         </Button>
                         <Button id="btnLogOut" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0" stylesheets="@../css/adminStyling.css" text="Log Out" textFill="WHITE">
@@ -79,7 +79,7 @@
                                 <Insets left="50.0" />
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0" />
+                                <Font name="Leelawadee UI Bold" size="14.0" />
                             </font>
                         </Button>
                     </children>
@@ -90,11 +90,20 @@
             <children>
                 <VBox prefHeight="526.0" prefWidth="686.0">
                     <children>
+                  <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #0d47a1;">
+                     <children>
+                        <Text fill="WHITE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="EXPERTISE PANEL:" wrappingWidth="478.93670654296875">
+                           <font>
+                              <Font name="Leelawadee UI" size="38.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
                         <AnchorPane prefHeight="154.0" prefWidth="667.0">
                      <children>
                         <Text fx:id="textSearch" layoutX="26.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Engine">
                            <font>
-                              <Font name="Arial" size="18.0" />
+                              <Font name="Leelawadee UI" size="18.0" />
                            </font>
                         </Text>
                         <Text fx:id="textName" layoutX="51.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
@@ -107,7 +116,7 @@
                         <Button fx:id="btnCancel" layoutX="594.0" layoutY="95.0" mnemonicParsing="false" onAction="#btnCancelClicked" text="Cancel" />
                         <Text fx:id="textAdd" layoutX="309.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add expertise">
                            <font>
-                              <Font name="Arial" size="18.0" />
+                              <Font name="Leelawadee UI" size="18.0" />
                            </font>
                         </Text>
                      </children>

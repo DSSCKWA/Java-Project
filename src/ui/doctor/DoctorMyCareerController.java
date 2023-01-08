@@ -70,14 +70,8 @@ public class DoctorMyCareerController implements Initializable {
     private TableColumn<?, ?> tcStart;
 
     @FXML
-    private Text textStartM;
-
-    @FXML
     private Text textError;
 
-
-    @FXML
-    private Text textEndM;
 
     @FXML
     private TextField tfEndM;
@@ -131,8 +125,6 @@ public class DoctorMyCareerController implements Initializable {
         tfStart.setVisible(false);
         tfEndM.setVisible(false);
         tfStartM.setVisible(false);
-        textStartM.setVisible(false);
-        textEndM.setVisible(false);
 
 
         ArrayList<Clinic> clinics = new ArrayList<Clinic>();
@@ -185,8 +177,6 @@ public class DoctorMyCareerController implements Initializable {
                             tfStart.setVisible(true);
                             tfEndM.setVisible(true);
                             tfStartM.setVisible(true);
-                            textStartM.setVisible(true);
-                            textEndM.setVisible(true);
                             btnCreate.setText("Edit");
                             textTitle.setText("Editor Tool");
 
@@ -279,8 +269,6 @@ public class DoctorMyCareerController implements Initializable {
                     tfStart.setVisible(true);
                     tfEndM.setVisible(true);
                     tfStartM.setVisible(true);
-                    textStartM.setVisible(true);
-                    textEndM.setVisible(true);
 
                 });
 

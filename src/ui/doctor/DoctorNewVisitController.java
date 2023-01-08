@@ -139,7 +139,9 @@ public class DoctorNewVisitController implements Initializable {
                         VBox layout = new VBox(10);
                         layout.getChildren().addAll(popupLabel, popupButton);
                         layout.setAlignment(Pos.CENTER);
-                        popup.setScene(new Scene(layout, 300, 250));
+                        Scene pop = new Scene(layout, 300, 250);
+                        pop.getStylesheets().add(getClass().getResource("../css/popupStyling.css").toExternalForm());
+                        popup.setScene(pop);
                         popup.showAndWait();
                     });
                 }

@@ -65,7 +65,7 @@
                         <Insets left="50.0" />
                      </padding>
                      <font>
-                        <Font name="Arial Bold" size="14.0" />
+                        <Font name="Leelawadee UI Bold" size="14.0" />
                      </font>
                   </Button>
                   <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnMyCareerClicked" prefHeight="50.0" prefWidth="224.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Schedule" textFill="WHITE">
@@ -76,7 +76,7 @@
                         <Insets left="50.0" />
                      </padding>
                      <font>
-                        <Font name="Arial Bold" size="14.0" />
+                        <Font name="Leelawadee UI Bold" size="14.0" />
                      </font>
                   </Button>
                   <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Log Out" textFill="WHITE">
@@ -87,7 +87,7 @@
                         <Insets left="50.0" />
                      </padding>
                      <font>
-                        <Font name="Arial Bold" size="14.0" />
+                        <Font name="Leelawadee UI Bold" size="14.0" />
                      </font>
                   </Button>
                     </children>
@@ -111,15 +111,15 @@
                             <children>
                                 <TableView fx:id="tvTable" layoutY="70.0" prefHeight="174.0" prefWidth="667.0" style="-fx-background-color: #2196f3;" stylesheets="@../css/tableStyling.css">
                                     <columns>
-                                        <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="67.20002591609955" prefWidth="67.20002591609955" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Name" />
-                                        <TableColumn fx:id="tcSurname" maxWidth="300.0" minWidth="68.0" prefWidth="68.0" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Surname" />
-                                        <TableColumn fx:id="tcDate" maxWidth="300.0" minWidth="76.800048828125" prefWidth="79.199951171875" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Date" />
-                                        <TableColumn fx:id="tcTime" maxWidth="300.0" minWidth="60.7999267578125" prefWidth="91.99998474121094" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Time" />
-                                        <TableColumn fx:id="tcStatus" maxWidth="300.0" minWidth="80.0" prefWidth="108.800048828125" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Status" />
-                                        <TableColumn fx:id="tcRating" maxWidth="300.0" minWidth="63.199951171875" prefWidth="63.199951171875" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Rating" />
-                                        <TableColumn fx:id="tcPick" maxWidth="300.0" minWidth="68.0" prefWidth="76.80001831054688" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Pick Rating" />
-                                        <TableColumn fx:id="tcAction" maxWidth="300.0" minWidth="68.0" prefWidth="108.0" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Action" />
-                                        <TableColumn fx:id="tcEdit" maxWidth="300.0" minWidth="68.0" prefWidth="146.0" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Edit" />
+                                        <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="67.20002591609955" prefWidth="67.20002591609955" styleClass="tableContent" text="Name" />
+                                        <TableColumn fx:id="tcSurname" maxWidth="300.0" minWidth="68.0" prefWidth="68.0" styleClass="tableContent" text="Surname" />
+                                        <TableColumn fx:id="tcDate" maxWidth="300.0" minWidth="76.800048828125" prefWidth="79.199951171875" styleClass="tableContent" text="Date" />
+                                        <TableColumn fx:id="tcTime" maxWidth="300.0" minWidth="60.7999267578125" prefWidth="91.99998474121094" styleClass="tableContent" text="Time" />
+                                        <TableColumn fx:id="tcStatus" maxWidth="300.0" minWidth="80.0" prefWidth="108.800048828125" styleClass="tableContent" text="Status" />
+                                        <TableColumn fx:id="tcRating" maxWidth="300.0" minWidth="63.199951171875" prefWidth="63.199951171875" styleClass="tableContent" text="Rating" />
+                                        <TableColumn fx:id="tcPick" maxWidth="300.0" minWidth="68.0" prefWidth="76.80001831054688" styleClass="tableContent" text="Pick Rating" />
+                                        <TableColumn fx:id="tcAction" maxWidth="300.0" minWidth="68.0" prefWidth="108.0" styleClass="tableContent" text="Action" />
+                                        <TableColumn fx:id="tcEdit" maxWidth="300.0" minWidth="68.0" prefWidth="146.0" styleClass="tableContent" text="Edit" />
                                     </columns>
                                 </TableView>
                                 <DatePicker fx:id="dpDate" layoutX="29.0" layoutY="30.0" promptText="Date:" style="-fx-background-color: #bbdefb;" stylesheets="@../css/dateStyling.css" />
@@ -147,14 +147,14 @@
                      <children>
                         <TableView fx:id="tvTablePatients" layoutY="70.0" prefHeight="211.0" prefWidth="667.0" style="-fx-background-color: #2196f3;" stylesheets="@../css/tableStyling.css">
                            <columns>
-                              <TableColumn fx:id="tcNamePatient" maxWidth="300.0" minWidth="67.20002591609955" prefWidth="67.20002591609955" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Name" />
-                              <TableColumn fx:id="tcSurnamePatient" maxWidth="300.0" minWidth="68.0" prefWidth="68.0" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Surname" />
-                              <TableColumn fx:id="tcDatePatient" maxWidth="300.0" minWidth="76.800048828125" prefWidth="79.199951171875" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Date" />
-                              <TableColumn fx:id="tcTimePatient" maxWidth="300.0" minWidth="60.7999267578125" prefWidth="91.99998474121094" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Time" />
-                              <TableColumn fx:id="tcStatusPatient" maxWidth="300.0" minWidth="80.0" prefWidth="108.800048828125" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Status" />
-                              <TableColumn fx:id="tcAcceptPatient" maxWidth="300.0" minWidth="63.199951171875" prefWidth="63.199951171875" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Accept" />
-                              <TableColumn fx:id="tcActionPatient" maxWidth="300.0" minWidth="68.0" prefWidth="76.80001831054688" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Action" />
-                              <TableColumn fx:id="tcEditPatient" maxWidth="300.0" minWidth="68.0" prefWidth="108.0" style="-fx-background-color: #1976d2; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Edit" />
+                              <TableColumn fx:id="tcNamePatient" maxWidth="300.0" minWidth="67.20002591609955" prefWidth="67.20002591609955" styleClass="tableContent" text="Name" />
+                              <TableColumn fx:id="tcSurnamePatient" maxWidth="300.0" minWidth="68.0" prefWidth="68.0" styleClass="tableContent" text="Surname" />
+                              <TableColumn fx:id="tcDatePatient" maxWidth="300.0" minWidth="76.800048828125" prefWidth="79.199951171875" styleClass="tableContent" text="Date" />
+                              <TableColumn fx:id="tcTimePatient" maxWidth="300.0" minWidth="60.7999267578125" prefWidth="91.99998474121094" styleClass="tableContent" text="Time" />
+                              <TableColumn fx:id="tcStatusPatient" maxWidth="300.0" minWidth="80.0" prefWidth="108.800048828125" styleClass="tableContent" text="Status" />
+                              <TableColumn fx:id="tcAcceptPatient" maxWidth="300.0" minWidth="63.199951171875" prefWidth="63.199951171875" styleClass="tableContent" text="Accept" />
+                              <TableColumn fx:id="tcActionPatient" maxWidth="300.0" minWidth="68.0" prefWidth="76.80001831054688" styleClass="tableContent" text="Action" />
+                              <TableColumn fx:id="tcEditPatient" maxWidth="300.0" minWidth="68.0" prefWidth="108.0" styleClass="tableContent" text="Edit" />
                            </columns>
                         </TableView>
                         <DatePicker fx:id="dpDatePatient" layoutX="29.0" layoutY="30.0" promptText="Date:" style="-fx-background-color: #bbdefb;" stylesheets="@../css/dateStyling.css" />
