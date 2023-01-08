@@ -37,8 +37,14 @@ CREATE TABLE IF NOT EXISTS `clinics` (
   `city` varchar(255) NOT NULL,
   PRIMARY KEY (`clinic_id`),
   KEY `city` (`city`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
+
+INSERT INTO `clinics` (`clinic_id`, `name`, `address`, `city`) VALUES
+(1, 'PKmed', 'Warszawska 1', 'Cracov'),
+(2, 'ScanMed', 'Szlak 52', 'Katowice'),
+(3, 'SpecialMed', 'Kasztanowa 3', 'Warsaw'),
+(4, 'LuxMed', 'Basztowa 9', 'Cracov');
 -- --------------------------------------------------------
 
 --
@@ -53,6 +59,12 @@ CREATE TABLE IF NOT EXISTS `doctors` (
   KEY `doctor_id` (`doctor_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `doctors` (`doctor_id`, `clinic_id`) VALUES
+(3, 1),
+(3, 3),
+(4, 1),
+(4, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -66,7 +78,22 @@ CREATE TABLE IF NOT EXISTS `equipment` (
   `clinic_id` int(10) NOT NULL,
   PRIMARY KEY (`equipment_id`),
   KEY `clinic_id` (`clinic_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `equipment` (`equipment_id`, `name`, `status`, `clinic_id`) VALUES
+(1, 'X-ray', 'IN_USE', 4),
+(2, 'Glukometr', 'IN_USE', 1),
+(3, 'Aparat EKG', 'BROKEN', 1),
+(4, 'Inhalator', 'IN_REPAIR', 1),
+(5, 'Termometr', 'IN_USE', 2),
+(6, 'Pulsoksymetr', 'IN_USE', 4),
+(7, 'Apteczka', 'DECOMISSIONED', 3),
+(8, 'Holder EKG', 'IN_USE', 1),
+(9, 'Licznik Geigera', 'BROKEN', 1),
+(10, 'Zestaw ratowniczy', 'IN_USE', 2),
+(11, 'X-ray', 'IN_USE', 1),
+(12, 'Apteczka', 'IN_USE', 1),
+(13, 'Termometr', 'BROKEN', 1);
 
 -- --------------------------------------------------------
 
@@ -81,6 +108,15 @@ CREATE TABLE IF NOT EXISTS `expertise` (
   KEY `doctor_id` (`doctor_id`) USING BTREE,
   KEY `area_of_expertise` (`area_of_expertise`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `expertise` (`doctor_id`, `area_of_expertise`) VALUES
+(3, 'Dermatolog'),
+(3, 'Kardiolog'),
+(3, 'Urolog'),
+(4, 'Dermatolog'),
+(4, 'Okulista'),
+(4, 'Pediatra'),
+(4, 'Stomatolog');
 
 -- --------------------------------------------------------
 
@@ -100,6 +136,12 @@ CREATE TABLE IF NOT EXISTS `schedule` (
   KEY `day` (`day`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `schedule` (`doctor_id`, `clinic_id`, `day`, `start_hour`, `end_hour`) VALUES
+(3, 1, 'monday', '09:00:00', '16:00:00'),
+(3, 1, 'wednesday', '08:00:00', '13:00:00'),
+(3, 3, 'tuesday', '11:00:00', '18:00:00'),
+(3, 3, 'thursday', '11:00:00', '13:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -118,14 +160,20 @@ CREATE TABLE IF NOT EXISTS `users` (
   `permissions` enum('admin','moderator','patient','doctor','guest') NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `email` (`email`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Zrzut danych tabeli `users`
 --
 
 INSERT INTO `users` (`user_id`, `name`, `surname`, `address`, `city`, `phone_number`, `email`, `password`, `permissions`) VALUES
-(1, 'admin', 'admin', 'Adminowa 5', 'Admin', 123456789, 'admin@gmail.com', 'admin', 'admin');
+(1, 'Admin', 'Adminovitz', 'Warszawska 1', 'Cracov', 123456789, 'admin@admin.pk', 'admin', 'admin'),
+(2, 'Moderator', 'Moder', 'Warszawska 1', 'Cracov', 987654321, 'moderator@moderator.pk', 'moderator', 'moderator'),
+(3, 'Krzysztof', 'Nowak', 'Warszawska 2', 'Cracov', 123123123, 'karolina.jez@outlook.com', 'tina', 'doctor'),
+(4, 'Anna', 'Kowalska', 'Parkowa 3', 'Warsaw', 321321321, 'anna.kowalska@anna.pk', 'anna123', 'doctor'),
+(5, 'Wojciech', 'Malicki', 'Akademikowa 3', 'Rastenburg', 133742069, 'wojciech.malicki09@gmail.com', 'wojtek123', 'patient'),
+(6, 'Davido', 'Mountaino', 'G2A_headquarters 1', 'Breslau', 694201337, 'dawidgorski0000@gmail.com', 'dawid123', 'patient');
+
 
 --
 -- Wyzwalacze `users`
@@ -159,8 +207,12 @@ CREATE TABLE IF NOT EXISTS `visits` (
   PRIMARY KEY (`visit_id`),
   KEY `visits_ibfk_1` (`client_id`) USING BTREE,
   KEY `visits_ibfk_2` (`doctor_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
+
+INSERT INTO `visits` (`visit_id`, `status`, `date`, `time`, `duration`, `rating`, `client_id`, `doctor_id`) VALUES
+(1, 'completed', '2023-01-03', '12:30:00', 30, 4, 6, 3),
+(2, 'canceled', '2023-01-05', '08:00:00', 30, 0, 5, 4);
 --
 -- Ograniczenia dla zrzutów tabel
 --
@@ -182,7 +234,7 @@ ALTER TABLE `equipment`
 -- Ograniczenia dla tabeli `expertise`
 --
 ALTER TABLE `expertise`
-  ADD CONSTRAINT `expertise_ibfk_1` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`doctor_id`);
+  ADD CONSTRAINT `expertise_ibfk_1` FOREIGN KEY (`doctor_id`) REFERENCES `users` (`user_id`);
 
 --
 -- Ograniczenia dla tabeli `schedule`
