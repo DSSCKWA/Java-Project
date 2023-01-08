@@ -104,7 +104,7 @@
                               <Font name="Arial" size="14.0" />
                            </font>
                         </Text>
-                        <Text fx:id="txPickDate" fill="RED" layoutX="62.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pick a date!">
+                        <Text fx:id="txPickDate" fill="RED" layoutX="53.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PICK A DATE!">
                            <font>
                               <Font name="Arial" size="15.0" />
                            </font>

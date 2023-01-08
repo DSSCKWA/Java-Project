@@ -105,8 +105,8 @@
                               <Font name="Arial" size="18.0" />
                            </font>
                         </Text>
-                        <Button fx:id="btConfirm" layoutX="496.0" layoutY="69.0" mnemonicParsing="false" onAction="#btnConfirm" text="Confirm" />
-                        <Button fx:id="btCancel" layoutX="582.0" layoutY="69.0" mnemonicParsing="false" onAction="#btnCancel" text="Cancel" />
+                        <Button fx:id="btConfirm" layoutX="496.0" layoutY="69.0" mnemonicParsing="false" onAction="#btnConfirm" text="CONFIRM" />
+                        <Button fx:id="btCancel" layoutX="582.0" layoutY="69.0" mnemonicParsing="false" onAction="#btnCancel" text="CANCEL" />
                             </children>
                         </AnchorPane>
                     </children>

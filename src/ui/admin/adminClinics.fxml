@@ -92,7 +92,7 @@
                     <children>
                         <AnchorPane fx:id="anchorPane2" prefHeight="202.0" prefWidth="667.0">
                             <children>
-                                <Button fx:id="btnCreate" layoutX="601.0" layoutY="130.0" mnemonicParsing="false" onAction="#btnCreateClicked" text="Create" />
+                                <Button fx:id="btnCreate" layoutX="601.0" layoutY="130.0" mnemonicParsing="false" onAction="#btnCreateClicked" text="CREATE" />
                                 <Text fx:id="textTitle" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clinic creation tool:">
                                     <font>
                                         <Font name="Arial" size="18.0" />
@@ -116,12 +116,12 @@
                                     </font>
                                 </Text>
                                 <TextField fx:id="tfName" layoutX="234.0" layoutY="62.0" />
-                                <Text fx:id="tFaliure" fill="RED" layoutX="606.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Faliure">
+                                <Text fx:id="tFaliure" fill="RED" layoutX="606.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FALIURE">
                                     <font>
                                         <Font size="14.0" />
                                     </font>
                                 </Text>
-                        <Button fx:id="btnCancel" layoutX="521.0" layoutY="129.0" mnemonicParsing="false" onAction="#btnCancelClicked" text="Cancel" />
+                        <Button fx:id="btnCancel" layoutX="521.0" layoutY="129.0" mnemonicParsing="false" onAction="#btnCancelClicked" text="CANCEL" />
                             </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="322.0" prefWidth="667.0">
