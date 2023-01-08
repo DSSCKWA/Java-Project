@@ -111,7 +111,7 @@ public class PatientNewVisitController implements Initializable {
             });
 
             tcSchedule.setCellFactory(tableColumn -> new TableCell<>() {
-                private final Button scheduleButton = new Button("Schedule");
+                private final Button scheduleButton = new Button("SCHEDULE");
 
                 {
                     scheduleButton.setOnAction((ActionEvent event) -> {

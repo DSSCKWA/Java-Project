@@ -188,7 +188,7 @@ public class DoctorMyVisitsController implements Initializable {
             });
 
             tcAction.setCellFactory(tableColumn -> new TableCell<>() {
-                private final Button rateButton = new Button("Rate");
+                private final Button rateButton = new Button("RATE");
 
                 {
                     rateButton.setOnAction((ActionEvent event) -> {
@@ -209,7 +209,7 @@ public class DoctorMyVisitsController implements Initializable {
                     });
                 }
 
-                private final Button cancelButton = new Button("Cancel");
+                private final Button cancelButton = new Button("CANCEL");
 
                 {
                     cancelButton.setOnAction((ActionEvent event) -> {
@@ -251,7 +251,7 @@ public class DoctorMyVisitsController implements Initializable {
             });
 
             tcActionPatient.setCellFactory(tableColumn -> new TableCell<>() {
-                private final Button completeButton = new Button("Complete");
+                private final Button completeButton = new Button("COMPLETE");
 
                 {
                     completeButton.setOnAction((ActionEvent event) -> {
@@ -272,7 +272,7 @@ public class DoctorMyVisitsController implements Initializable {
                     });
                 }
 
-                private final Button cancelButton = new Button("Cancel");
+                private final Button cancelButton = new Button("CANCEL");
 
                 {
                     cancelButton.setOnAction((ActionEvent event) -> {
@@ -316,7 +316,7 @@ public class DoctorMyVisitsController implements Initializable {
             });
 
             tcAcceptPatient.setCellFactory(tableColumn -> new TableCell<>() {
-                private final Button acceptButton = new Button("Accept");
+                private final Button acceptButton = new Button("ACCEPT");
 
                 {
                     acceptButton.setOnAction((ActionEvent event) -> {
@@ -360,7 +360,7 @@ public class DoctorMyVisitsController implements Initializable {
             });
 
             tcEdit.setCellFactory(tableColumn -> new TableCell<>() {
-                private final Button editButton = new Button("Edit");
+                private final Button editButton = new Button("EDIT");
 
                 {
                     editButton.setOnAction((ActionEvent event) -> {
@@ -409,7 +409,7 @@ public class DoctorMyVisitsController implements Initializable {
             });
 
             tcEditPatient.setCellFactory(tableColumn -> new TableCell<>() {
-                private final Button editButton = new Button("Edit");
+                private final Button editButton = new Button("EDIT");
 
                 {
                     editButton.setOnAction((ActionEvent event) -> {

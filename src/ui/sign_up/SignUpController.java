@@ -66,7 +66,7 @@ public class SignUpController implements Initializable {
 
     @FXML
     void btnSubmitClicked(ActionEvent event) {
-        tWarning.setText("Something went wrong, please try again");
+        tWarning.setText("SOMETHING WENT WRONG, PLEASE TRY AGAIN");
         tWarning.setVisible(true);
         if (Objects.equals(pfPassword.getText(), pfPasswordConfirm.getText())) {
             if (!Objects.equals(pfPassword.getText(), "") && !(Objects.equals(tfName.getText(), "")) && !(Objects.equals(tfSurname.getText(), "")) && !(Objects.equals(tfEmail.getText(), "")) && !(Objects.equals(tfCity.getText(), "")) && !(Objects.equals(tfAddress.getText(), "")) && !(Objects.equals(tfPhoneNumber.getText(), ""))) {

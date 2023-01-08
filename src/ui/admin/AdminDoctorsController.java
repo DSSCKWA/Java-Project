@@ -133,7 +133,7 @@ public class AdminDoctorsController implements Initializable {
         });
 
         tcAdd.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button addButton = new Button("Add");
+            private final Button addButton = new Button("ADD");
 
             {
                 addButton.setOnAction((ActionEvent event) -> {
@@ -166,7 +166,7 @@ public class AdminDoctorsController implements Initializable {
                     addButton.setVisible(false);
 
                     tcAR.setCellFactory(tableColumn -> new TableCell<>() {
-                        private final Button addCButton = new Button("Add");
+                        private final Button addCButton = new Button("ADD");
 
                         {
                             addCButton.setOnAction((ActionEvent event) -> {
@@ -219,7 +219,7 @@ public class AdminDoctorsController implements Initializable {
 
 
         tcRemove.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button removeButton = new Button("Remove");
+            private final Button removeButton = new Button("REMOVE");
 
             {
                 removeButton.setOnAction((ActionEvent event) -> {
@@ -250,7 +250,7 @@ public class AdminDoctorsController implements Initializable {
 
 
                     tcAR.setCellFactory(tableColumn -> new TableCell<>() {
-                        private final Button removeCButton = new Button("Remove");
+                        private final Button removeCButton = new Button("REMOVE");
 
                         {
                             removeCButton.setOnAction((ActionEvent event) -> {

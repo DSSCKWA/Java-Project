@@ -98,7 +98,7 @@ public class AdminClinicsController implements Initializable {
         FilteredList<Clinic> filteredClinics = new FilteredList<>(tvTable.getItems(), b -> true);
 
         tcEdit.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button editButton = new Button("Edit");
+            private final Button editButton = new Button("EDIT");
 
             {
                 editButton.setOnAction((ActionEvent event) -> {
@@ -108,7 +108,7 @@ public class AdminClinicsController implements Initializable {
                     Clinic clinic = getTableView().getItems().get(getIndex());
 
                     textTitle.setText("Clinic edition tool");
-                    btnCreate.setText("Edit");
+                    btnCreate.setText("EDIT");
 
                     filteredClinics.setPredicate(clinic2 -> clinic2.equals(clinic));
                     tvTable.setItems(filteredClinics);
@@ -132,7 +132,7 @@ public class AdminClinicsController implements Initializable {
 
 
         tcDelete.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button deleteButton = new Button("Delete");
+            private final Button deleteButton = new Button("DELETE");
 
             {
                 tFaliure.setVisible(false);
@@ -150,7 +150,7 @@ public class AdminClinicsController implements Initializable {
                     tfName.setVisible(false);
                     tfCity.setVisible(false);
                     tfAddress.setVisible(false);
-                    btnCreate.setText("Confirm");
+                    btnCreate.setText("CONFIRM");
 
                     filteredClinics.setPredicate(clinic2 -> clinic2.equals(clinic));
                     tvTable.setItems(filteredClinics);
@@ -185,11 +185,11 @@ public class AdminClinicsController implements Initializable {
     @FXML
     void btnCreateClicked(ActionEvent event) {
 
-        if (Objects.equals(btnCreate.getText(), "Confirm")) {
+        if (Objects.equals(btnCreate.getText(), "CONFIRM")) {
             tFaliure.setVisible(true);
             try {
                 Session.getClient().deleteClinic(cli.getClinicId());
-                tFaliure.setText("Success");
+                tFaliure.setText("SUCCESS");
                 root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics.fxml")));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setResizable(false);
@@ -199,7 +199,7 @@ public class AdminClinicsController implements Initializable {
             } catch (Exception e) {
                 System.out.println("Error");
             }
-        } else if (Objects.equals(btnCreate.getText(), "Edit")) {
+        } else if (Objects.equals(btnCreate.getText(), "EDIT")) {
             tFaliure.setVisible(true);
             if (!Objects.equals(tfName.getText(), "") && !Objects.equals(tfAddress.getText(), "") && !Objects.equals(tfCity.getText(), "")) {
                 try {
