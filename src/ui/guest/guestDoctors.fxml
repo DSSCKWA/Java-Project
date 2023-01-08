@@ -2,7 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -75,11 +76,10 @@
         </AnchorPane>
         <AnchorPane prefHeight="526.0" prefWidth="686.0">
             <children>
-                <VBox prefHeight="526.0" prefWidth="667.0">
+                <VBox prefHeight="526.0" prefWidth="686.0">
                     <children>
-                        <AnchorPane prefHeight="298.0" prefWidth="667.0">
+                        <AnchorPane prefHeight="136.0" prefWidth="686.0">
                             <children>
-                                <Button fx:id="btnSearch" layoutX="601.0" layoutY="130.0" mnemonicParsing="false" onAction="#btnSearchClicked" text="Search" />
                                 <Text fx:id="textTitle" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search engine">
                                     <font>
                                         <Font name="Arial" size="18.0" />
@@ -98,32 +98,20 @@
                                 </Text>
                                 <TextField fx:id="tfCity" layoutX="198.0" layoutY="84.0" />
                             </children></AnchorPane>
-                        <AnchorPane prefHeight="23.0" prefWidth="667.0">
-                            <children>
-                                <HBox layoutX="8.0" layoutY="32.0" prefHeight="30.0" prefWidth="634.0" style="-fx-border-color: black; -fx-border-insets: black;">
-                                    <children>
-                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" Our Doctors" textAlignment="CENTER" wrappingWidth="673.199951171875">
-                                            <font>
-                                                <Font name="Arial" size="18.0" />
-                                            </font>
-                                        </Text>
-                                    </children>
-                                </HBox>
-                            </children>
-                        </AnchorPane>
-                        <AnchorPane prefHeight="303.0" prefWidth="598.0">
-                            <children>
-                                <ScrollPane layoutX="8.0" prefHeight="295.0" prefWidth="675.0">
-                                    <content>
-                                        <AnchorPane fx:id="anchorPane1" minHeight="0.0" minWidth="0.0" prefHeight="417.0" prefWidth="636.0">
-                                            <children>
-                                                <VBox fx:id="vBox1" prefHeight="434.0" prefWidth="634.0">
-                                                    <children>
-                                                    </children></VBox>
-                                            </children></AnchorPane>
-                                    </content>
-                                </ScrollPane>
-                            </children></AnchorPane>
+                  <AnchorPane prefHeight="391.0" prefWidth="686.0">
+                     <children>
+                        <TableView fx:id="tvTable" layoutX="4.0" layoutY="-1.0" prefHeight="385.0" prefWidth="678.0">
+                          <columns>
+                            <TableColumn fx:id="tcSurname" prefWidth="87.19993448257446" text="Surname" />
+                              <TableColumn fx:id="tcName" prefWidth="89.60004425048828" text="Name" />
+                            <TableColumn fx:id="tcCity" prefWidth="84.79998779296875" text="City" />
+                              <TableColumn fx:id="tcWH" prefWidth="197.5999755859375" text="Working Hours" />
+                              <TableColumn fx:id="tcDay" minWidth="0.0" prefWidth="100.79995727539062" text="Day" />
+                              <TableColumn fx:id="tcExpertise" prefWidth="115.2000732421875" text="Expertise" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
                     </children>
                 </VBox>
             </children>
