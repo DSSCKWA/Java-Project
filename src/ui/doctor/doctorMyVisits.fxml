@@ -121,6 +121,9 @@
                                         <TableColumn fx:id="tcAction" maxWidth="300.0" minWidth="68.0" prefWidth="108.0" styleClass="tableContent" text="Action" />
                                         <TableColumn fx:id="tcEdit" maxWidth="300.0" minWidth="68.0" prefWidth="146.0" styleClass="tableContent" text="Edit" />
                                     </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                                 </TableView>
                                 <DatePicker fx:id="dpDate" layoutX="29.0" layoutY="30.0" promptText="Date:" style="-fx-background-color: #bbdefb;" stylesheets="@../css/dateStyling.css" />
                                 <Text fx:id="txPickDate" fill="WHITE" layoutX="68.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose date:" textAlignment="CENTER" wrappingWidth="97.76092529296875">
@@ -156,6 +159,9 @@
                               <TableColumn fx:id="tcActionPatient" maxWidth="300.0" minWidth="68.0" prefWidth="76.80001831054688" styleClass="tableContent" text="Action" />
                               <TableColumn fx:id="tcEditPatient" maxWidth="300.0" minWidth="68.0" prefWidth="108.0" styleClass="tableContent" text="Edit" />
                            </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                         </TableView>
                         <DatePicker fx:id="dpDatePatient" layoutX="29.0" layoutY="30.0" promptText="Date:" style="-fx-background-color: #bbdefb;" stylesheets="@../css/dateStyling.css" />
                         <Text fx:id="txPickDatePatient" fill="WHITE" layoutX="68.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose date:" textAlignment="CENTER" wrappingWidth="97.76092529296875">

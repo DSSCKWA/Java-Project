@@ -141,8 +141,10 @@
                               <TableColumn fx:id="tcEmail" maxWidth="500.0" minWidth="100.0" prefWidth="179.99998474121094" styleClass="tableContent" text="Email" />
                               <TableColumn fx:id="tcAdd" maxWidth="300.0" minWidth="100.0" prefWidth="123.2000732421875" styleClass="tableContent" text="Add to Clinic" />
                               <TableColumn fx:id="tcRemove" maxWidth="300.0" minWidth="100.0" prefWidth="128.00006103515625" styleClass="tableContent" text="Remove from Clinic" />
-                              <TableColumn fx:id="placeholder" prefWidth="252.0" style="-fx-background-color: #1976d2;" styleClass="tableContent" />
                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                         </TableView>
                      </children>
                   </AnchorPane>
@@ -155,6 +157,9 @@
                               <TableColumn fx:id="tcCAddress" maxWidth="300.0" minWidth="100.0" prefWidth="196.00006103515625" styleClass="tableContent" text="Address" />
                               <TableColumn fx:id="tcAR" maxWidth="300.0" minWidth="100.0" prefWidth="193.5999755859375" styleClass="tableContent" text="Add/Remove" />
                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                         </TableView>
                      </children>
                   </AnchorPane>
