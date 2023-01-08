@@ -1,13 +1,17 @@
-.tableContent {
+.table-column{
        -fx-alignment: center;
 }
 
 .button {
-       -fx-background-color:  #2196f3;
+       -fx-background-color:  #0d47a1;
        -fx-text-fill: #ffffff;
 }
 
-.tableContent text {
+.table-column text {
+        -fx-text-fill: #ffffff;
+}
+
+.table-view .table-cell {
         -fx-text-fill: #ffffff;
 }
 
@@ -17,7 +21,19 @@
 }
 
 .table-view {
+        -fx-border-opacity: 0;
+}
+
+.table-row-cell{
+        -fx-border-opacity: 0;
+}
+
+.table-column {
         -fx-background-color: #2196f3; 
+}
+
+.table-view {
+        -fx-background-color: #2196f3;
 }
 
 .table-view .virtual-flow .scroll-bar:vertical,

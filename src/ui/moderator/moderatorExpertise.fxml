@@ -17,7 +17,7 @@
     <children>
         <AnchorPane prefHeight="526.0" prefWidth="202.0">
             <children>
-                <VBox prefHeight="598.0" prefWidth="203.0" style="-fx-background-color: #2196f3;">
+                <VBox prefHeight="590.0" prefWidth="203.0" style="-fx-background-color: #2196f3;">
                     <children>
                         <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -99,40 +99,73 @@
                         </Text>
                      </children>
                   </AnchorPane>
-                        <AnchorPane prefHeight="154.0" prefWidth="667.0">
+                        <AnchorPane prefHeight="154.0" prefWidth="667.0" style="-fx-background-color: #2196f3;">
                      <children>
-                        <Text fx:id="textSearch" layoutX="26.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Engine">
+                        <Text fx:id="textSearch" fill="WHITE" layoutX="50.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:" textAlignment="CENTER">
                            <font>
                               <Font name="Leelawadee UI" size="18.0" />
                            </font>
                         </Text>
-                        <Text fx:id="textName" layoutX="51.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" />
-                        <Text fx:id="textSurname" layoutX="51.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:" />
-                        <TextField fx:id="tfName" layoutX="144.0" layoutY="56.0" />
-                        <TextField fx:id="tfSurname" layoutX="144.0" layoutY="95.0" />
-                        <Text fx:id="textExpertise" layoutX="343.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expertise:" />
-                        <TextField fx:id="tfExpertise" layoutX="406.0" layoutY="56.0" />
-                        <Button fx:id="btnAdd" layoutX="594.0" layoutY="56.0" mnemonicParsing="false" onAction="#btnAddClicked" prefHeight="26.0" prefWidth="49.0" text="Add" />
-                        <Button fx:id="btnCancel" layoutX="594.0" layoutY="95.0" mnemonicParsing="false" onAction="#btnCancelClicked" text="Cancel" />
-                        <Text fx:id="textAdd" layoutX="309.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add expertise">
+                        <Text fx:id="textName" fill="WHITE" layoutX="50.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+                           <font>
+                              <Font name="Leelawadee UI" size="14.0" />
+                           </font></Text>
+                        <Text fx:id="textSurname" fill="WHITE" layoutX="50.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:">
+                           <font>
+                              <Font name="Leelawadee UI" size="14.0" />
+                           </font></Text>
+                        <TextField fx:id="tfName" layoutX="144.0" layoutY="44.0" promptText="Name:" style="-fx-background-color: #bbdefb;">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></TextField>
+                        <TextField fx:id="tfSurname" layoutX="144.0" layoutY="77.0" promptText="Surname:" style="-fx-background-color: #bbdefb;">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></TextField>
+                        <Text fx:id="textExpertise" fill="WHITE" layoutX="330.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expertise:">
+                           <font>
+                              <Font name="Leelawadee UI" size="14.0" />
+                           </font></Text>
+                        <TextField fx:id="tfExpertise" layoutX="401.0" layoutY="44.0" promptText="Expertise:" style="-fx-background-color: #bbdefb;">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></TextField>
+                        <Button fx:id="btnAdd" layoutX="600.0" layoutY="45.0" mnemonicParsing="false" onAction="#btnAddClicked" prefHeight="26.0" prefWidth="49.0" style="-fx-background-color: #0d47a1;" text="ADD" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Leelawadee UI" size="12.0" />
+                           </font></Button>
+                        <Button fx:id="btnCancel" layoutX="594.0" layoutY="75.0" mnemonicParsing="false" onAction="#btnCancelClicked" style="-fx-background-color: #0d47a1;" text="CANCEL" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Leelawadee UI" size="12.0" />
+                           </font></Button>
+                        <Text fx:id="textAdd" fill="WHITE" layoutX="330.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add expertise:" textAlignment="CENTER">
                            <font>
                               <Font name="Leelawadee UI" size="18.0" />
                            </font>
                         </Text>
                      </children>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
                   </AnchorPane>
-                        <AnchorPane prefHeight="374.0" prefWidth="667.0">
+                        <AnchorPane prefHeight="374.0" prefWidth="667.0" style="-fx-background-color: #2196f3;">
                      <children>
-                        <TableView fx:id="tvExpertise" layoutX="6.0" layoutY="1.0" prefHeight="367.0" prefWidth="675.0">
+                        <TableView fx:id="tvExpertise" layoutX="6.0" layoutY="1.0" prefHeight="367.0" prefWidth="675.0" stylesheets="@../css/tableStyling.css">
                           <columns>
                             <TableColumn fx:id="tcSurname" maxWidth="300.0" minWidth="100.0" prefWidth="101.59989786148071" text="Surname" />
                             <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="100.0" prefWidth="121.59998321533203" text="Name" />
                               <TableColumn fx:id="tcEmail" maxWidth="300.0" minWidth="100.0" prefWidth="122.4000244140625" text="Email" />
                               <TableColumn fx:id="tcExpertise" maxWidth="300.0" minWidth="100.0" prefWidth="166.39999389648438" text="Expertise" />
-                              <TableColumn fx:id="tcRemove" maxWidth="300.0" minWidth="100.0" prefWidth="149.60003662109375" text="Remove Expertise" />
+                              <TableColumn fx:id="tcRemove" maxWidth="300.0" minWidth="100.0" prefWidth="160.0" text="Remove Expertise" />
                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                         </TableView>
                      </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                         </AnchorPane>
                     </children>
                 </VBox>
