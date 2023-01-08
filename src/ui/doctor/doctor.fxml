@@ -67,7 +67,7 @@
                         <Font name="Arial Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnMyCareerClicked" prefHeight="50.0" prefWidth="224.0" style="-fx-background-color: #A41F03; -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="My Career" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnMyCareerClicked" prefHeight="50.0" prefWidth="224.0" style="-fx-background-color: #A41F03; -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Schedule" textFill="WHITE">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
