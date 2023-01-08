@@ -317,24 +317,28 @@ public class DoctorMyCareerController implements Initializable {
     void btnCreateClicked(ActionEvent event) throws IOException, InterruptedException {
         if (Objects.equals(btnCreate.getText(), "EDIT")) {
             textError.setVisible(true);
-            sched.setEndTime(LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText())));
-            sched.setStartTime(LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())));
-            Session.getClient().updateSchedule(sched);
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyCareer.fxml")));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setResizable(false);
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            if (LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText())).isAfter(LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())))) {
+                sched.setEndTime(LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText())));
+                sched.setStartTime(LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())));
+                Session.getClient().updateSchedule(sched);
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyCareer.fxml")));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setResizable(false);
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
         } else {
-            textError.setVisible(true);
-            Session.getClient().addSchedule(new Schedule(Session.getUser().getId(), clin.getClinicId(), DayOfWeek.valueOf(cboxDay.getValue().toString().toUpperCase(Locale.ROOT)), LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())), LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText()))));
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyCareer.fxml")));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setResizable(false);
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            if (LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText())).isAfter(LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())))) {
+                textError.setVisible(true);
+                Session.getClient().addSchedule(new Schedule(Session.getUser().getId(), clin.getClinicId(), DayOfWeek.valueOf(cboxDay.getValue().toString().toUpperCase(Locale.ROOT)), LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())), LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText()))));
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyCareer.fxml")));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setResizable(false);
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
         }
 
     }
