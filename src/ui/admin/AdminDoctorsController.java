@@ -60,9 +60,6 @@ public class AdminDoctorsController implements Initializable {
     private TableColumn<?, ?> tcName;
 
     @FXML
-    private TableColumn<?, ?> placeholder;
-
-    @FXML
     private TableColumn<Doctor, Void> tcRemove;
 
     @FXML
@@ -98,7 +95,6 @@ public class AdminDoctorsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btnCancel.setVisible(false);
-        placeholder.setVisible(false);
         tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tcSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         tcEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -143,7 +139,6 @@ public class AdminDoctorsController implements Initializable {
                 addButton.setOnAction((ActionEvent event) -> {
                     Doctor doctor = getTableView().getItems().get(getIndex());
 
-                    placeholder.setVisible(true);
                     tcAdd.setVisible(false);
                     tcRemove.setVisible(false);
                     btnCancel.setVisible(true);
@@ -228,7 +223,6 @@ public class AdminDoctorsController implements Initializable {
 
             {
                 removeButton.setOnAction((ActionEvent event) -> {
-                    placeholder.setVisible(true);
                     removeButton.setVisible(false);
                     tcAdd.setVisible(false);
                     tcRemove.setVisible(false);
