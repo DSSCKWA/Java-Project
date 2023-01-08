@@ -16,24 +16,10 @@ import javafx.stage.Stage;
 import src.clinic.Clinic;
 import src.equipment.Equipment;
 import src.equipment.EquipmentStatus;
-import src.expertise.Expertise;
-import src.schedule.Schedule;
-import src.ui.Singleton;
-import src.ui.patient.PatientMyVisitsController;
-import src.ui.patient.PatientNewVisitController;
-import src.users.Doctor;
-import src.users.Patient;
-import src.users.Permissions;
-import src.users.User;
-import src.visit.Visit;
-import src.visit.VisitStatus;
+import src.ui.Session;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Objects;
@@ -143,7 +129,7 @@ public class DoctorEquipmentController implements Initializable {
 
         ArrayList<Clinic> clinics = new ArrayList<Clinic>();
         try {
-            clinics = Singleton.getClient().getClinics();
+            clinics = Session.getClient().getClinics();
         } catch (Exception e) {
             System.out.println("Error");
         }
@@ -170,11 +156,11 @@ public class DoctorEquipmentController implements Initializable {
                 tcClinicName.setCellValueFactory(new PropertyValueFactory<>("clinicName"));
 
                 try {
-                    final ArrayList<Equipment> equipments = Singleton.getClient().getEquipmentByClinicId(newSelection.getClinicId());
+                    final ArrayList<Equipment> equipments = Session.getClient().getEquipmentByClinicId(newSelection.getClinicId());
                     ArrayList<DoctorEquipmentController.EquipmentRow> equipmentRows = new ArrayList<>();
 
                     for (Equipment equipmentTmp : equipments) {
-                        Clinic clinicTmp = Singleton.getClient().getClinic(equipmentTmp.getClinicId());
+                        Clinic clinicTmp = Session.getClient().getClinic(equipmentTmp.getClinicId());
                         equipmentRows.add(new DoctorEquipmentController.EquipmentRow(clinicTmp, equipmentTmp));
                     }
 
@@ -310,12 +296,12 @@ public class DoctorEquipmentController implements Initializable {
                     tcTransfer.setVisible(false);
 
                     try {
-                        ArrayList<Equipment> equipments = Singleton.getClient().getEquipment();
-                        equipments.removeAll(Singleton.getClient().getEquipmentByClinicId(clinic.getClinicId()));
+                        ArrayList<Equipment> equipments = Session.getClient().getEquipment();
+                        equipments.removeAll(Session.getClient().getEquipmentByClinicId(clinic.getClinicId()));
                         ArrayList<DoctorEquipmentController.EquipmentRow> equipmentRows = new ArrayList<>();
 
                         for (Equipment equipmentTmp : equipments) {
-                            Clinic clinicTmp = Singleton.getClient().getClinic(equipmentTmp.getClinicId());
+                            Clinic clinicTmp = Session.getClient().getClinic(equipmentTmp.getClinicId());
                             equipmentRows.add(new DoctorEquipmentController.EquipmentRow(clinicTmp, equipmentTmp));
                         }
                         tvEquipment.getItems().clear();
@@ -350,7 +336,7 @@ public class DoctorEquipmentController implements Initializable {
 
                                 eq.setClinicId(clinic.getClinicId());
                                 try {
-                                    Singleton.getClient().updateEquipment(eq);
+                                    Session.getClient().updateEquipment(eq);
                                     root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorEquipment.fxml")));
                                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                                     scene = new Scene(root);
@@ -466,14 +452,14 @@ public class DoctorEquipmentController implements Initializable {
         if (Objects.equals(btnConfirm.getText(), "Edit")) {
             eq.setName(tfEName.getText());
             eq.setEquipmentStatus(EquipmentStatus.valueOf(cboxStatus.getValue().toString().toUpperCase(Locale.ROOT)));
-            Singleton.getClient().updateEquipment(eq);
+            Session.getClient().updateEquipment(eq);
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorEquipment.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
         } else {
-            Singleton.getClient().addEquipment(new Equipment(tfEName.getText(), EquipmentStatus.IN_USE, clin.getClinicId()));
+            Session.getClient().addEquipment(new Equipment(tfEName.getText(), EquipmentStatus.IN_USE, clin.getClinicId()));
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorEquipment.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root);

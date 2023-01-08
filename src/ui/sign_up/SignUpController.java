@@ -13,8 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import src.ui.Singleton;
-import src.users.Patient;
+import src.ui.Session;
 import src.users.Permissions;
 import src.users.User;
 
@@ -64,15 +63,15 @@ public class SignUpController implements Initializable {
 
         tWarning.setVisible(false);
     }
+
     @FXML
     void btnSubmitClicked(ActionEvent event) {
         tWarning.setText("Something went wrong, please try again");
         tWarning.setVisible(true);
-        if(Objects.equals(pfPassword.getText(), pfPasswordConfirm.getText()))
-        {
-            if(!Objects.equals(pfPassword.getText(), "") && !(Objects.equals(tfName.getText(), "")) && !(Objects.equals(tfSurname.getText(), "")) && !(Objects.equals(tfEmail.getText(), "")) && !(Objects.equals(tfCity.getText(), "")) && !(Objects.equals(tfAddress.getText(), "")) && !(Objects.equals(tfPhoneNumber.getText(), ""))) {
+        if (Objects.equals(pfPassword.getText(), pfPasswordConfirm.getText())) {
+            if (!Objects.equals(pfPassword.getText(), "") && !(Objects.equals(tfName.getText(), "")) && !(Objects.equals(tfSurname.getText(), "")) && !(Objects.equals(tfEmail.getText(), "")) && !(Objects.equals(tfCity.getText(), "")) && !(Objects.equals(tfAddress.getText(), "")) && !(Objects.equals(tfPhoneNumber.getText(), ""))) {
                 try {
-                    Singleton.getClient().addUser(new User(tfName.getText(), tfSurname.getText(), tfEmail.getText(), pfPassword.getText(), tfAddress.getText(), tfCity.getText(), Integer.parseInt(tfPhoneNumber.getText()), Permissions.PATIENT));
+                    Session.getClient().addUser(new User(tfName.getText(), tfSurname.getText(), tfEmail.getText(), pfPassword.getText(), tfAddress.getText(), tfCity.getText(), Integer.parseInt(tfPhoneNumber.getText()), Permissions.PATIENT));
                     AnchorPane1.getChildren().clear();
                     Text tSuccess = new Text(50, 180, "Success");
                     AnchorPane1.getChildren().add(tSuccess);
@@ -97,9 +96,7 @@ public class SignUpController implements Initializable {
                 }
             }
 
-        }
-        else
-        {
+        } else {
             tWarning.setText("Passwords do not match !");
         }
 
@@ -107,9 +104,9 @@ public class SignUpController implements Initializable {
 
 
     @FXML
-    void btnCancelClicked(ActionEvent event) throws IOException{
+    void btnCancelClicked(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../login/login.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);

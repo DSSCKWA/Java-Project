@@ -14,7 +14,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import src.clinic.Clinic;
-import src.ui.Singleton;
+import src.ui.Session;
 
 import java.io.IOException;
 import java.net.URL;
@@ -83,7 +83,7 @@ public class ModeratorClinicsController implements Initializable {
 
         ArrayList<Clinic> clinics = new ArrayList<Clinic>();
         try {
-            clinics = Singleton.getClient().getClinics();
+            clinics = Session.getClient().getClinics();
         } catch (Exception e) {
             System.out.println("Error");
         }
@@ -114,7 +114,7 @@ public class ModeratorClinicsController implements Initializable {
                                 clinic.setName(tfName.getText());
                                 clinic.setCity(tfCity.getText());
                                 clinic.setAddress(tfAddress.getText());
-                                Singleton.getClient().updateClinic(clinic);
+                                Session.getClient().updateClinic(clinic);
                                 System.out.println(clinic);
                                 System.out.println(clinic.present());
                                 tFaliure.setVisible(false);
@@ -172,7 +172,7 @@ public class ModeratorClinicsController implements Initializable {
                         tFaliure.setVisible(true);
                         if (!Objects.equals(tfName.getText(), "") && !Objects.equals(tfAddress.getText(), "") && !Objects.equals(tfCity.getText(), "")) {
                             try {
-                                Singleton.getClient().deleteClinic(clinic.getClinicId());
+                                Session.getClient().deleteClinic(clinic.getClinicId());
                                 System.out.println(clinic);
                                 System.out.println(clinic.present());
                                 tFaliure.setText("Success");
@@ -219,7 +219,7 @@ public class ModeratorClinicsController implements Initializable {
         tFaliure.setVisible(true);
         if (!Objects.equals(tfName.getText(), "") && !Objects.equals(tfAddress.getText(), "") && !Objects.equals(tfCity.getText(), "")) {
             try {
-                Singleton.getClient().addClinic(new Clinic(tfName.getText(), tfAddress.getText(), tfCity.getText()));
+                Session.getClient().addClinic(new Clinic(tfName.getText(), tfAddress.getText(), tfCity.getText()));
                 tFaliure.setVisible(false);
                 Text tSuccess = new Text(600, 114, "Success");
                 anchorPane2.getChildren().add(tSuccess);

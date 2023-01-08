@@ -14,7 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import src.ui.Singleton;
+import src.ui.Session;
 import src.users.Doctor;
 import src.users.Patient;
 import src.users.User;
@@ -23,7 +23,6 @@ import src.visit.VisitStatus;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -144,26 +143,26 @@ public class DoctorMyVisitsController implements Initializable {
         tcStatusPatient.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         try {
-            final ArrayList<Visit> visits = Singleton.getClient().getVisitsByClientId(Singleton.getUser().getId());
+            final ArrayList<Visit> visits = Session.getClient().getVisitsByClientId(Session.getUser().getId());
             ArrayList<VisitRow> visitRows = new ArrayList<>();
             for (Visit visit : visits) {
-                Doctor doctor = Singleton.getClient().getDoctorById(visit.getDoctor().getId());
-                visitRows.add(new VisitRow(visit, doctor, Singleton.getUser()));
+                Doctor doctor = Session.getClient().getDoctorById(visit.getDoctor().getId());
+                visitRows.add(new VisitRow(visit, doctor, Session.getUser()));
             }
             tvTable.getItems().addAll(visitRows);
 
-            final ArrayList<Visit> visitsPatient = Singleton.getClient().getVisitsByDoctorId(Singleton.getUser().getId());
+            final ArrayList<Visit> visitsPatient = Session.getClient().getVisitsByDoctorId(Session.getUser().getId());
             ArrayList<VisitRowPatient> visitRowsPatient = new ArrayList<>();
             for (Visit visit : visitsPatient) {
-                Doctor doctor = Singleton.getClient().getDoctorById(Singleton.getUser().getId());
-                User patient = Singleton.getClient().getUserById(visit.getPatient().getId());
+                Doctor doctor = Session.getClient().getDoctorById(Session.getUser().getId());
+                User patient = Session.getClient().getUserById(visit.getPatient().getId());
                 visitRowsPatient.add(new VisitRowPatient(visit, doctor, patient));
             }
             tvTablePatients.getItems().addAll(visitRowsPatient);
 
             FilteredList<VisitRow> filteredVisits = new FilteredList<>(tvTable.getItems(), b -> true);
             FilteredList<VisitRowPatient> filteredVisitsPatient = new FilteredList<>(tvTablePatients.getItems(), b -> true);
-            
+
             tcPick.setCellFactory(tableColumn -> new TableCell<>() {
                 private final ComboBox<String> rateBox = new ComboBox<>();
 
@@ -197,7 +196,7 @@ public class DoctorMyVisitsController implements Initializable {
                             VisitRow visitRow = getTableView().getItems().get(getIndex());
                             Visit visit = visitRow.getVisit();
                             visit.setRating(Integer.parseInt(visitRow.getDesiredRating()));
-                            Singleton.getClient().updateVisit(visit);
+                            Session.getClient().updateVisit(visit);
                             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyVisits.fxml")));
                             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setResizable(false);
@@ -218,7 +217,7 @@ public class DoctorMyVisitsController implements Initializable {
                             VisitRow visitRow = getTableView().getItems().get(getIndex());
                             Visit visit = visitRow.getVisit();
                             visit.setVisitStatus(VisitStatus.CANCELED_WAITING_APPROVAL);
-                            Singleton.getClient().updateVisit(visit);
+                            Session.getClient().updateVisit(visit);
                             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyVisits.fxml")));
                             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setResizable(false);
@@ -260,7 +259,7 @@ public class DoctorMyVisitsController implements Initializable {
                             VisitRowPatient visitRow = getTableView().getItems().get(getIndex());
                             Visit visit = visitRow.getVisit();
                             visit.setVisitStatus(VisitStatus.COMPLETED);
-                            Singleton.getClient().updateVisit(visit);
+                            Session.getClient().updateVisit(visit);
                             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyVisits.fxml")));
                             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setResizable(false);
@@ -281,7 +280,7 @@ public class DoctorMyVisitsController implements Initializable {
                             VisitRowPatient visitRow = getTableView().getItems().get(getIndex());
                             Visit visit = visitRow.getVisit();
                             visit.setVisitStatus(VisitStatus.CANCELED);
-                            Singleton.getClient().updateVisit(visit);
+                            Session.getClient().updateVisit(visit);
                             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyVisits.fxml")));
                             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setResizable(false);
@@ -330,7 +329,7 @@ public class DoctorMyVisitsController implements Initializable {
                             if (visit.getVisitStatus().equals(VisitStatus.CANCELED_WAITING_APPROVAL)) {
                                 visit.setVisitStatus(VisitStatus.CANCELED);
                             }
-                            Singleton.getClient().updateVisit(visit);
+                            Session.getClient().updateVisit(visit);
                             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyVisits.fxml")));
                             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                             stage.setResizable(false);
@@ -534,7 +533,7 @@ public class DoctorMyVisitsController implements Initializable {
         Visit visit = selectedVisit.getVisit();
         visit.setDate(dpDate.getValue());
         visit.setVisitStatus(VisitStatus.PENDING_WAITING_APPROVAL);
-        Singleton.getClient().updateVisit(visit);
+        Session.getClient().updateVisit(visit);
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyVisits.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
@@ -559,7 +558,7 @@ public class DoctorMyVisitsController implements Initializable {
         Visit visit = selectedVisitPatient.getVisit();
         visit.setDate(dpDatePatient.getValue());
         visit.setVisitStatus(VisitStatus.PENDING_WAITING_APPROVAL);
-        Singleton.getClient().updateVisit(visit);
+        Session.getClient().updateVisit(visit);
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyVisits.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);

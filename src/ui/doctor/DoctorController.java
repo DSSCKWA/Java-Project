@@ -9,7 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import src.ui.Singleton;
+import src.ui.Session;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,7 +28,7 @@ public class DoctorController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        email.setText(Singleton.getUser().getEmail());
+        email.setText(Session.getUser().getEmail());
     }
 
     @FXML

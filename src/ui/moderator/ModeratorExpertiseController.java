@@ -6,26 +6,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import src.clinic.Clinic;
-import src.equipment.Equipment;
 import src.expertise.Expertise;
-import src.ui.Singleton;
-import src.ui.doctor.DoctorEquipmentController;
+import src.ui.Session;
 import src.users.Doctor;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -113,7 +106,7 @@ public class ModeratorExpertiseController implements Initializable {
         tcExpertise.setCellValueFactory(new PropertyValueFactory<>("areaOfExpertise"));
 
         try {
-            final ArrayList<Doctor> doctors = Singleton.getClient().getDoctors();
+            final ArrayList<Doctor> doctors = Session.getClient().getDoctors();
             ArrayList<ModeratorExpertiseController.ExpertiseRow> expertiseRows = new ArrayList<>();
 
             for (Doctor doctorTmp : doctors) {
@@ -187,7 +180,7 @@ public class ModeratorExpertiseController implements Initializable {
                     doc = expertiseRow.getDoctor();
                     exp = expertiseRow.getExpertise();
                     try {
-                        Singleton.getClient().removeExpertise(doc.getId(), exp.getExpertise());
+                        Session.getClient().removeExpertise(doc.getId(), exp.getExpertise());
                         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorExpertise.fxml")));
                         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                         stage.setResizable(false);
@@ -267,7 +260,7 @@ public class ModeratorExpertiseController implements Initializable {
     @FXML
     void btnAddClicked(ActionEvent event) throws IOException, InterruptedException {
         exp = new Expertise(doc.getId(), tfExpertise.getText());
-        Singleton.getClient().addExpertise(doc.getId(), exp.getExpertise());
+        Session.getClient().addExpertise(doc.getId(), exp.getExpertise());
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorExpertise.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
@@ -331,4 +324,3 @@ public class ModeratorExpertiseController implements Initializable {
         }
     }
 }
-

@@ -4,17 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import src.ui.Singleton;
+import src.ui.Session;
 
 import java.io.IOException;
 import java.net.URL;
@@ -38,7 +33,7 @@ public class ModeratorController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        email.setText(Singleton.getUser().getEmail());
+        email.setText(Session.getUser().getEmail());
     }
 
     @FXML
@@ -90,4 +85,3 @@ public class ModeratorController implements Initializable {
         stage.show();
     }
 }
-

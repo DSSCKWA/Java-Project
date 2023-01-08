@@ -9,7 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import src.ui.Singleton;
+import src.ui.Session;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,14 +25,16 @@ public class PatientController implements Initializable {
 
     @FXML
     private Text permission;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        email.setText(Singleton.getUser().getEmail());
+        email.setText(Session.getUser().getEmail());
     }
+
     @FXML
-    void btnLogOutClicked(ActionEvent event) throws IOException{
+    void btnLogOutClicked(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../login/login.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
@@ -42,7 +44,7 @@ public class PatientController implements Initializable {
     @FXML
     void btnNewVisitClicked(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("patientNewVisit.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
@@ -50,9 +52,9 @@ public class PatientController implements Initializable {
     }
 
     @FXML
-    void btnStartClicked(ActionEvent event) throws Exception{
+    void btnStartClicked(ActionEvent event) throws Exception {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("patient.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -61,7 +63,7 @@ public class PatientController implements Initializable {
     @FXML
     void btnMyVisitsClicked(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("patientMyVisits.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);
         stage.setScene(scene);
