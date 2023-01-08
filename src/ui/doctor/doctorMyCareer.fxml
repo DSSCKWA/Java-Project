@@ -105,8 +105,8 @@
                         <AnchorPane prefHeight="142.0" prefWidth="686.0">
                      <children>
                         <Text fx:id="textDay" layoutX="93.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Day:" wrappingWidth="27.7366943359375" />
-                        <Button fx:id="btnCreate" layoutX="593.0" layoutY="38.0" mnemonicParsing="false" onAction="#btnCreateClicked" text="Create" />
-                        <Button fx:id="btnCancel" layoutX="593.0" layoutY="78.0" mnemonicParsing="false" onAction="#btnCancelClicked" text="Cancel" />
+                        <Button fx:id="btnCreate" layoutX="593.0" layoutY="38.0" mnemonicParsing="false" onAction="#btnCreateClicked" prefHeight="26.0" prefWidth="60.0" text="CREATE" />
+                        <Button fx:id="btnCancel" layoutX="593.0" layoutY="78.0" mnemonicParsing="false" onAction="#btnCancelClicked" text="CANCEL" />
                         <Text fx:id="textStart" layoutX="297.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Hour:" />
                         <TextField fx:id="tfEnd" layoutX="363.0" layoutY="77.0" prefHeight="26.0" prefWidth="58.0" />
                         <TextField fx:id="tfStart" layoutX="363.0" layoutY="38.0" prefHeight="26.0" prefWidth="57.0" />
@@ -121,7 +121,7 @@
                         <Text fx:id="textEndM" layoutX="441.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Minute:" />
                         <TextField fx:id="tfStartM" layoutX="512.0" layoutY="41.0" prefHeight="26.0" prefWidth="57.0" />
                         <TextField fx:id="tfEndM" layoutX="512.0" layoutY="77.0" prefHeight="26.0" prefWidth="57.0" />
-                        <Text fx:id="textError" fill="RED" layoutX="580.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid Input">
+                        <Text fx:id="textError" fill="RED" layoutX="571.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVALID INPUT">
                            <font>
                               <Font name="Arial" size="14.0" />
                            </font>

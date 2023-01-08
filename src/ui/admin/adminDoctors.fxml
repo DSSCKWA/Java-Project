@@ -108,7 +108,7 @@
                                     </font>
                                 </Text>
                                 <TextField fx:id="tfSurname" layoutX="234.0" layoutY="95.0" />
-                        <Button fx:id="btnCancel" layoutX="523.0" layoutY="95.0" mnemonicParsing="false" onAction="#btnCancelClicked" text="Cancel" />
+                        <Button fx:id="btnCancel" layoutX="523.0" layoutY="95.0" mnemonicParsing="false" onAction="#btnCancelClicked" text="CANCEL" />
                             </children></AnchorPane>
                         <AnchorPane prefHeight="202.0" prefWidth="686.0">
                      <children>

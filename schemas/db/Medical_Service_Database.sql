@@ -61,7 +61,9 @@ CREATE TABLE IF NOT EXISTS `doctors` (
 
 INSERT INTO `doctors` (`doctor_id`, `clinic_id`) VALUES
 (3, 1),
+(3, 2),
 (3, 3),
+(3, 4),
 (4, 1),
 (4, 2);
 
@@ -78,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `equipment` (
   `clinic_id` int(10) NOT NULL,
   PRIMARY KEY (`equipment_id`),
   KEY `clinic_id` (`clinic_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `equipment` (`equipment_id`, `name`, `status`, `clinic_id`) VALUES
 (1, 'X-ray', 'IN_USE', 4),
@@ -94,6 +96,7 @@ INSERT INTO `equipment` (`equipment_id`, `name`, `status`, `clinic_id`) VALUES
 (11, 'X-ray', 'IN_USE', 1),
 (12, 'Apteczka', 'IN_USE', 1),
 (13, 'Termometr', 'BROKEN', 1);
+(14, 'Kule', 'IN_USE', 1);
 
 -- --------------------------------------------------------
 
@@ -207,12 +210,18 @@ CREATE TABLE IF NOT EXISTS `visits` (
   PRIMARY KEY (`visit_id`),
   KEY `visits_ibfk_1` (`client_id`) USING BTREE,
   KEY `visits_ibfk_2` (`doctor_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 
 INSERT INTO `visits` (`visit_id`, `status`, `date`, `time`, `duration`, `rating`, `client_id`, `doctor_id`) VALUES
 (1, 'completed', '2023-01-03', '12:30:00', 30, 4, 6, 3),
-(2, 'canceled', '2023-01-05', '08:00:00', 30, 0, 5, 4);
+(2, 'canceled', '2023-01-05', '08:00:00', 30, 0, 5, 4),
+(3, 'pending', '2023-01-18', '12:00:00', 30, 0, 6, 3),
+(4, 'completed', '2023-01-06', '13:00:00', 30, 4, 3, 4),
+(5, 'pending_waiting_approval', '2023-01-18', '09:00:00', 30, 0, 5, 3),
+(6, 'pending', '2023-01-30', '09:00:00', 30, 0, 3, 4),
+(7, 'pending', '2023-01-27', '15:00:00', 30, 0, 5, 3),
+(8, 'completed', '2023-01-02', '09:30:00', 30, 0, 5, 3);
 --
 -- Ograniczenia dla zrzutów tabel
 --

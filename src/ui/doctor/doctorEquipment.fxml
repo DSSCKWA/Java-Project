@@ -121,8 +121,8 @@
                         <Text fx:id="textEName" layoutX="317.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipment Name:" />
                         <TextField fx:id="tfEName" layoutX="425.0" layoutY="48.0" />
                         <Text fx:id="textEStatus" layoutX="317.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status:" />
-                        <Button fx:id="btnConfirm" layoutX="604.0" layoutY="48.0" mnemonicParsing="false" onAction="#btnConfirmClicked" text="Confirm" />
-                        <Button fx:id="btnCancel" layoutX="604.0" layoutY="82.0" mnemonicParsing="false" onAction="#btnCancelClicked" prefHeight="26.0" prefWidth="59.0" text="Cancel" />
+                        <Button fx:id="btnConfirm" layoutX="604.0" layoutY="48.0" mnemonicParsing="false" onAction="#btnConfirmClicked" text="CONFIRM" />
+                        <Button fx:id="btnCancel" layoutX="604.0" layoutY="82.0" mnemonicParsing="false" onAction="#btnCancelClicked" prefHeight="26.0" prefWidth="69.0" text="CANCEL" />
                         <ComboBox fx:id="cboxStatus" layoutX="424.0" layoutY="82.0" prefWidth="150.0" />
                      </children></AnchorPane>
                         <AnchorPane prefHeight="241.0" prefWidth="686.0">

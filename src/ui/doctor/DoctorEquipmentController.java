@@ -57,9 +57,6 @@ public class DoctorEquipmentController implements Initializable {
     private TableColumn<?, ?> tcEName;
 
     @FXML
-    private TableColumn<Clinic, Void> tcEdit;
-
-    @FXML
     private TableColumn<?, ?> tcName;
 
     @FXML
@@ -149,8 +146,7 @@ public class DoctorEquipmentController implements Initializable {
 
         tvClinic.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-
-
+                
                 tcEName.setCellValueFactory(new PropertyValueFactory<>("name"));
                 tcStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
                 tcClinicName.setCellValueFactory(new PropertyValueFactory<>("clinicName"));
@@ -184,7 +180,7 @@ public class DoctorEquipmentController implements Initializable {
                 });
 
                 tcAction.setCellFactory(tableColumn -> new TableCell<>() {
-                    private final Button actionButton = new Button("Edit");
+                    private final Button actionButton = new Button("EDIT");
 
                     {
                         actionButton.setOnAction((ActionEvent event) -> {
@@ -194,7 +190,7 @@ public class DoctorEquipmentController implements Initializable {
                             tvEquipment.setItems(filteredEquipments);
 
                             textCreate.setText("Edition Tool");
-                            btnConfirm.setText("Edit");
+                            btnConfirm.setText("EDIT");
                             textCreate.setVisible(true);
                             textEName.setVisible(true);
                             textEStatus.setVisible(true);
@@ -232,7 +228,7 @@ public class DoctorEquipmentController implements Initializable {
         });
 
         tcAdd.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button addButton = new Button("Add new");
+            private final Button addButton = new Button("ADD NEW");
 
             {
                 addButton.setOnAction((ActionEvent event) -> {
@@ -242,6 +238,7 @@ public class DoctorEquipmentController implements Initializable {
                     filteredClinics.setPredicate(clinic2 -> clinic2.equals(clinic));
                     tvClinic.setItems(filteredClinics);
 
+                    tcTransfer.setVisible(false);
                     textCreate.setVisible(true);
                     textEName.setVisible(true);
                     tfEName.setVisible(true);
@@ -255,7 +252,6 @@ public class DoctorEquipmentController implements Initializable {
                     tfCName.setVisible(false);
 
                     tcAdd.setVisible(false);
-                    tcEdit.setVisible(false);
                     tcTransfer.setVisible(false);
                     tcAction.setVisible(false);
 
@@ -277,7 +273,7 @@ public class DoctorEquipmentController implements Initializable {
         });
 
         tcTransfer.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button transferButton = new Button("Transfer");
+            private final Button transferButton = new Button("TRANSFER");
 
             {
                 transferButton.setOnAction((ActionEvent event) -> {
@@ -292,8 +288,8 @@ public class DoctorEquipmentController implements Initializable {
                     tcClinicName.setCellValueFactory(new PropertyValueFactory<>("clinicName"));
 
                     tcAdd.setVisible(false);
-                    tcEdit.setVisible(false);
                     tcTransfer.setVisible(false);
+                    btnCancel.setVisible(true);
 
                     try {
                         ArrayList<Equipment> equipments = Session.getClient().getEquipment();
@@ -323,7 +319,7 @@ public class DoctorEquipmentController implements Initializable {
                     });
 
                     tcAction.setCellFactory(tableColumn -> new TableCell<>() {
-                        private final Button actionButton = new Button("Transfer");
+                        private final Button actionButton = new Button("TRANSFER");
 
                         {
                             actionButton.setOnAction((ActionEvent event) -> {
@@ -449,7 +445,7 @@ public class DoctorEquipmentController implements Initializable {
 
     @FXML
     void btnConfirmClicked(ActionEvent event) throws IOException, InterruptedException {
-        if (Objects.equals(btnConfirm.getText(), "Edit")) {
+        if (Objects.equals(btnConfirm.getText(), "EDIT")) {
             eq.setName(tfEName.getText());
             eq.setEquipmentStatus(EquipmentStatus.valueOf(cboxStatus.getValue().toString().toUpperCase(Locale.ROOT)));
             Session.getClient().updateEquipment(eq);
