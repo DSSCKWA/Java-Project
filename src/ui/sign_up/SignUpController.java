@@ -75,7 +75,7 @@ public class SignUpController implements Initializable {
                     AnchorPane1.getChildren().clear();
                     Text tSuccess = new Text(50, 180, "Success");
                     AnchorPane1.getChildren().add(tSuccess);
-                    btnSubmit.setText("Confirm");
+                    btnSubmit.setText("CONFIRM");
                     Button btnConfirm = btnSubmit;
                     AnchorPane1.getChildren().add(btnConfirm);
 
@@ -97,7 +97,7 @@ public class SignUpController implements Initializable {
             }
 
         } else {
-            tWarning.setText("Passwords do not match !");
+            tWarning.setText("PASSWORDS DO NOT MATCH !");
         }
 
     }
