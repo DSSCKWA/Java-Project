@@ -93,6 +93,7 @@ public class AdminUsersController implements Initializable {
 
         tFaliure.setVisible(false);
         btnConfirm.setVisible(false);
+        btnCancel.setVisible(false);
         cboxPermission.setVisible(false);
 
         tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -141,6 +142,7 @@ public class AdminUsersController implements Initializable {
                     User user = getTableView().getItems().get(getIndex());
                     textTitle.setText("Modify Permission");
                     btnConfirm.setVisible(true);
+                    btnCancel.setVisible(true);
                     cboxPermission.getItems().clear();
                     cboxPermission.getItems().addAll(
                             "ADMIN",

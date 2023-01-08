@@ -46,6 +46,9 @@ public class AdminClinicsController implements Initializable {
     private Text textName;
 
     @FXML
+    private Text textTitle;
+
+    @FXML
     private TableColumn<?, ?> tcAddress;
 
     @FXML
@@ -64,9 +67,6 @@ public class AdminClinicsController implements Initializable {
     private TableView<Clinic> tvTable;
 
     @FXML
-    private Text textTitle;
-
-    @FXML
     private TextField tfAddress;
 
     @FXML
@@ -78,6 +78,7 @@ public class AdminClinicsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         tFaliure.setVisible(false);
+        textTitle.setVisible(false);
         tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tcCity.setCellValueFactory(new PropertyValueFactory<>("city"));
         tcAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
@@ -100,8 +101,16 @@ public class AdminClinicsController implements Initializable {
                 editButton.setOnAction((ActionEvent event) -> {
                     Clinic clinic = getTableView().getItems().get(getIndex());
 
-                    textTitle.setText("Clinic edition tool");
-                    btnCreate.setText("Edit");
+                    //textTitle.setText("Clinic edition tool");
+                    textTitle.setVisible(false);
+                    textAddress.setVisible(true);
+                    textCity.setVisible(true);
+                    textName.setVisible(true);
+                    tfName.setVisible(true);
+                    tfCity.setVisible(true);
+                    tfAddress.setVisible(true);
+                    tFaliure.setVisible(false);
+                    btnCreate.setText("EDIT");
 
                     filteredClinics.setPredicate(clinic2 -> clinic2.equals(clinic));
                     tvTable.setItems(filteredClinics);
@@ -158,13 +167,15 @@ public class AdminClinicsController implements Initializable {
                     Clinic clinic = getTableView().getItems().get(getIndex());
 
                     textTitle.setText("Confirm Delete operation");
+                    textTitle.setVisible(true);
                     textAddress.setVisible(false);
                     textCity.setVisible(false);
                     textName.setVisible(false);
                     tfName.setVisible(false);
                     tfCity.setVisible(false);
                     tfAddress.setVisible(false);
-                    btnCreate.setText("Confirm");
+                    tFaliure.setVisible(false);
+                    btnCreate.setText("CONFIRM");
 
                     filteredClinics.setPredicate(clinic2 -> clinic2.equals(clinic));
                     tvTable.setItems(filteredClinics);

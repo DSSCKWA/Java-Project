@@ -106,14 +106,14 @@
                             </children></AnchorPane>
                         <AnchorPane prefHeight="503.0" prefWidth="667.0">
                      <children>
-                        <TableView fx:id="tvUser" layoutX="10.0" layoutY="101.0" prefHeight="259.0" prefWidth="666.0" style="-fx-background-color: #e91e63;">
+                        <TableView fx:id="tvUser" layoutX="10.0" layoutY="101.0" prefHeight="259.0" prefWidth="666.0" style="-fx-background-color: #e91e63;" stylesheets="@../css/tableStyling.css">
                           <columns>
-                            <TableColumn fx:id="tcSurname" maxWidth="300.0" minWidth="100.0" prefWidth="104.800048828125" style="-fx-background-color: #c2185b;" text="Surname" />
-                            <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="100.0" prefWidth="104.00006103515625" style="-fx-background-color: #c2185b;" text="Name" />
-                              <TableColumn fx:id="tcEmail" maxWidth="300.0" minWidth="100.0" prefWidth="132.80001831054688" style="-fx-background-color: #c2185b;" text="Email" />
-                              <TableColumn fx:id="tcCity" maxWidth="300.0" minWidth="100.0" prefWidth="92.0" style="-fx-background-color: #c2185b;" text="City" />
-                              <TableColumn fx:id="tcPermission" maxWidth="300.0" minWidth="100.0" prefWidth="107.20001220703125" style="-fx-background-color: #c2185b;" text="Permission" />
-                              <TableColumn fx:id="tcModify" maxWidth="300.0" minWidth="100.0" prefWidth="113.60009765625" style="-fx-background-color: #c2185b;" text="Modify Permission" />
+                            <TableColumn fx:id="tcSurname" maxWidth="300.0" minWidth="100.0" prefWidth="104.800048828125" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Surname" />
+                            <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="100.0" prefWidth="104.00006103515625" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Name" />
+                              <TableColumn fx:id="tcEmail" maxWidth="300.0" minWidth="100.0" prefWidth="132.80001831054688" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Email" />
+                              <TableColumn fx:id="tcCity" maxWidth="300.0" minWidth="100.0" prefWidth="92.0" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;" styleClass="tableContent" text="City" />
+                              <TableColumn fx:id="tcPermission" maxWidth="300.0" minWidth="100.0" prefWidth="107.20001220703125" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Permission" />
+                              <TableColumn fx:id="tcModify" maxWidth="300.0" minWidth="100.0" prefWidth="113.60009765625" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Modify Permission" />
                           </columns>
                         </TableView>
                                 <Text fx:id="textName" fill="WHITE" layoutX="20.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
@@ -126,24 +126,24 @@
                                         <Font name="Leelawadee UI" size="14.0" />
                                     </font>
                                 </Text>
-                                <TextField fx:id="tfName" layoutX="100.0" promptText="Name:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                                <TextField fx:id="tfName" layoutX="100.0" promptText="Name:" style="-fx-background-color: #f48fb1; -fx-text-fill: #000000;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
-                                <TextField fx:id="tfSurname" layoutX="100.0" layoutY="40.0" promptText="Surname:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                                <TextField fx:id="tfSurname" layoutX="100.0" layoutY="40.0" promptText="Surname:" style="-fx-background-color: #f48fb1; -fx-text-fill: #000000;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
-                        <ComboBox fx:id="cboxPermission" layoutX="375.0" prefWidth="150.0" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;" />
-                        <Button fx:id="btnConfirm" layoutX="575.0" mnemonicParsing="false" onAction="#btnConfirmClicked" style="-fx-background-color: #c2185b;" text="CONFIRM" textFill="WHITE">
+                        <ComboBox fx:id="cboxPermission" layoutX="375.0" prefWidth="150.0" style="-fx-background-color: #f48fb1; -fx-text-fill: #000000;" />
+                        <Button fx:id="btnConfirm" layoutX="575.0" mnemonicParsing="false" onAction="#btnConfirmClicked" style="-fx-background-color: #c2185b;" text="CONFIRM" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Leelawadee UI" size="12.0" />
                            </font></Button>
-                        <Text fx:id="tFaliure" fill="#870f4f" layoutX="420.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FALIURE" wrappingWidth="60.6962890625">
+                        <Text fx:id="tFaliure" fill="#0d47a1" layoutX="420.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FALIURE" textAlignment="CENTER" wrappingWidth="60.6962890625">
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font></Text>
-                        <Button fx:id="btnCancel" layoutX="575.0" layoutY="40.0" mnemonicParsing="false" onAction="#btnCancelClicked" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #c2185b;" text="CANCEL" textFill="WHITE">
+                        <Button fx:id="btnCancel" layoutX="575.0" layoutY="40.0" mnemonicParsing="false" onAction="#btnCancelClicked" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #c2185b;" text="CANCEL" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Leelawadee UI" size="12.0" />
                            </font></Button>

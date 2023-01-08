@@ -101,7 +101,12 @@
                   </AnchorPane>
                         <AnchorPane fx:id="anchorPane2" prefHeight="202.0" prefWidth="668.0" style="-fx-background-color: #e91e63;">
                             <children>
-                                <Button fx:id="btnCreate" layoutX="563.0" layoutY="43.0" mnemonicParsing="false" onAction="#btnCreateClicked" style="-fx-background-color: #c2185b;" text="CREATE" textFill="WHITE">
+                        <Text fx:id="textTitle" fill="WHITE" layoutX="150.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Title">
+                           <font>
+                              <Font name="Leelawadee UI" size="24.0" />
+                           </font>
+                        </Text>
+                                <Button id="textTitle" fx:id="btnCreate" layoutX="563.0" layoutY="43.0" minWidth="86.0" mnemonicParsing="false" onAction="#btnCreateClicked" style="-fx-background-color: #c2185b;" text="CREATE" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Leelawadee UI" size="18.0" />
                            </font></Button>
@@ -110,7 +115,7 @@
                                         <Font name="Leelawadee UI" size="18.0" />
                                     </font>
                                 </Text>
-                                <TextField fx:id="tfAddress" layoutX="234.0" layoutY="85.0" promptText="Address:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                                <TextField fx:id="tfAddress" layoutX="234.0" layoutY="85.0" promptText="Address:" style="-fx-background-color: #f48fb1; -fx-text-fill: #000000;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
@@ -119,7 +124,7 @@
                                         <Font name="Leelawadee UI" size="18.0" />
                                     </font>
                                 </Text>
-                                <TextField fx:id="tfCity" layoutX="234.0" layoutY="50.0" promptText="City:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                                <TextField fx:id="tfCity" layoutX="234.0" layoutY="50.0" promptText="City:" style="-fx-background-color: #f48fb1; -fx-text-fill: #000000;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
@@ -128,11 +133,11 @@
                                         <Font name="Leelawadee" size="18.0" />
                                     </font>
                                 </Text>
-                                <TextField fx:id="tfName" layoutX="234.0" layoutY="15.0" promptText="Name:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                                <TextField fx:id="tfName" layoutX="234.0" layoutY="15.0" promptText="Name:" style="-fx-background-color: #f48fb1; -fx-text-fill: #000000;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
-                                <Text fx:id="tFaliure" fill="#870f4f" layoutX="580.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FALIURE">
+                                <Text fx:id="tFaliure" fill="#0d47a1" layoutX="580.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FALIURE" textAlignment="CENTER">
                                     <font>
                                         <Font name="Leelawadee UI" size="14.0" />
                                     </font>
@@ -141,13 +146,13 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="322.0" prefWidth="66.0" style="-fx-background-color: #e91e63;">
                             <children>
-                                <TableView fx:id="tvTable" layoutX="8.0" layoutY="10.0" prefHeight="292.0" prefWidth="672.0" style="-fx-background-color: #e91e63;">
+                                <TableView fx:id="tvTable" layoutX="8.0" layoutY="10.0" prefHeight="292.0" prefWidth="672.0" style="-fx-background-color: #e91e63; -fx-text-fill: #ffffff;" styleClass="t" stylesheets="@../css/tableStyling.css">
                                     <columns>
-                                        <TableColumn fx:id="tcName" prefWidth="104.79997235536575" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;" text="Name" />
-                                        <TableColumn fx:id="tcCity" prefWidth="190.4000244140625" style="-fx-background-color: #c2185b;" text="City" />
-                                        <TableColumn fx:id="tcAddress" prefWidth="205.60015869140625" style="-fx-background-color: #c2185b;" text="Address" />
-                                        <TableColumn fx:id="tcEdit" prefWidth="80.7998046875" style="-fx-background-color: #c2185b;" text="Edit" />
-                                        <TableColumn fx:id="tcDelete" prefWidth="92.0" style="-fx-background-color: #c2185b;" text="Delete" />
+                                        <TableColumn fx:id="tcCity" prefWidth="190.4000244140625" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;;" styleClass="tableContent" text="City" />
+                                        <TableColumn fx:id="tcAddress" prefWidth="205.60015869140625" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;;" styleClass="tableContent" text="Address" />
+                                        <TableColumn fx:id="tcName" prefWidth="104.79997235536575" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Name" />
+                                        <TableColumn fx:id="tcEdit" prefWidth="80.7998046875" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;;" styleClass="tableContent" text="Edit" />
+                                        <TableColumn fx:id="tcDelete" prefWidth="92.0" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Delete" />
                                     </columns>
                                 </TableView>
                             </children>

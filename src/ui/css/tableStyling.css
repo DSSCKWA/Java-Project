@@ -1,0 +1,17 @@
+.tableContent {
+       -fx-alignment: center;
+}
+
+.button {
+       -fx-background-color:  #e91e63;
+       -fx-text-fill: #ffffff;
+       -fx-tex
+}
+
+.tableContent text {
+        -fx-text-fill: #ffffff;
+}
+
+#tvDoctor {
+        -fx-background-color:  #c2185b;
+}

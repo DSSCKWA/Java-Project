@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminDoctorsController">
+<HBox prefHeight="526.0" prefWidth="889.0" stylesheets="@../css/tableStyling.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminDoctorsController">
     <children>
       <VBox prefHeight="526.0" prefWidth="202.0" style="-fx-background-color: #e91e63;">
          <children>
@@ -107,7 +107,7 @@
                                         <Font name="Leelawadee UI" size="14.0" />
                                     </font>
                                 </Text>
-                                <TextField fx:id="tfName" layoutX="100.0" layoutY="35.0" promptText="Name:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                                <TextField fx:id="tfName" layoutX="100.0" layoutY="35.0" promptText="Name:" style="-fx-background-color: #f48fb1; -fx-text-fill: #000000;">
                            <font>
                               <Font name="Leelawadee UI Bold" size="12.0" />
                            </font></TextField>
@@ -116,11 +116,15 @@
                                         <Font name="Leelawadee UI" size="14.0" />
                                     </font>
                                 </Text>
-                                <TextField fx:id="tfSurname" layoutX="100.0" layoutY="65.0" promptText="Surname:" style="-fx-background-color: #f8bbd0; -fx-text-fill: #ffffff;">
+                        <Button fx:id="btnCancel" layoutX="501.0" layoutY="46.0" mnemonicParsing="false" onAction="#btnCancelClicked" style="-fx-background-color: #c2185b;" text="CANCEL" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                                <TextField fx:id="tfSurname" layoutX="100.0" layoutY="65.0" promptText="Surname:" style="-fx-background-color: #f48fb1; -fx-text-fill: #000000;">
                            <font>
                               <Font name="Leelawadee UI Bold" size="12.0" />
                            </font></TextField>
-                        <Button fx:id="btnCancel" layoutX="500.0" layoutY="50.0" mnemonicParsing="false" onAction="#btnCancelClicked" style="-fx-background-color: #c2185b;" text="CANCEL" textFill="WHITE" />
                             </children>
                      <VBox.margin>
                         <Insets bottom="10.0" />
@@ -130,25 +134,26 @@
                      </padding></AnchorPane>
                         <AnchorPane prefHeight="202.0" prefWidth="701.0" style="-fx-background-color: #e91e63;">
                      <children>
-                        <TableView fx:id="tvDoctor" layoutX="10.0" prefHeight="196.0" prefWidth="665.0" style="-fx-background-color: #e91e63;">
+                        <TableView fx:id="tvDoctor" layoutX="10.0" prefHeight="196.0" prefWidth="665.0" style="-fx-background-color: #e91e63;" stylesheets="@../css/tableStyling.css">
                           <columns>
-                            <TableColumn fx:id="tcSurname" maxWidth="300.0" minWidth="100.0" prefWidth="113.59996318817139" style="-fx-background-color: #c2185b;" text="Surname" />
-                            <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="100.0" prefWidth="117.60003662109375" style="-fx-background-color: #c2185b;" text="Name" />
-                              <TableColumn fx:id="tcEmail" maxWidth="300.0" minWidth="100.0" prefWidth="179.99998474121094" style="-fx-background-color: #c2185b;" text="Email" />
-                              <TableColumn fx:id="tcAdd" maxWidth="300.0" minWidth="100.0" prefWidth="123.2000732421875" style="-fx-background-color: #c2185b;" text="Add to Clinic" />
-                              <TableColumn fx:id="tcRemove" maxWidth="300.0" minWidth="100.0" prefWidth="128.00006103515625" style="-fx-background-color: #c2185b;" text="Remove from Clinic" />
+                            <TableColumn fx:id="tcSurname" maxWidth="300.0" minWidth="100.0" prefWidth="113.59996318817139" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Surname" />
+                            <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="100.0" prefWidth="117.60003662109375" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Name" />
+                              <TableColumn fx:id="tcEmail" maxWidth="500.0" minWidth="100.0" prefWidth="179.99998474121094" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Email" />
+                              <TableColumn fx:id="tcAdd" maxWidth="300.0" minWidth="100.0" prefWidth="123.2000732421875" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Add to Clinic" />
+                              <TableColumn fx:id="tcRemove" maxWidth="300.0" minWidth="100.0" prefWidth="128.00006103515625" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Remove from Clinic" />
+                              <TableColumn prefWidth="252.0" style="-fx-background-color: #c2185b;" styleClass="tableContent" />
                           </columns>
                         </TableView>
                      </children>
                   </AnchorPane>
                   <AnchorPane prefHeight="187.0" prefWidth="686.0" style="-fx-background-color: #e91e63;">
                      <children>
-                        <TableView fx:id="tvClinic" layoutX="10.0" prefHeight="176.0" prefWidth="665.0" style="-fx-background-color: #e91e63;">
+                        <TableView fx:id="tvClinic" layoutX="10.0" prefHeight="176.0" prefWidth="665.0" style="-fx-background-color: #e91e63;" stylesheets="@../css/tableStyling.css">
                           <columns>
-                            <TableColumn fx:id="tcCName" maxWidth="300.0" minWidth="100.0" prefWidth="127.99998760223389" style="-fx-background-color: #c2185b;" text="Name" />
-                            <TableColumn fx:id="tcCCity" maxWidth="300.0" minWidth="100.0" prefWidth="146.3999481201172" style="-fx-background-color: #c2185b;" text="City" />
-                              <TableColumn fx:id="tcCAddress" maxWidth="300.0" minWidth="100.0" prefWidth="196.00006103515625" style="-fx-background-color: #c2185b;" text="Address" />
-                              <TableColumn fx:id="tcAR" maxWidth="300.0" minWidth="100.0" prefWidth="193.5999755859375" style="-fx-background-color: #c2185b;" text="Add/Remove" />
+                            <TableColumn fx:id="tcCName" maxWidth="300.0" minWidth="100.0" prefWidth="127.99998760223389" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Name" />
+                            <TableColumn fx:id="tcCCity" maxWidth="300.0" minWidth="100.0" prefWidth="146.3999481201172" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;" styleClass="tableContent" text="City" />
+                              <TableColumn fx:id="tcCAddress" maxWidth="300.0" minWidth="100.0" prefWidth="196.00006103515625" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Address" />
+                              <TableColumn fx:id="tcAR" maxWidth="300.0" minWidth="100.0" prefWidth="193.5999755859375" style="-fx-background-color: #c2185b; -fx-text-fill: #ffffff;" styleClass="tableContent" text="Add/Remove" />
                           </columns>
                         </TableView>
                      </children>
