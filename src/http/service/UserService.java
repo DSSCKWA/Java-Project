@@ -7,6 +7,7 @@ import src.http.constants.HttpStatus;
 import src.http.util.HttpException;
 import src.users.Permissions;
 import src.users.User;
+import src.validator.Validator;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -69,6 +70,9 @@ public class UserService {
 
     private UserEntity toUserEntity(Map<String, String> userData) {
         try {
+            if (!Validator.isValidMail(userData.get("email")) || !Validator.isValidPhone(userData.get("phoneNumber"))) {
+                throw new HttpException(HttpStatus.BAD_REQUEST, "Data did not pass validation");
+            }
             UserEntity user = new UserEntity(
                     userData.get("name"),
                     userData.get("surname"),
