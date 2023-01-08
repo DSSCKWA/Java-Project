@@ -249,15 +249,14 @@ ALTER TABLE `expertise`
 -- Ograniczenia dla tabeli `schedule`
 --
 ALTER TABLE `schedule`
-  ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`doctor_id`),
-  ADD CONSTRAINT `schedule_ibfk_2` FOREIGN KEY (`clinic_id`) REFERENCES `clinics` (`clinic_id`);
-
+  ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`doctor_id`,`clinic_id`) REFERENCES `doctors` (`doctor_id`,`clinic_id`);
+  
 --
 -- Ograniczenia dla tabeli `visits`
 --
 ALTER TABLE `visits`
   ADD CONSTRAINT `visits_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `users` (`user_id`),
-  ADD CONSTRAINT `visits_ibfk_2` FOREIGN KEY (`doctor_id`) REFERENCES `doctors` (`doctor_id`);
+  ADD CONSTRAINT `visits_ibfk_2` FOREIGN KEY (`doctor_id`) REFERENCES `users` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
