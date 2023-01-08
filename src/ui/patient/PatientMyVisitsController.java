@@ -196,6 +196,9 @@ public class PatientMyVisitsController implements Initializable {
                 {
                     editButton.setOnAction((ActionEvent event) -> {
                         selectedVisit = getTableView().getItems().get(getIndex());
+
+                        tcEdit.setVisible(false);
+                        tcAction.setVisible(false);
                         btCancel.setVisible(true);
                         btConfirm.setVisible(true);
                         txPickDate.setVisible(true);

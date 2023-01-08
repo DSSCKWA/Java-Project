@@ -121,6 +121,7 @@
                                         <Font size="14.0" />
                                     </font>
                                 </Text>
+                        <Button fx:id="btnCancel" layoutX="518.0" layoutY="130.0" mnemonicParsing="false" onAction="#btnCancelClicked" text="Cancel" />
                             </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="322.0" prefWidth="667.0">

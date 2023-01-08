@@ -335,6 +335,7 @@ public class PatientNewVisitController implements Initializable {
                     }
                 }
             }
+            tvTable.getItems().clear();
             tvTable.getItems().addAll(newVisits);
         } catch (IOException | InterruptedException e) {
             throw new RuntimeException(e);

@@ -175,6 +175,9 @@ public class DoctorMyCareerController implements Initializable {
                             filteredSchedules.setPredicate(schedule2 -> schedule2.equals(scheduleRow));
                             tvSchedule.setItems(filteredSchedules);
 
+                            tcEdit.setVisible(false);
+                            tcRemove.setVisible(false);
+
                             tcAddSchedule.setVisible(false);
                             textEnd.setVisible(true);
                             textStart.setVisible(true);

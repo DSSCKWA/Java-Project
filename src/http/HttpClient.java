@@ -517,7 +517,7 @@ public class HttpClient {
 
     public boolean removeExpertise(int doctorId, String areaOfExpertise) throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(serverUrl + "/expertises/" + doctorId + "?areaOfExpertise=" + areaOfExpertise))
+                .uri(URI.create(serverUrl + "/expertises?doctorId=" + doctorId + "&areaOfExpertise=" + areaOfExpertise))
                 .timeout(Duration.ofMinutes(1))
                 .header("Content-Type", "application/json")
                 .DELETE()

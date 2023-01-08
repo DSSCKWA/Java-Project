@@ -364,6 +364,8 @@ public class DoctorMyVisitsController implements Initializable {
 
                 {
                     editButton.setOnAction((ActionEvent event) -> {
+                        tcEdit.setVisible(false);
+                        tcAction.setVisible(false);
                         selectedVisit = getTableView().getItems().get(getIndex());
                         btCancel.setVisible(true);
                         btConfirm.setVisible(true);
@@ -411,6 +413,8 @@ public class DoctorMyVisitsController implements Initializable {
 
                 {
                     editButton.setOnAction((ActionEvent event) -> {
+                        tcEditPatient.setVisible(false);
+                        tcActionPatient.setVisible(false);
                         selectedVisitPatient = getTableView().getItems().get(getIndex());
                         btCancelPatient.setVisible(true);
                         btConfirmPatient.setVisible(true);

@@ -30,6 +30,9 @@ public class AdminClinicsController implements Initializable {
     private Clinic cli;
 
     @FXML
+    private Button btnCancel;
+
+    @FXML
     private AnchorPane anchorPane2;
 
     @FXML
@@ -78,7 +81,7 @@ public class AdminClinicsController implements Initializable {
     private TextField tfName;
 
     public void initialize(URL location, ResourceBundle resources) {
-
+        btnCancel.setVisible(false);
         tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tcCity.setCellValueFactory(new PropertyValueFactory<>("city"));
         tcAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
@@ -99,6 +102,9 @@ public class AdminClinicsController implements Initializable {
 
             {
                 editButton.setOnAction((ActionEvent event) -> {
+                    btnCancel.setVisible(true);
+                    tcEdit.setVisible(false);
+                    tcDelete.setVisible(false);
                     Clinic clinic = getTableView().getItems().get(getIndex());
 
                     textTitle.setText("Clinic edition tool");
@@ -131,9 +137,12 @@ public class AdminClinicsController implements Initializable {
             {
                 tFaliure.setVisible(false);
 
+
                 deleteButton.setOnAction((ActionEvent event) -> {
                     Clinic clinic = getTableView().getItems().get(getIndex());
-
+                    tcEdit.setVisible(false);
+                    tcDelete.setVisible(false);
+                    btnCancel.setVisible(true);
                     textTitle.setText("Confirm Delete operation");
                     textAddress.setVisible(false);
                     textCity.setVisible(false);
@@ -267,6 +276,16 @@ public class AdminClinicsController implements Initializable {
     @FXML
     void btnUsersClicked(ActionEvent event) throws IOException {
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminUsers.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setResizable(false);
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    void btnCancelClicked(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setResizable(false);
         scene = new Scene(root);

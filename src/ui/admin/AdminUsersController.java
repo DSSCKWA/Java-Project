@@ -86,6 +86,7 @@ public class AdminUsersController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        btnCancel.setVisible(false);
         tFaliure.setVisible(false);
         btnConfirm.setVisible(false);
         cboxPermission.setVisible(false);
@@ -132,6 +133,7 @@ public class AdminUsersController implements Initializable {
 
             {
                 modifyButton.setOnAction((ActionEvent event) -> {
+                    btnCancel.setVisible(true);
                     modifyButton.setVisible(false);
                     User user = getTableView().getItems().get(getIndex());
                     textTitle.setText("Modify Permission");

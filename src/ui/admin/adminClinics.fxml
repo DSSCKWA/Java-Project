@@ -13,8 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="src.ui.admin.AdminClinicsController">
+<HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminClinicsController">
     <children>
         <AnchorPane prefHeight="526.0" prefWidth="203.0">
             <children>
@@ -22,80 +21,65 @@
                     <children>
                         <ImageView fitHeight="196.0" fitWidth="211.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../logo/logo.png"/>
+                                <Image url="@../logo/logo.png" />
                             </image>
                         </ImageView>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                                onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0"
-                                style="-fx-background-color: #A41F03; -fx-cursor: hand;"
-                                stylesheets="@../css/adminStyling.css" text="Start" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0" style="-fx-background-color: #A41F03; -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Start" textFill="WHITE">
                             <opaqueInsets>
-                                <Insets/>
+                                <Insets />
                             </opaqueInsets>
                             <padding>
-                                <Insets left="50.0"/>
+                                <Insets left="50.0" />
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0"/>
+                                <Font name="Arial Bold" size="14.0" />
                             </font>
                             <VBox.margin>
-                                <Insets/>
+                                <Insets />
                             </VBox.margin>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                                onAction="#btnClinicsClicked" prefHeight="50.0" prefWidth="226.0"
-                                style="-fx-background-color: #A41F03; -fx-cursor: hand;"
-                                stylesheets="@../css/adminStyling.css" text="Clinics" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnClinicsClicked" prefHeight="50.0" prefWidth="226.0" style="-fx-background-color: #A41F03; -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Clinics" textFill="WHITE">
                             <opaqueInsets>
-                                <Insets/>
+                                <Insets />
                             </opaqueInsets>
                             <padding>
-                                <Insets left="50.0"/>
+                                <Insets left="50.0" />
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0"/>
+                                <Font name="Arial Bold" size="14.0" />
                             </font>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                                onAction="#btnDoctorsClicked" prefHeight="50.0" prefWidth="224.0"
-                                style="-fx-background-color: #A41F03; -fx-cursor: hand;"
-                                stylesheets="@../css/adminStyling.css" text="Doctors" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnDoctorsClicked" prefHeight="50.0" prefWidth="224.0" style="-fx-background-color: #A41F03; -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Doctors" textFill="WHITE">
                             <opaqueInsets>
-                                <Insets/>
+                                <Insets />
                             </opaqueInsets>
                             <padding>
-                                <Insets left="50.0"/>
+                                <Insets left="50.0" />
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0"/>
+                                <Font name="Arial Bold" size="14.0" />
                             </font>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                                onAction="#btnUsersClicked" prefHeight="50.0" prefWidth="222.0"
-                                style="-fx-background-color: #A41F03; -fx-cursor: hand;"
-                                stylesheets="@../css/adminStyling.css" text="Users" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnUsersClicked" prefHeight="50.0" prefWidth="222.0" style="-fx-background-color: #A41F03; -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Users" textFill="WHITE">
                             <opaqueInsets>
-                                <Insets/>
+                                <Insets />
                             </opaqueInsets>
                             <padding>
-                                <Insets left="50.0"/>
+                                <Insets left="50.0" />
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0"/>
+                                <Font name="Arial Bold" size="14.0" />
                             </font>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
-                                onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0"
-                                style="-fx-background-color: #A41F03; -fx-cursor: hand;"
-                                stylesheets="@../css/adminStyling.css" text="Log Out" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0" style="-fx-background-color: #A41F03; -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Log Out" textFill="WHITE">
                             <opaqueInsets>
-                                <Insets/>
+                                <Insets />
                             </opaqueInsets>
                             <padding>
-                                <Insets left="50.0"/>
+                                <Insets left="50.0" />
                             </padding>
                             <font>
-                                <Font name="Arial Bold" size="14.0"/>
+                                <Font name="Arial Bold" size="14.0" />
                             </font>
                         </Button>
                     </children>
@@ -108,52 +92,47 @@
                     <children>
                         <AnchorPane fx:id="anchorPane2" prefHeight="202.0" prefWidth="667.0">
                             <children>
-                                <Button fx:id="btnCreate" layoutX="601.0" layoutY="130.0" mnemonicParsing="false"
-                                        onAction="#btnCreateClicked" text="Create"/>
-                                <Text fx:id="textTitle" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE"
-                                      strokeWidth="0.0" text="Clinic creation tool:">
+                                <Button fx:id="btnCreate" layoutX="601.0" layoutY="130.0" mnemonicParsing="false" onAction="#btnCreateClicked" text="Create" />
+                                <Text fx:id="textTitle" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clinic creation tool:">
                                     <font>
-                                        <Font name="Arial" size="18.0"/>
+                                        <Font name="Arial" size="18.0" />
                                     </font>
                                 </Text>
-                                <Text fx:id="textAddress" layoutX="14.0" layoutY="147.0" strokeType="OUTSIDE"
-                                      strokeWidth="0.0" text="Address:">
+                                <Text fx:id="textAddress" layoutX="14.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:">
                                     <font>
-                                        <Font name="Arial" size="14.0"/>
+                                        <Font name="Arial" size="14.0" />
                                     </font>
                                 </Text>
-                                <TextField fx:id="tfAddress" layoutX="234.0" layoutY="129.0"/>
-                                <Text fx:id="textCity" layoutX="14.0" layoutY="113.0" strokeType="OUTSIDE"
-                                      strokeWidth="0.0" text="City:">
+                                <TextField fx:id="tfAddress" layoutX="234.0" layoutY="129.0" />
+                                <Text fx:id="textCity" layoutX="14.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City:">
                                     <font>
-                                        <Font name="Arial" size="14.0"/>
+                                        <Font name="Arial" size="14.0" />
                                     </font>
                                 </Text>
-                                <TextField fx:id="tfCity" layoutX="234.0" layoutY="95.0"/>
-                                <Text fx:id="textName" layoutX="14.0" layoutY="80.0" strokeType="OUTSIDE"
-                                      strokeWidth="0.0" text="Name:">
+                                <TextField fx:id="tfCity" layoutX="234.0" layoutY="95.0" />
+                                <Text fx:id="textName" layoutX="14.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
                                     <font>
-                                        <Font name="Arial" size="14.0"/>
+                                        <Font name="Arial" size="14.0" />
                                     </font>
                                 </Text>
-                                <TextField fx:id="tfName" layoutX="234.0" layoutY="62.0"/>
-                                <Text fx:id="tFaliure" fill="RED" layoutX="606.0" layoutY="114.0" strokeType="OUTSIDE"
-                                      strokeWidth="0.0" text="Faliure">
+                                <TextField fx:id="tfName" layoutX="234.0" layoutY="62.0" />
+                                <Text fx:id="tFaliure" fill="RED" layoutX="606.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Faliure">
                                     <font>
-                                        <Font size="14.0"/>
+                                        <Font size="14.0" />
                                     </font>
                                 </Text>
+                        <Button fx:id="btnCancel" layoutX="521.0" layoutY="129.0" mnemonicParsing="false" onAction="#btnCancelClicked" text="Cancel" />
                             </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="322.0" prefWidth="667.0">
                             <children>
                                 <TableView fx:id="tvTable" layoutX="4.0" prefHeight="338.0" prefWidth="672.0">
                                     <columns>
-                                        <TableColumn fx:id="tcName" prefWidth="104.79997235536575" text="Name"/>
-                                        <TableColumn fx:id="tcCity" prefWidth="190.4000244140625" text="City"/>
-                                        <TableColumn fx:id="tcAddress" prefWidth="205.60015869140625" text="Address"/>
-                                        <TableColumn fx:id="tcEdit" prefWidth="80.7998046875" text="Edit"/>
-                                        <TableColumn fx:id="tcDelete" prefWidth="92.0" text="Delete"/>
+                                        <TableColumn fx:id="tcName" prefWidth="104.79997235536575" text="Name" />
+                                        <TableColumn fx:id="tcCity" prefWidth="190.4000244140625" text="City" />
+                                        <TableColumn fx:id="tcAddress" prefWidth="205.60015869140625" text="Address" />
+                                        <TableColumn fx:id="tcEdit" prefWidth="80.7998046875" text="Edit" />
+                                        <TableColumn fx:id="tcDelete" prefWidth="92.0" text="Delete" />
                                     </columns>
                                 </TableView>
                             </children>

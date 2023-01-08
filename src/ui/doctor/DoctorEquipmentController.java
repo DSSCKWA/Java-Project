@@ -57,9 +57,6 @@ public class DoctorEquipmentController implements Initializable {
     private TableColumn<?, ?> tcEName;
 
     @FXML
-    private TableColumn<Clinic, Void> tcEdit;
-
-    @FXML
     private TableColumn<?, ?> tcName;
 
     @FXML
@@ -149,8 +146,7 @@ public class DoctorEquipmentController implements Initializable {
 
         tvClinic.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-
-
+                
                 tcEName.setCellValueFactory(new PropertyValueFactory<>("name"));
                 tcStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
                 tcClinicName.setCellValueFactory(new PropertyValueFactory<>("clinicName"));
@@ -242,6 +238,7 @@ public class DoctorEquipmentController implements Initializable {
                     filteredClinics.setPredicate(clinic2 -> clinic2.equals(clinic));
                     tvClinic.setItems(filteredClinics);
 
+                    tcTransfer.setVisible(false);
                     textCreate.setVisible(true);
                     textEName.setVisible(true);
                     tfEName.setVisible(true);
@@ -255,7 +252,6 @@ public class DoctorEquipmentController implements Initializable {
                     tfCName.setVisible(false);
 
                     tcAdd.setVisible(false);
-                    tcEdit.setVisible(false);
                     tcTransfer.setVisible(false);
                     tcAction.setVisible(false);
 
@@ -292,8 +288,8 @@ public class DoctorEquipmentController implements Initializable {
                     tcClinicName.setCellValueFactory(new PropertyValueFactory<>("clinicName"));
 
                     tcAdd.setVisible(false);
-                    tcEdit.setVisible(false);
                     tcTransfer.setVisible(false);
+                    btnCancel.setVisible(true);
 
                     try {
                         ArrayList<Equipment> equipments = Session.getClient().getEquipment();
