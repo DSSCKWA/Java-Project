@@ -95,7 +95,7 @@ INSERT INTO `equipment` (`equipment_id`, `name`, `status`, `clinic_id`) VALUES
 (10, 'Zestaw ratowniczy', 'IN_USE', 2),
 (11, 'X-ray', 'IN_USE', 1),
 (12, 'Apteczka', 'IN_USE', 1),
-(13, 'Termometr', 'BROKEN', 1);
+(13, 'Termometr', 'BROKEN', 1),
 (14, 'Kule', 'IN_USE', 1);
 
 -- --------------------------------------------------------
