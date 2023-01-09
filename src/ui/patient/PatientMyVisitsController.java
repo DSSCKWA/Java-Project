@@ -128,7 +128,7 @@ public class PatientMyVisitsController implements Initializable {
             });
 
             tcAction.setCellFactory(tableColumn -> new TableCell<>() {
-                private final Button rateButton = new Button("Rate");
+                private final Button rateButton = new Button("RATE");
 
                 {
                     rateButton.setOnAction((ActionEvent event) -> {
@@ -149,7 +149,7 @@ public class PatientMyVisitsController implements Initializable {
                     });
                 }
 
-                private final Button cancelButton = new Button("Cancel");
+                private final Button cancelButton = new Button("CANCEL");
 
                 {
                     cancelButton.setOnAction((ActionEvent event) -> {
@@ -191,11 +191,14 @@ public class PatientMyVisitsController implements Initializable {
             });
 
             tcEdit.setCellFactory(tableColumn -> new TableCell<>() {
-                private final Button editButton = new Button("Edit");
+                private final Button editButton = new Button("EDIT");
 
                 {
                     editButton.setOnAction((ActionEvent event) -> {
                         selectedVisit = getTableView().getItems().get(getIndex());
+
+                        tcEdit.setVisible(false);
+                        tcAction.setVisible(false);
                         btCancel.setVisible(true);
                         btConfirm.setVisible(true);
                         txPickDate.setVisible(true);

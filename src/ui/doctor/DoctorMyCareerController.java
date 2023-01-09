@@ -158,7 +158,7 @@ public class DoctorMyCareerController implements Initializable {
                 FilteredList<ScheduleRow> filteredSchedules = new FilteredList<>(tvSchedule.getItems(), b -> true);
 
                 tcEdit.setCellFactory(tableColumn -> new TableCell<>() {
-                    private final Button editButton = new Button("Edit");
+                    private final Button editButton = new Button("EDIT");
 
                     {
                         editButton.setOnAction((ActionEvent event) -> {
@@ -166,6 +166,9 @@ public class DoctorMyCareerController implements Initializable {
 
                             filteredSchedules.setPredicate(schedule2 -> schedule2.equals(scheduleRow));
                             tvSchedule.setItems(filteredSchedules);
+
+                            tcEdit.setVisible(false);
+                            tcRemove.setVisible(false);
 
                             tcAddSchedule.setVisible(false);
                             textEnd.setVisible(true);
@@ -177,7 +180,9 @@ public class DoctorMyCareerController implements Initializable {
                             tfStart.setVisible(true);
                             tfEndM.setVisible(true);
                             tfStartM.setVisible(true);
-                            btnCreate.setText("Edit");
+                            textStartM.setVisible(true);
+                            textEndM.setVisible(true);
+                            btnCreate.setText("EDIT");
                             textTitle.setText("Editor Tool");
 
 
@@ -197,7 +202,7 @@ public class DoctorMyCareerController implements Initializable {
                 });
 
                 tcRemove.setCellFactory(tableColumn -> new TableCell<>() {
-                    private final Button removeButton = new Button("Remove");
+                    private final Button removeButton = new Button("REMOVE");
 
                     {
                         removeButton.setOnAction((ActionEvent event) -> {
@@ -237,7 +242,7 @@ public class DoctorMyCareerController implements Initializable {
         });
 
         tcAddSchedule.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button addButton = new Button("Add new");
+            private final Button addButton = new Button("ADD NEW");
 
             {
                 addButton.setOnAction((ActionEvent event) -> {
@@ -300,26 +305,30 @@ public class DoctorMyCareerController implements Initializable {
 
     @FXML
     void btnCreateClicked(ActionEvent event) throws IOException, InterruptedException {
-        if (Objects.equals(btnCreate.getText(), "Edit")) {
+        if (Objects.equals(btnCreate.getText(), "EDIT")) {
             textError.setVisible(true);
-            sched.setEndTime(LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText())));
-            sched.setStartTime(LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())));
-            Session.getClient().updateSchedule(sched);
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyCareer.fxml")));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setResizable(false);
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            if (LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText())).isAfter(LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())))) {
+                sched.setEndTime(LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText())));
+                sched.setStartTime(LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())));
+                Session.getClient().updateSchedule(sched);
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyCareer.fxml")));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setResizable(false);
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
         } else {
-            textError.setVisible(true);
-            Session.getClient().addSchedule(new Schedule(Session.getUser().getId(), clin.getClinicId(), DayOfWeek.valueOf(cboxDay.getValue().toString().toUpperCase(Locale.ROOT)), LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())), LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText()))));
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyCareer.fxml")));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setResizable(false);
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
+            if (LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText())).isAfter(LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())))) {
+                textError.setVisible(true);
+                Session.getClient().addSchedule(new Schedule(Session.getUser().getId(), clin.getClinicId(), DayOfWeek.valueOf(cboxDay.getValue().toString().toUpperCase(Locale.ROOT)), LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())), LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText()))));
+                root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyCareer.fxml")));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.setResizable(false);
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
         }
 
     }

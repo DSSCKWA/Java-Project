@@ -17,7 +17,7 @@ public class ButtonTableCreator {
             public TableCell<Data, Void> call(final TableColumn<Data, Void> param) {
                 final TableCell<Data, Void> cell = new TableCell<Data, Void>() {
 
-                    private final Button btn = new Button("Action");
+                    private final Button btn = new Button("ACTION");
 
                     {
                         btn.setOnAction((ActionEvent event) -> {

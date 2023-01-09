@@ -133,7 +133,7 @@ public class ModeratorDoctorsController implements Initializable {
         });
 
         tcAdd.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button addButton = new Button("Add");
+            private final Button addButton = new Button("ADD");
 
             {
                 addButton.setOnAction((ActionEvent event) -> {
@@ -166,7 +166,7 @@ public class ModeratorDoctorsController implements Initializable {
                     addButton.setVisible(false);
 
                     tcAR.setCellFactory(tableColumn -> new TableCell<>() {
-                        private final Button addCButton = new Button("Add");
+                        private final Button addCButton = new Button("ADD");
 
                         {
                             addCButton.setOnAction((ActionEvent event) -> {
@@ -177,7 +177,7 @@ public class ModeratorDoctorsController implements Initializable {
 
                                 try {
                                     Session.getClient().addDoctorToClinic(doctor.getId(), clinic.getClinicId());
-                                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminDoctors.fxml")));
+                                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorDoctors.fxml")));
                                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                                     stage.setResizable(false);
                                     scene = new Scene(root);
@@ -219,7 +219,7 @@ public class ModeratorDoctorsController implements Initializable {
 
 
         tcRemove.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button removeButton = new Button("Remove");
+            private final Button removeButton = new Button("REMOVE");
 
             {
                 removeButton.setOnAction((ActionEvent event) -> {
@@ -250,7 +250,7 @@ public class ModeratorDoctorsController implements Initializable {
 
 
                     tcAR.setCellFactory(tableColumn -> new TableCell<>() {
-                        private final Button removeCButton = new Button("Remove");
+                        private final Button removeCButton = new Button("REMOVE");
 
                         {
                             removeCButton.setOnAction((ActionEvent event) -> {
@@ -261,7 +261,7 @@ public class ModeratorDoctorsController implements Initializable {
 
                                 try {
                                     Session.getClient().removeDoctorFromClinic(doctor.getId(), clinic.getClinicId());
-                                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminDoctors.fxml")));
+                                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorDoctors.fxml")));
                                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                                     stage.setResizable(false);
                                     scene = new Scene(root);
