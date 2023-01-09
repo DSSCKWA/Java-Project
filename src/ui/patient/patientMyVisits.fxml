@@ -83,15 +83,15 @@
                             <children>
                                 <TableView fx:id="tvTable" layoutY="109.0" prefHeight="417.0" prefWidth="667.0">
                                     <columns>
-                                        <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="67.20002591609955" prefWidth="67.20002591609955" text="Name" />
-                                        <TableColumn fx:id="tcSurname" maxWidth="300.0" minWidth="68.0" prefWidth="68.0" text="Surname" />
-                                        <TableColumn fx:id="tcDate" maxWidth="300.0" minWidth="76.800048828125" prefWidth="79.199951171875" text="Date" />
-                                        <TableColumn fx:id="tcTime" maxWidth="300.0" minWidth="60.7999267578125" prefWidth="91.99998474121094" text="Time" />
-                                        <TableColumn fx:id="tcStatus" maxWidth="300.0" minWidth="80.0" prefWidth="108.800048828125" text="Status" />
-                                        <TableColumn fx:id="tcRating" maxWidth="300.0" minWidth="63.199951171875" prefWidth="63.199951171875" text="Rating" />
-                                        <TableColumn fx:id="tcPick" maxWidth="300.0" minWidth="68.0" prefWidth="76.80001831054688" text="Pick Rating" />
-                                        <TableColumn fx:id="tcAction" maxWidth="300.0" minWidth="68.0" prefWidth="126.4000244140625" text="Action" />
-                              <TableColumn fx:id="tcEdit" maxWidth="300.0" minWidth="68.0" prefWidth="126.4000244140625" text="Edit" />
+                                        <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="49.59997481107712" prefWidth="61.59997481107712" text="Name" />
+                                        <TableColumn fx:id="tcSurname" maxWidth="300.0" minWidth="45.600040435791016" prefWidth="63.200016021728516" text="Surname" />
+                                        <TableColumn fx:id="tcDate" maxWidth="300.0" minWidth="50.0" prefWidth="85.59991455078125" text="Date" />
+                                        <TableColumn fx:id="tcTime" maxWidth="300.0" minWidth="50.0" prefWidth="83.99992370605469" text="Time" />
+                                        <TableColumn fx:id="tcStatus" maxWidth="300.0" minWidth="50.0" prefWidth="104.0" text="Status" />
+                                        <TableColumn fx:id="tcRating" maxWidth="300.0" minWidth="28.800048828125" prefWidth="43.199951171875" text="Rating" />
+                                        <TableColumn fx:id="tcPick" maxWidth="300.0" minWidth="50.0" prefWidth="70.4000244140625" text="Pick Rating" />
+                                        <TableColumn fx:id="tcAction" maxWidth="300.0" minWidth="50.0" prefWidth="72.7999267578125" text="Action" />
+                              <TableColumn fx:id="tcEdit" maxWidth="300.0" minWidth="46.4000244140625" prefWidth="68.800048828125" text="Edit" />
                                     </columns>
                                 </TableView>
                         <DatePicker fx:id="dpDate" layoutX="29.0" layoutY="69.0" />
