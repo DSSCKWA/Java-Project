@@ -180,8 +180,6 @@ public class DoctorMyCareerController implements Initializable {
                             tfStart.setVisible(true);
                             tfEndM.setVisible(true);
                             tfStartM.setVisible(true);
-                            textStartM.setVisible(true);
-                            textEndM.setVisible(true);
                             btnCreate.setText("EDIT");
                             textTitle.setText("Editor Tool");
 
