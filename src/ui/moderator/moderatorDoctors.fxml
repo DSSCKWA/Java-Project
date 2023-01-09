@@ -13,11 +13,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.moderator.ModeratorDoctorsController">
+<HBox prefHeight="526.0" prefWidth="889.0" style="-fx-background-color: #2B333D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.moderator.ModeratorDoctorsController">
     <children>
         <AnchorPane prefHeight="526.0" prefWidth="203.0">
             <children>
-            <VBox prefHeight="592.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
+            <VBox prefHeight="593.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
                <children>
                   <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -92,7 +92,7 @@
                <children>
                   <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #232931;">
                      <children>
-                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="DOCTORS PANEL:" wrappingWidth="478.93670654296875">
+                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="DOCTORS PANEL" wrappingWidth="478.93670654296875">
                            <font>
                               <Font name="Leelawadee UI" size="38.0" />
                            </font>
@@ -106,17 +106,17 @@
                               <Font name="Leelawadee UI" size="18.0" />
                            </font>
                         </Text>
-                        <Text fill="#EEE" layoutX="20.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+                        <Text fill="#EEE" layoutX="20.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font>
                         </Text>
-                        <TextField fx:id="tfName" layoutX="100.0" layoutY="35.0" promptText="Name:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
+                        <TextField fx:id="tfName" layoutX="100.0" layoutY="35.0" promptText="Name" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                            <font>
                               <Font name="Leelawadee UI Bold" size="12.0" />
                            </font>
                         </TextField>
-                        <Text fill="#EEE" layoutX="20.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:">
+                        <Text fill="#EEE" layoutX="20.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname">
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font>
@@ -126,7 +126,7 @@
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <TextField fx:id="tfSurname" layoutX="100.0" layoutY="65.0" promptText="Surname:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
+                        <TextField fx:id="tfSurname" layoutX="100.0" layoutY="65.0" promptText="Surname" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                            <font>
                               <Font name="Leelawadee UI Bold" size="12.0" />
                            </font>
@@ -157,7 +157,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="187.0" prefWidth="686.0" style="-fx-background-color: #2B333D;">
                      <children>
-                        <TableView fx:id="tvClinic" layoutX="10.0" prefHeight="176.0" prefWidth="665.0" style="-fx-background-color: #2B333D;" stylesheets="@../css/tableStyling.css">
+                        <TableView fx:id="tvClinic" layoutX="10.0" prefHeight="175.0" prefWidth="665.0" style="-fx-background-color: #2B333D;" stylesheets="@../css/tableStyling.css">
                            <columns>
                               <TableColumn fx:id="tcCName" maxWidth="300.0" minWidth="100.0" prefWidth="127.99998760223389" styleClass="tableContent" text="Name" />
                               <TableColumn fx:id="tcCCity" maxWidth="300.0" minWidth="100.0" prefWidth="146.3999481201172" styleClass="tableContent" text="City" />

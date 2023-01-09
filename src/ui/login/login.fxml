@@ -22,7 +22,7 @@
                         <Image url="@../logo/logo.png" />
                      </image>
                   </ImageView>
-                  <Text fill="#EEE" layoutX="149.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOG IN:" wrappingWidth="170.0">
+                  <Text fill="#EEE" layoutX="149.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="LOG IN" wrappingWidth="170.0">
                      <font>
                         <Font name="Leelawadee UI" size="30.0" />
                      </font>
@@ -36,7 +36,7 @@
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="tfEmail" layoutX="116.0" layoutY="31.0" promptText="Email:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
+                  <TextField fx:id="tfEmail" layoutX="116.0" layoutY="31.0" promptText="Email" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -46,39 +46,39 @@
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Label>
-                  <Button layoutX="120.0" layoutY="150.0" mnemonicParsing="false" onAction="#btnConfirmClicked" style="-fx-cursor: hand; -fx-background-color: #232931;" text="CONFIRM" textFill="#EEE">
+                  <Button layoutX="133.0" layoutY="136.0" mnemonicParsing="false" onAction="#btnConfirmClicked" style="-fx-cursor: hand; -fx-background-color: #4ECCA3;" text="Sign in" textFill="#eeeeee">
                      <font>
-                        <Font name="Leelawadee UI" size="14.0" />
+                        <Font name="Leelawadee UI Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Text fill="#EEE" layoutX="21.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?" wrappingWidth="225.33667755126953">
+                  <Text fill="#EEE" layoutX="32.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Don't have an account?" wrappingWidth="225.33667755126953">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Button layoutX="215.0" layoutY="200.0" mnemonicParsing="false" onAction="#btnSignUpClicked" style="-fx-background-color: transparent; -fx-cursor: hand;" text="SIGN UP!" textFill="#EEE" underline="true">
+                  <Button layoutX="215.0" layoutY="200.0" mnemonicParsing="false" onAction="#btnSignUpClicked" style="-fx-background-color: transparent; -fx-cursor: hand;" text="SIGN UP!" textFill="#4ecca3" underline="true">
                      <font>
                         <Font name="Leelawadee UI Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button layoutX="208.0" layoutY="229.0" mnemonicParsing="false" onAction="#btnClickHereClicked" style="-fx-background-color: transparent; -fx-cursor: hand;" text="CLICK HERE" textFill="#EEE" underline="true">
+                  <Button layoutX="208.0" layoutY="228.0" mnemonicParsing="false" onAction="#btnClickHereClicked" style="-fx-background-color: transparent; -fx-cursor: hand;" text="CLICK HERE" textFill="#4ecca3" underline="true">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="Leelawadee UI Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Text fill="#EEE" layoutX="20.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Just want to browse?" wrappingWidth="131.509765625">
+                  <Text fill="#EEE" layoutX="32.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Just want to browse?" wrappingWidth="131.509765625">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <PasswordField fx:id="pfPassword" layoutX="116.0" layoutY="76.0" promptText="Password:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
+                  <PasswordField fx:id="pfPassword" layoutX="116.0" layoutY="76.0" promptText="Password" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </PasswordField>
-                  <Text fx:id="tInvalidInput" fill="#f44336" layoutX="109.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVALID INPUT">
+                  <Text fx:id="tInvalidInput" fill="#f44336" layoutX="120.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVALID INPUT">
                      <font>
-                        <Font name="Leelawadee UI Bold" size="14.0" />
+                        <Font name="Leelawadee UI Bold" size="12.0" />
                      </font>
                   </Text>
                </children>

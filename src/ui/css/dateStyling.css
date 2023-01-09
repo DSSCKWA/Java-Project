@@ -1,4 +1,4 @@
-.date-picker > .text-field {
+/* .date-picker > .text-field {
     -fx-text-fill: #EEE;
     -fx-background-color: #EEE;
 }
@@ -42,5 +42,6 @@
 .date-picker-popup > .month-year-pane {
     -fx-background-color: #232931;
     -fx-base: #1d1d1d ;
+    -fx-text-fill: #EEE;
     -fx-mark-highlight-color: -fx-light-text-color ;
-}
+} */

@@ -13,82 +13,86 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="526.0" prefWidth="889.0" stylesheets="@../css/tableStyling.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminDoctorsController">
+<HBox prefHeight="526.0" prefWidth="889.0" style="-fx-background-color: #2B333D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminDoctorsController">
     <children>
-      <VBox prefHeight="526.0" prefWidth="202.0" style="-fx-background-color: #2B333D;">
+      <AnchorPane>
          <children>
-            <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../logo/logo.png" />
-               </image>
-            </ImageView>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0" style=" -fx-cursor: hand;" styleClass="menuBtn" stylesheets="@../css/adminStyling.css" text="Start" textFill="#EEE">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <font>
-                  <Font name="Leelawadee UI Bold" size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnClinicsClicked" prefHeight="50.0" prefWidth="204.0" styleClass="menuBtn" stylesheets="@../css/adminStyling.css" text="Clinics" textFill="#EEE">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <font>
-                  <Font name="Leelawadee UI Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnDoctorsClicked" prefHeight="50.0" prefWidth="224.0" styleClass="menuBtn" stylesheets="@../css/adminStyling.css" text="Doctors" textFill="#EEE">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <font>
-                  <Font name="Leelawadee UI Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnUsersClicked" prefHeight="50.0" prefWidth="222.0" styleClass="menuBtn" stylesheets="@../css/adminStyling.css" text="Users" textFill="#EEE">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <font>
-                  <Font name="Leelawadee UI Bold" size="14.0" />
-               </font>
-            </Button>
-            <Button id="btnLogOut" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0" styleClass="menuBtn" stylesheets="@../css/adminStyling.css" text="Log Out" textFill="#EEE">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-               <font>
-                  <Font name="Leelawadee UI Bold" size="14.0" />
-               </font>
-            </Button>
+            <VBox prefHeight="594.0" prefWidth="202.0" style="-fx-background-color: #2B333D;">
+               <children>
+                  <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../logo/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0" style=" -fx-cursor: hand;" styleClass="menuBtn" stylesheets="@../css/adminStyling.css" text="Start" textFill="#EEE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font name="Leelawadee UI Bold" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnClinicsClicked" prefHeight="50.0" prefWidth="204.0" styleClass="menuBtn" stylesheets="@../css/adminStyling.css" text="Clinics" textFill="#EEE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font name="Leelawadee UI Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnDoctorsClicked" prefHeight="50.0" prefWidth="224.0" styleClass="menuBtn" stylesheets="@../css/adminStyling.css" text="Doctors" textFill="#EEE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font name="Leelawadee UI Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnUsersClicked" prefHeight="50.0" prefWidth="222.0" styleClass="menuBtn" stylesheets="@../css/adminStyling.css" text="Users" textFill="#EEE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font name="Leelawadee UI Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button id="btnLogOut" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0" styleClass="menuBtn" stylesheets="@../css/adminStyling.css" text="Log Out" textFill="#EEE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <font>
+                        <Font name="Leelawadee UI Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
          </children>
-      </VBox>
+      </AnchorPane>
         <AnchorPane prefHeight="405.0" prefWidth="447.0" style="-fx-background-color: #2B333D;">
             <children>
                 <VBox prefHeight="526.0" prefWidth="687.0">
                     <children>
                   <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #232931;">
                      <children>
-                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="DOCTORS PANEL:" wrappingWidth="478.93670654296875">
+                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="DOCTORS PANEL" wrappingWidth="478.93670654296875">
                            <font>
                               <Font name="Leelawadee UI" size="38.0" />
                            </font>
@@ -102,16 +106,16 @@
                                         <Font name="Leelawadee UI" size="18.0" />
                                     </font>
                                 </Text>
-                                <Text fill="#EEE" layoutX="20.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+                                <Text fill="#EEE" layoutX="20.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
                                     <font>
                                         <Font name="Leelawadee UI" size="14.0" />
                                     </font>
                                 </Text>
-                                <TextField fx:id="tfName" layoutX="100.0" layoutY="35.0" promptText="Name:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
+                                <TextField fx:id="tfName" layoutX="100.0" layoutY="35.0" promptText="Name" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                            <font>
                               <Font name="Leelawadee UI Bold" size="12.0" />
                            </font></TextField>
-                                <Text fill="#EEE" layoutX="20.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:">
+                                <Text fill="#EEE" layoutX="20.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname">
                                     <font>
                                         <Font name="Leelawadee UI" size="14.0" />
                                     </font>
@@ -121,7 +125,7 @@
                               <Font size="18.0" />
                            </font>
                         </Button>
-                                <TextField fx:id="tfSurname" layoutX="100.0" layoutY="65.0" promptText="Surname:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
+                                <TextField fx:id="tfSurname" layoutX="100.0" layoutY="65.0" promptText="Surname" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                            <font>
                               <Font name="Leelawadee UI Bold" size="12.0" />
                            </font></TextField>

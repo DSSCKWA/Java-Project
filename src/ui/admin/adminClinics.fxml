@@ -13,11 +13,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminClinicsController">
+<HBox prefHeight="526.0" prefWidth="889.0" style="-fx-background-color: #2B333D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminClinicsController">
     <children>
         <AnchorPane prefHeight="526.0" prefWidth="202.0">
             <children>
-            <VBox prefHeight="526.0" prefWidth="202.0" style="-fx-background-color: #2B333D;">
+            <VBox prefHeight="568.0" prefWidth="202.0" style="-fx-background-color: #2B333D;">
                <children>
                   <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -92,7 +92,7 @@
                     <children>
                   <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #232931;">
                      <children>
-                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="CLINIC PANEL:" wrappingWidth="478.93670654296875">
+                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="CLINIC PANEL" wrappingWidth="478.93670654296875">
                            <font>
                               <Font name="Leelawadee UI" size="38.0" />
                            </font>
@@ -106,34 +106,34 @@
                               <Font name="Leelawadee UI" size="24.0" />
                            </font>
                         </Text>
-                                <Button id="textTitle" fx:id="btnCreate" layoutX="563.0" layoutY="43.0" minWidth="86.0" mnemonicParsing="false" onAction="#btnCreateClicked" style="-fx-background-color: #232931;" text="CREATE" textAlignment="CENTER" textFill="#EEE">
+                                <Button id="textTitle" fx:id="btnCreate" layoutX="477.0" layoutY="43.0" minWidth="86.0" mnemonicParsing="false" onAction="#btnCreateClicked" style="-fx-background-color: #232931;" text="CREATE" textAlignment="CENTER" textFill="#EEE">
                            <font>
                               <Font name="Leelawadee UI" size="18.0" />
                            </font></Button>
-                                <Text fx:id="textAddress" fill="#EEE" layoutX="14.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:">
+                                <Text fx:id="textAddress" fill="#EEE" layoutX="14.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
                                     <font>
                                         <Font name="Leelawadee UI" size="18.0" />
                                     </font>
                                 </Text>
-                                <TextField fx:id="tfAddress" layoutX="234.0" layoutY="85.0" promptText="Address:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
+                                <TextField fx:id="tfAddress" layoutX="234.0" layoutY="85.0" promptText="Address" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
-                                <Text fx:id="textCity" fill="#EEE" layoutX="14.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City:">
+                                <Text fx:id="textCity" fill="#EEE" layoutX="14.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City">
                                     <font>
                                         <Font name="Leelawadee UI" size="18.0" />
                                     </font>
                                 </Text>
-                                <TextField fx:id="tfCity" layoutX="234.0" layoutY="50.0" promptText="City:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
+                                <TextField fx:id="tfCity" layoutX="234.0" layoutY="50.0" promptText="City" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
-                                <Text fx:id="textName" fill="#EEE" layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+                                <Text fx:id="textName" fill="#EEE" layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
                                     <font>
                                         <Font name="Leelawadee" size="18.0" />
                                     </font>
                                 </Text>
-                                <TextField fx:id="tfName" layoutX="234.0" layoutY="15.0" promptText="Name:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
+                                <TextField fx:id="tfName" layoutX="234.0" layoutY="15.0" promptText="Name" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
@@ -142,14 +142,17 @@
                                         <Font name="Leelawadee UI Bold" size="14.0" />
                                     </font>
                                 </Text>
-                        <Button fx:id="btnCancel" layoutX="521.0" layoutY="129.0" mnemonicParsing="false" onAction="#btnCancelClicked" text="CANCEL" />
+                        <Button fx:id="btnCancel" layoutX="580.0" layoutY="43.0" mnemonicParsing="false" onAction="#btnCancelClicked" style="-fx-background-color: #232931;" text="CANCEL" textAlignment="CENTER" textFill="#eeeeee">
+                           <font>
+                              <Font name="Leelawadee UI" size="18.0" />
+                           </font></Button>
                             </children>
                         </AnchorPane>
                         <AnchorPane prefHeight="322.0" prefWidth="66.0" style="-fx-background-color: #2B333D;">
                             <children>
-                                <TableView fx:id="tvTable" layoutX="8.0" layoutY="10.0" prefHeight="292.0" prefWidth="672.0" style="-fx-background-color: #2B333D; -fx-text-fill: #EEE;" styleClass="t" stylesheets="@../css/tableStyling.css">
+                                <TableView fx:id="tvTable" layoutX="8.0" layoutY="10.0" prefHeight="336.0" prefWidth="672.0" style="-fx-background-color: #2B333D; -fx-text-fill: #EEE;" styleClass="t" stylesheets="@../css/tableStyling.css">
                                     <columns>
-                                        <TableColumn fx:id="tcCity" prefWidth="190.4000244140625"  styleClass="tableContent" text="City" />
+                                        <TableColumn fx:id="tcCity" prefWidth="190.4000244140625" styleClass="tableContent" text="City" />
                                         <TableColumn fx:id="tcAddress" prefWidth="205.60015869140625" styleClass="tableContent" text="Address" />
                                         <TableColumn fx:id="tcName" prefWidth="104.79997235536575" styleClass="tableContent" text="Name" />
                                         <TableColumn fx:id="tcEdit" prefWidth="80.7998046875" styleClass="tableContent" text="Edit" />

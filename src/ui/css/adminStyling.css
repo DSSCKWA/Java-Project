@@ -79,6 +79,6 @@
 -fx-background-color : #f44336;
 }
 
-.VBox Button {
+.VBox .Button {
     -fx-background-color: RED
 }

@@ -23,7 +23,7 @@
                            <image>
                               <Image url="@../logo/logo.png" />
                            </image></ImageView>
-                        <Text fill="#EEE" layoutX="149.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIGN UP FORM:" wrappingWidth="225.33667755126953">
+                        <Text fill="#EEE" layoutX="149.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIGN UP FORM" wrappingWidth="225.33667755126953">
                            <font>
                               <Font name="Leelawadee UI" size="30.0" />
                            </font>
@@ -34,42 +34,42 @@
             </HBox>
             <AnchorPane fx:id="AnchorPane1" prefHeight="415.0" prefWidth="418.0">
                <children>
-                  <Text fill="#EEE" layoutX="32.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" wrappingWidth="43.69342041015625">
+                  <Text fill="#EEE" layoutX="32.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="43.69342041015625">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text fill="#EEE" layoutX="32.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:" wrappingWidth="66.8934326171875">
+                  <Text fill="#EEE" layoutX="32.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname" wrappingWidth="66.8934326171875">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text fill="#EEE" layoutX="32.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" wrappingWidth="66.8934326171875">
+                  <Text fill="#EEE" layoutX="32.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address" wrappingWidth="66.8934326171875">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text fill="#EEE" layoutX="32.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City:" wrappingWidth="66.8934326171875">
+                  <Text fill="#EEE" layoutX="32.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City" wrappingWidth="66.8934326171875">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text fill="#EEE" layoutX="32.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number:" wrappingWidth="98.09344482421875">
+                  <Text fill="#EEE" layoutX="32.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" wrappingWidth="98.09344482421875">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text fill="#EEE" layoutX="32.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" wrappingWidth="83.69342041015625">
+                  <Text fill="#EEE" layoutX="32.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" wrappingWidth="83.69342041015625">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text fill="#EEE" layoutX="32.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="83.69342041015625">
+                  <Text fill="#EEE" layoutX="32.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="83.69342041015625">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text fill="#EEE" layoutX="32.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repeat Password:" wrappingWidth="117.29339599609375">
+                  <Text fill="#EEE" layoutX="32.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repeat Password" wrappingWidth="117.29339599609375">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
@@ -78,27 +78,27 @@
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font></Button>
-                  <TextField fx:id="tfName" layoutX="155.0" layoutY="25.0" promptText="Name:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
+                  <TextField fx:id="tfName" layoutX="155.0" layoutY="25.0" promptText="Name" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></TextField>
-                  <TextField fx:id="tfSurname" layoutX="155.0" layoutY="60.0" promptText="Surname:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
+                  <TextField fx:id="tfSurname" layoutX="155.0" layoutY="60.0" promptText="Surname" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></TextField>
-                  <TextField fx:id="tfAddress" layoutX="155.0" layoutY="95.0" promptText="Address:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
+                  <TextField fx:id="tfAddress" layoutX="155.0" layoutY="95.0" promptText="Address" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></TextField>
-                  <TextField fx:id="tfCity" layoutX="155.0" layoutY="130.0" promptText="City:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
+                  <TextField fx:id="tfCity" layoutX="155.0" layoutY="130.0" promptText="City" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></TextField>
-                  <TextField fx:id="tfPhoneNumber" layoutX="155.0" layoutY="165.0" promptText="Phone Number:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
+                  <TextField fx:id="tfPhoneNumber" layoutX="155.0" layoutY="165.0" promptText="Phone Number" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></TextField>
-                  <TextField fx:id="tfEmail" layoutX="155.0" layoutY="200.0" promptText="Email:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
+                  <TextField fx:id="tfEmail" layoutX="155.0" layoutY="200.0" promptText="Email" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></TextField>
@@ -106,11 +106,11 @@
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></Text>
-                  <PasswordField fx:id="pfPassword" layoutX="156.0" layoutY="235.0" promptText="Password:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
+                  <PasswordField fx:id="pfPassword" layoutX="156.0" layoutY="235.0" promptText="Password" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></PasswordField>
-                  <PasswordField fx:id="pfPasswordConfirm" layoutX="155.0" layoutY="272.0" promptText="Repeat Password:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
+                  <PasswordField fx:id="pfPasswordConfirm" layoutX="155.0" layoutY="272.0" promptText="Repeat Password" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></PasswordField>

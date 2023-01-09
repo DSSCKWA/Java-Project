@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.doctor.DoctorMyCareerController">
+<HBox prefHeight="526.0" prefWidth="889.0" style="-fx-background-color: #2B333D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.doctor.DoctorMyCareerController">
     <children>
         <AnchorPane prefHeight="526.0" prefWidth="203.0">
             <children>
@@ -104,7 +104,7 @@
                     <children>
                   <AnchorPane prefHeight="100.0" prefWidth="693.0" style="-fx-background-color: #232931;">
                      <children>
-                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="SCHEDULE:" wrappingWidth="478.93670654296875">
+                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="SCHEDULE" wrappingWidth="478.93670654296875">
                            <font>
                               <Font name="Leelawadee UI" size="38.0" />
                            </font>
@@ -113,7 +113,7 @@
                   </AnchorPane>
                         <AnchorPane prefHeight="142.0" prefWidth="686.0" style="-fx-background-color: #2B333D;">
                      <children>
-                        <Text fx:id="textDay" fill="#EEE" layoutX="14.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Day:" wrappingWidth="27.7366943359375">
+                        <Text fx:id="textDay" fill="#EEE" layoutX="14.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Day" wrappingWidth="27.7366943359375">
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font></Text>
@@ -125,7 +125,7 @@
                            <font>
                               <Font name="Leelawadee UI" size="12.0" />
                            </font></Button>
-                        <Text fx:id="textStart" fill="#EEE" layoutX="239.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Time:">
+                        <Text fx:id="textStart" fill="#EEE" layoutX="239.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Time">
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font></Text>
@@ -137,7 +137,7 @@
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
-                        <Text fx:id="textEnd" fill="#EEE" layoutX="241.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Time:">
+                        <Text fx:id="textEnd" fill="#EEE" layoutX="241.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Time">
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font></Text>

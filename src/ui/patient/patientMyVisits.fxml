@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="526.0" prefWidth="845.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.patient.PatientMyVisitsController">
+<HBox prefHeight="526.0" prefWidth="845.0" style="-fx-background-color: #2B333D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.patient.PatientMyVisitsController">
     <children>
         <AnchorPane prefHeight="526.0" prefWidth="203.0">
             <children>
@@ -81,7 +81,7 @@
                     <children>
                   <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #232931;">
                      <children>
-                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="MY VISITS:" wrappingWidth="478.93670654296875">
+                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="MY VISITS" wrappingWidth="478.93670654296875">
                            <font>
                               <Font name="Leelawadee UI" size="38.0" />
                            </font>
@@ -92,8 +92,8 @@
                             <children>
                                 <TableView fx:id="tvTable" layoutY="82.0" prefHeight="363.0" prefWidth="667.0" stylesheets="@../css/tableStyling.css">
                                     <columns>
-                                        <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="67.20002591609955" prefWidth="67.20002591609955" text="Name" />
                                         <TableColumn fx:id="tcSurname" maxWidth="300.0" minWidth="68.0" prefWidth="68.0" text="Surname" />
+                                        <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="67.20002591609955" prefWidth="67.20002591609955" text="Name" />
                                         <TableColumn fx:id="tcDate" maxWidth="300.0" minWidth="76.800048828125" prefWidth="79.199951171875" text="Date" />
                                         <TableColumn fx:id="tcTime" maxWidth="300.0" minWidth="60.7999267578125" prefWidth="91.99998474121094" text="Time" />
                                         <TableColumn fx:id="tcStatus" maxWidth="300.0" minWidth="80.0" prefWidth="108.800048828125" text="Status" />
@@ -106,7 +106,7 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                                 </TableView>
-                        <DatePicker fx:id="dpDate" layoutX="30.0" layoutY="35.0" promptText="Date:" style="-fx-background-color: #EEE;" stylesheets="@../css/dateStyling.css" />
+                        <DatePicker fx:id="dpDate" layoutX="30.0" layoutY="35.0" promptText="Date" style="-fx-background-color: #EEE;" stylesheets="@../css/dateStyling.css" />
                         <Text fx:id="txPickDate" fill="#EEE" layoutX="70.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pick new date" textAlignment="CENTER" wrappingWidth="97.76092529296875">
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />

@@ -13,11 +13,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.moderator.ModeratorExpertiseController">
+<HBox prefHeight="526.0" prefWidth="889.0" style="-fx-background-color: #2B333D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.moderator.ModeratorExpertiseController">
     <children>
         <AnchorPane prefHeight="526.0" prefWidth="202.0">
             <children>
-                <VBox prefHeight="590.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
+                <VBox prefHeight="592.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
                     <children>
                         <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -92,7 +92,7 @@
                     <children>
                   <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #232931;">
                      <children>
-                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="EXPERTISE PANEL:" wrappingWidth="478.93670654296875">
+                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="EXPERTISE PANEL" wrappingWidth="478.93670654296875">
                            <font>
                               <Font name="Leelawadee UI" size="38.0" />
                            </font>
@@ -101,32 +101,32 @@
                   </AnchorPane>
                         <AnchorPane prefHeight="154.0" prefWidth="667.0" style="-fx-background-color: #2B333D;">
                      <children>
-                        <Text fx:id="textSearch" fill="#EEE" layoutX="50.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:" textAlignment="CENTER">
+                        <Text fx:id="textSearch" fill="#EEE" layoutX="11.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:" textAlignment="CENTER">
                            <font>
                               <Font name="Leelawadee UI" size="18.0" />
                            </font>
                         </Text>
-                        <Text fx:id="textName" fill="#EEE" layoutX="50.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+                        <Text fx:id="textName" fill="#EEE" layoutX="11.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font></Text>
-                        <Text fx:id="textSurname" fill="#EEE" layoutX="50.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:">
+                        <Text fx:id="textSurname" fill="#EEE" layoutX="12.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname">
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font></Text>
-                        <TextField fx:id="tfName" layoutX="144.0" layoutY="44.0" promptText="Name:" style="-fx-background-color: #EEE;">
+                        <TextField fx:id="tfName" layoutX="78.0" layoutY="45.0" promptText="Name" style="-fx-background-color: #EEE;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
-                        <TextField fx:id="tfSurname" layoutX="144.0" layoutY="77.0" promptText="Surname:" style="-fx-background-color: #EEE;">
+                        <TextField fx:id="tfSurname" layoutX="78.0" layoutY="76.0" promptText="Surname" style="-fx-background-color: #EEE;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
-                        <Text fx:id="textExpertise" fill="#EEE" layoutX="330.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expertise:">
+                        <Text fx:id="textExpertise" fill="#EEE" layoutX="330.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expertise">
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font></Text>
-                        <TextField fx:id="tfExpertise" layoutX="401.0" layoutY="44.0" promptText="Expertise:" style="-fx-background-color: #EEE;">
+                        <TextField fx:id="tfExpertise" layoutX="401.0" layoutY="44.0" promptText="Expertise" style="-fx-background-color: #EEE;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
@@ -138,7 +138,7 @@
                            <font>
                               <Font name="Leelawadee UI" size="12.0" />
                            </font></Button>
-                        <Text fx:id="textAdd" fill="#EEE" layoutX="330.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add expertise:" textAlignment="CENTER">
+                        <Text fx:id="textAdd" fill="#EEE" layoutX="330.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add expertise" textAlignment="CENTER">
                            <font>
                               <Font name="Leelawadee UI" size="18.0" />
                            </font>

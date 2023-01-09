@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminUsersController">
+<HBox prefHeight="526.0" prefWidth="889.0" style="-fx-background-color: #2B333D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminUsersController">
     <children>
       <VBox prefHeight="526.0" prefWidth="202.0" style="-fx-background-color: #2B333D;">
          <children>
@@ -87,7 +87,7 @@
             <children>
             <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #232931;">
                <children>
-                  <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="USERS PANEL:" wrappingWidth="478.93670654296875">
+                  <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="USERS PANEL" wrappingWidth="478.93670654296875">
                      <font>
                         <Font name="Leelawadee UI" size="38.0" />
                      </font>
@@ -116,21 +116,21 @@
                               <TableColumn fx:id="tcModify" maxWidth="300.0" minWidth="100.0" prefWidth="113.60009765625" styleClass="tableContent" text="Modify Permission" />
                           </columns>
                         </TableView>
-                                <Text fx:id="textName" fill="#EEE" layoutX="20.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+                                <Text fx:id="textName" fill="#EEE" layoutX="20.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
                                     <font>
                                         <Font name="Leelawadee UI" size="14.0" />
                                     </font>
                                 </Text>
-                                <Text fx:id="textSurname" fill="#EEE" layoutX="20.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:">
+                                <Text fx:id="textSurname" fill="#EEE" layoutX="20.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname">
                                     <font>
                                         <Font name="Leelawadee UI" size="14.0" />
                                     </font>
                                 </Text>
-                                <TextField fx:id="tfName" layoutX="100.0" promptText="Name:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
+                                <TextField fx:id="tfName" layoutX="100.0" promptText="Name" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
-                                <TextField fx:id="tfSurname" layoutX="100.0" layoutY="40.0" promptText="Surname:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
+                                <TextField fx:id="tfSurname" layoutX="100.0" layoutY="40.0" promptText="Surname" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>

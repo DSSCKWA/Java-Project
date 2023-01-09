@@ -14,11 +14,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.doctor.DoctorEquipmentController">
+<HBox prefHeight="526.0" prefWidth="889.0" style="-fx-background-color: #2B333D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.doctor.DoctorEquipmentController">
     <children>
         <AnchorPane prefHeight="526.0" prefWidth="203.0">
             <children>
-            <VBox prefHeight="618.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
+            <VBox prefHeight="621.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
                <children>
                   <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -104,7 +104,7 @@
                     <children>
                   <AnchorPane prefHeight="100.0" prefWidth="693.0" style="-fx-background-color: #232931;">
                      <children>
-                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="EQUIPMENT:" wrappingWidth="478.93670654296875">
+                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="EQUIPMENT" wrappingWidth="478.93670654296875">
                            <font>
                               <Font name="Leelawadee UI" size="38.0" />
                            </font>
@@ -118,36 +118,36 @@
                               <Font name="Leelawadee UI" size="18.0" />
                            </font>
                         </Text>
-                        <Text fx:id="textCName" fill="#EEE" layoutX="15.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clinic Name:">
+                        <Text fx:id="textCName" fill="#EEE" layoutX="15.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clinic Name">
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font></Text>
-                        <Text fx:id="textCEName" fill="#EEE" layoutX="15.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipment Name:">
+                        <Text fx:id="textCEName" fill="#EEE" layoutX="15.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipment Name">
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font></Text>
-                        <TextField fx:id="tfCEName" layoutX="135.0" layoutY="42.0" promptText="Clinic Name:" style="-fx-background-color: #EEE;">
+                        <TextField fx:id="tfCEName" layoutX="135.0" layoutY="42.0" promptText="Clinic Name" style="-fx-background-color: #EEE;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
-                        <TextField fx:id="tfCName" layoutX="135.0" layoutY="75.0" promptText="Equipment Name:" style="-fx-background-color: #EEE;">
+                        <TextField fx:id="tfCName" layoutX="135.0" layoutY="75.0" promptText="Equipment Name" style="-fx-background-color: #EEE;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
-                        <Text fx:id="textCreate" fill="#EEE" layoutX="310.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create:">
+                        <Text fx:id="textCreate" fill="#EEE" layoutX="310.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create">
                            <font>
                               <Font name="Leelawadee UI" size="18.0" />
                            </font>
                         </Text>
-                        <Text fx:id="textEName" fill="#EEE" layoutX="310.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipment Name:">
+                        <Text fx:id="textEName" fill="#EEE" layoutX="310.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipment Name">
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font></Text>
-                        <TextField fx:id="tfEName" layoutX="425.0" layoutY="42.0" promptText="Equipment Name:" style="-fx-background-color: #EEE;">
+                        <TextField fx:id="tfEName" layoutX="425.0" layoutY="42.0" promptText="Equipment Name" style="-fx-background-color: #EEE;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
-                        <Text fx:id="textEStatus" fill="#EEE" layoutX="310.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status:">
+                        <Text fx:id="textEStatus" fill="#EEE" layoutX="310.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status">
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font></Text>
@@ -175,7 +175,7 @@
                             <TableColumn fx:id="tcCity" maxWidth="400.0" minWidth="100.0" prefWidth="120.79998779296875" styleClass="tableContent" text="City" />
                               <TableColumn fx:id="tcAddress" maxWidth="400.0" minWidth="100.0" prefWidth="156.7999725341797" styleClass="tableContent" text="Address" />
                               <TableColumn fx:id="tcAdd" maxWidth="400.0" minWidth="100.0" prefWidth="140.0" styleClass="tableContent" text="Add" />
-                              <TableColumn fx:id="tcTransfer" maxWidth="400.0" minWidth="100.0" prefWidth="160.0" styleClass="tableContent" text="Transfer" />
+                              <TableColumn fx:id="tcTransfer" maxWidth="400.0" minWidth="100.0" prefWidth="160.80002441406248" styleClass="tableContent" text="Transfer" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
