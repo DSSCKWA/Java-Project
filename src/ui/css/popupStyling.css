@@ -1,0 +1,20 @@
+.button {
+    -fx-background-color : #4ECCA3 ;
+    -fx-font: bold normal 12px "Leelawadee UI";
+    -fx-text-fill: #EEE;
+}
+
+.button:hover {
+    -fx-cursor: hand ;
+}
+
+.root {
+    -fx-font: bold normal 12px "Leelawadee UI";
+    -fx-background-color : #2B333D;
+    -fx-text-fill: #EEE;
+}
+
+.label {
+    -fx-font: bold normal 14px "Leelawadee UI";
+    -fx-text-fill: #EEE;
+}
