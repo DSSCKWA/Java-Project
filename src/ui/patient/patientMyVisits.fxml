@@ -17,14 +17,14 @@
     <children>
         <AnchorPane prefHeight="526.0" prefWidth="203.0">
             <children>
-                <VBox prefHeight="562.0" prefWidth="203.0" style="-fx-background-color: #2196f3;">
+                <VBox prefHeight="562.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
                     <children>
                         <ImageView fitHeight="196.0" fitWidth="223.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../logo/logo.png" />
                             </image>
                         </ImageView>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Start" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Start" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -38,7 +38,7 @@
                                 <Insets />
                             </VBox.margin>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnMyVisitsClicked" prefHeight="50.0" prefWidth="226.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="My Visits" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnMyVisitsClicked" prefHeight="50.0" prefWidth="226.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="My Visits" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -49,7 +49,7 @@
                                 <Font name="Leelawadee UI Bold" size="14.0" />
                             </font>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnNewVisitClicked" prefHeight="50.0" prefWidth="224.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="New Visit" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnNewVisitClicked" prefHeight="50.0" prefWidth="224.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="New Visit" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -60,7 +60,7 @@
                                 <Font name="Leelawadee UI Bold" size="14.0" />
                             </font>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Log Out" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Log Out" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -75,20 +75,20 @@
                 </VBox>
             </children>
         </AnchorPane>
-        <AnchorPane prefHeight="526.0" prefWidth="649.0" style="-fx-background-color: #2196f3;">
+        <AnchorPane prefHeight="526.0" prefWidth="649.0" style="-fx-background-color: #2B333D;">
             <children>
                 <VBox prefHeight="526.0" prefWidth="667.0">
                     <children>
-                  <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #0d47a1;">
+                  <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #232931;">
                      <children>
-                        <Text fill="WHITE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="MY VISITS:" wrappingWidth="478.93670654296875">
+                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="MY VISITS:" wrappingWidth="478.93670654296875">
                            <font>
                               <Font name="Leelawadee UI" size="38.0" />
                            </font>
                         </Text>
                      </children>
                   </AnchorPane>
-                        <AnchorPane prefHeight="528.0" prefWidth="667.0" style="-fx-background-color: #2196f3;">
+                        <AnchorPane prefHeight="528.0" prefWidth="667.0" style="-fx-background-color: #2B333D;">
                             <children>
                                 <TableView fx:id="tvTable" layoutY="82.0" prefHeight="363.0" prefWidth="667.0" stylesheets="@../css/tableStyling.css">
                                     <columns>
@@ -106,22 +106,22 @@
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                            </columnResizePolicy>
                                 </TableView>
-                        <DatePicker fx:id="dpDate" layoutX="30.0" layoutY="35.0" promptText="Date:" style="-fx-background-color: #bbdefb;" stylesheets="@../css/dateStyling.css" />
-                        <Text fx:id="txPickDate" fill="WHITE" layoutX="70.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pick new date" textAlignment="CENTER" wrappingWidth="97.76092529296875">
+                        <DatePicker fx:id="dpDate" layoutX="30.0" layoutY="35.0" promptText="Date:" style="-fx-background-color: #EEE;" stylesheets="@../css/dateStyling.css" />
+                        <Text fx:id="txPickDate" fill="#EEE" layoutX="70.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pick new date" textAlignment="CENTER" wrappingWidth="97.76092529296875">
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" layoutX="290.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Visits" textAlignment="CENTER" wrappingWidth="82.56097412109375">
+                        <Text fill="#EEE" layoutX="290.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Visits" textAlignment="CENTER" wrappingWidth="82.56097412109375">
                            <font>
                               <Font name="Leelawadee UI" size="18.0" />
                            </font>
                         </Text>
-                        <Button fx:id="btConfirm" layoutX="490.0" layoutY="35.0" mnemonicParsing="false" onAction="#btnConfirm" style="-fx-background-color: #0d47a1;" text="CONFIRM" textFill="WHITE">
+                        <Button fx:id="btConfirm" layoutX="490.0" layoutY="35.0" mnemonicParsing="false" onAction="#btnConfirm" style="-fx-background-color: #232931;" text="CONFIRM" textFill="#EEE">
                            <font>
                               <Font name="Leelawadee UI" size="12.0" />
                            </font></Button>
-                        <Button fx:id="btCancel" layoutX="580.0" layoutY="35.0" mnemonicParsing="false" onAction="#btnCancel" style="-fx-background-color: #0d47a1;" text="CANCEL" textFill="WHITE">
+                        <Button fx:id="btCancel" layoutX="580.0" layoutY="35.0" mnemonicParsing="false" onAction="#btnCancel" style="-fx-background-color: #232931;" text="CANCEL" textFill="#EEE">
                            <font>
                               <Font name="Leelawadee UI" size="12.0" />
                            </font></Button>

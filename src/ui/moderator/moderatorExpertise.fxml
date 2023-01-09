@@ -17,14 +17,14 @@
     <children>
         <AnchorPane prefHeight="526.0" prefWidth="202.0">
             <children>
-                <VBox prefHeight="590.0" prefWidth="203.0" style="-fx-background-color: #2196f3;">
+                <VBox prefHeight="590.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
                     <children>
                         <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../logo/logo.png" />
                             </image>
                         </ImageView>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0" style=" -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Start" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0" style=" -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Start" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -38,7 +38,7 @@
                                 <Insets />
                             </VBox.margin>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnClinicsClicked" prefHeight="50.0" prefWidth="226.0" stylesheets="@../css/adminStyling.css" text="Clinics" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnClinicsClicked" prefHeight="50.0" prefWidth="226.0" stylesheets="@../css/adminStyling.css" text="Clinics" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -49,7 +49,7 @@
                                 <Font name="Leelawadee UI Bold" size="14.0" />
                             </font>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnDoctorsClicked" prefHeight="50.0" prefWidth="224.0" stylesheets="@../css/adminStyling.css" text="Doctors" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnDoctorsClicked" prefHeight="50.0" prefWidth="224.0" stylesheets="@../css/adminStyling.css" text="Doctors" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -60,7 +60,7 @@
                                 <Font name="Leelawadee UI Bold" size="14.0" />
                             </font>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnExpertiseClicked" prefHeight="50.0" prefWidth="224.0" stylesheets="@../css/adminStyling.css" text="Expertise" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnExpertiseClicked" prefHeight="50.0" prefWidth="224.0" stylesheets="@../css/adminStyling.css" text="Expertise" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -71,7 +71,7 @@
                                 <Font name="Leelawadee UI Bold" size="14.0" />
                             </font>
                         </Button>
-                        <Button id="btnLogOut" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0" stylesheets="@../css/adminStyling.css" text="Log Out" textFill="WHITE">
+                        <Button id="btnLogOut" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0" stylesheets="@../css/adminStyling.css" text="Log Out" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -90,55 +90,55 @@
             <children>
                 <VBox prefHeight="526.0" prefWidth="686.0">
                     <children>
-                  <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #0d47a1;">
+                  <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #232931;">
                      <children>
-                        <Text fill="WHITE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="EXPERTISE PANEL:" wrappingWidth="478.93670654296875">
+                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="EXPERTISE PANEL:" wrappingWidth="478.93670654296875">
                            <font>
                               <Font name="Leelawadee UI" size="38.0" />
                            </font>
                         </Text>
                      </children>
                   </AnchorPane>
-                        <AnchorPane prefHeight="154.0" prefWidth="667.0" style="-fx-background-color: #2196f3;">
+                        <AnchorPane prefHeight="154.0" prefWidth="667.0" style="-fx-background-color: #2B333D;">
                      <children>
-                        <Text fx:id="textSearch" fill="WHITE" layoutX="50.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:" textAlignment="CENTER">
+                        <Text fx:id="textSearch" fill="#EEE" layoutX="50.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:" textAlignment="CENTER">
                            <font>
                               <Font name="Leelawadee UI" size="18.0" />
                            </font>
                         </Text>
-                        <Text fx:id="textName" fill="WHITE" layoutX="50.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+                        <Text fx:id="textName" fill="#EEE" layoutX="50.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font></Text>
-                        <Text fx:id="textSurname" fill="WHITE" layoutX="50.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:">
+                        <Text fx:id="textSurname" fill="#EEE" layoutX="50.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:">
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font></Text>
-                        <TextField fx:id="tfName" layoutX="144.0" layoutY="44.0" promptText="Name:" style="-fx-background-color: #bbdefb;">
+                        <TextField fx:id="tfName" layoutX="144.0" layoutY="44.0" promptText="Name:" style="-fx-background-color: #EEE;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
-                        <TextField fx:id="tfSurname" layoutX="144.0" layoutY="77.0" promptText="Surname:" style="-fx-background-color: #bbdefb;">
+                        <TextField fx:id="tfSurname" layoutX="144.0" layoutY="77.0" promptText="Surname:" style="-fx-background-color: #EEE;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
-                        <Text fx:id="textExpertise" fill="WHITE" layoutX="330.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expertise:">
+                        <Text fx:id="textExpertise" fill="#EEE" layoutX="330.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expertise:">
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font></Text>
-                        <TextField fx:id="tfExpertise" layoutX="401.0" layoutY="44.0" promptText="Expertise:" style="-fx-background-color: #bbdefb;">
+                        <TextField fx:id="tfExpertise" layoutX="401.0" layoutY="44.0" promptText="Expertise:" style="-fx-background-color: #EEE;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
-                        <Button fx:id="btnAdd" layoutX="600.0" layoutY="45.0" mnemonicParsing="false" onAction="#btnAddClicked" prefHeight="26.0" prefWidth="49.0" style="-fx-background-color: #0d47a1;" text="ADD" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="btnAdd" layoutX="600.0" layoutY="45.0" mnemonicParsing="false" onAction="#btnAddClicked" prefHeight="26.0" prefWidth="49.0" style="-fx-background-color: #232931;" text="ADD" textAlignment="CENTER" textFill="#EEE">
                            <font>
                               <Font name="Leelawadee UI" size="12.0" />
                            </font></Button>
-                        <Button fx:id="btnCancel" layoutX="594.0" layoutY="75.0" mnemonicParsing="false" onAction="#btnCancelClicked" style="-fx-background-color: #0d47a1;" text="CANCEL" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="btnCancel" layoutX="594.0" layoutY="75.0" mnemonicParsing="false" onAction="#btnCancelClicked" style="-fx-background-color: #232931;" text="CANCEL" textAlignment="CENTER" textFill="#EEE">
                            <font>
                               <Font name="Leelawadee UI" size="12.0" />
                            </font></Button>
-                        <Text fx:id="textAdd" fill="WHITE" layoutX="330.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add expertise:" textAlignment="CENTER">
+                        <Text fx:id="textAdd" fill="#EEE" layoutX="330.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add expertise:" textAlignment="CENTER">
                            <font>
                               <Font name="Leelawadee UI" size="18.0" />
                            </font>
@@ -148,7 +148,7 @@
                         <Insets bottom="10.0" />
                      </padding>
                   </AnchorPane>
-                        <AnchorPane prefHeight="374.0" prefWidth="667.0" style="-fx-background-color: #2196f3;">
+                        <AnchorPane prefHeight="374.0" prefWidth="667.0" style="-fx-background-color: #2B333D;">
                      <children>
                         <TableView fx:id="tvExpertise" layoutX="6.0" layoutY="1.0" prefHeight="367.0" prefWidth="675.0" stylesheets="@../css/tableStyling.css">
                           <columns>

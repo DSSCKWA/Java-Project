@@ -15,14 +15,14 @@
     <children>
         <AnchorPane prefHeight="526.0" prefWidth="203.0">
             <children>
-            <VBox prefHeight="526.0" prefWidth="203.0" style="-fx-background-color: #2196f3;">
+            <VBox prefHeight="526.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
                <children>
                   <ImageView fitHeight="196.0" fitWidth="205.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../logo/logo.png" />
                      </image>
                   </ImageView>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0" stylesheets="@../css/adminStyling.css" text="Start" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0" stylesheets="@../css/adminStyling.css" text="Start" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -36,7 +36,7 @@
                                 <Insets />
                             </VBox.margin>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnClinicsClicked" prefHeight="50.0" prefWidth="226.0" stylesheets="@../css/adminStyling.css" text="Clinics" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnClinicsClicked" prefHeight="50.0" prefWidth="226.0" stylesheets="@../css/adminStyling.css" text="Clinics" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -47,7 +47,7 @@
                                 <Font name="Leelawadee UI Bold" size="14.0" />
                             </font>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnDoctorsClicked" prefHeight="50.0" prefWidth="224.0" stylesheets="@../css/adminStyling.css" text="Doctors" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnDoctorsClicked" prefHeight="50.0" prefWidth="224.0" stylesheets="@../css/adminStyling.css" text="Doctors" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -58,7 +58,7 @@
                                 <Font name="Leelawadee UI Bold" size="14.0" />
                             </font>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogInClicked" prefHeight="50.0" prefWidth="222.0" stylesheets="@../css/adminStyling.css" text="Log In" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogInClicked" prefHeight="50.0" prefWidth="222.0" stylesheets="@../css/adminStyling.css" text="Log In" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -73,7 +73,7 @@
             </VBox>
             </children>
         </AnchorPane>
-        <AnchorPane prefHeight="526.0" prefWidth="686.0" style="-fx-background-color: #2196f3;">
+        <AnchorPane prefHeight="526.0" prefWidth="686.0" style="-fx-background-color: #2B333D;">
          <children>
             <ImageView fitHeight="526.0" fitWidth="693.0" mouseTransparent="true" opacity="0.3" pickOnBounds="true">
                <image>
@@ -83,9 +83,9 @@
                   <Rectangle2D width="829.0" />
                </viewport>
             </ImageView>
-            <AnchorPane prefHeight="100.0" prefWidth="693.0" style="-fx-background-color: #0d47a1;">
+            <AnchorPane prefHeight="100.0" prefWidth="693.0" style="-fx-background-color: #232931;">
                <children>
-                  <Text fill="WHITE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="WELCOME TO MediClinic!" wrappingWidth="478.93670654296875">
+                  <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="WELCOME TO MediClinic!" wrappingWidth="478.93670654296875">
                      <font>
                         <Font name="Leelawadee UI" size="38.0" />
                      </font>

@@ -15,14 +15,14 @@
     <children>
         <AnchorPane prefHeight="526.0" prefWidth="203.0">
             <children>
-            <VBox prefHeight="526.0" prefWidth="203.0" style="-fx-background-color: #2196f3;">
+            <VBox prefHeight="526.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
                <children>
                   <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../logo/logo.png" />
                      </image>
                   </ImageView>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Start" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Start" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -36,7 +36,7 @@
                                 <Insets />
                             </VBox.margin>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnMyVisitsClicked" prefHeight="50.0" prefWidth="226.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="My Visits" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnMyVisitsClicked" prefHeight="50.0" prefWidth="226.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="My Visits" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -47,7 +47,7 @@
                                 <Font name="Leelawadee UI Bold" size="14.0" />
                             </font>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnNewVisitClicked" prefHeight="50.0" prefWidth="224.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="New Visit" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnNewVisitClicked" prefHeight="50.0" prefWidth="224.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="New Visit" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -58,7 +58,7 @@
                                 <Font name="Leelawadee UI Bold" size="14.0" />
                             </font>
                         </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnEquipmentClicked" prefHeight="50.0" prefWidth="224.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Equipment" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnEquipmentClicked" prefHeight="50.0" prefWidth="224.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Equipment" textFill="#EEE">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -69,7 +69,7 @@
                         <Font name="Leelawadee UI Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnMyCareerClicked" prefHeight="50.0" prefWidth="224.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Schedule" textFill="WHITE">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnMyCareerClicked" prefHeight="50.0" prefWidth="224.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Schedule" textFill="#EEE">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -80,7 +80,7 @@
                         <Font name="Leelawadee UI Bold" size="14.0" />
                      </font>
                   </Button>
-                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Log Out" textFill="WHITE">
+                        <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0" style="-fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Log Out" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets />
                             </opaqueInsets>
@@ -96,7 +96,7 @@
             </children>
         </AnchorPane>
         <AnchorPane prefHeight="405.0" prefWidth="447.0" />
-      <AnchorPane prefHeight="526.0" prefWidth="685.0" style="-fx-background-color: #2196f3;">
+      <AnchorPane prefHeight="526.0" prefWidth="685.0" style="-fx-background-color: #2B333D;">
          <children>
             <ImageView fitHeight="526.0" fitWidth="693.0" mouseTransparent="true" opacity="0.3" pickOnBounds="true">
                <image>
@@ -106,9 +106,9 @@
                   <Rectangle2D width="829.0" />
                </viewport>
             </ImageView>
-            <AnchorPane prefHeight="100.0" prefWidth="693.0" style="-fx-background-color: #0d47a1;">
+            <AnchorPane prefHeight="100.0" prefWidth="693.0" style="-fx-background-color: #232931;">
                <children>
-                  <Text fill="WHITE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="LOGGED IN AS:" wrappingWidth="478.93670654296875">
+                  <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="LOGGED IN AS:" wrappingWidth="478.93670654296875">
                      <font>
                         <Font name="Leelawadee UI" size="38.0" />
                      </font>
@@ -120,22 +120,22 @@
                   <AnchorPane disable="true" opacity="0.0" prefHeight="223.0" prefWidth="447.0" />
                   <AnchorPane prefHeight="303.0" prefWidth="598.0">
                      <children>
-                        <Text fill="WHITE" layoutX="121.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" wrappingWidth="50.92578125">
+                        <Text fill="#EEE" layoutX="121.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" wrappingWidth="50.92578125">
                            <font>
                               <Font name="Leelawadee UI" size="18.0" />
                            </font>
                         </Text>
-                        <Text fx:id="email" fill="WHITE" layoutX="275.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" underline="true">
+                        <Text fx:id="email" fill="#EEE" layoutX="275.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" underline="true">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Text>
-                        <Text fx:id="permission" fill="WHITE" layoutX="275.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor" underline="true">
+                        <Text fx:id="permission" fill="#EEE" layoutX="275.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Doctor" underline="true">
                            <font>
                               <Font name="Leelawadee UI" size="18.0" />
                            </font>
                         </Text>
-                        <Text fill="WHITE" layoutX="121.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Permission type:">
+                        <Text fill="#EEE" layoutX="121.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Permission type:">
                            <font>
                               <Font name="Leelawadee UI" size="18.0" />
                            </font>

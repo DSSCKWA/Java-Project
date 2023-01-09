@@ -18,7 +18,7 @@
     <children>
         <AnchorPane prefHeight="526.0" prefWidth="203.0">
             <children>
-                <VBox prefHeight="526.0" prefWidth="203.0" style="-fx-background-color: #2196f3;">
+                <VBox prefHeight="526.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
                     <children>
                         <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -28,7 +28,7 @@
                         <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
                                 onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0"
                                 style=" -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Start"
-                                textFill="WHITE">
+                                textFill="#EEE">
                             <opaqueInsets>
                                 <Insets/>
                             </opaqueInsets>
@@ -44,7 +44,7 @@
                         </Button>
                         <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
                                 onAction="#btnClinicsClicked" prefHeight="50.0" prefWidth="226.0"
-                                stylesheets="@../css/adminStyling.css" text="Clinics" textFill="WHITE">
+                                stylesheets="@../css/adminStyling.css" text="Clinics" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets/>
                             </opaqueInsets>
@@ -57,7 +57,7 @@
                         </Button>
                         <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
                                 onAction="#btnDoctorsClicked" prefHeight="50.0" prefWidth="224.0"
-                                stylesheets="@../css/adminStyling.css" text="Doctors" textFill="WHITE">
+                                stylesheets="@../css/adminStyling.css" text="Doctors" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets/>
                             </opaqueInsets>
@@ -70,7 +70,7 @@
                         </Button>
                         <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
                                 onAction="#btnExpertiseClicked" prefHeight="50.0" prefWidth="224.0"
-                                stylesheets="@../css/adminStyling.css" text="Expertise" textFill="WHITE">
+                                stylesheets="@../css/adminStyling.css" text="Expertise" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets/>
                             </opaqueInsets>
@@ -83,7 +83,7 @@
                         </Button>
                         <Button id="btnLogOut" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false"
                                 onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0"
-                                stylesheets="@../css/adminStyling.css" text="Log Out" textFill="WHITE">
+                                stylesheets="@../css/adminStyling.css" text="Log Out" textFill="#EEE">
                             <opaqueInsets>
                                 <Insets/>
                             </opaqueInsets>
@@ -102,9 +102,9 @@
             <children>
                 <VBox prefHeight="526.0" prefWidth="686.0">
                     <children>
-                        <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #0d47a1;">
+                        <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #232931;">
                             <children>
-                                <Text fill="WHITE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK"
+                                <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK"
                                       strokeType="OUTSIDE" strokeWidth="0.2" text="CLINIC PANEL:"
                                       wrappingWidth="478.93670654296875">
                                     <font>
@@ -114,9 +114,9 @@
                             </children>
                         </AnchorPane>
                         <AnchorPane fx:id="anchorPane2" prefHeight="202.0" prefWidth="668.0"
-                                    style="-fx-background-color: #2196f3;">
+                                    style="-fx-background-color: #2B333D;">
                             <children>
-                                <Text fx:id="textTitle" fill="WHITE" layoutX="150.0" layoutY="70.0" strokeType="OUTSIDE"
+                                <Text fx:id="textTitle" fill="#EEE" layoutX="150.0" layoutY="70.0" strokeType="OUTSIDE"
                                       strokeWidth="0.0" text="Title">
                                     <font>
                                         <Font name="Leelawadee UI" size="24.0"/>
@@ -124,44 +124,44 @@
                                 </Text>
                                 <Button id="textTitle" fx:id="btnCreate" layoutX="563.0" layoutY="43.0" minWidth="86.0"
                                         mnemonicParsing="false" onAction="#btnCreateClicked"
-                                        style="-fx-background-color: #0d47a1;" text="CREATE" textAlignment="CENTER"
-                                        textFill="WHITE">
+                                        style="-fx-background-color: #232931;" text="CREATE" textAlignment="CENTER"
+                                        textFill="#EEE">
                                     <font>
                                         <Font name="Leelawadee UI" size="18.0"/>
                                     </font>
                                 </Button>
-                                <Text fx:id="textAddress" fill="WHITE" layoutX="14.0" layoutY="105.0"
+                                <Text fx:id="textAddress" fill="#EEE" layoutX="14.0" layoutY="105.0"
                                       strokeType="OUTSIDE" strokeWidth="0.0" text="Address:">
                                     <font>
                                         <Font name="Leelawadee UI" size="18.0"/>
                                     </font>
                                 </Text>
                                 <TextField fx:id="tfAddress" layoutX="234.0" layoutY="85.0" promptText="Address:"
-                                           style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
+                                           style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                                     <font>
                                         <Font name="System Bold" size="12.0"/>
                                     </font>
                                 </TextField>
-                                <Text fx:id="textCity" fill="WHITE" layoutX="14.0" layoutY="70.0" strokeType="OUTSIDE"
+                                <Text fx:id="textCity" fill="#EEE" layoutX="14.0" layoutY="70.0" strokeType="OUTSIDE"
                                       strokeWidth="0.0" text="City:">
                                     <font>
                                         <Font name="Leelawadee UI" size="18.0"/>
                                     </font>
                                 </Text>
                                 <TextField fx:id="tfCity" layoutX="234.0" layoutY="50.0" promptText="City:"
-                                           style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
+                                           style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                                     <font>
                                         <Font name="System Bold" size="12.0"/>
                                     </font>
                                 </TextField>
-                                <Text fx:id="textName" fill="WHITE" layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE"
+                                <Text fx:id="textName" fill="#EEE" layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE"
                                       strokeWidth="0.0" text="Name:">
                                     <font>
                                         <Font name="Leelawadee" size="18.0"/>
                                     </font>
                                 </Text>
                                 <TextField fx:id="tfName" layoutX="234.0" layoutY="15.0" promptText="Name:"
-                                           style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
+                                           style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                                     <font>
                                         <Font name="System Bold" size="12.0"/>
                                     </font>
@@ -176,11 +176,11 @@
                             <Button fx:id="btnCancel" layoutX="518.0" layoutY="130.0" mnemonicParsing="false"
                                     onAction="#btnCancelClicked" text="CANCEL"/>
                         </AnchorPane>
-                        <AnchorPane prefHeight="322.0" prefWidth="66.0" style="-fx-background-color: #2196f3;">
+                        <AnchorPane prefHeight="322.0" prefWidth="66.0" style="-fx-background-color: #2B333D;">
                             <children>
                                 <TableView fx:id="tvTable" layoutX="8.0" layoutY="10.0" prefHeight="292.0"
                                            prefWidth="672.0"
-                                           style="-fx-background-color: #2196f3; -fx-text-fill: #ffffff;" styleClass="t"
+                                           style="-fx-background-color: #2B333D; -fx-text-fill: #EEE;" styleClass="t"
                                            stylesheets="@../css/tableStyling.css">
                                     <columns>
                                         <TableColumn fx:id="tcCity" prefWidth="190.4000244140625"

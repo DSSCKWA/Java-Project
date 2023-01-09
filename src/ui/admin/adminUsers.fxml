@@ -16,14 +16,14 @@
 
 <HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminUsersController">
     <children>
-      <VBox prefHeight="526.0" prefWidth="202.0" style="-fx-background-color: #2196f3;">
+      <VBox prefHeight="526.0" prefWidth="202.0" style="-fx-background-color: #2B333D;">
          <children>
             <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../logo/logo.png" />
                </image>
             </ImageView>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0" style=" -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Start" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnStartClicked" prefHeight="50.0" prefWidth="226.0" style=" -fx-cursor: hand;" stylesheets="@../css/adminStyling.css" text="Start" textFill="#EEE">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -37,7 +37,7 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnClinicsClicked" prefHeight="50.0" prefWidth="204.0" stylesheets="@../css/adminStyling.css" text="Clinics" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnClinicsClicked" prefHeight="50.0" prefWidth="204.0" stylesheets="@../css/adminStyling.css" text="Clinics" textFill="#EEE">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -48,7 +48,7 @@
                   <Font name="Leelawadee UI Bold" size="14.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnDoctorsClicked" prefHeight="50.0" prefWidth="224.0" stylesheets="@../css/adminStyling.css" text="Doctors" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnDoctorsClicked" prefHeight="50.0" prefWidth="224.0" stylesheets="@../css/adminStyling.css" text="Doctors" textFill="#EEE">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -59,7 +59,7 @@
                   <Font name="Leelawadee UI Bold" size="14.0" />
                </font>
             </Button>
-            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnUsersClicked" prefHeight="50.0" prefWidth="222.0" stylesheets="@../css/adminStyling.css" text="Users" textFill="WHITE">
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnUsersClicked" prefHeight="50.0" prefWidth="222.0" stylesheets="@../css/adminStyling.css" text="Users" textFill="#EEE">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -70,7 +70,7 @@
                   <Font name="Leelawadee UI Bold" size="14.0" />
                </font>
             </Button>
-            <Button id="btnLogOut" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0" stylesheets="@../css/adminStyling.css" text="Log Out" textFill="WHITE">
+            <Button id="btnLogOut" alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#btnLogOutClicked" prefHeight="50.0" prefWidth="222.0" stylesheets="@../css/adminStyling.css" text="Log Out" textFill="#EEE">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -83,11 +83,11 @@
             </Button>
          </children>
       </VBox>
-        <AnchorPane prefHeight="526.0" prefWidth="685.0" style="-fx-background-color: #2196f3;">
+        <AnchorPane prefHeight="526.0" prefWidth="685.0" style="-fx-background-color: #2B333D;">
             <children>
-            <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #0d47a1;">
+            <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #232931;">
                <children>
-                  <Text fill="WHITE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="USERS PANEL:" wrappingWidth="478.93670654296875">
+                  <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="USERS PANEL:" wrappingWidth="478.93670654296875">
                      <font>
                         <Font name="Leelawadee UI" size="38.0" />
                      </font>
@@ -98,7 +98,7 @@
                     <children>
                         <AnchorPane prefHeight="298.0" prefWidth="667.0">
                             <children>
-                                <Text fx:id="textTitle" fill="WHITE" layoutX="20.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:">
+                                <Text fx:id="textTitle" fill="#EEE" layoutX="20.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:">
                                     <font>
                                         <Font name="Leelawadee UI" size="18.0" />
                                     </font>
@@ -106,7 +106,7 @@
                             </children></AnchorPane>
                         <AnchorPane prefHeight="503.0" prefWidth="667.0">
                      <children>
-                        <TableView fx:id="tvUser" layoutX="10.0" layoutY="101.0" prefHeight="259.0" prefWidth="666.0" style="-fx-background-color: #2196f3;" stylesheets="@../css/tableStyling.css">
+                        <TableView fx:id="tvUser" layoutX="10.0" layoutY="101.0" prefHeight="259.0" prefWidth="666.0" style="-fx-background-color: #2B333D;" stylesheets="@../css/tableStyling.css">
                           <columns>
                             <TableColumn fx:id="tcSurname" maxWidth="300.0" minWidth="100.0" prefWidth="104.800048828125" styleClass="tableContent" text="Surname" />
                             <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="100.0" prefWidth="104.00006103515625" styleClass="tableContent" text="Name" />
@@ -116,26 +116,26 @@
                               <TableColumn fx:id="tcModify" maxWidth="300.0" minWidth="100.0" prefWidth="113.60009765625" styleClass="tableContent" text="Modify Permission" />
                           </columns>
                         </TableView>
-                                <Text fx:id="textName" fill="WHITE" layoutX="20.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+                                <Text fx:id="textName" fill="#EEE" layoutX="20.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
                                     <font>
                                         <Font name="Leelawadee UI" size="14.0" />
                                     </font>
                                 </Text>
-                                <Text fx:id="textSurname" fill="WHITE" layoutX="20.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:">
+                                <Text fx:id="textSurname" fill="#EEE" layoutX="20.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:">
                                     <font>
                                         <Font name="Leelawadee UI" size="14.0" />
                                     </font>
                                 </Text>
-                                <TextField fx:id="tfName" layoutX="100.0" promptText="Name:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
+                                <TextField fx:id="tfName" layoutX="100.0" promptText="Name:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
-                                <TextField fx:id="tfSurname" layoutX="100.0" layoutY="40.0" promptText="Surname:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
+                                <TextField fx:id="tfSurname" layoutX="100.0" layoutY="40.0" promptText="Surname:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
-                        <ComboBox fx:id="cboxPermission" layoutX="375.0" prefWidth="150.0" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;" />
-                        <Button fx:id="btnConfirm" layoutX="575.0" mnemonicParsing="false" onAction="#btnConfirmClicked" style="-fx-background-color: #0d47a1;" text="CONFIRM" textAlignment="CENTER" textFill="WHITE">
+                        <ComboBox fx:id="cboxPermission" layoutX="375.0" prefWidth="150.0" style="-fx-background-color: #EEE; -fx-text-fill: #000000;" />
+                        <Button fx:id="btnConfirm" layoutX="575.0" mnemonicParsing="false" onAction="#btnConfirmClicked" style="-fx-background-color: #232931;" text="CONFIRM" textAlignment="CENTER" textFill="#EEE">
                            <font>
                               <Font name="Leelawadee UI" size="12.0" />
                            </font></Button>
@@ -143,7 +143,7 @@
                            <font>
                               <Font name="Leelawadee UI Bold" size="14.0" />
                            </font></Text>
-                        <Button fx:id="btnCancel" layoutX="575.0" layoutY="40.0" mnemonicParsing="false" onAction="#btnCancelClicked" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #0d47a1;" text="CANCEL" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="btnCancel" layoutX="575.0" layoutY="40.0" mnemonicParsing="false" onAction="#btnCancelClicked" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #232931;" text="CANCEL" textAlignment="CENTER" textFill="#EEE">
                            <font>
                               <Font name="Leelawadee UI" size="12.0" />
                            </font></Button>

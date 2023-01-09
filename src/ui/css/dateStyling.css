@@ -1,6 +1,6 @@
 .date-picker > .text-field {
-    -fx-text-fill: white;
-    -fx-background-color: #bbdefb;
+    -fx-text-fill: #EEE;
+    -fx-background-color: #EEE;
 }
 
 .date-picker:editable > .arrow-button,
@@ -13,20 +13,20 @@
 }
 
 .calendar-grid {
-    -fx-background-color: #2196f3;
+    -fx-background-color: #2B333D;
 }
 
 
 .calendar-header {
-    -fx-background-color: #0d47a1;
-    -fx-base: #0d47a1;
-    -fx-text-fill: white;
+    -fx-background-color: #232931;
+    -fx-base: #232931;
+    -fx-text-fill: #EEE;
 }
 
 
 .date-picker-popup {
-    -fx-text-fill: white;
-    -fx-background-color: #0d47a1;
+    -fx-text-fill: #EEE;
+    -fx-background-color: #232931;
     -fx-background-insets: 0, 1;
     -fx-background-radius: 0;
     -fx-alignment: CENTER; 
@@ -36,11 +36,11 @@
 }
 
 .date-picker > .text-field {
-    -fx-text-fill: white;
+    -fx-text-fill: #EEE;
 }
 
 .date-picker-popup > .month-year-pane {
-    -fx-background-color: #0d47a1;
+    -fx-background-color: #232931;
     -fx-base: #1d1d1d ;
     -fx-mark-highlight-color: -fx-light-text-color ;
 }

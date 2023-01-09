@@ -13,17 +13,17 @@
 
 <AnchorPane prefHeight="526.0" prefWidth="318.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.sign_up.SignUpController">
    <children>
-      <VBox prefHeight="526.0" prefWidth="417.0" style="-fx-background-color: #2196f3;">
+      <VBox prefHeight="526.0" prefWidth="417.0" style="-fx-background-color: #2B333D;">
          <children>
             <HBox prefHeight="114.0" prefWidth="418.0">
                <children>
-                  <AnchorPane prefHeight="114.0" prefWidth="418.0" style="-fx-background-color: #0d47a1;">
+                  <AnchorPane prefHeight="114.0" prefWidth="418.0" style="-fx-background-color: #232931;">
                      <children>
                         <ImageView fitHeight="114.0" fitWidth="142.0" layoutX="14.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../logo/logo.png" />
                            </image></ImageView>
-                        <Text fill="WHITE" layoutX="149.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIGN UP FORM:" wrappingWidth="225.33667755126953">
+                        <Text fill="#EEE" layoutX="149.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SIGN UP FORM:" wrappingWidth="225.33667755126953">
                            <font>
                               <Font name="Leelawadee UI" size="30.0" />
                            </font>
@@ -34,71 +34,71 @@
             </HBox>
             <AnchorPane fx:id="AnchorPane1" prefHeight="415.0" prefWidth="418.0">
                <children>
-                  <Text fill="WHITE" layoutX="32.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" wrappingWidth="43.69342041015625">
+                  <Text fill="#EEE" layoutX="32.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name:" wrappingWidth="43.69342041015625">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" layoutX="32.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:" wrappingWidth="66.8934326171875">
+                  <Text fill="#EEE" layoutX="32.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Surname:" wrappingWidth="66.8934326171875">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" layoutX="32.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" wrappingWidth="66.8934326171875">
+                  <Text fill="#EEE" layoutX="32.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address:" wrappingWidth="66.8934326171875">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" layoutX="32.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City:" wrappingWidth="66.8934326171875">
+                  <Text fill="#EEE" layoutX="32.0" layoutY="150.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City:" wrappingWidth="66.8934326171875">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" layoutX="32.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number:" wrappingWidth="98.09344482421875">
+                  <Text fill="#EEE" layoutX="32.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number:" wrappingWidth="98.09344482421875">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" layoutX="32.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" wrappingWidth="83.69342041015625">
+                  <Text fill="#EEE" layoutX="32.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" wrappingWidth="83.69342041015625">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" layoutX="32.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="83.69342041015625">
+                  <Text fill="#EEE" layoutX="32.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password:" wrappingWidth="83.69342041015625">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Text fill="WHITE" layoutX="32.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repeat Password:" wrappingWidth="117.29339599609375">
+                  <Text fill="#EEE" layoutX="32.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Repeat Password:" wrappingWidth="117.29339599609375">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Text>
-                  <Button fx:id="btnSubmit" layoutX="314.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnSubmitClicked" style="-fx-background-color: #0d47a1;" text="SUBMIT" textFill="WHITE">
+                  <Button fx:id="btnSubmit" layoutX="314.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnSubmitClicked" style="-fx-background-color: #232931;" text="SUBMIT" textFill="#EEE">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font></Button>
-                  <TextField fx:id="tfName" layoutX="155.0" layoutY="25.0" promptText="Name:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
+                  <TextField fx:id="tfName" layoutX="155.0" layoutY="25.0" promptText="Name:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></TextField>
-                  <TextField fx:id="tfSurname" layoutX="155.0" layoutY="60.0" promptText="Surname:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
+                  <TextField fx:id="tfSurname" layoutX="155.0" layoutY="60.0" promptText="Surname:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></TextField>
-                  <TextField fx:id="tfAddress" layoutX="155.0" layoutY="95.0" promptText="Address:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
+                  <TextField fx:id="tfAddress" layoutX="155.0" layoutY="95.0" promptText="Address:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></TextField>
-                  <TextField fx:id="tfCity" layoutX="155.0" layoutY="130.0" promptText="City:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
+                  <TextField fx:id="tfCity" layoutX="155.0" layoutY="130.0" promptText="City:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></TextField>
-                  <TextField fx:id="tfPhoneNumber" layoutX="155.0" layoutY="165.0" promptText="Phone Number:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
+                  <TextField fx:id="tfPhoneNumber" layoutX="155.0" layoutY="165.0" promptText="Phone Number:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></TextField>
-                  <TextField fx:id="tfEmail" layoutX="155.0" layoutY="200.0" promptText="Email:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
+                  <TextField fx:id="tfEmail" layoutX="155.0" layoutY="200.0" promptText="Email:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></TextField>
@@ -106,15 +106,15 @@
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font></Text>
-                  <PasswordField fx:id="pfPassword" layoutX="156.0" layoutY="235.0" promptText="Password:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
+                  <PasswordField fx:id="pfPassword" layoutX="156.0" layoutY="235.0" promptText="Password:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></PasswordField>
-                  <PasswordField fx:id="pfPasswordConfirm" layoutX="155.0" layoutY="272.0" promptText="Repeat Password:" style="-fx-background-color: #bbdefb; -fx-text-fill: #000000;">
+                  <PasswordField fx:id="pfPasswordConfirm" layoutX="155.0" layoutY="272.0" promptText="Repeat Password:" style="-fx-background-color: #EEE; -fx-text-fill: #000000;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></PasswordField>
-                  <Button layoutX="31.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnCancelClicked" style="-fx-background-color: #0d47a1;" text="CANCEL" textFill="WHITE">
+                  <Button layoutX="31.0" layoutY="329.0" mnemonicParsing="false" onAction="#btnCancelClicked" style="-fx-background-color: #232931;" text="CANCEL" textFill="#EEE">
                      <font>
                         <Font name="Leelawadee UI" size="14.0" />
                      </font></Button>

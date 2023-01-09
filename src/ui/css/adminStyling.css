@@ -1,16 +1,15 @@
 .button
 {
--fx-background-color : #2196f3;
+-fx-background-color : #2B333D;
 }
 .button:hover
 {
 -fx-cursor: hand;
--fx-background-color : #64b5f6
-;
+-fx-background-color : #4ECCA3;
 }
 .button:pressed
 {
--fx-background-color : #1976d2 ;
+-fx-background-color : #393E46 ;
 }
 
 .table-view .column-header,
@@ -19,7 +18,7 @@
     -fx-background-color:   #2D75E8;
 }
 .table-view .column-header .label{
-   -fx-text-fill: white;
+   -fx-text-fill: #EEE;
    -fx-font-weight: bold;
    -fx-alignment: CENTER_LEFT;
 }
@@ -43,7 +42,7 @@
  }
 
  .table-row-cell:selected .text {
-        -fx-fill : white ;
+        -fx-fill : #EEE ;
 
  }
 /* scroll bar starts here */
@@ -55,23 +54,6 @@
 
 }
 
-/* The main scrollbar **track** CSS class  */
-.table-view .scroll-bar:horizontal .track,
-.table-view .scroll-bar:vertical .track{
-	-fx-background-color: transparent;
-	-fx-border-color:derive(  #2D75E8,80%);
-	-fx-background-radius: 2em;
-	-fx-border-radius:2em;
-}
-
-/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
-.table-view .scroll-bar:horizontal .thumb,
-.table-view .scroll-bar:vertical .thumb {
-    -fx-background-color:derive( #2D75E8,90%);
-	-fx-background-insets: 2, 0, 0;
-	-fx-background-radius: 2em;
-
-}
 
 /* chart properties */
 
@@ -95,4 +77,8 @@
 
 #btnLogIn:hover{
 -fx-background-color : #f44336;
+}
+
+.VBox Button {
+    -fx-background-color: RED
 }
