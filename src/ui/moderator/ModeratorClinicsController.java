@@ -69,9 +69,6 @@ public class ModeratorClinicsController implements Initializable {
     private Button btnCancel;
 
     @FXML
-    private Text textTitle;
-
-    @FXML
     private TextField tfAddress;
 
     @FXML
@@ -108,7 +105,6 @@ public class ModeratorClinicsController implements Initializable {
                     tcEdit.setVisible(false);
                     tcDelete.setVisible(false);
                     btnCancel.setVisible(true);
-                    textTitle.setText("Clinic edition tool");
                     btnCreate.setText("EDIT");
 
                     filteredClinics.setPredicate(clinic2 -> clinic2.equals(clinic));
@@ -145,7 +141,6 @@ public class ModeratorClinicsController implements Initializable {
                     tcEdit.setVisible(false);
                     tcDelete.setVisible(false);
                     btnCancel.setVisible(true);
-                    textTitle.setText("Confirm Delete operation");
                     textAddress.setVisible(false);
                     textCity.setVisible(false);
                     textName.setVisible(false);
