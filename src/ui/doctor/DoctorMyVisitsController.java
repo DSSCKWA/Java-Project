@@ -364,28 +364,40 @@ public class DoctorMyVisitsController implements Initializable {
 
                 {
                     editButton.setOnAction((ActionEvent event) -> {
-                        tcEdit.setVisible(false);
-                        tcAction.setVisible(false);
                         selectedVisit = getTableView().getItems().get(getIndex());
-                        btCancel.setVisible(true);
-                        btConfirm.setVisible(true);
-                        txPickDate.setVisible(true);
-                        dpDate.setVisible(true);
-                        btConfirm.setDisable(true);
-                        filteredVisits.setPredicate(visit -> visit.equals(selectedVisit));
-                        tvTable.setItems(filteredVisits);
-                        dpDate.setDayCellFactory(picker -> new DateCell() {
-                            public void updateItem(LocalDate date, boolean empty) {
-                                super.updateItem(date, empty);
-                                setDisable(empty || date.compareTo(selectedVisit.getVisit().getDate()) < 1);
-                            }
-                        });
-                        dpDate.valueProperty().addListener(new ChangeListener<>() {
-                            @Override
-                            public void changed(ObservableValue<? extends LocalDate> observableValue, LocalDate localDate, LocalDate newDate) {
-                                btConfirm.setDisable(newDate == null);
-                            }
-                        });
+                        Session.newVisit(selectedVisit.getVisit());
+
+                        try {
+                            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorReschedule.fxml")));
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setResizable(false);
+                        scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+//                        tcEdit.setVisible(false);
+//                        tcAction.setVisible(false);
+//                        btCancel.setVisible(true);
+//                        btConfirm.setVisible(true);
+//                        txPickDate.setVisible(true);
+//                        dpDate.setVisible(true);
+//                        btConfirm.setDisable(true);
+//                        filteredVisits.setPredicate(visit -> visit.equals(selectedVisit));
+//                        tvTable.setItems(filteredVisits);
+//                        dpDate.setDayCellFactory(picker -> new DateCell() {
+//                            public void updateItem(LocalDate date, boolean empty) {
+//                                super.updateItem(date, empty);
+//                                setDisable(empty || date.compareTo(selectedVisit.getVisit().getDate()) < 1);
+//                            }
+//                        });
+//                        dpDate.valueProperty().addListener(new ChangeListener<>() {
+//                            @Override
+//                            public void changed(ObservableValue<? extends LocalDate> observableValue, LocalDate localDate, LocalDate newDate) {
+//                                btConfirm.setDisable(newDate == null);
+//                            }
+//                        });
 
                     });
                 }
@@ -413,28 +425,42 @@ public class DoctorMyVisitsController implements Initializable {
 
                 {
                     editButton.setOnAction((ActionEvent event) -> {
-                        tcEditPatient.setVisible(false);
-                        tcActionPatient.setVisible(false);
+
                         selectedVisitPatient = getTableView().getItems().get(getIndex());
-                        btCancelPatient.setVisible(true);
-                        btConfirmPatient.setVisible(true);
-                        txPickDatePatient.setVisible(true);
-                        dpDatePatient.setVisible(true);
-                        btConfirmPatient.setDisable(true);
-                        filteredVisitsPatient.setPredicate(visit -> visit.equals(selectedVisitPatient));
-                        tvTablePatients.setItems(filteredVisitsPatient);
-                        dpDatePatient.setDayCellFactory(picker -> new DateCell() {
-                            public void updateItem(LocalDate date, boolean empty) {
-                                super.updateItem(date, empty);
-                                setDisable(empty || date.compareTo(selectedVisitPatient.getVisit().getDate()) < 1);
-                            }
-                        });
-                        dpDatePatient.valueProperty().addListener(new ChangeListener<>() {
-                            @Override
-                            public void changed(ObservableValue<? extends LocalDate> observableValue, LocalDate localDate, LocalDate newDate) {
-                                btConfirmPatient.setDisable(newDate == null);
-                            }
-                        });
+                        Session.newVisit(selectedVisitPatient.getVisit());
+
+                        try {
+                            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorReschedule.fxml")));
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        stage.setResizable(false);
+                        scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+//                        tcEditPatient.setVisible(false);
+//                        tcActionPatient.setVisible(false);
+//                        selectedVisitPatient = getTableView().getItems().get(getIndex());
+//                        btCancelPatient.setVisible(true);
+//                        btConfirmPatient.setVisible(true);
+//                        txPickDatePatient.setVisible(true);
+//                        dpDatePatient.setVisible(true);
+//                        btConfirmPatient.setDisable(true);
+//                        filteredVisitsPatient.setPredicate(visit -> visit.equals(selectedVisitPatient));
+//                        tvTablePatients.setItems(filteredVisitsPatient);
+//                        dpDatePatient.setDayCellFactory(picker -> new DateCell() {
+//                            public void updateItem(LocalDate date, boolean empty) {
+//                                super.updateItem(date, empty);
+//                                setDisable(empty || date.compareTo(selectedVisitPatient.getVisit().getDate()) < 1);
+//                            }
+//                        });
+//                        dpDatePatient.valueProperty().addListener(new ChangeListener<>() {
+//                            @Override
+//                            public void changed(ObservableValue<? extends LocalDate> observableValue, LocalDate localDate, LocalDate newDate) {
+//                                btConfirmPatient.setDisable(newDate == null);
+//                            }
+//                        });
 
                     });
                 }
