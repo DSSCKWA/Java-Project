@@ -104,7 +104,7 @@
                     <children>
                   <AnchorPane prefHeight="100.0" prefWidth="693.0" style="-fx-background-color: #232931;">
                      <children>
-                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="EQUIPMENT" wrappingWidth="478.93670654296875">
+                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="Equipment" wrappingWidth="478.93670654296875">
                            <font>
                               <Font name="Leelawadee UI" size="38.0" />
                            </font>
@@ -151,11 +151,11 @@
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font></Text>
-                        <Button fx:id="btnConfirm" layoutX="604.0" layoutY="42.0" mnemonicParsing="false" onAction="#btnConfirmClicked" style="-fx-background-color: #232931;" text="CONFIRM" textAlignment="CENTER" textFill="#EEE">
+                        <Button fx:id="btnConfirm" layoutX="604.0" layoutY="42.0" mnemonicParsing="false" onAction="#btnConfirmClicked" style="-fx-background-color: #232931;" text="Confirm" textAlignment="CENTER" textFill="#EEE">
                            <font>
                               <Font name="Leelawadee UI" size="12.0" />
                            </font></Button>
-                        <Button fx:id="btnCancel" layoutX="604.0" layoutY="75.0" mnemonicParsing="false" onAction="#btnCancelClicked" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #232931;" text="CANCEL" textAlignment="CENTER" textFill="#EEE">
+                        <Button fx:id="btnCancel" layoutX="604.0" layoutY="75.0" mnemonicParsing="false" onAction="#btnCancelClicked" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #232931;" text="Cancel" textAlignment="CENTER" textFill="#EEE">
                            <font>
                               <Font name="Leelawadee UI" size="12.0" />
                            </font></Button>

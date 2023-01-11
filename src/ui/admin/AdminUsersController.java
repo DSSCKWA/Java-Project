@@ -130,7 +130,7 @@ public class AdminUsersController implements Initializable {
 
 
         tcModify.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button modifyButton = new Button("MODIFY");
+            private final Button modifyButton = new Button("Modify");
 
             {
                 modifyButton.setOnAction((ActionEvent event) -> {
