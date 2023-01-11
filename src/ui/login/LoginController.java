@@ -7,14 +7,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import src.ui.Session;
 import src.users.Permissions;
 import src.users.User;
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -34,12 +37,21 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField pfPassword;
 
+    @FXML
+    private Button btnSignIn;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        btnSignIn.setDefaultButton(true);
+        btnSignIn.setOnKeyPressed(keyEvent -> {
+            if (keyEvent.getCode().equals(KeyCode.ENTER)) {
+                btnSignIn.fire();
+            }
+        });
         tInvalidInput.setVisible(false);
         Session.getInstance(null);
+
     }
 
     @FXML

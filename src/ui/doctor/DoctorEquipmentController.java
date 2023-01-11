@@ -109,7 +109,7 @@ public class DoctorEquipmentController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         cboxStatus.getItems().addAll(
-                "IN_USE", "IN_REPAIR", "DECOMISSIONED", "BROKEN"
+                "in use", "in repair", "decommissioned", "broken"
         );
 
         textCreate.setVisible(false);
@@ -146,7 +146,7 @@ public class DoctorEquipmentController implements Initializable {
 
         tvClinic.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
-                
+
                 tcEName.setCellValueFactory(new PropertyValueFactory<>("name"));
                 tcStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
                 tcClinicName.setCellValueFactory(new PropertyValueFactory<>("clinicName"));
@@ -208,7 +208,7 @@ public class DoctorEquipmentController implements Initializable {
 
                             eq = equipmentRow.getEquipment();
                             tfEName.setText(eq.getName());
-                            cboxStatus.setValue("IN_USE");
+                            cboxStatus.setValue(equipmentRow.getStatus());
 
                         });
                     }
@@ -447,21 +447,16 @@ public class DoctorEquipmentController implements Initializable {
     void btnConfirmClicked(ActionEvent event) throws IOException, InterruptedException {
         if (Objects.equals(btnConfirm.getText(), "EDIT")) {
             eq.setName(tfEName.getText());
-            eq.setEquipmentStatus(EquipmentStatus.valueOf(cboxStatus.getValue().toString().toUpperCase(Locale.ROOT)));
+            eq.setEquipmentStatus(EquipmentStatus.valueOf(getEnumValue(cboxStatus.getValue())));
             Session.getClient().updateEquipment(eq);
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorEquipment.fxml")));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
         } else {
             Session.getClient().addEquipment(new Equipment(tfEName.getText(), EquipmentStatus.IN_USE, clin.getClinicId()));
-            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorEquipment.fxml")));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
         }
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorEquipment.fxml")));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
 
     }
 
@@ -480,7 +475,7 @@ public class DoctorEquipmentController implements Initializable {
 
             this.name = equipment.getName();
             this.clinicName = clinic.getName();
-            this.status = equipment.getEquipmentStatus().toString();
+            this.status = DoctorEquipmentController.getPrettyValue(equipment.getEquipmentStatus().toString());
             this.clinic = clinic;
             this.equipment = equipment;
 
@@ -504,6 +499,34 @@ public class DoctorEquipmentController implements Initializable {
 
         public Equipment getEquipment() {
             return equipment;
+        }
+    }
+
+    public static String getEnumValue(String prettyValue) {
+        switch (prettyValue) {
+            case "in use" -> {
+                return "IN_USE";
+            }
+            case "in repair" -> {
+                return "IN_REPAIR";
+            }
+            default -> {
+                return prettyValue.toUpperCase();
+            }
+        }
+    }
+
+    public static String getPrettyValue(String enumValue) {
+        switch (enumValue) {
+            case "IN_USE" -> {
+                return "in use";
+            }
+            case "IN_REPAIR" -> {
+                return "in repair";
+            }
+            default -> {
+                return enumValue.toLowerCase();
+            }
         }
     }
 
