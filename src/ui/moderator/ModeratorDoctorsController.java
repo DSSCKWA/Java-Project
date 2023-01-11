@@ -133,7 +133,7 @@ public class ModeratorDoctorsController implements Initializable {
         });
 
         tcAdd.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button addButton = new Button("ADD");
+            private final Button addButton = new Button("Add");
 
             {
                 addButton.setOnAction((ActionEvent event) -> {
@@ -166,7 +166,7 @@ public class ModeratorDoctorsController implements Initializable {
                     addButton.setVisible(false);
 
                     tcAR.setCellFactory(tableColumn -> new TableCell<>() {
-                        private final Button addCButton = new Button("ADD");
+                        private final Button addCButton = new Button("Add");
 
                         {
                             addCButton.setOnAction((ActionEvent event) -> {
@@ -219,7 +219,7 @@ public class ModeratorDoctorsController implements Initializable {
 
 
         tcRemove.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button removeButton = new Button("REMOVE");
+            private final Button removeButton = new Button("Remove");
 
             {
                 removeButton.setOnAction((ActionEvent event) -> {
@@ -250,7 +250,7 @@ public class ModeratorDoctorsController implements Initializable {
 
 
                     tcAR.setCellFactory(tableColumn -> new TableCell<>() {
-                        private final Button removeCButton = new Button("REMOVE");
+                        private final Button removeCButton = new Button("Remove");
 
                         {
                             removeCButton.setOnAction((ActionEvent event) -> {

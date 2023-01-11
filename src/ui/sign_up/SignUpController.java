@@ -66,7 +66,7 @@ public class SignUpController implements Initializable {
 
     @FXML
     void btnSubmitClicked(ActionEvent event) {
-        tWarning.setText("SOMETHING WENT WRONG, PLEASE TRY AGAIN");
+        tWarning.setText("Something went wrong, please try again!");
         tWarning.setVisible(true);
         if (Objects.equals(pfPassword.getText(), pfPasswordConfirm.getText())) {
             if (!Objects.equals(pfPassword.getText(), "") && !(Objects.equals(tfName.getText(), "")) && !(Objects.equals(tfSurname.getText(), "")) && !(Objects.equals(tfEmail.getText(), "")) && !(Objects.equals(tfCity.getText(), "")) && !(Objects.equals(tfAddress.getText(), "")) && !(Objects.equals(tfPhoneNumber.getText(), ""))) {
@@ -75,7 +75,7 @@ public class SignUpController implements Initializable {
                     AnchorPane1.getChildren().clear();
                     Text tSuccess = new Text(50, 180, "Success");
                     AnchorPane1.getChildren().add(tSuccess);
-                    btnSubmit.setText("CONFIRM");
+                    btnSubmit.setText("Confirm");
                     Button btnConfirm = btnSubmit;
                     AnchorPane1.getChildren().add(btnConfirm);
 
@@ -97,7 +97,7 @@ public class SignUpController implements Initializable {
             }
 
         } else {
-            tWarning.setText("PASSWORDS DO NOT MATCH !");
+            tWarning.setText("Passwords do not match!");
         }
 
     }

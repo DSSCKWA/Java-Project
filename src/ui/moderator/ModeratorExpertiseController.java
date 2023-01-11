@@ -170,7 +170,7 @@ public class ModeratorExpertiseController implements Initializable {
 
 
         tcRemove.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button removeButton = new Button("REMOVE");
+            private final Button removeButton = new Button("Remove");
 
             {
                 removeButton.setOnAction((ActionEvent event) -> {

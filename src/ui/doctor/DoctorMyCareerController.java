@@ -158,7 +158,7 @@ public class DoctorMyCareerController implements Initializable {
                 FilteredList<ScheduleRow> filteredSchedules = new FilteredList<>(tvSchedule.getItems(), b -> true);
 
                 tcEdit.setCellFactory(tableColumn -> new TableCell<>() {
-                    private final Button editButton = new Button("EDIT");
+                    private final Button editButton = new Button("Edit");
 
                     {
                         editButton.setOnAction((ActionEvent event) -> {
@@ -180,7 +180,7 @@ public class DoctorMyCareerController implements Initializable {
                             tfStart.setVisible(true);
                             tfEndM.setVisible(true);
                             tfStartM.setVisible(true);
-                            btnCreate.setText("EDIT");
+                            btnCreate.setText("Edit");
                             textTitle.setText("Editor Tool");
 
 
@@ -200,7 +200,7 @@ public class DoctorMyCareerController implements Initializable {
                 });
 
                 tcRemove.setCellFactory(tableColumn -> new TableCell<>() {
-                    private final Button removeButton = new Button("REMOVE");
+                    private final Button removeButton = new Button("Remove");
 
                     {
                         removeButton.setOnAction((ActionEvent event) -> {
@@ -240,7 +240,7 @@ public class DoctorMyCareerController implements Initializable {
         });
 
         tcAddSchedule.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button addButton = new Button("ADD NEW");
+            private final Button addButton = new Button("Add New");
 
             {
                 addButton.setOnAction((ActionEvent event) -> {
@@ -306,7 +306,7 @@ public class DoctorMyCareerController implements Initializable {
 
     @FXML
     void btnCreateClicked(ActionEvent event) throws IOException, InterruptedException {
-        if (Objects.equals(btnCreate.getText(), "EDIT")) {
+        if (Objects.equals(btnCreate.getText(), "Edit")) {
             textError.setVisible(true);
             if (LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText())).isAfter(LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())))) {
                 sched.setEndTime(LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText())));

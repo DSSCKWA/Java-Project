@@ -104,7 +104,7 @@
                     <children>
                   <AnchorPane prefHeight="100.0" prefWidth="693.0" style="-fx-background-color: #232931;">
                      <children>
-                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="SCHEDULE" wrappingWidth="478.93670654296875">
+                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="Schedule" wrappingWidth="478.93670654296875">
                            <font>
                               <Font name="Leelawadee UI" size="38.0" />
                            </font>
@@ -117,11 +117,11 @@
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font></Text>
-                        <Button fx:id="btnCreate" layoutX="442.0" layoutY="18.0" mnemonicParsing="false" onAction="#btnCreateClicked" style="-fx-background-color: #232931;" text="CREATE" textFill="#EEE">
+                        <Button fx:id="btnCreate" layoutX="442.0" layoutY="18.0" mnemonicParsing="false" onAction="#btnCreateClicked" style="-fx-background-color: #232931;" text="Create" textFill="#EEE">
                            <font>
                               <Font name="Leelawadee UI" size="12.0" />
                            </font></Button>
-                        <Button fx:id="btnCancel" layoutX="440.0" layoutY="54.0" mnemonicParsing="false" onAction="#btnCancelClicked" style="-fx-background-color: #232931;" text="CANCEL" textFill="#EEE">
+                        <Button fx:id="btnCancel" layoutX="440.0" layoutY="54.0" mnemonicParsing="false" onAction="#btnCancelClicked" style="-fx-background-color: #232931;" text="Cancel" textFill="#EEE">
                            <font>
                               <Font name="Leelawadee UI" size="12.0" />
                            </font></Button>
@@ -155,7 +155,7 @@
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
-                        <Text fx:id="textError" fill="RED" layoutX="553.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INVALID INPUT" textAlignment="CENTER">
+                        <Text fx:id="textError" fill="RED" layoutX="553.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid Input" textAlignment="CENTER">
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font>

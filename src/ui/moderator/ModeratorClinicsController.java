@@ -96,7 +96,7 @@ public class ModeratorClinicsController implements Initializable {
         FilteredList<Clinic> filteredClinics = new FilteredList<>(tvTable.getItems(), b -> true);
 
         tcEdit.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button editButton = new Button("EDIT");
+            private final Button editButton = new Button("Edit");
 
             {
                 editButton.setOnAction((ActionEvent event) -> {
@@ -105,7 +105,7 @@ public class ModeratorClinicsController implements Initializable {
                     tcEdit.setVisible(false);
                     tcDelete.setVisible(false);
                     btnCancel.setVisible(true);
-                    btnCreate.setText("EDIT");
+                    btnCreate.setText("Edit");
 
                     filteredClinics.setPredicate(clinic2 -> clinic2.equals(clinic));
                     tvTable.setItems(filteredClinics);
@@ -130,7 +130,7 @@ public class ModeratorClinicsController implements Initializable {
 
 
         tcDelete.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button deleteButton = new Button("DELETE");
+            private final Button deleteButton = new Button("Delete");
 
             {
                 tFaliure.setVisible(false);
@@ -147,7 +147,7 @@ public class ModeratorClinicsController implements Initializable {
                     tfName.setVisible(false);
                     tfCity.setVisible(false);
                     tfAddress.setVisible(false);
-                    btnCreate.setText("CONFIRM");
+                    btnCreate.setText("Confirm");
 
                     filteredClinics.setPredicate(clinic2 -> clinic2.equals(clinic));
                     tvTable.setItems(filteredClinics);
@@ -183,11 +183,11 @@ public class ModeratorClinicsController implements Initializable {
     @FXML
     void btnCreateClicked(ActionEvent event) {
 
-        if (Objects.equals(btnCreate.getText(), "CONFIRM")) {
+        if (Objects.equals(btnCreate.getText(), "Confirm")) {
             tFaliure.setVisible(true);
             try {
                 Session.getClient().deleteClinic(cli.getClinicId());
-                tFaliure.setText("SUCCESS");
+                tFaliure.setText("Success");
                 root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorClinics.fxml")));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setResizable(false);
@@ -197,7 +197,7 @@ public class ModeratorClinicsController implements Initializable {
             } catch (Exception e) {
                 System.out.println("Error" + e.getMessage());
             }
-        } else if (Objects.equals(btnCreate.getText(), "EDIT")) {
+        } else if (Objects.equals(btnCreate.getText(), "Edit")) {
             tFaliure.setVisible(true);
             if (!Objects.equals(tfName.getText(), "") && !Objects.equals(tfAddress.getText(), "") && !Objects.equals(tfCity.getText(), "")) {
                 try {

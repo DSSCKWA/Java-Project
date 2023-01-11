@@ -92,7 +92,7 @@
                <children>
                   <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #232931;">
                      <children>
-                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="DOCTORS PANEL" wrappingWidth="478.93670654296875">
+                        <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="Doctors Panel" wrappingWidth="478.93670654296875">
                            <font>
                               <Font name="Leelawadee UI" size="38.0" />
                            </font>
@@ -121,7 +121,7 @@
                               <Font name="Leelawadee UI" size="14.0" />
                            </font>
                         </Text>
-                        <Button fx:id="btnCancel" layoutX="501.0" layoutY="46.0" mnemonicParsing="false" onAction="#btnCancelClicked" style="-fx-background-color: #232931;" text="CANCEL" textFill="#EEE">
+                        <Button fx:id="btnCancel" layoutX="501.0" layoutY="46.0" mnemonicParsing="false" onAction="#btnCancelClicked" style="-fx-background-color: #232931;" text="Cancel" textFill="#EEE">
                            <font>
                               <Font size="18.0" />
                            </font>

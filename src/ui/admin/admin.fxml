@@ -95,7 +95,7 @@
             </ImageView>
             <AnchorPane prefHeight="100.0" prefWidth="693.0" style="-fx-background-color: #232931;">
                <children>
-                  <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="LOGGED IN AS:" wrappingWidth="478.93670654296875">
+                  <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="Start" wrappingWidth="478.93670654296875">
                      <font>
                         <Font name="Leelawadee UI" size="38.0" />
                      </font>

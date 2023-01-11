@@ -105,7 +105,7 @@
                         <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #232931;">
                             <children>
                                 <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK"
-                                      strokeType="OUTSIDE" strokeWidth="0.2" text="CLINIC PANEL"
+                                      strokeType="OUTSIDE" strokeWidth="0.2" text="Clinic Panel"
                                       wrappingWidth="478.93670654296875">
                                     <font>
                                         <Font name="Leelawadee UI" size="38.0"/>
@@ -118,7 +118,7 @@
                             <children>
                                 <Button id="textTitle" fx:id="btnCreate" layoutX="475.0" layoutY="43.0" minWidth="86.0"
                                         mnemonicParsing="false" onAction="#btnCreateClicked"
-                                        style="-fx-background-color: #232931;" text="CREATE" textAlignment="CENTER"
+                                        style="-fx-background-color: #232931;" text="Create" textAlignment="CENTER"
                                         textFill="#EEE">
                                     <font>
                                         <Font name="Leelawadee UI" size="18.0"/>
@@ -161,7 +161,7 @@
                                     </font>
                                 </TextField>
                                 <Text fx:id="tFaliure" fill="#f44336" layoutX="490.0" layoutY="33.0"
-                                      strokeType="OUTSIDE" strokeWidth="0.0" text="FALIURE" textAlignment="CENTER">
+                                      strokeType="OUTSIDE" strokeWidth="0.0" text="Failure" textAlignment="CENTER">
                                     <font>
                                         <Font name="Leelawadee UI Bold" size="14.0"/>
                                     </font>
@@ -169,7 +169,7 @@
 
                                 <Button fx:id="btnCancel" layoutX="574.0" layoutY="43.0" mnemonicParsing="false"
                                         onAction="#btnCancelClicked" style="-fx-background-color: #232931;"
-                                        text="CANCEL" textAlignment="CENTER" textFill="#eeeeee">
+                                        text="Cancel" textAlignment="CENTER" textFill="#eeeeee">
                                     <font>
                                         <Font name="Leelawadee UI" size="18.0"/>
                                     </font>

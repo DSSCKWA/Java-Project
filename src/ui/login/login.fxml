@@ -93,7 +93,7 @@
                             </font>
                         </Text>
                         <Text fx:id="tInvalidInput" fill="#f44336" layoutX="120.0" layoutY="123.0" strokeType="OUTSIDE"
-                              strokeWidth="0.0" text="INVALID INPUT">
+                              strokeWidth="0.0" text="Invalid Input">
                             <font>
                                 <Font name="Leelawadee UI Bold" size="12.0"/>
                             </font>
