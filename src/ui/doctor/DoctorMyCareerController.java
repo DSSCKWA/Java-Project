@@ -109,7 +109,7 @@ public class DoctorMyCareerController implements Initializable {
         tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tcCity.setCellValueFactory(new PropertyValueFactory<>("city"));
         tcAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
-        tcDay.setCellValueFactory(new PropertyValueFactory<>("day"));
+        tcDay.setCellValueFactory(new PropertyValueFactory<>("prettyDayOfWeek"));
         tcStart.setCellValueFactory(new PropertyValueFactory<>("startHour"));
         tcEnd.setCellValueFactory(new PropertyValueFactory<>("endHour"));
 
@@ -254,13 +254,16 @@ public class DoctorMyCareerController implements Initializable {
 
                     ArrayList<String> usedDays = new ArrayList<>();
 
-                    cboxDay.getItems().addAll("MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY", "SUNDAY");
+                    cboxDay.getItems().addAll("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
 
                     ArrayList<Schedule> tmp = Session.getClient().getDoctorScheduleInClinic(Session.getUser().getId(), clin.getClinicId());
                     for (Schedule s : tmp) {
-                        usedDays.add(s.getDay().toString());
+                        usedDays.add(getPrettyDay(s.getDay()));
                     }
                     cboxDay.getItems().removeAll(usedDays);
+                    if (!cboxDay.getItems().isEmpty()) {
+                        cboxDay.setValue(cboxDay.getItems().get(0));
+                    }
                     textDay.setVisible(true);
                     tcAddSchedule.setVisible(false);
                     textEnd.setVisible(true);
@@ -317,9 +320,9 @@ public class DoctorMyCareerController implements Initializable {
                 stage.show();
             }
         } else {
+            textError.setVisible(true);
             if (LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText())).isAfter(LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())))) {
-                textError.setVisible(true);
-                Session.getClient().addSchedule(new Schedule(Session.getUser().getId(), clin.getClinicId(), DayOfWeek.valueOf(cboxDay.getValue().toString().toUpperCase(Locale.ROOT)), LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())), LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText()))));
+                Session.getClient().addSchedule(new Schedule(Session.getUser().getId(), clin.getClinicId(), getEnumDay(cboxDay.getValue()), LocalTime.of(Integer.parseInt(tfStart.getText()), Integer.parseInt(tfStartM.getText())), LocalTime.of(Integer.parseInt(tfEnd.getText()), Integer.parseInt(tfEndM.getText()))));
                 root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorMyCareer.fxml")));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 stage.setResizable(false);
@@ -400,6 +403,12 @@ public class DoctorMyCareerController implements Initializable {
 
         private final DayOfWeek day;
 
+        public String getPrettyDayOfWeek() {
+            return prettyDayOfWeek;
+        }
+
+        private final String prettyDayOfWeek;
+
         private final Doctor doctor;
 
 
@@ -410,6 +419,7 @@ public class DoctorMyCareerController implements Initializable {
             this.endHour = schedule.getEndTime().toString();
             this.doctor = doctor;
             this.schedule = schedule;
+            this.prettyDayOfWeek = getPrettyDay(day);
 
         }
 
@@ -433,6 +443,7 @@ public class DoctorMyCareerController implements Initializable {
             return doctor;
         }
 
+
         @Override
         public boolean equals(Object o) {
             if (this == o) return true;
@@ -447,4 +458,34 @@ public class DoctorMyCareerController implements Initializable {
         }
     }
 
+    public static String getPrettyDay(DayOfWeek day) {
+        switch (day) {
+            case MONDAY -> {
+                return "Monday";
+            }
+            case TUESDAY -> {
+                return "Tuesday";
+            }
+            case WEDNESDAY -> {
+                return "Wednesday";
+            }
+            case THURSDAY -> {
+                return "Thursday";
+            }
+            case FRIDAY -> {
+                return "Friday";
+            }
+            case SATURDAY -> {
+                return "Saturday";
+            }
+            case SUNDAY -> {
+                return "Sunday";
+            }
+        }
+        return "";
+    }
+
+    public static DayOfWeek getEnumDay(String day) {
+        return DayOfWeek.valueOf(day.toUpperCase(Locale.ROOT));
+    }
 }
