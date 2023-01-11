@@ -149,7 +149,7 @@
                                         <Font name="Leelawadee UI Bold" size="15.0" />
                                     </font>
                                 </Text>
-                        <Button fx:id="btnCancel" layoutX="587.0" layoutY="19.0" mnemonicParsing="false" onAction="#btnCancelClicked" text="Cancel" />
+                        <Button fx:id="btnCancel" layoutX="573.0" layoutY="24.0" mnemonicParsing="false" onAction="#btnCancelClicked" styleClass="btn" stylesheets="@../css/styles.css" text="Cancel" />
                             </children>
                             <padding>
                                 <Insets bottom="10.0" />

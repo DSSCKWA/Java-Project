@@ -120,7 +120,7 @@
                                         <Font name="Leelawadee UI" size="14.0" />
                                     </font>
                                 </Text>
-                        <Button fx:id="btnCancel" layoutX="501.0" layoutY="46.0" mnemonicParsing="false" onAction="#btnCancelClicked" style="-fx-background-color: #232931;" text="Cancel" textFill="#EEE">
+                        <Button fx:id="btnCancel" layoutX="501.0" layoutY="46.0" mnemonicParsing="false" onAction="#btnCancelClicked" styleClass="btn" stylesheets="@../css/styles.css" text="Cancel" textFill="#EEE">
                            <font>
                               <Font size="18.0" />
                            </font>

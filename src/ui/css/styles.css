@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+    -fx-margin: 0;
+    -fx-padding: 0;
+}
+
+.btn {
+    -fx-background-color:  #232931;
+    -fx-text-fill: #EEE;
+    -fx-cursor: hand;
+    -fx-font: bold normal 14px "Leelawadee UI";
+    -fx-border-color: #EEE;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-border-style: solid;
+    -fx-padding: 5px 10px;
+    -fx-margin: 5px;
+    -fx-border-insets: 0;
+    -fx-border-outsets: 0;
+    -fx-background-insets: 0;
+    -fx-background-radius: 5px;
+    -fx-pref-width: 80px;
+}
+
+.btn:hover {
+    -fx-background-color:   #393E46;
+    -fx-border-color: #4ECCA3;
+}
+
+.btn:pressed {
+    -fx-background-color: #4ECCA3;
+    -fx-border-color: #4ECCA3;
+}
+
+#headerAnchor {
+    -fx-height: 50px;
+}

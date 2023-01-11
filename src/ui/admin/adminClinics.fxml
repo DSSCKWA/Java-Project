@@ -90,7 +90,7 @@
             <children>
                 <VBox layoutX="-1.0" prefHeight="526.0" prefWidth="688.0">
                     <children>
-                  <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #232931;">
+                  <AnchorPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="120.0" prefWidth="701.0" style="-fx-background-color: #232931;">
                      <children>
                         <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="Clinic Panel" wrappingWidth="478.93670654296875">
                            <font>
@@ -106,10 +106,11 @@
                               <Font name="Leelawadee UI" size="24.0" />
                            </font>
                         </Text>
-                                <Button id="textTitle" fx:id="btnCreate" layoutX="477.0" layoutY="43.0" minWidth="86.0" mnemonicParsing="false" onAction="#btnCreateClicked" style="-fx-background-color: #232931;" text="Create" textAlignment="CENTER" textFill="#EEE">
+                                <Button fx:id="btnCreate" layoutX="477.0" layoutY="43.0" minWidth="86.0" mnemonicParsing="false" onAction="#btnCreateClicked" styleClass="btn" stylesheets="@../css/styles.css" text="Create" textAlignment="CENTER" textFill="#EEE">
                            <font>
                               <Font name="Leelawadee UI" size="18.0" />
-                           </font></Button>
+                           </font>
+                        </Button>
                                 <Text fx:id="textAddress" fill="#EEE" layoutX="14.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address">
                                     <font>
                                         <Font name="Leelawadee UI" size="18.0" />
@@ -142,7 +143,7 @@
                                         <Font name="Leelawadee UI Bold" size="14.0" />
                                     </font>
                                 </Text>
-                        <Button fx:id="btnCancel" layoutX="580.0" layoutY="43.0" mnemonicParsing="false" onAction="#btnCancelClicked" style="-fx-background-color: #232931;" text="Cancel" textAlignment="CENTER" textFill="#eeeeee">
+                        <Button fx:id="btnCancel" layoutX="580.0" layoutY="43.0" mnemonicParsing="false" onAction="#btnCancelClicked" styleClass="btn" stylesheets="@../css/styles.css" text="Cancel" textAlignment="CENTER" textFill="#eeeeee">
                            <font>
                               <Font name="Leelawadee UI" size="18.0" />
                            </font></Button>

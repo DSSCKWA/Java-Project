@@ -127,7 +127,7 @@
                                         <Font name="Leelawadee UI" size="15.0" />
                                     </font>
                                 </Text>
-                        <Button fx:id="btnCancel" layoutX="582.0" layoutY="44.0" mnemonicParsing="false" onAction="#btnCancelClicked" text="Cancel" />
+                        <Button fx:id="btnCancel" layoutX="570.0" layoutY="41.0" mnemonicParsing="false" onAction="#btnCancelClicked" styleClass="btn" stylesheets="@../css/styles.css" text="Cancel" />
                             </children>
                             <VBox.margin>
                                 <Insets />
