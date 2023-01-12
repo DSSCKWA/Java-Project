@@ -156,7 +156,7 @@
                             <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="100.0" prefWidth="121.59998321533203" text="Name" />
                               <TableColumn fx:id="tcEmail" maxWidth="300.0" minWidth="100.0" prefWidth="122.4000244140625" text="Email" />
                               <TableColumn fx:id="tcExpertise" maxWidth="300.0" minWidth="100.0" prefWidth="166.39999389648438" text="Expertise" />
-                              <TableColumn fx:id="tcRemove" maxWidth="300.0" minWidth="100.0" prefWidth="160.0" text="Remove Expertise" />
+                              <TableColumn fx:id="tcRemove" maxWidth="300.0" minWidth="100.0" prefWidth="160.0" text="Delete Expertise" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

@@ -226,8 +226,6 @@ public class AdminClinicsController implements Initializable {
                     System.out.println(cli);
                     System.out.println(cli.present());
                     tFaliure.setVisible(false);
-                    Text tSuccess = new Text(600, 114, "Success");
-                    anchorPane2.getChildren().add(tSuccess);
                     root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics.fxml")));
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     stage.setResizable(false);

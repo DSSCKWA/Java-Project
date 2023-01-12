@@ -211,7 +211,7 @@ public class DoctorMyCareerController implements Initializable {
                 });
 
                 tcRemove.setCellFactory(tableColumn -> new TableCell<>() {
-                    private final Button removeButton = new Button("Remove");
+                    private final Button removeButton = new Button("Delete");
 
                     {
                         removeButton.setOnAction((ActionEvent event) -> {
@@ -251,7 +251,7 @@ public class DoctorMyCareerController implements Initializable {
         });
 
         tcAddSchedule.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button addButton = new Button("Add New");
+            private final Button addButton = new Button("Add");
 
             {
                 addButton.setOnAction((ActionEvent event) -> {

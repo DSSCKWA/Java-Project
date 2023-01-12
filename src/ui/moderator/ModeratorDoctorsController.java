@@ -219,7 +219,7 @@ public class ModeratorDoctorsController implements Initializable {
 
 
         tcRemove.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button removeButton = new Button("Remove");
+            private final Button removeButton = new Button("Delete");
 
             {
                 removeButton.setOnAction((ActionEvent event) -> {
@@ -250,7 +250,7 @@ public class ModeratorDoctorsController implements Initializable {
 
 
                     tcAR.setCellFactory(tableColumn -> new TableCell<>() {
-                        private final Button removeCButton = new Button("Remove");
+                        private final Button removeCButton = new Button("Delete");
 
                         {
                             removeCButton.setOnAction((ActionEvent event) -> {

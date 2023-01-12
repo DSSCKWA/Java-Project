@@ -170,7 +170,7 @@ public class DoctorEquipmentController implements Initializable {
                 FilteredList<EquipmentRow> filteredEquipments = new FilteredList<>(tvEquipment.getItems(), b -> true);
 
                 tfCEName.textProperty().addListener((observable, oldValue, newValue) -> {
-                    filteredClinics.setPredicate(equipment -> {
+                    filteredEquipments.setPredicate(equipment -> {
                         if (newValue.isEmpty() || newValue.isBlank()) return true;
                         return equipment.getName().contains(newValue);
                     });
@@ -228,7 +228,7 @@ public class DoctorEquipmentController implements Initializable {
         });
 
         tcAdd.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button addButton = new Button("Add New");
+            private final Button addButton = new Button("Add");
 
             {
                 addButton.setOnAction((ActionEvent event) -> {
@@ -309,7 +309,7 @@ public class DoctorEquipmentController implements Initializable {
                     FilteredList<EquipmentRow> filteredEquipments = new FilteredList<>(tvEquipment.getItems(), b -> true);
 
                     tfCEName.textProperty().addListener((observable, oldValue, newValue) -> {
-                        filteredClinics.setPredicate(equipment -> {
+                        filteredEquipments.setPredicate(equipment -> {
                             if (newValue.isEmpty() || newValue.isBlank()) return true;
                             return equipment.getName().contains(newValue);
                         });
