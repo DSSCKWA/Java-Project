@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="526.0" prefWidth="889.0" style="-fx-background-color: #2B333D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminUsersController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #2B333D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminUsersController">
     <children>
       <VBox prefHeight="526.0" prefWidth="202.0" style="-fx-background-color: #2B333D;">
          <children>
@@ -94,7 +94,7 @@
                   </Text>
                </children>
             </AnchorPane>
-                <VBox prefHeight="526.0" prefWidth="686.0">
+                <VBox prefHeight="600.0" prefWidth="702.0">
                     <children>
                         <AnchorPane prefHeight="298.0" prefWidth="667.0">
                             <children>
@@ -104,9 +104,9 @@
                                     </font>
                                 </Text>
                             </children></AnchorPane>
-                        <AnchorPane prefHeight="503.0" prefWidth="667.0">
+                        <AnchorPane prefHeight="503.0" prefWidth="686.0">
                      <children>
-                        <TableView fx:id="tvUser" layoutX="10.0" layoutY="101.0" prefHeight="259.0" prefWidth="666.0" style="-fx-background-color: #2B333D;" stylesheets="@../css/tableStyling.css">
+                        <TableView fx:id="tvUser" layoutY="101.0" prefHeight="299.0" prefWidth="694.0" style="-fx-background-color: #2B333D;" stylesheets="@../css/tableStyling.css">
                           <columns>
                             <TableColumn fx:id="tcSurname" maxWidth="300.0" minWidth="100.0" prefWidth="104.800048828125" styleClass="tableContent" text="Surname" />
                             <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="100.0" prefWidth="104.00006103515625" styleClass="tableContent" text="Name" />

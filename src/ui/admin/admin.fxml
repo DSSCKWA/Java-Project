@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="526.0" maxWidth="889.0" prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminController">
    <children>
       <AnchorPane prefHeight="526.0" prefWidth="202.0" style="-fx-background-color: #2B333D;">
          <children>
@@ -83,9 +83,9 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="526.0" prefWidth="685.0" style="-fx-background-color: #2B333D;">
+      <AnchorPane prefHeight="600.0" prefWidth="704.0" style="-fx-background-color: #2B333D;">
          <children>
-            <ImageView fitHeight="526.0" fitWidth="693.0" mouseTransparent="true" opacity="0.3" pickOnBounds="true">
+            <ImageView fitHeight="490.0" fitWidth="698.0" layoutY="110.0" mouseTransparent="true" opacity="0.3" pickOnBounds="true">
                <image>
                   <Image url="@../TEST/hospital2.jpeg" />
                </image>
@@ -93,7 +93,7 @@
                   <Rectangle2D width="829.0" />
                </viewport>
             </ImageView>
-            <AnchorPane prefHeight="100.0" prefWidth="693.0" style="-fx-background-color: #232931;">
+            <AnchorPane prefHeight="110.0" prefWidth="698.0" style="-fx-background-color: #232931;">
                <children>
                   <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="Start" wrappingWidth="478.93670654296875">
                      <font>
@@ -102,10 +102,10 @@
                   </Text>
                </children>
             </AnchorPane>
-            <VBox disable="true" prefHeight="526.0" prefWidth="667.0">
+            <VBox disable="true" prefHeight="526.0" prefWidth="698.0">
                <children>
-                  <AnchorPane disable="true" opacity="0.0" prefHeight="223.0" prefWidth="447.0" />
-                  <AnchorPane prefHeight="303.0" prefWidth="598.0">
+                  <AnchorPane disable="true" opacity="0.0" prefHeight="223.0" prefWidth="710.0" />
+                  <AnchorPane prefHeight="303.0" prefWidth="698.0">
                      <children>
                         <Text fill="#EEE" layoutX="121.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" wrappingWidth="50.92578125">
                            <font>
@@ -125,7 +125,6 @@
                            </font></Text>
                      </children>
                   </AnchorPane>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </VBox>
          </children>

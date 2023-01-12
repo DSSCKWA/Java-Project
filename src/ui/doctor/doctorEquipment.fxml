@@ -14,11 +14,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="526.0" prefWidth="889.0" style="-fx-background-color: #2B333D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.doctor.DoctorEquipmentController">
+<HBox prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #2B333D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.doctor.DoctorEquipmentController">
     <children>
-        <AnchorPane prefHeight="526.0" prefWidth="203.0">
+        <AnchorPane prefHeight="600.0" prefWidth="203.0">
             <children>
-            <VBox prefHeight="621.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
+            <VBox prefHeight="600.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
                <children>
                   <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -98,11 +98,11 @@
             </VBox>
             </children>
         </AnchorPane>
-        <AnchorPane prefHeight="405.0" prefWidth="447.0">
+        <AnchorPane prefHeight="600.0" prefWidth="700.0">
             <children>
-                <VBox prefHeight="526.0" prefWidth="686.0" style="-fx-background-color: #2B333D;">
+                <VBox prefHeight="600.0" prefWidth="697.0" style="-fx-background-color: #2B333D;">
                     <children>
-                  <AnchorPane prefHeight="100.0" prefWidth="693.0" style="-fx-background-color: #232931;">
+                  <AnchorPane prefHeight="110.0" prefWidth="702.0" style="-fx-background-color: #232931;">
                      <children>
                         <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="Equipment" wrappingWidth="478.93670654296875">
                            <font>
@@ -167,9 +167,9 @@
                      <padding>
                         <Insets bottom="10.0" />
                      </padding></AnchorPane>
-                        <AnchorPane prefHeight="241.0" prefWidth="686.0" style="-fx-background-color: #2B333D;">
+                        <AnchorPane prefHeight="162.0" prefWidth="698.0" style="-fx-background-color: #2B333D;">
                      <children>
-                        <TableView fx:id="tvClinic" layoutX="4.0" layoutY="-2.0" prefHeight="214.0" prefWidth="678.0" style="-fx-background-color: #2B333D;" stylesheets="@../css/tableStyling.css">
+                        <TableView fx:id="tvClinic" layoutX="0" layoutY="0" prefHeight="158.0" prefWidth="691.0" style="-fx-background-color: #2B333D;" stylesheets="@../css/tableStyling.css">
                           <columns>
                             <TableColumn fx:id="tcName" maxWidth="400.0" minWidth="100.0" prefWidth="88.80003643035889" styleClass="tableContent" text="Name" />
                             <TableColumn fx:id="tcCity" maxWidth="400.0" minWidth="100.0" prefWidth="120.79998779296875" styleClass="tableContent" text="City" />
@@ -182,9 +182,9 @@
                            </columnResizePolicy>
                         </TableView>
                      </children></AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2B333D;">
+                  <AnchorPane prefHeight="39.0" prefWidth="698.0" style="-fx-background-color: #2B333D;">
                      <children>
-                        <TableView fx:id="tvEquipment" layoutX="4.0" prefHeight="185.0" prefWidth="678.0" style="-fx-background-color: #2B333D;" stylesheets="@../css/tableStyling.css">
+                        <TableView fx:id="tvEquipment" layoutX="0" layoutY="0" prefHeight="188.0" prefWidth="691.0" style="-fx-background-color: #2B333D;" stylesheets="@../css/tableStyling.css">
                            <columns>
                               <TableColumn fx:id="tcEName" maxWidth="400.0" minWidth="100.0" prefWidth="191.19999980926514" styleClass="tableContent" text="Name" />
                               <TableColumn fx:id="tcStatus" maxWidth="400.0" minWidth="100.0" prefWidth="121.59996032714844" styleClass="tableContent" text="Status" />

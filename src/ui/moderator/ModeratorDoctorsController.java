@@ -1,5 +1,8 @@
 package src.ui.moderator;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
@@ -16,7 +19,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import src.clinic.Clinic;
+import src.equipment.Equipment;
 import src.ui.Session;
+import src.ui.doctor.DoctorEquipmentController;
 import src.users.Doctor;
 
 import java.io.IOException;
@@ -118,7 +123,6 @@ public class ModeratorDoctorsController implements Initializable {
             SortedList<Doctor> sortedDoctors = new SortedList<>(filteredDoctors);
             sortedDoctors.comparatorProperty().bind(tvDoctor.comparatorProperty());
             tvDoctor.setItems(sortedDoctors);
-
         });
 
 
@@ -132,6 +136,22 @@ public class ModeratorDoctorsController implements Initializable {
             tvDoctor.setItems(sortedDoctors);
         });
 
+
+        tvDoctor.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+
+                tcCAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+                tcCCity.setCellValueFactory(new PropertyValueFactory<>("city"));
+                tcCName.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+                ArrayList<Clinic> clinics = new ArrayList<>();
+                clinics = newSelection.getDoctorClinics();
+                FilteredList<Clinic> filteredClinics = new FilteredList<>(FXCollections.observableArrayList(clinics), b -> true);
+                tvClinic.setItems(filteredClinics);
+                tcAR.setVisible(false);
+            }
+        });
+
         tcAdd.setCellFactory(tableColumn -> new TableCell<>() {
             private final Button addButton = new Button("Add");
 
@@ -139,6 +159,7 @@ public class ModeratorDoctorsController implements Initializable {
                 addButton.setOnAction((ActionEvent event) -> {
                     Doctor doctor = getTableView().getItems().get(getIndex());
 
+                    tcAR.setVisible(true);
                     tcAdd.setVisible(false);
                     tcRemove.setVisible(false);
                     btnCancel.setVisible(true);
@@ -157,12 +178,11 @@ public class ModeratorDoctorsController implements Initializable {
                         clinics = Session.getClient().getClinics();
                         clinics.removeAll(rnd);
                     } catch (Exception e) {
-                        System.out.println("Error");
+                        System.out.println("Error" + e.getMessage());
                     }
                     int j = 0;
-                    tvClinic.getItems().addAll(clinics);
-
-                    FilteredList<Clinic> filteredClinics = new FilteredList<>(tvClinic.getItems(), b -> true);
+                    FilteredList<Clinic> filteredClinics = new FilteredList<>(FXCollections.observableArrayList(clinics), b -> true);
+                    tvClinic.setItems(filteredClinics);
                     addButton.setVisible(false);
 
                     tcAR.setCellFactory(tableColumn -> new TableCell<>() {
@@ -223,6 +243,7 @@ public class ModeratorDoctorsController implements Initializable {
 
             {
                 removeButton.setOnAction((ActionEvent event) -> {
+                    tcAR.setVisible(true);
                     removeButton.setVisible(false);
                     tcAdd.setVisible(false);
                     tcRemove.setVisible(false);
@@ -241,7 +262,7 @@ public class ModeratorDoctorsController implements Initializable {
                     try {
                         clinics = doctor.getDoctorClinics();
                     } catch (Exception e) {
-                        System.out.println("Error");
+                        System.out.println("Error" + e.getMessage());
                     }
                     int j = 0;
                     tvClinic.getItems().addAll(clinics);
