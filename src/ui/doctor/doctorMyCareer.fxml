@@ -141,7 +141,7 @@
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font></Text>
-                        <ComboBox fx:id="cboxDay" layoutX="63.0" layoutY="54.0" prefWidth="150.0" style="-fx-background-color: #EEE;" />
+                        <ComboBox fx:id="cboxDay" layoutX="63.0" layoutY="54.0" prefWidth="150.0" styleClass="mainCBBox" stylesheets="@../css/styles.css" />
                         <Text fx:id="textTitle" disable="true" fill="#EEE" layoutX="14.0" layoutY="30.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Creator Tool">
                            <font>
                               <Font name="Leelawadee UI" size="18.0" />

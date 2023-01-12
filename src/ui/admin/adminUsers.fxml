@@ -137,7 +137,7 @@
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
-                        <ComboBox fx:id="cboxPermission" layoutX="375.0" prefWidth="150.0" style="-fx-background-color: #EEE; -fx-text-fill: #000000;" />
+                        <ComboBox fx:id="cboxPermission" layoutX="375.0" prefWidth="150.0" styleClass="mainCBBox" stylesheets="@../css/styles.css" />
                         <Button fx:id="btnConfirm" layoutX="575.0" mnemonicParsing="false" onAction="#btnConfirmClicked" styleClass="btn" stylesheets="@../css/styles.css" text="Confirm" textAlignment="CENTER" textFill="#EEE">
                            <font>
                               <Font name="Leelawadee UI" size="12.0" />
@@ -146,7 +146,7 @@
                            <font>
                               <Font name="Leelawadee UI Bold" size="14.0" />
                            </font></Text>
-                        <Button fx:id="btnCancel" layoutX="575.0" layoutY="40.0" mnemonicParsing="false" onAction="#btnCancelClicked" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: #232931;" styleClass="btn" stylesheets="@../css/styles.css" text="Cancel" textAlignment="CENTER" textFill="#EEE">
+                        <Button fx:id="btnCancel" layoutX="575.0" layoutY="40.0" mnemonicParsing="false" onAction="#btnCancelClicked" prefHeight="26.0" prefWidth="69.0" styleClass="btn" stylesheets="@../css/styles.css" text="Cancel" textAlignment="CENTER" textFill="#EEE">
                            <font>
                               <Font name="Leelawadee UI" size="12.0" />
                            </font></Button>
