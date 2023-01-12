@@ -138,6 +138,9 @@ public class HttpClient {
                 .DELETE()
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == HttpStatus.INTERNAL_ERROR.getStatus()) {
+            throw new RuntimeException();
+        }
         return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
@@ -149,6 +152,9 @@ public class HttpClient {
                 .DELETE()
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == HttpStatus.INTERNAL_ERROR.getStatus()) {
+            throw new RuntimeException();
+        }
         return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
@@ -276,6 +282,9 @@ public class HttpClient {
                 .DELETE()
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == HttpStatus.INTERNAL_ERROR.getStatus()) {
+            throw new RuntimeException();
+        }
         return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
@@ -342,6 +351,9 @@ public class HttpClient {
                 .DELETE()
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == HttpStatus.INTERNAL_ERROR.getStatus()) {
+            throw new RuntimeException();
+        }
         return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
@@ -434,6 +446,9 @@ public class HttpClient {
                 .DELETE()
                 .build();
         HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == HttpStatus.INTERNAL_ERROR.getStatus()) {
+            throw new RuntimeException();
+        }
         return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
@@ -445,6 +460,9 @@ public class HttpClient {
                 .DELETE()
                 .build();
         HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == HttpStatus.INTERNAL_ERROR.getStatus()) {
+            throw new RuntimeException();
+        }
         return response.statusCode() == HttpStatus.OK.getStatus() || response.statusCode() == HttpStatus.NOT_FOUND.getStatus();
     }
 
@@ -516,6 +534,9 @@ public class HttpClient {
                 .DELETE()
                 .build();
         HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == HttpStatus.INTERNAL_ERROR.getStatus()) {
+            throw new RuntimeException();
+        }
         return response.statusCode() == HttpStatus.OK.getStatus() || response.statusCode() == HttpStatus.NOT_FOUND.getStatus();
     }
 
@@ -527,6 +548,9 @@ public class HttpClient {
                 .DELETE()
                 .build();
         HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == HttpStatus.INTERNAL_ERROR.getStatus()) {
+            throw new RuntimeException();
+        }
         return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
@@ -538,6 +562,9 @@ public class HttpClient {
                 .DELETE()
                 .build();
         HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == HttpStatus.INTERNAL_ERROR.getStatus()) {
+            throw new RuntimeException();
+        }
         return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
@@ -549,6 +576,9 @@ public class HttpClient {
                 .DELETE()
                 .build();
         HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == HttpStatus.INTERNAL_ERROR.getStatus()) {
+            throw new RuntimeException();
+        }
         return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
@@ -664,6 +694,9 @@ public class HttpClient {
                 .DELETE()
                 .build();
         HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == HttpStatus.INTERNAL_ERROR.getStatus()) {
+            throw new RuntimeException();
+        }
         return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
@@ -675,6 +708,9 @@ public class HttpClient {
                 .DELETE()
                 .build();
         HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == HttpStatus.INTERNAL_ERROR.getStatus()) {
+            throw new RuntimeException();
+        }
         return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
