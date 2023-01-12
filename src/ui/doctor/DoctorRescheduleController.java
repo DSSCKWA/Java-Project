@@ -74,8 +74,6 @@ public class DoctorRescheduleController implements Initializable {
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("DUPPPPPAAAA-______------------------------------------------------------------------------------------------");
-        System.out.println(Session.getVisit());
         tcName.setCellValueFactory(new PropertyValueFactory<>("name"));
         txPickDate.setVisible(false);
         tcSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
