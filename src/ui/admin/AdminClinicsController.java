@@ -101,40 +101,6 @@ public class AdminClinicsController implements Initializable {
 
         FilteredList<Clinic> filteredClinics = new FilteredList<>(tvTable.getItems(), b -> true);
 
-        tfName.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredClinics.setPredicate(clinic -> {
-                if (newValue.isEmpty() || newValue.isBlank())
-                    return clinic.getCity().contains(tfCity.getText()) && clinic.getAddress().contains(tfAddress.getText());
-                return clinic.getName().contains(newValue) && clinic.getCity().contains(tfCity.getText()) && clinic.getAddress().contains(tfAddress.getText());
-            });
-            SortedList<Clinic> clinicSortedList = new SortedList<>(filteredClinics);
-            clinicSortedList.comparatorProperty().bind(tvTable.comparatorProperty());
-            tvTable.setItems(clinicSortedList);
-
-        });
-
-        tfCity.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredClinics.setPredicate(clinic -> {
-                if (newValue.isEmpty() || newValue.isBlank())
-                    return clinic.getName().contains(tfName.getText()) && clinic.getAddress().contains(tfAddress.getText());
-                return clinic.getName().contains(tfName.getText()) && clinic.getCity().contains(newValue) && clinic.getAddress().contains(tfAddress.getText());
-            });
-            SortedList<Clinic> clinicSortedList = new SortedList<>(filteredClinics);
-            clinicSortedList.comparatorProperty().bind(tvTable.comparatorProperty());
-            tvTable.setItems(clinicSortedList);
-        });
-
-        tfAddress.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredClinics.setPredicate(clinic -> {
-                if (newValue.isEmpty() || newValue.isBlank())
-                    return clinic.getName().contains(tfName.getText()) && clinic.getCity().contains(tfCity.getText());
-                return clinic.getName().contains(tfName.getText()) && clinic.getCity().contains(tfCity.getText()) && clinic.getAddress().contains(newValue);
-            });
-            SortedList<Clinic> clinicSortedList = new SortedList<>(filteredClinics);
-            clinicSortedList.comparatorProperty().bind(tvTable.comparatorProperty());
-            tvTable.setItems(clinicSortedList);
-        });
-
         tcEdit.setCellFactory(tableColumn -> new TableCell<>() {
             private final Button editButton = new Button("Edit");
 
