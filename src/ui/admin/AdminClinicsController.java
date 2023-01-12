@@ -1,6 +1,7 @@
 package src.ui.admin;
 
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import src.clinic.Clinic;
 import src.ui.Session;
+import src.users.Doctor;
 
 import java.io.IOException;
 import java.net.URL;
@@ -98,6 +100,40 @@ public class AdminClinicsController implements Initializable {
         tvTable.getItems().addAll(clinics);
 
         FilteredList<Clinic> filteredClinics = new FilteredList<>(tvTable.getItems(), b -> true);
+
+        tfName.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredClinics.setPredicate(clinic -> {
+                if (newValue.isEmpty() || newValue.isBlank())
+                    return clinic.getCity().contains(tfCity.getText()) && clinic.getAddress().contains(tfAddress.getText());
+                return clinic.getName().contains(newValue) && clinic.getCity().contains(tfCity.getText()) && clinic.getAddress().contains(tfAddress.getText());
+            });
+            SortedList<Clinic> clinicSortedList = new SortedList<>(filteredClinics);
+            clinicSortedList.comparatorProperty().bind(tvTable.comparatorProperty());
+            tvTable.setItems(clinicSortedList);
+
+        });
+
+        tfCity.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredClinics.setPredicate(clinic -> {
+                if (newValue.isEmpty() || newValue.isBlank())
+                    return clinic.getName().contains(tfName.getText()) && clinic.getAddress().contains(tfAddress.getText());
+                return clinic.getName().contains(tfName.getText()) && clinic.getCity().contains(newValue) && clinic.getAddress().contains(tfAddress.getText());
+            });
+            SortedList<Clinic> clinicSortedList = new SortedList<>(filteredClinics);
+            clinicSortedList.comparatorProperty().bind(tvTable.comparatorProperty());
+            tvTable.setItems(clinicSortedList);
+        });
+
+        tfAddress.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredClinics.setPredicate(clinic -> {
+                if (newValue.isEmpty() || newValue.isBlank())
+                    return clinic.getName().contains(tfName.getText()) && clinic.getCity().contains(tfCity.getText());
+                return clinic.getName().contains(tfName.getText()) && clinic.getCity().contains(tfCity.getText()) && clinic.getAddress().contains(newValue);
+            });
+            SortedList<Clinic> clinicSortedList = new SortedList<>(filteredClinics);
+            clinicSortedList.comparatorProperty().bind(tvTable.comparatorProperty());
+            tvTable.setItems(clinicSortedList);
+        });
 
         tcEdit.setCellFactory(tableColumn -> new TableCell<>() {
             private final Button editButton = new Button("Edit");
