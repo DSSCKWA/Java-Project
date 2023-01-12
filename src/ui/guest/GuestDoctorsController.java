@@ -1,5 +1,6 @@
 package src.ui.guest;
 
+import com.mysql.jdbc.StringUtils;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
@@ -174,7 +175,7 @@ public class GuestDoctorsController implements Initializable {
 
             this.name = doctor.getName();
             this.surname = doctor.getSurname();
-            this.day = schedule.getDay().toString();
+            this.day = schedule.getDay().toString().substring(0, 1).toUpperCase() + schedule.getDay().toString().substring(1).toLowerCase();
             this.workingHours = (schedule.getStartTime().toString() + " - " + schedule.getEndTime().toString());
             this.city = clinic.getCity();
             this.doctor = doctor;
