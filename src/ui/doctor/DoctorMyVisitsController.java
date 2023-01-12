@@ -153,8 +153,8 @@ public class DoctorMyVisitsController implements Initializable {
 
             final ArrayList<Visit> visitsPatient = Session.getClient().getVisitsByDoctorId(Session.getUser().getId());
             ArrayList<VisitRowPatient> visitRowsPatient = new ArrayList<>();
+            Doctor doctor = Session.getClient().getDoctorById(Session.getUser().getId());
             for (Visit visit : visitsPatient) {
-                Doctor doctor = Session.getClient().getDoctorById(Session.getUser().getId());
                 User patient = Session.getClient().getUserById(visit.getPatient().getId());
                 visitRowsPatient.add(new VisitRowPatient(visit, doctor, patient));
             }

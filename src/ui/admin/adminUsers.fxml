@@ -115,6 +115,9 @@
                               <TableColumn fx:id="tcPermission" maxWidth="300.0" minWidth="100.0" prefWidth="107.20001220703125" styleClass="tableContent" text="Permission" />
                               <TableColumn fx:id="tcModify" maxWidth="300.0" minWidth="100.0" prefWidth="113.60009765625" styleClass="tableContent" text="Modify Permission" />
                           </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                         </TableView>
                                 <Text fx:id="textName" fill="#EEE" layoutX="20.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
                                     <font>

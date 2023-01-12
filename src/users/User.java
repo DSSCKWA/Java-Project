@@ -18,6 +18,7 @@ public class User {
     private String city;
     private int phoneNumber;
     private Permissions permissions;
+    private final String prettyPermissions;
     private transient final DBClient dbClientAutoCommit;
 
     //<editor-fold desc="Getters">
@@ -106,6 +107,7 @@ public class User {
         this.city = city;
         this.phoneNumber = phoneNumber;
         this.permissions = permissions;
+        this.prettyPermissions = getPrettyPerm(permissions);
         dbClientAutoCommit = new DBClient(true);
     }
 
@@ -119,9 +121,13 @@ public class User {
         this.city = city;
         this.phoneNumber = phoneNumber;
         this.permissions = permissions;
+        this.prettyPermissions = getPrettyPerm(permissions);
         dbClientAutoCommit = new DBClient(true);
     }
 
+    public String getPrettyPermissions() {
+        return prettyPermissions;
+    }
     //</editor-fold>
 
     //<editor-fold desc="Equals & HashCode">
@@ -179,6 +185,29 @@ public class User {
                 ", permission='" + permissions + '\'';
     }
     //</editor-fold>
+
+    public String getPrettyPerm(Permissions permissions) {
+        if (permissions != null) {
+            switch (permissions) {
+                case ADMIN -> {
+                    return "Admin";
+                }
+                case MODERATOR -> {
+                    return "Moderator";
+                }
+                case PATIENT -> {
+                    return "Patient";
+                }
+                case DOCTOR -> {
+                    return "Doctor";
+                }
+                case GUEST -> {
+                    return "Guest";
+                }
+            }
+        }
+        return "";
+    }
 
     public String present() {
         return "ID: " + id + ": " + permissions +

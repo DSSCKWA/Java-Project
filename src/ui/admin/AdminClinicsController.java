@@ -120,6 +120,10 @@ public class AdminClinicsController implements Initializable {
                     tFaliure.setVisible(false);
                     btnCreate.setText("Edit");
 
+                    tfAddress.setText(clinic.getAddress());
+                    tfCity.setText(clinic.getCity());
+                    tfName.setText(clinic.getName());
+
                     filteredClinics.setPredicate(clinic2 -> clinic2.equals(clinic));
                     tvTable.setItems(filteredClinics);
 

@@ -96,7 +96,7 @@ public class AdminUsersController implements Initializable {
         tcSurname.setCellValueFactory(new PropertyValueFactory<>("surname"));
         tcCity.setCellValueFactory(new PropertyValueFactory<>("city"));
         tcEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
-        tcPermission.setCellValueFactory(new PropertyValueFactory<>("permissions")); ///TODO fix so it shows in TableView
+        tcPermission.setCellValueFactory(new PropertyValueFactory<>("prettyPermissions"));
         ArrayList<User> users = new ArrayList<User>();
         try {
             users = Session.getClient().getUsers();
@@ -136,18 +136,19 @@ public class AdminUsersController implements Initializable {
                 modifyButton.setOnAction((ActionEvent event) -> {
                     btnCancel.setVisible(true);
                     modifyButton.setVisible(false);
+                    tcModify.setVisible(false);
                     User user = getTableView().getItems().get(getIndex());
                     textTitle.setText("Modify Permission");
                     btnConfirm.setVisible(true);
                     btnCancel.setVisible(true);
                     cboxPermission.getItems().clear();
                     cboxPermission.getItems().addAll(
-                            "ADMIN",
-                            "MODERATOR",
-                            "DOCTOR",
-                            "PATIENT"
+                            "Admin",
+                            "Moderator",
+                            "Doctor",
+                            "Patient"
                     );
-                    cboxPermission.setValue("PATIENT");
+                    cboxPermission.setValue("Patient");
                     cboxPermission.setVisible(true);
 
                     textName.setVisible(false);
@@ -238,8 +239,7 @@ public class AdminUsersController implements Initializable {
 
     @FXML
     void btnConfirmClicked(ActionEvent event) throws IOException, InterruptedException {
-        userMain.setPermissions(Permissions.valueOf(cboxPermission.getValue().toString().toUpperCase(Locale.ROOT)));
-        System.out.println(userMain.getPermissions());
+        userMain.setPermissions(getEnumPermission(cboxPermission.getValue()));
         Session.getClient().updateUser(userMain);
         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminUsers.fxml")));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -247,5 +247,9 @@ public class AdminUsersController implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public Permissions getEnumPermission(String permissions) {
+        return Permissions.valueOf(permissions.toUpperCase(Locale.ROOT));
     }
 }
