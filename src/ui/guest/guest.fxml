@@ -95,26 +95,30 @@
             </AnchorPane>
             <VBox layoutX="74.0" layoutY="158.0" prefHeight="310.0" prefWidth="502.0">
                <children>
-                  <TextFlow prefHeight="51.0" prefWidth="331.0">
+                  <AnchorPane styleClass="textDiv" stylesheets="@../css/styles.css">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Providing you with affordable healthcare since 2022." />
+                        <TextFlow prefHeight="51.0" prefWidth="331.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Providing you with affordable healthcare since 2022." />
+                           </children>
+                        </TextFlow>
+                        <TextFlow layoutY="51.0" prefHeight="77.0" prefWidth="502.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="With our country-wide web of clinics and employed professionals we strive to make visit scheduling as comfortable as can be. " />
+                           </children>
+                        </TextFlow>
+                        <TextFlow layoutY="128.0" prefHeight="87.0" prefWidth="502.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Remember: “Health is Wealth”, so don’t hesitate. " />
+                           </children>
+                        </TextFlow>
+                        <TextFlow layoutY="215.0" prefHeight="94.0" prefWidth="502.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Join our community now!" />
+                           </children>
+                        </TextFlow>
                      </children>
-                  </TextFlow>
-                  <TextFlow prefHeight="77.0" prefWidth="502.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="With our country-wide web of clinics and employed professionals we strive to make visit scheduling as comfortable as can be. " />
-                     </children>
-                  </TextFlow>
-                  <TextFlow prefHeight="87.0" prefWidth="502.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Remember: “Health is Wealth”, so don’t hesitate. " />
-                     </children>
-                  </TextFlow>
-                  <TextFlow prefHeight="94.0" prefWidth="502.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Join our community now!" />
-                     </children>
-                  </TextFlow>
+                  </AnchorPane>
                </children>
             </VBox>
          </children>

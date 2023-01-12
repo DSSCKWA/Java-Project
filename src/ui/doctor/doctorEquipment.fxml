@@ -143,7 +143,7 @@
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font></Text>
-                        <TextField fx:id="tfEName" layoutX="425.0" layoutY="42.0" promptText="Equipment Name" style="-fx-background-color: #EEE;">
+                        <TextField fx:id="tfEName" layoutX="425.0" layoutY="42.0" prefHeight="25.0" prefWidth="150.0" promptText="Equipment Name" style="-fx-background-color: #EEE;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
@@ -159,7 +159,7 @@
                            <font>
                               <Font name="Leelawadee UI" size="12.0" />
                            </font></Button>
-                        <ComboBox fx:id="cboxStatus" layoutX="424.0" layoutY="75.0" prefHeight="25.0" prefWidth="159.0" style="-fx-background-color: #EEE;" />
+                        <ComboBox fx:id="cboxStatus" layoutX="424.0" layoutY="75.0" prefHeight="25.0" prefWidth="159.0" styleClass="mainCBBox" stylesheets="@../css/styles.css" />
                      </children>
                      <VBox.margin>
                         <Insets />

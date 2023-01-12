@@ -35,3 +35,41 @@
 #headerAnchor {
     -fx-height: 50px;
 }
+
+.mainCBBox {
+    -fx-background-color: #232931;
+    -fx-text-fill: #EEE;
+    -fx-font: bold normal 12px "Leelawadee UI";
+    -fx-border-color: #232931;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-padding: 2px 10px;
+    -fx-margin: 5px;
+    -fx-border-insets: 0;
+    -fx-border-outsets: 0;
+    -fx-background-insets: 0;
+    -fx-pref-width: 150px;
+    -fx-cursor: hand;
+}
+
+.mainCBBox .list-cell {
+    -fx-background-color: #232931;
+    -fx-text-fill: #EEE;
+    -fx-font: bold normal 12px "Leelawadee UI";
+    -fx-width: inherit;
+    -fx-cursor: hand;
+    -fx-padding: 4px 10px;
+    -fx-border-insets: 0;
+    -fx-border-outsets: 0;
+    -fx-background-insets: 0;
+    box-sizing: border-box;
+}
+
+.mainCBBox .list-cell:hover {
+    -fx-background-color: #4ECCA3;
+    -fx-text-fill: #EEE;
+}
+
+.combo-box-base:hover {
+    -fx-border-color: #4ECCA3;
+}
