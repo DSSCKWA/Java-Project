@@ -205,7 +205,6 @@ public class HttpClient {
         if (response.statusCode() == HttpStatus.NOT_FOUND.getStatus()) {
             return null;
         }
-        System.out.println(res);
         User user = g.fromJson(res, User.class);
         return user;
     }
@@ -220,7 +219,6 @@ public class HttpClient {
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
 
         String res = response.body();
-        System.out.println(res);
         Type type = new TypeToken<ArrayList<Equipment>>() {
         }.getType();
         ArrayList<Equipment> equipment = g.fromJson(res, type);
@@ -240,7 +238,6 @@ public class HttpClient {
         }
 
         String res = response.body();
-        System.out.println(res);
         Equipment equipment = g.fromJson(res, Equipment.class);
         return equipment;
     }
@@ -304,8 +301,6 @@ public class HttpClient {
         newVisit.put("visitStatus", visit.getVisitStatus().toString());
 
         String json = g.toJson(newVisit);
-
-        System.out.println(json);
 
         java.net.http.HttpRequest request = java.net.http.HttpRequest.newBuilder()
                 .uri(java.net.URI.create(serverUrl + "/visits"))
@@ -374,7 +369,6 @@ public class HttpClient {
         HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
 
         String res = response.body();
-        System.out.println(res);
         Type type = new TypeToken<ArrayList<Visit>>() {
         }.getType();
         ArrayList<Visit> visits = g.fromJson(res, type);
@@ -417,7 +411,6 @@ public class HttpClient {
             return null;
         }
 
-        System.out.println(res);
         Doctor doctor = g.fromJson(res, Doctor.class);
         return doctor;
     }
@@ -648,7 +641,6 @@ public class HttpClient {
                 .POST(HttpRequest.BodyPublishers.ofString(json))
                 .build();
         HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.statusCode());
         return response.statusCode() == HttpStatus.CREATED.getStatus();
     }
 

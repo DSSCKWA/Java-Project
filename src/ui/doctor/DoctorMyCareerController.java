@@ -180,6 +180,17 @@ public class DoctorMyCareerController implements Initializable {
                             tfStart.setVisible(true);
                             tfEndM.setVisible(true);
                             tfStartM.setVisible(true);
+
+                            String startH = scheduleRow.getStartHour().substring(0, scheduleRow.getStartHour().indexOf(":"));
+                            String startM = scheduleRow.getStartHour().substring(scheduleRow.getStartHour().indexOf(":") + 1);
+                            String endH = scheduleRow.getEndHour().substring(0, scheduleRow.getEndHour().indexOf(":"));
+                            String endM = scheduleRow.getEndHour().substring(scheduleRow.getEndHour().indexOf(":") + 1);
+
+                            tfStart.setText(startH);
+                            tfStartM.setText(startM);
+                            tfEnd.setText(endH);
+                            tfEndM.setText(endM);
+
                             btnCreate.setText("Edit");
                             textTitle.setText("Editor Tool");
 

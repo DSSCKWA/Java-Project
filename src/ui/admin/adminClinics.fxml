@@ -159,6 +159,9 @@
                                         <TableColumn fx:id="tcEdit" prefWidth="80.7998046875" styleClass="tableContent" text="Edit" />
                                         <TableColumn fx:id="tcDelete" prefWidth="92.0" styleClass="tableContent" text="Delete" />
                                     </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
                                 </TableView>
                             </children>
                         </AnchorPane>
