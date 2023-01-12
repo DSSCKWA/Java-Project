@@ -181,11 +181,19 @@ INSERT INTO `users` (`user_id`, `name`, `surname`, `address`, `city`, `phone_num
 --
 -- Wyzwalacze `users`
 --
-DROP TRIGGER IF EXISTS `permission_guard`;
 DELIMITER $$
 CREATE TRIGGER `permission_guard` BEFORE UPDATE ON `users` FOR EACH ROW BEGIN
-SET @doctors = (SELECT doctors.doctor_id FROM `doctors` WHERE doctors.doctor_id = OLD.user_id);
-IF OLD.permissions = 'doctor' AND NEW.permissions != 'doctor' AND @doctors IS NOT null THEN
+SET @doctors = (SELECT doctors.doctor_id FROM `doctors` WHERE doctors.doctor_id = OLD.user_id LIMIT 1);
+SET @schedules = (SELECT schedule.doctor_id FROM `schedule` WHERE schedule.doctor_id = OLD.user_id LIMIT 1);
+SET @expertise = (SELECT expertise.doctor_id FROM `expertise` WHERE expertise.doctor_id = OLD.user_id LIMIT 1);
+SET @visits = (SELECT visits.doctor_id FROM `visits` WHERE visits.doctor_id = OLD.user_id LIMIT 1);
+IF OLD.permissions = 'doctor' AND NEW.permissions != 'doctor'
+AND (@doctors IS NOT null
+OR @schedules IS NOT null
+OR @expertise IS NOT null
+OR @visits IS NOT null
+)
+THEN
 SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'ERROR: Trying to change permissions of an active doctor';
 END IF;
 END
