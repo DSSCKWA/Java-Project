@@ -4,6 +4,8 @@ import src.db.client.DBClient;
 import src.db.entities.EquipmentEntity;
 import src.db.repository.EquipmentRepository;
 
+import java.util.Objects;
+
 public class Equipment {
 
     private int equipmentId;
@@ -83,4 +85,17 @@ public class Equipment {
     }
     //</editor-fold>
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Equipment equipment = (Equipment) o;
+        return equipmentId == equipment.equipmentId && clinicId == equipment.clinicId && Objects.equals(name, equipment.name) && equipmentStatus == equipment.equipmentStatus;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(equipmentId, name, equipmentStatus, clinicId);
+    }
 }

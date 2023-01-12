@@ -186,7 +186,7 @@
                             <TableColumn fx:id="tcStart" prefWidth="144.7999725341797" styleClass="tableContent" text="Start Hour" />
                               <TableColumn fx:id="tcEnd" prefWidth="134.4000244140625" styleClass="tableContent" text="End Hour" />
                               <TableColumn fx:id="tcEdit" prefWidth="142.40008544921875" styleClass="tableContent" text="Edit" />
-                              <TableColumn fx:id="tcRemove" prefWidth="117.5999755859375" styleClass="tableContent" text="Remove" />
+                              <TableColumn fx:id="tcRemove" prefWidth="117.5999755859375" styleClass="tableContent" text="Delete" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

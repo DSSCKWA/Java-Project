@@ -130,7 +130,7 @@ public class AdminUsersController implements Initializable {
 
 
         tcModify.setCellFactory(tableColumn -> new TableCell<>() {
-            private final Button modifyButton = new Button("Modify");
+            private final Button modifyButton = new Button("Edit");
 
             {
                 modifyButton.setOnAction((ActionEvent event) -> {
@@ -138,7 +138,7 @@ public class AdminUsersController implements Initializable {
                     modifyButton.setVisible(false);
                     tcModify.setVisible(false);
                     User user = getTableView().getItems().get(getIndex());
-                    textTitle.setText("Modify Permission");
+                    textTitle.setText("Edit Permission");
                     btnConfirm.setVisible(true);
                     btnCancel.setVisible(true);
                     cboxPermission.getItems().clear();

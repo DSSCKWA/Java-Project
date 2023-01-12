@@ -113,7 +113,7 @@
                               <TableColumn fx:id="tcEmail" maxWidth="300.0" minWidth="100.0" prefWidth="132.80001831054688" styleClass="tableContent" text="Email" />
                               <TableColumn fx:id="tcCity" maxWidth="300.0" minWidth="100.0" prefWidth="92.0" styleClass="tableContent" text="City" />
                               <TableColumn fx:id="tcPermission" maxWidth="300.0" minWidth="100.0" prefWidth="107.20001220703125" styleClass="tableContent" text="Permission" />
-                              <TableColumn fx:id="tcModify" maxWidth="300.0" minWidth="100.0" prefWidth="113.60009765625" styleClass="tableContent" text="Modify Permission" />
+                              <TableColumn fx:id="tcModify" maxWidth="300.0" minWidth="100.0" prefWidth="113.60009765625" styleClass="tableContent" text="Edit Permission" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

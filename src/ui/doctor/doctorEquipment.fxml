@@ -126,11 +126,11 @@
                            <font>
                               <Font name="Leelawadee UI" size="14.0" />
                            </font></Text>
-                        <TextField fx:id="tfCEName" layoutX="135.0" layoutY="42.0" promptText="Clinic Name" style="-fx-background-color: #EEE;">
+                        <TextField fx:id="tfCName" layoutX="135.0" layoutY="42.0" promptText="Clinic Name" style="-fx-background-color: #EEE;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
-                        <TextField fx:id="tfCName" layoutX="135.0" layoutY="75.0" promptText="Equipment Name" style="-fx-background-color: #EEE;">
+                        <TextField fx:id="tfCEName" layoutX="135.0" layoutY="75.0" promptText="Equipment Name" style="-fx-background-color: #EEE;">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font></TextField>
