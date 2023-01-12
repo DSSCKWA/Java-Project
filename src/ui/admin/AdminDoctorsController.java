@@ -193,7 +193,7 @@ public class AdminDoctorsController implements Initializable {
 
                                 try {
                                     Session.getClient().addDoctorToClinic(doctor.getId(), clinic.getClinicId());
-                                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorDoctors.fxml")));
+                                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminDoctors.fxml")));
                                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                                     stage.setResizable(false);
                                     scene = new Scene(root);
@@ -278,7 +278,7 @@ public class AdminDoctorsController implements Initializable {
 
                                 try {
                                     Session.getClient().removeDoctorFromClinic(doctor.getId(), clinic.getClinicId());
-                                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorDoctors.fxml")));
+                                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminDoctors.fxml")));
                                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                                     stage.setResizable(false);
                                     scene = new Scene(root);

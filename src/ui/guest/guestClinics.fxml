@@ -118,7 +118,7 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="401.0" prefWidth="686.0" style="-fx-background-color: #2B333D;">
                             <children>
-                                <TableView fx:id="tvTable" layoutX="-1.0" prefHeight="366.0" prefWidth="690.0" stylesheets="@../css/tableStyling.css">
+                                <TableView fx:id="tvTable" layoutX="0" prefHeight="366.0" prefWidth="688.0" stylesheets="@../css/tableStyling.css">
                                     <columns>
                                         <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="100.0" prefWidth="165.0" text="Name" />
                                         <TableColumn fx:id="tcCity" maxWidth="300.0" minWidth="100.0" prefWidth="241.60003662109375" text="City" />

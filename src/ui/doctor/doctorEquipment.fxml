@@ -167,9 +167,9 @@
                      <padding>
                         <Insets bottom="10.0" />
                      </padding></AnchorPane>
-                        <AnchorPane prefHeight="241.0" prefWidth="686.0" style="-fx-background-color: #2B333D;">
+                        <AnchorPane prefHeight="162.0" prefWidth="698.0" style="-fx-background-color: #2B333D;">
                      <children>
-                        <TableView fx:id="tvClinic" layoutX="-6.0" layoutY="-2.0" prefHeight="178.0" prefWidth="698.0" style="-fx-background-color: #2B333D;" stylesheets="@../css/tableStyling.css">
+                        <TableView fx:id="tvClinic" layoutX="0" layoutY="0" prefHeight="158.0" prefWidth="691.0" style="-fx-background-color: #2B333D;" stylesheets="@../css/tableStyling.css">
                           <columns>
                             <TableColumn fx:id="tcName" maxWidth="400.0" minWidth="100.0" prefWidth="88.80003643035889" styleClass="tableContent" text="Name" />
                             <TableColumn fx:id="tcCity" maxWidth="400.0" minWidth="100.0" prefWidth="120.79998779296875" styleClass="tableContent" text="City" />
@@ -182,9 +182,9 @@
                            </columnResizePolicy>
                         </TableView>
                      </children></AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2B333D;">
+                  <AnchorPane prefHeight="39.0" prefWidth="698.0" style="-fx-background-color: #2B333D;">
                      <children>
-                        <TableView fx:id="tvEquipment" layoutX="-6.0" layoutY="-22.0" prefHeight="178.0" prefWidth="698.0" style="-fx-background-color: #2B333D;" stylesheets="@../css/tableStyling.css">
+                        <TableView fx:id="tvEquipment" layoutX="0" layoutY="0" prefHeight="188.0" prefWidth="691.0" style="-fx-background-color: #2B333D;" stylesheets="@../css/tableStyling.css">
                            <columns>
                               <TableColumn fx:id="tcEName" maxWidth="400.0" minWidth="100.0" prefWidth="191.19999980926514" styleClass="tableContent" text="Name" />
                               <TableColumn fx:id="tcStatus" maxWidth="400.0" minWidth="100.0" prefWidth="121.59996032714844" styleClass="tableContent" text="Status" />
