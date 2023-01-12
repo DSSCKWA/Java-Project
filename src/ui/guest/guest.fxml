@@ -12,11 +12,11 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<HBox prefHeight="526.0" prefWidth="889.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.guest.GuestController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.guest.GuestController">
     <children>
-        <AnchorPane prefHeight="526.0" prefWidth="203.0">
+        <AnchorPane prefHeight="600.0" prefWidth="203.0">
             <children>
-            <VBox prefHeight="526.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
+            <VBox prefHeight="600.0" prefWidth="202.0" style="-fx-background-color: #2B333D;">
                <children>
                   <ImageView fitHeight="196.0" fitWidth="205.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -74,9 +74,9 @@
             </VBox>
             </children>
         </AnchorPane>
-        <AnchorPane prefHeight="526.0" prefWidth="686.0" style="-fx-background-color: #2B333D;">
+        <AnchorPane prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #2B333D;">
          <children>
-            <ImageView fitHeight="526.0" fitWidth="693.0" mouseTransparent="true" opacity="0.3" pickOnBounds="true">
+            <ImageView fitHeight="488.0" fitWidth="699.0" layoutY="112.0" mouseTransparent="true" opacity="0.3" pickOnBounds="true">
                <image>
                   <Image url="@../TEST/hospital2.jpeg" />
                </image>
@@ -84,7 +84,7 @@
                   <Rectangle2D width="829.0" />
                </viewport>
             </ImageView>
-            <AnchorPane prefHeight="100.0" prefWidth="693.0" style="-fx-background-color: #232931;">
+            <AnchorPane prefHeight="110.0" prefWidth="698.0" style="-fx-background-color: #232931;">
                <children>
                   <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="Welcome to MediClinic!" wrappingWidth="478.93670654296875">
                      <font>

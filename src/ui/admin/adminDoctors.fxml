@@ -13,11 +13,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="526.0" prefWidth="889.0" style="-fx-background-color: #2B333D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminDoctorsController">
+<HBox prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #2B333D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.admin.AdminDoctorsController">
     <children>
       <AnchorPane>
          <children>
-            <VBox prefHeight="594.0" prefWidth="202.0" style="-fx-background-color: #2B333D;">
+            <VBox prefHeight="602.0" prefWidth="202.0" style="-fx-background-color: #2B333D;">
                <children>
                   <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -138,7 +138,7 @@
                      </padding></AnchorPane>
                         <AnchorPane prefHeight="202.0" prefWidth="701.0" style="-fx-background-color: #2B333D;">
                      <children>
-                        <TableView fx:id="tvDoctor" layoutX="10.0" prefHeight="196.0" prefWidth="665.0" style="-fx-background-color: #2B333D;" stylesheets="@../css/tableStyling.css">
+                        <TableView fx:id="tvDoctor" layoutX="-1.0" prefHeight="190.0" prefWidth="689.0" style="-fx-background-color: #2B333D;" stylesheets="@../css/tableStyling.css">
                           <columns>
                             <TableColumn fx:id="tcSurname" maxWidth="300.0" minWidth="100.0" prefWidth="113.59996318817139" styleClass="tableContent" text="Surname" />
                             <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="100.0" prefWidth="117.60003662109375" styleClass="tableContent" text="Name" />
@@ -154,7 +154,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="187.0" prefWidth="686.0" style="-fx-background-color: #2B333D;">
                      <children>
-                        <TableView fx:id="tvClinic" layoutX="10.0" prefHeight="176.0" prefWidth="665.0" style="-fx-background-color: #2B333D;" stylesheets="@../css/tableStyling.css">
+                        <TableView fx:id="tvClinic" layoutX="-1.0" prefHeight="190.0" prefWidth="689.0" style="-fx-background-color: #2B333D;" stylesheets="@../css/tableStyling.css">
                           <columns>
                             <TableColumn fx:id="tcCName" maxWidth="300.0" minWidth="100.0" prefWidth="127.99998760223389" styleClass="tableContent" text="Name" />
                             <TableColumn fx:id="tcCCity" maxWidth="300.0" minWidth="100.0" prefWidth="146.3999481201172" styleClass="tableContent" text="City" />

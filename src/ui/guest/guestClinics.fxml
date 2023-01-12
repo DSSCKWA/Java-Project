@@ -13,11 +13,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="526.0" prefWidth="889.0" style="-fx-background-color: #2B333D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.guest.GuestClinicsController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #2B333D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.guest.GuestClinicsController">
     <children>
         <AnchorPane prefHeight="526.0" prefWidth="202.0">
             <children>
-            <VBox prefHeight="526.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="526.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
                <children>
                   <ImageView fitHeight="196.0" fitWidth="205.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -77,7 +77,7 @@
         </AnchorPane>
         <AnchorPane prefHeight="526.0" prefWidth="686.0">
             <children>
-                <VBox prefHeight="526.0" prefWidth="686.0">
+                <VBox prefHeight="596.0" prefWidth="697.0">
                     <children>
                   <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #232931;">
                      <children>
@@ -118,7 +118,7 @@
                         </AnchorPane>
                         <AnchorPane prefHeight="401.0" prefWidth="686.0" style="-fx-background-color: #2B333D;">
                             <children>
-                                <TableView fx:id="tvTable" layoutX="7.0" prefHeight="276.0" prefWidth="671.0" stylesheets="@../css/tableStyling.css">
+                                <TableView fx:id="tvTable" layoutX="-1.0" prefHeight="366.0" prefWidth="690.0" stylesheets="@../css/tableStyling.css">
                                     <columns>
                                         <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="100.0" prefWidth="165.0" text="Name" />
                                         <TableColumn fx:id="tcCity" maxWidth="300.0" minWidth="100.0" prefWidth="241.60003662109375" text="City" />

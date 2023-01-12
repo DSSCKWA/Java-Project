@@ -14,11 +14,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="566.0" prefWidth="882.0" style="-fx-background-color: #2B333D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.patient.PatientNewVisitController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #2B333D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.patient.PatientNewVisitController">
     <children>
-        <AnchorPane prefHeight="526.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
+        <AnchorPane prefHeight="600.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
             <children>
-                <VBox prefHeight="565.0" prefWidth="204.0" style="-fx-background-color: #2B333D;">
+                <VBox prefHeight="600.0" prefWidth="204.0" style="-fx-background-color: #2B333D;">
                     <children>
                         <ImageView fitHeight="196.0" fitWidth="223.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -75,9 +75,9 @@
                 </VBox>
             </children>
         </AnchorPane>
-        <AnchorPane prefHeight="405.0" prefWidth="447.0">
+        <AnchorPane prefHeight="600.0" prefWidth="447.0">
             <children>
-                <VBox prefHeight="526.0" prefWidth="685.0">
+                <VBox prefHeight="600.0" prefWidth="698.0">
                     <children>
                   <AnchorPane prefHeight="100.0" prefWidth="701.0" style="-fx-background-color: #232931;">
                      <children>
@@ -133,14 +133,14 @@
                      </padding></AnchorPane>
                         <AnchorPane prefHeight="374.0" prefWidth="665.0">
                      <children>
-                        <TableView fx:id="tvTable" layoutX="-1.0" layoutY="-1.0" prefHeight="326.0" prefWidth="685.0" stylesheets="@../css/tableStyling.css">
+                        <TableView fx:id="tvTable" layoutX="-1.0" layoutY="-1.0" prefHeight="359.0" prefWidth="691.0" stylesheets="@../css/tableStyling.css">
                           <columns>
                             <TableColumn fx:id="tcSurname" maxWidth="300.0" minWidth="100.0" prefWidth="111.20001220703125" text="Surname" />
                             <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="100.0" prefWidth="117.59996336698532" text="Name" />
                               <TableColumn fx:id="tcCity" maxWidth="300.0" minWidth="100.0" prefWidth="111.99998474121094" text="City" />
                               <TableColumn fx:id="tcExpertise" maxWidth="300.0" minWidth="100.0" prefWidth="140.79998779296875" text="Expertise" />
                               <TableColumn fx:id="tcTime" maxWidth="300.0" minWidth="100.0" prefWidth="100.0" text="Time" />
-                              <TableColumn fx:id="tcSchedule" maxWidth="300.0" minWidth="85.60009765625" prefWidth="104.00003662109373" text="Schedule" />
+                              <TableColumn fx:id="tcSchedule" maxWidth="300.0" minWidth="85.60009765625" prefWidth="107.2000732421875" text="Schedule" />
                           </columns>
                         </TableView>
                      </children></AnchorPane>

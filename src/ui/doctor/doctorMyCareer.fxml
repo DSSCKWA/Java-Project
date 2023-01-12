@@ -14,11 +14,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox prefHeight="526.0" prefWidth="889.0" style="-fx-background-color: #2B333D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.doctor.DoctorMyCareerController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #2B333D;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.ui.doctor.DoctorMyCareerController">
     <children>
-        <AnchorPane prefHeight="526.0" prefWidth="203.0">
+        <AnchorPane prefHeight="600.0" prefWidth="203.0">
             <children>
-            <VBox prefHeight="608.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
+            <VBox prefHeight="600.0" prefWidth="202.0" style="-fx-background-color: #2B333D;">
                <children>
                   <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -98,9 +98,9 @@
             </VBox>
             </children>
         </AnchorPane>
-        <AnchorPane prefHeight="606.0" prefWidth="686.0" style="-fx-background-color: #2B333D;">
+        <AnchorPane prefHeight="600.0" prefWidth="686.0" style="-fx-background-color: #2B333D;">
             <children>
-                <VBox prefHeight="526.0" prefWidth="686.0" style="-fx-background-color: #2B333D;">
+                <VBox prefHeight="600.0" prefWidth="698.0" style="-fx-background-color: #2B333D;">
                     <children>
                   <AnchorPane prefHeight="100.0" prefWidth="693.0" style="-fx-background-color: #232931;">
                      <children>
@@ -166,7 +166,7 @@
                      </padding></AnchorPane>
                         <AnchorPane prefHeight="208.0" prefWidth="686.0" style="-fx-background-color: #2B333D;">
                      <children>
-                        <TableView fx:id="tvClinic" layoutX="4.0" layoutY="8.0" prefHeight="196.0" prefWidth="680.0" stylesheets="@../css/tableStyling.css">
+                        <TableView fx:id="tvClinic" layoutX="1.0" layoutY="8.0" prefHeight="178.0" prefWidth="692.0" stylesheets="@../css/tableStyling.css">
                           <columns>
                             <TableColumn fx:id="tcName" prefWidth="127.19999980926514" styleClass="tableContent" text="Name" />
                             <TableColumn fx:id="tcCity" prefWidth="143.19993591308594" styleClass="tableContent" text="City" />
@@ -180,7 +180,7 @@
                      </children></AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2B333D;">
                      <children>
-                        <TableView fx:id="tvSchedule" layoutX="3.0" prefHeight="196.0" prefWidth="680.0" stylesheets="@../css/tableStyling.css">
+                        <TableView fx:id="tvSchedule" layoutX="-5.0" prefHeight="178.0" prefWidth="698.0" stylesheets="@../css/tableStyling.css">
                           <columns>
                             <TableColumn fx:id="tcDay" prefWidth="131.20000004768372" styleClass="tableContent" text="Day" />
                             <TableColumn fx:id="tcStart" prefWidth="144.7999725341797" styleClass="tableContent" text="Start Hour" />
