@@ -15,7 +15,7 @@
     <children>
         <AnchorPane prefHeight="600.0" prefWidth="201.0">
             <children>
-            <VBox prefHeight="601.0" prefWidth="202.0" style="-fx-background-color: #2B333D;">
+            <VBox prefHeight="600.0" prefWidth="202.0" style="-fx-background-color: #2B333D;">
                <children>
                   <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -97,7 +97,7 @@
         </AnchorPane>
       <AnchorPane prefHeight="600.0" prefWidth="704.0" style="-fx-background-color: #2B333D;">
          <children>
-            <ImageView fitHeight="489.0" fitWidth="706.0" layoutY="111.0" mouseTransparent="true" opacity="0.3" pickOnBounds="true">
+            <ImageView fitHeight="488.5" fitWidth="706.0" layoutY="111.0" mouseTransparent="true" opacity="0.3" pickOnBounds="true">
                <image>
                   <Image url="@../TEST/hospital2.jpeg" />
                </image>
@@ -105,7 +105,7 @@
                   <Rectangle2D width="829.0" />
                </viewport>
             </ImageView>
-            <AnchorPane prefHeight="100.0" prefWidth="693.0" style="-fx-background-color: #232931;">
+            <AnchorPane prefHeight="110.0" prefWidth="706.0" style="-fx-background-color: #232931;">
                <children>
                   <Text fill="#EEE" layoutX="20.0" layoutY="100.0" lineSpacing="10.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.2" text="Start" wrappingWidth="478.93670654296875">
                      <font>
@@ -114,9 +114,9 @@
                   </Text>
                </children>
             </AnchorPane>
-            <VBox disable="true" layoutX="0" prefHeight="526.0" prefWidth="698.0">
+            <VBox disable="true" layoutX="0" prefHeight="526.0" prefWidth="706.0">
                <children>
-                  <AnchorPane disable="true" opacity="0.0" prefHeight="223.0" prefWidth="447.0" />
+                  <AnchorPane disable="true" opacity="0.0" prefHeight="223.0" prefWidth="710.0" />
                   <AnchorPane prefHeight="303.0" prefWidth="598.0">
                      <children>
                         <Text fill="#EEE" layoutX="121.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:" wrappingWidth="50.92578125">

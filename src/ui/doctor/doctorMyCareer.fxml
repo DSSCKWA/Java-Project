@@ -166,12 +166,12 @@
                      </padding></AnchorPane>
                         <AnchorPane prefHeight="208.0" prefWidth="686.0" style="-fx-background-color: #2B333D;">
                      <children>
-                        <TableView fx:id="tvClinic" layoutX="0" layoutY="8.0" prefHeight="178.0" prefWidth="692.0" stylesheets="@../css/tableStyling.css">
+                        <TableView fx:id="tvClinic" layoutX="0" layoutY="8.0" prefHeight="178.0" prefWidth="698.0" stylesheets="@../css/tableStyling.css">
                           <columns>
-                            <TableColumn fx:id="tcName" prefWidth="127.19999980926514" styleClass="tableContent" text="Name" />
-                            <TableColumn fx:id="tcCity" prefWidth="143.19993591308594" styleClass="tableContent" text="City" />
-                              <TableColumn fx:id="tcAddress" prefWidth="268.79998779296875" styleClass="tableContent" text="Address" />
-                              <TableColumn fx:id="tcAddSchedule" prefWidth="130.4000244140625" styleClass="tableContent" text="Add Schedule" />
+                            <TableColumn fx:id="tcName" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" styleClass="tableContent" text="Name" />
+                            <TableColumn fx:id="tcCity" maxWidth="280.0" minWidth="140.0" prefWidth="140.0" styleClass="tableContent" text="City" />
+                              <TableColumn fx:id="tcAddress" maxWidth="280.0" minWidth="280.0" prefWidth="280.0" styleClass="tableContent" text="Address" />
+                              <TableColumn fx:id="tcAddSchedule" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" styleClass="tableContent" text="Add Schedule" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -180,13 +180,13 @@
                      </children></AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #2B333D;">
                      <children>
-                        <TableView fx:id="tvSchedule" layoutX="0" prefHeight="178.0" prefWidth="692.0" stylesheets="@../css/tableStyling.css">
+                        <TableView fx:id="tvSchedule" layoutX="0" prefHeight="178.0" prefWidth="698.0" stylesheets="@../css/tableStyling.css">
                           <columns>
-                            <TableColumn fx:id="tcDay" prefWidth="131.20000004768372" styleClass="tableContent" text="Day" />
-                            <TableColumn fx:id="tcStart" prefWidth="144.7999725341797" styleClass="tableContent" text="Start Hour" />
-                              <TableColumn fx:id="tcEnd" prefWidth="134.4000244140625" styleClass="tableContent" text="End Hour" />
-                              <TableColumn fx:id="tcEdit" prefWidth="142.40008544921875" styleClass="tableContent" text="Edit" />
-                              <TableColumn fx:id="tcRemove" prefWidth="117.5999755859375" styleClass="tableContent" text="Delete" />
+                            <TableColumn fx:id="tcDay" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" styleClass="tableContent" text="Day" />
+                            <TableColumn fx:id="tcStart" maxWidth="280.0" minWidth="140.0" prefWidth="140.0" styleClass="tableContent" text="Start Hour" />
+                              <TableColumn fx:id="tcEnd" maxWidth="280.0" minWidth="140.0" prefWidth="140.0" styleClass="tableContent" text="End Hour" />
+                              <TableColumn fx:id="tcEdit" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" styleClass="tableContent" text="Edit" />
+                              <TableColumn fx:id="tcRemove" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" styleClass="tableContent" text="Delete" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

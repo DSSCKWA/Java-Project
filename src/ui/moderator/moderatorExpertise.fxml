@@ -17,7 +17,7 @@
     <children>
         <AnchorPane prefHeight="600.0" prefWidth="202.0">
             <children>
-                <VBox prefHeight="600.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
+                <VBox prefHeight="600.0" prefWidth="202.0" style="-fx-background-color: #2B333D;">
                     <children>
                         <ImageView fitHeight="196.0" fitWidth="204.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -150,7 +150,7 @@
                   </AnchorPane>
                         <AnchorPane prefHeight="374.0" prefWidth="667.0" style="-fx-background-color: #2B333D;">
                      <children>
-                        <TableView fx:id="tvExpertise" layoutY="1.0" prefHeight="367.0" prefWidth="691.0" stylesheets="@../css/tableStyling.css">
+                        <TableView fx:id="tvExpertise" layoutY="1.0" prefHeight="367.0" prefWidth="698.0" stylesheets="@../css/tableStyling.css">
                           <columns>
                             <TableColumn fx:id="tcSurname" maxWidth="300.0" minWidth="100.0" prefWidth="101.59989786148071" text="Surname" />
                             <TableColumn fx:id="tcName" maxWidth="300.0" minWidth="100.0" prefWidth="121.59998321533203" text="Name" />

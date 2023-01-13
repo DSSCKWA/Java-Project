@@ -91,7 +91,7 @@
                   </Text>
                </children>
             </AnchorPane>
-            <VBox disable="true" prefHeight="526.0" prefWidth="667.0">
+            <VBox disable="true" prefHeight="600.0" prefWidth="698.0">
                <children>
                   <AnchorPane disable="true" opacity="0.0" prefHeight="223.0" prefWidth="447.0" />
                   <AnchorPane prefHeight="303.0" prefWidth="598.0">
