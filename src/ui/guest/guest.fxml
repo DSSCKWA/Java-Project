@@ -16,7 +16,7 @@
     <children>
         <AnchorPane prefHeight="600.0" prefWidth="203.0">
             <children>
-            <VBox prefHeight="600.0" prefWidth="202.0" style="-fx-background-color: #2B333D;">
+            <VBox prefHeight="600.0" prefWidth="203.0" style="-fx-background-color: #2B333D;">
                <children>
                   <ImageView fitHeight="196.0" fitWidth="205.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -74,9 +74,9 @@
             </VBox>
             </children>
         </AnchorPane>
-        <AnchorPane prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #2B333D;">
+        <AnchorPane prefHeight="600.0" prefWidth="698.0" style="-fx-background-color: #2B333D;">
          <children>
-            <ImageView fitHeight="488.0" fitWidth="699.0" layoutY="112.0" mouseTransparent="true" opacity="0.3" pickOnBounds="true">
+            <ImageView fitHeight="489.0" fitWidth="698.0" layoutY="110.0" mouseTransparent="true" opacity="0.3" pickOnBounds="true">
                <image>
                   <Image url="@../TEST/hospital2.jpeg" />
                </image>

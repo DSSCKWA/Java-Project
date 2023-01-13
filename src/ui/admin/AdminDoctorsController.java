@@ -144,7 +144,10 @@ public class AdminDoctorsController implements Initializable {
                 clinics = newSelection.getDoctorClinics();
                 FilteredList<Clinic> filteredClinics = new FilteredList<>(FXCollections.observableArrayList(clinics), b -> true);
                 tvClinic.setItems(filteredClinics);
-                tcAR.setVisible(false);
+                if (tcAdd.isVisible()) {
+                    tcAR.setVisible(false);
+                }
+
             }
         });
 
@@ -179,7 +182,6 @@ public class AdminDoctorsController implements Initializable {
                     int j = 0;
                     FilteredList<Clinic> filteredClinics = new FilteredList<>(FXCollections.observableArrayList(clinics), b -> true);
                     tvClinic.setItems(filteredClinics);
-                    addButton.setVisible(false);
 
                     tcAR.setCellFactory(tableColumn -> new TableCell<>() {
                         private final Button addCButton = new Button("Add");
@@ -261,9 +263,8 @@ public class AdminDoctorsController implements Initializable {
                         System.out.println("Error" + e.getMessage());
                     }
                     int j = 0;
-                    tvClinic.getItems().addAll(clinics);
-
-                    FilteredList<Clinic> filteredClinics = new FilteredList<>(tvClinic.getItems(), b -> true);
+                    FilteredList<Clinic> filteredClinics = new FilteredList<>(FXCollections.observableArrayList(clinics), b -> true);
+                    tvClinic.setItems(filteredClinics);
 
 
                     tcAR.setCellFactory(tableColumn -> new TableCell<>() {

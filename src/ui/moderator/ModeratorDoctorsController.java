@@ -148,7 +148,9 @@ public class ModeratorDoctorsController implements Initializable {
                 clinics = newSelection.getDoctorClinics();
                 FilteredList<Clinic> filteredClinics = new FilteredList<>(FXCollections.observableArrayList(clinics), b -> true);
                 tvClinic.setItems(filteredClinics);
-                tcAR.setVisible(false);
+                if (tcAdd.isVisible()) {
+                    tcAR.setVisible(false);
+                }
             }
         });
 
@@ -265,9 +267,8 @@ public class ModeratorDoctorsController implements Initializable {
                         System.out.println("Error" + e.getMessage());
                     }
                     int j = 0;
-                    tvClinic.getItems().addAll(clinics);
-
-                    FilteredList<Clinic> filteredClinics = new FilteredList<>(tvClinic.getItems(), b -> true);
+                    FilteredList<Clinic> filteredClinics = new FilteredList<>(FXCollections.observableArrayList(clinics), b -> true);
+                    tvClinic.setItems(filteredClinics);
 
 
                     tcAR.setCellFactory(tableColumn -> new TableCell<>() {
