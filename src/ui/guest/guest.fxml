@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
@@ -95,30 +96,40 @@
             </AnchorPane>
             <VBox layoutX="74.0" layoutY="158.0" prefHeight="310.0" prefWidth="502.0">
                <children>
-                  <AnchorPane styleClass="textDiv" stylesheets="@../css/styles.css">
+                  <TextFlow prefHeight="51.0" prefWidth="331.0" styleClass="textPart" stylesheets="@../css/styles.css">
                      <children>
-                        <TextFlow prefHeight="51.0" prefWidth="331.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Providing you with affordable healthcare since 2022." />
-                           </children>
-                        </TextFlow>
-                        <TextFlow layoutY="51.0" prefHeight="77.0" prefWidth="502.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="With our country-wide web of clinics and employed professionals we strive to make visit scheduling as comfortable as can be. " />
-                           </children>
-                        </TextFlow>
-                        <TextFlow layoutY="128.0" prefHeight="87.0" prefWidth="502.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Remember: “Health is Wealth”, so don’t hesitate. " />
-                           </children>
-                        </TextFlow>
-                        <TextFlow layoutY="215.0" prefHeight="94.0" prefWidth="502.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Join our community now!" />
-                           </children>
-                        </TextFlow>
+                        <Text fill="#eeeeee" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textLine" text="Providing you with affordable healthcare since 2022." textAlignment="JUSTIFY" />
                      </children>
-                  </AnchorPane>
+                  </TextFlow>
+                  <TextFlow prefHeight="77.0" prefWidth="502.0" styleClass="textPart" stylesheets="@../css/styles.css">
+                     <children>
+                        <Text fill="#eeeeee" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textLine" text="With our country-wide web of clinics and employed professionals we strive to make visit scheduling as comfortable as can be. " textAlignment="JUSTIFY" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
+                  </TextFlow>
+                  <TextFlow prefHeight="87.0" prefWidth="502.0" styleClass="textPart" stylesheets="@../css/styles.css">
+                     <children>
+                        <Text fill="#eeeeee" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="textLine" text="Remember: “Health is Wealth”, so don’t hesitate. " textAlignment="JUSTIFY" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
+                  </TextFlow>
+                  <TextFlow maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="50.0" prefWidth="492.0" styleClass="textPart" stylesheets="@../css/styles.css">
+                     <children>
+                        <Text fill="#eeeeee" strokeType="OUTSIDE" strokeWidth="0.0" text="Join our community now!" textAlignment="CENTER">
+                           <styleClass>
+                              <String fx:value="textLine" />
+                              <String fx:value="textJoinUs" />
+                           </styleClass>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="60.0" right="60.0" top="150.0" />
+                     </VBox.margin>
+                  </TextFlow>
                </children>
             </VBox>
          </children>

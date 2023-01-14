@@ -73,3 +73,23 @@
 .combo-box-base:hover {
     -fx-border-color: #4ECCA3;
 }
+
+.textPart {
+    -fx-margin-top: 50px;
+    -fx-text-alignment: justify;
+}
+
+.textPart .textLine {
+    -fx-text-fill: #EEE;
+    -fx-font: bold normal 20px "Leelawadee UI";
+    -fx-padding: 2px 10px;
+    -fx-margin: 20px 5px;
+    -fx-pref-width: 150px;
+}
+
+.textPart .textJoinUs {
+    -fx-text-fill: #4ECCA3;
+    -fx-font: bold normal 30px "Leelawadee UI";
+    -fx-start-margin: 100px;
+}
+
