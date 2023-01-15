@@ -19,11 +19,7 @@ public class PeriodicMail implements Runnable {
     private final int TIME_BEFORE = 1440; // 1 day
 
     {
-        try {
-            dbClient = new DBClient(true);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        dbClient = new DBClient(true);
     }
 
     public PeriodicMail(int period) {
