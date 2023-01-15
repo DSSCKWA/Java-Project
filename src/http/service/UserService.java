@@ -1,10 +1,12 @@
 package src.http.service;
 
+import src.config.Config;
 import src.db.client.DBClient;
 import src.db.entities.UserEntity;
 import src.db.repository.UserRepository;
 import src.http.constants.HttpStatus;
 import src.http.util.HttpException;
+import src.mail.Mail;
 import src.users.Permissions;
 import src.users.User;
 import src.validator.Validator;
@@ -50,18 +52,29 @@ public class UserService {
     }
 
     public User addUser(Map<String, String> userData) {
-        UserEntity user = toUserEntity(userData);
-        int userId = userRepository.insertUser(user);
-        user.setUserId(userId);
-        return userRepository.toUser(user);
+        UserEntity userEntity = toUserEntity(userData);
+        int userId = userRepository.insertUser(userEntity);
+        userEntity.setUserId(userId);
+        User user = userRepository.toUser(userEntity);
+        Config config = Config.getConfig();
+        Mail mail = new Mail(config.getEmail(), config.getSender(), config.getPassword());
+        mail.userCreated(user);
+        return user;
     }
 
     public User updateUser(int userId, Map<String, String> userData) {
         //TODO validate data
+        User userBeforeUpdate = userRepository.toUser(userRepository.getUser(userId));
         UserEntity userEntity = toUserEntity(userData);
         userEntity.setUserId(userId);
         userRepository.updateUser(userEntity);
-        return userRepository.toUser(userEntity);
+        User user = userRepository.toUser(userEntity);
+        if (!userBeforeUpdate.getPermissions().equals(user.getPermissions())) {
+            Config config = Config.getConfig();
+            Mail mail = new Mail(config.getEmail(), config.getSender(), config.getPassword());
+            mail.infoAboutPermissionChange(user);
+        }
+        return user;
     }
 
     public void deleteUser(int userId) {
