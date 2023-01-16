@@ -54,9 +54,9 @@ public class ClinicService {
 
     private ClinicEntity toClinicEntity(Map<String, String> clinicData) {
         try {
-            if (!Validator.isValidString(clinicData.get("name")) ||
+            if (!Validator.isValidStringWithSpace(clinicData.get("name")) ||
                     !Validator.isValidAddress(clinicData.get("address")) ||
-                    !Validator.isValidString(clinicData.get("city"))
+                    !Validator.isValidStringWithDashAndSpace(clinicData.get("city"))
             ) {
                 throw new HttpException(HttpStatus.BAD_REQUEST, "Data did not pass validation");
             }

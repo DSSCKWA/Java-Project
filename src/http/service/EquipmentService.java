@@ -60,7 +60,7 @@ public class EquipmentService {
 
     private EquipmentEntity toEquipmentEntity(Map<String, String> equipmentData) {
         try {
-            if (!Validator.isValidString(equipmentData.get("name"))) {
+            if (!Validator.isValidStringWithDashAndSpace(equipmentData.get("name"))) {
                 throw new HttpException(HttpStatus.BAD_REQUEST, "Data did not pass validation");
             }
             EquipmentEntity equipment = new EquipmentEntity(

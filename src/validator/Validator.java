@@ -11,7 +11,7 @@ public class Validator {
     }
 
     public static boolean isValidPhone(String phone) {
-        Pattern phonePattern = Pattern.compile("^[1-9]\\d{8}");
+        Pattern phonePattern = Pattern.compile("^[1-9]\\d{8}$");
         Matcher phoneCheck = phonePattern.matcher(phone);
 
         return phoneCheck.matches();
@@ -24,8 +24,29 @@ public class Validator {
         return matcher.matches();
     }
 
+    public static boolean isValidStringWithSpace(String str) {
+        Pattern pattern = Pattern.compile("^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\\s]+$");
+        Matcher matcher = pattern.matcher(str);
+
+        return matcher.matches();
+    }
+
+    public static boolean isValidStringWithDash(String str) {
+        Pattern pattern = Pattern.compile("^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ-]+$");
+        Matcher matcher = pattern.matcher(str);
+
+        return matcher.matches();
+    }
+
+    public static boolean isValidStringWithDashAndSpace(String str) {
+        Pattern pattern = Pattern.compile("^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\\s-]+$");
+        Matcher matcher = pattern.matcher(str);
+
+        return matcher.matches();
+    }
+
     public static boolean isValidAddress(String address) {
-        String regex = "^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\\s]+\\s\\d+[a-zA-Z]?+$";
+        String regex = "^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\\s]+(\\s\\d+)?\\s\\d+[a-zA-Z]?(/\\d+)?[a-zA-Z]?$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(address);
 

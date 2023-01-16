@@ -84,9 +84,9 @@ public class UserService {
             if (!Validator.isValidMail(userData.get("email")) ||
                     !Validator.isValidPhone(userData.get("phoneNumber")) ||
                     !Validator.isValidString(userData.get("name")) ||
-                    !Validator.isValidString(userData.get("surname")) ||
+                    !Validator.isValidStringWithDash(userData.get("surname")) ||
                     !Validator.isValidAddress(userData.get("address")) ||
-                    !Validator.isValidString(userData.get("city"))
+                    !Validator.isValidStringWithDashAndSpace(userData.get("city"))
             ) {
                 throw new HttpException(HttpStatus.BAD_REQUEST, "Data did not pass validation");
             }
