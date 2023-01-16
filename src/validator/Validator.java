@@ -46,7 +46,7 @@ public class Validator {
     }
 
     public static boolean isValidAddress(String address) {
-        String regex = "^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\\s]+(\\s\\d+)?\\s\\d+[a-zA-Z]?(/\\d+)?[a-zA-Z]?$";
+        String regex = "^((\\d+)\\s)?[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\\s]+(\\s\\d+)?\\s\\d+[a-zA-Z]?(/\\d+)?[a-zA-Z]?$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(address);
 
