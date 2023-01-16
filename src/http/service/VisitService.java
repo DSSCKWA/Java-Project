@@ -5,6 +5,7 @@ import src.db.entities.VisitEntity;
 import src.db.repository.VisitRepository;
 import src.http.constants.HttpStatus;
 import src.http.util.HttpException;
+import src.validator.Validator;
 import src.visit.Visit;
 import src.visit.VisitStatus;
 
@@ -63,7 +64,6 @@ public class VisitService {
     }
 
     public Visit updateVisit(int visitId, Map<String, String> visitData) {
-        //TODO validate data
         VisitEntity visitEntity = toVisitEntity(visitData);
         visitEntity.setVisitId(visitId);
         visitRepository.updateVisit(visitEntity);

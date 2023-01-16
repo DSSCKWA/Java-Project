@@ -6,8 +6,8 @@ import src.db.entities.ExpertiseEntity;
 import src.db.repository.ExpertiseRepository;
 import src.http.constants.HttpStatus;
 import src.http.util.HttpException;
+import src.validator.Validator;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -64,6 +64,9 @@ public class ExpertiseService {
 
     private ExpertiseEntity toExpertiseEntity(Map<String, String> expertiseData) {
         try {
+            if (!Validator.isValidString(expertiseData.get("areaOfExpertise"))) {
+                throw new HttpException(HttpStatus.BAD_REQUEST, "Data did not pass validation");
+            }
             return new ExpertiseEntity(
                     Integer.parseInt(expertiseData.get("doctorId")),
                     expertiseData.get("areaOfExpertise")

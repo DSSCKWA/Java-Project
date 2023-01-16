@@ -101,10 +101,8 @@ public class SignUpController implements Initializable {
                     popup.showAndWait();
 
 
-                } catch (IOException | InterruptedException e) {
-                    throw new RuntimeException(e);
+                } catch (Exception ignored) {
                 }
-                ;
 
             }
 

@@ -6,8 +6,8 @@ import src.db.entities.ClinicEntity;
 import src.db.repository.ClinicRepository;
 import src.http.constants.HttpStatus;
 import src.http.util.HttpException;
+import src.validator.Validator;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -42,7 +42,6 @@ public class ClinicService {
     }
 
     public Clinic updateClinic(int clinicId, Map<String, String> clinicData) {
-        //TODO validate data
         ClinicEntity clinicEntity = toClinicEntity(clinicData);
         clinicEntity.setClinicId(clinicId);
         clinicRepository.updateClinic(clinicEntity);
@@ -55,6 +54,12 @@ public class ClinicService {
 
     private ClinicEntity toClinicEntity(Map<String, String> clinicData) {
         try {
+            if (!Validator.isValidString(clinicData.get("name")) ||
+                    !Validator.isValidAddress(clinicData.get("address")) ||
+                    !Validator.isValidString(clinicData.get("city"))
+            ) {
+                throw new HttpException(HttpStatus.BAD_REQUEST, "Data did not pass validation");
+            }
             ClinicEntity clinic = new ClinicEntity(
                     clinicData.get("name"),
                     clinicData.get("address"),

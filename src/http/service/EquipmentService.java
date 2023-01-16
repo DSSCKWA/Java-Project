@@ -7,8 +7,8 @@ import src.equipment.Equipment;
 import src.equipment.EquipmentStatus;
 import src.http.constants.HttpStatus;
 import src.http.util.HttpException;
+import src.validator.Validator;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Map;
@@ -48,7 +48,6 @@ public class EquipmentService {
     }
 
     public Equipment updateEquipment(int equipmentId, Map<String, String> equipmentData) {
-        //TODO validate data
         EquipmentEntity equipmentEntity = toEquipmentEntity(equipmentData);
         equipmentEntity.setEquipmentId(equipmentId);
         equipmentRepository.updateEquipment(equipmentEntity);
@@ -61,6 +60,9 @@ public class EquipmentService {
 
     private EquipmentEntity toEquipmentEntity(Map<String, String> equipmentData) {
         try {
+            if (!Validator.isValidString(equipmentData.get("name"))) {
+                throw new HttpException(HttpStatus.BAD_REQUEST, "Data did not pass validation");
+            }
             EquipmentEntity equipment = new EquipmentEntity(
                     equipmentData.get("name"),
                     EquipmentStatus.valueOf(equipmentData.get("equipmentStatus").toUpperCase(Locale.ROOT)),

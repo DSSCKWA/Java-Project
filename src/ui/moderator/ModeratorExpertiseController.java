@@ -39,6 +39,9 @@ public class ModeratorExpertiseController implements Initializable {
     private TableColumn<?, ?> tcEmail;
 
     @FXML
+    private Text txFailure;
+
+    @FXML
     private TableColumn<?, ?> tcExpertise;
 
     @FXML
@@ -93,7 +96,7 @@ public class ModeratorExpertiseController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        txFailure.setVisible(false);
         tfExpertise.setVisible(false);
         textExpertise.setVisible(false);
         btnAdd.setVisible(false);
@@ -259,14 +262,18 @@ public class ModeratorExpertiseController implements Initializable {
 
     @FXML
     void btnAddClicked(ActionEvent event) throws IOException, InterruptedException {
-        exp = new Expertise(doc.getId(), tfExpertise.getText());
-        Session.getClient().addExpertise(doc.getId(), exp.getExpertise());
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorExpertise.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setResizable(false);
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        txFailure.setVisible(true);
+        try {
+            exp = new Expertise(doc.getId(), tfExpertise.getText());
+            Session.getClient().addExpertise(doc.getId(), exp.getExpertise());
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("moderatorExpertise.fxml")));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setResizable(false);
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception ignored) {
+        }
     }
 
     @FXML

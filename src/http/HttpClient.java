@@ -100,6 +100,9 @@ public class HttpClient {
                 .PUT(java.net.http.HttpRequest.BodyPublishers.ofString(json))
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == HttpStatus.BAD_REQUEST.getStatus()) {
+            throw new RuntimeException();
+        }
         return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
@@ -127,6 +130,9 @@ public class HttpClient {
                 .POST(java.net.http.HttpRequest.BodyPublishers.ofString(json))
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == HttpStatus.BAD_REQUEST.getStatus()) {
+            throw new RuntimeException();
+        }
         return response.statusCode() == HttpStatus.CREATED.getStatus();
     }
 
@@ -181,6 +187,9 @@ public class HttpClient {
                 .POST(java.net.http.HttpRequest.BodyPublishers.ofString(json))
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == HttpStatus.BAD_REQUEST.getStatus()) {
+            throw new RuntimeException();
+        }
         return response.statusCode() == HttpStatus.CREATED.getStatus();
     }
 
@@ -258,6 +267,9 @@ public class HttpClient {
                 .POST(java.net.http.HttpRequest.BodyPublishers.ofString(json))
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == HttpStatus.BAD_REQUEST.getStatus()) {
+            throw new RuntimeException();
+        }
         return response.statusCode() == HttpStatus.CREATED.getStatus();
     }
 
@@ -271,6 +283,9 @@ public class HttpClient {
                 .PUT(java.net.http.HttpRequest.BodyPublishers.ofString(json))
                 .build();
         java.net.http.HttpResponse<String> response = this.getHttpClient().send(request, java.net.http.HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == HttpStatus.BAD_REQUEST.getStatus()) {
+            throw new RuntimeException();
+        }
         return response.statusCode() == HttpStatus.OK.getStatus();
     }
 
@@ -523,6 +538,9 @@ public class HttpClient {
                 .POST(HttpRequest.BodyPublishers.ofString("{\"doctorId\":" + doctorId + ",\"areaOfExpertise\":\"" + areaOfExpertise + "\"}"))
                 .build();
         HttpResponse<String> response = this.getHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+        if (response.statusCode() == HttpStatus.BAD_REQUEST.getStatus()) {
+            throw new RuntimeException();
+        }
         return response.statusCode() == HttpStatus.CREATED.getStatus();
     }
 

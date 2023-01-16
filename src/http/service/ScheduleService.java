@@ -6,6 +6,7 @@ import src.db.entities.ScheduleEntity;
 import src.db.repository.ScheduleRepository;
 import src.http.constants.HttpStatus;
 import src.http.util.HttpException;
+import src.validator.Validator;
 
 import java.sql.SQLException;
 import java.time.DayOfWeek;
@@ -52,8 +53,6 @@ public class ScheduleService {
     }
 
     public Schedule updateSchedule(Map<String, String> scheduleData) {
-        //TODO validate data
-        System.out.println(scheduleData);
         ScheduleEntity scheduleEntity = toScheduleEntity(scheduleData);
         scheduleRepository.updateSchedule(scheduleEntity);
         return scheduleRepository.toSchedule(scheduleEntity);

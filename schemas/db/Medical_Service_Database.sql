@@ -175,7 +175,7 @@ INSERT INTO `users` (`user_id`, `name`, `surname`, `address`, `city`, `phone_num
 (3, 'Krzysztof', 'Nowak', 'Warszawska 2', 'Cracov', 123123123, 'karolina.jez@outlook.com', 'tina', 'doctor'),
 (4, 'Anna', 'Kowalska', 'Parkowa 3', 'Warsaw', 321321321, 'anna.kowalska@anna.pk', 'anna123', 'doctor'),
 (5, 'Wojciech', 'Malicki', 'Akademikowa 3', 'Rastenburg', 133742069, 'wojciech.malicki09@gmail.com', 'wojtek123', 'patient'),
-(6, 'Davido', 'Mountaino', 'G2A_headquarters 1', 'Breslau', 694201337, 'dawidgorski0000@gmail.com', 'dawid123', 'patient');
+(6, 'Davido', 'Mountaino', 'Mostowa 1', 'Breslau', 694201337, 'dawidgorski0000@gmail.com', 'dawid123', 'patient');
 
 
 --

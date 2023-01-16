@@ -11,7 +11,6 @@ import src.users.Permissions;
 import src.users.User;
 import src.validator.Validator;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Map;
@@ -63,7 +62,6 @@ public class UserService {
     }
 
     public User updateUser(int userId, Map<String, String> userData) {
-        //TODO validate data
         User userBeforeUpdate = userRepository.toUser(userRepository.getUser(userId));
         UserEntity userEntity = toUserEntity(userData);
         userEntity.setUserId(userId);
@@ -83,7 +81,13 @@ public class UserService {
 
     private UserEntity toUserEntity(Map<String, String> userData) {
         try {
-            if (!Validator.isValidMail(userData.get("email")) || !Validator.isValidPhone(userData.get("phoneNumber"))) {
+            if (!Validator.isValidMail(userData.get("email")) ||
+                    !Validator.isValidPhone(userData.get("phoneNumber")) ||
+                    !Validator.isValidString(userData.get("name")) ||
+                    !Validator.isValidString(userData.get("surname")) ||
+                    !Validator.isValidAddress(userData.get("address")) ||
+                    !Validator.isValidString(userData.get("city"))
+            ) {
                 throw new HttpException(HttpStatus.BAD_REQUEST, "Data did not pass validation");
             }
             UserEntity user = new UserEntity(
