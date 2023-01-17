@@ -210,8 +210,6 @@ public class ModeratorClinicsController implements Initializable {
                     cli.setCity(tfCity.getText());
                     cli.setAddress(tfAddress.getText());
                     Session.getClient().updateClinic(cli);
-                    System.out.println(cli);
-                    System.out.println(cli.present());
                     tFaliure.setVisible(false);
                     Text tSuccess = new Text(600, 114, "Success");
                     anchorPane2.getChildren().add(tSuccess);

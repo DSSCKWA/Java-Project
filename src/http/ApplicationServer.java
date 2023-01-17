@@ -7,6 +7,7 @@ import src.mail.PeriodicMail;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ApplicationServer {
@@ -20,7 +21,13 @@ public class ApplicationServer {
         LOGGER.info("Medical service server started on " + server.getAddress());
 
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-        executor.scheduleAtFixedRate(new PeriodicMail(PERIOD), 0, PERIOD, TimeUnit.MINUTES);
+        executor.scheduleAtFixedRate(() -> {
+            try {
+                new PeriodicMail(PERIOD).call();
+            } catch (Exception e) {
+                LOGGER.log(Level.WARNING, e.getMessage());
+            }
+        }, 0, PERIOD, TimeUnit.MINUTES);
     }
 
     public HttpServer createServer() {

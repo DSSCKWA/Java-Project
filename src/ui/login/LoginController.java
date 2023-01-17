@@ -79,7 +79,6 @@ public class LoginController implements Initializable {
             if (!(user == null) && Objects.equals(user.getPassword(), password)) {
                 Session.newUser(user);
                 Permissions permission = user.getPermissions();
-                System.out.println(user);
                 switch (permission) {
                     case ADMIN -> {
                         root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../admin/admin.fxml")));

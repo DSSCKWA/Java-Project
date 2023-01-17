@@ -26,7 +26,7 @@ public class ClinicService {
         return clinicRepository.toClinicList(clinicRepository.getAllClinics());
     }
 
-    public Clinic getClinic(int clinicId) {
+    public synchronized Clinic getClinic(int clinicId) {
         ClinicEntity clinic = clinicRepository.getClinic(clinicId);
         if (clinic.equals(new ClinicEntity())) {
             return null;
@@ -34,21 +34,21 @@ public class ClinicService {
         return clinicRepository.toClinic(clinic);
     }
 
-    public Clinic addClinic(Map<String, String> clinicData) {
+    public synchronized Clinic addClinic(Map<String, String> clinicData) {
         ClinicEntity clinic = toClinicEntity(clinicData);
         int clinicId = clinicRepository.insertClinic(clinic);
         clinic.setClinicId(clinicId);
         return clinicRepository.toClinic(clinic);
     }
 
-    public Clinic updateClinic(int clinicId, Map<String, String> clinicData) {
+    public synchronized Clinic updateClinic(int clinicId, Map<String, String> clinicData) {
         ClinicEntity clinicEntity = toClinicEntity(clinicData);
         clinicEntity.setClinicId(clinicId);
         clinicRepository.updateClinic(clinicEntity);
         return clinicRepository.toClinic(clinicEntity);
     }
 
-    public void deleteClinic(int clinicId) {
+    public synchronized void deleteClinic(int clinicId) {
         clinicRepository.deleteClinicById(clinicId);
     }
 

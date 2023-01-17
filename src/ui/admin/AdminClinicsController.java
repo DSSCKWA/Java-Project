@@ -225,8 +225,6 @@ public class AdminClinicsController implements Initializable {
                     cli.setCity(tfCity.getText());
                     cli.setAddress(tfAddress.getText());
                     Session.getClient().updateClinic(cli);
-                    System.out.println(cli);
-                    System.out.println(cli.present());
                     tFaliure.setVisible(false);
                     root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("adminClinics.fxml")));
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

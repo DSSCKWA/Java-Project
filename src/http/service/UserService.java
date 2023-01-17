@@ -26,15 +26,15 @@ public class UserService {
 
     private static final UserRepository userRepository = new UserRepository(dbClient);
 
-    public ArrayList<User> getAllUsers() {
+    public synchronized ArrayList<User> getAllUsers() {
         return userRepository.toUserList(userRepository.getAllUsers());
     }
 
-    public ArrayList<User> getUsersByPermission(Permissions permissions) {
+    public synchronized ArrayList<User> getUsersByPermission(Permissions permissions) {
         return userRepository.toUserList(userRepository.getUsersByPermissions(permissions));
     }
 
-    public User getUser(int userId) {
+    public synchronized User getUser(int userId) {
         UserEntity user = userRepository.getUser(userId);
         if (user.equals(new UserEntity())) {
             return null;
@@ -42,7 +42,7 @@ public class UserService {
         return userRepository.toUser(user);
     }
 
-    public User getUser(String email) {
+    public synchronized User getUser(String email) {
         UserEntity user = userRepository.getUser(email);
         if (user.equals(new UserEntity())) {
             return null;
@@ -50,7 +50,7 @@ public class UserService {
         return userRepository.toUser(user);
     }
 
-    public User addUser(Map<String, String> userData) {
+    public synchronized User addUser(Map<String, String> userData) {
         UserEntity userEntity = toUserEntity(userData);
         int userId = userRepository.insertUser(userEntity);
         userEntity.setUserId(userId);
@@ -61,7 +61,7 @@ public class UserService {
         return user;
     }
 
-    public User updateUser(int userId, Map<String, String> userData) {
+    public synchronized User updateUser(int userId, Map<String, String> userData) {
         User userBeforeUpdate = userRepository.toUser(userRepository.getUser(userId));
         UserEntity userEntity = toUserEntity(userData);
         userEntity.setUserId(userId);
@@ -75,7 +75,7 @@ public class UserService {
         return user;
     }
 
-    public void deleteUser(int userId) {
+    public synchronized void deleteUser(int userId) {
         userRepository.deleteUserById(userId);
     }
 

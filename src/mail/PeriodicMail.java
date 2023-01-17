@@ -5,13 +5,12 @@ import src.db.client.DBClient;
 import src.db.repository.VisitRepository;
 import src.visit.Visit;
 
-import java.sql.SQLException;
-import java.sql.Time;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.concurrent.Callable;
 
-public class PeriodicMail implements Runnable {
+public class PeriodicMail implements Callable<Void> {
     private final Config config = Config.getConfig();
     private final Mail mail = new Mail(config.getEmail(), config.getSender(), config.getPassword());
     private final DBClient dbClient;
@@ -27,7 +26,7 @@ public class PeriodicMail implements Runnable {
     }
 
     @Override
-    public void run() {
+    public Void call() {
         VisitRepository visitRepository = new VisitRepository(dbClient);
         ArrayList<Visit> visits = visitRepository.toVisitList(visitRepository.getAllUncompletedVisits());
         LocalDateTime now = LocalDateTime.now();
@@ -41,5 +40,6 @@ public class PeriodicMail implements Runnable {
                 mail.visitReminder(visit);
             }
         }
+        return null;
     }
 }
