@@ -37,6 +37,9 @@ public class DoctorEquipmentController implements Initializable {
     private Button btnCancel;
 
     @FXML
+    private Text txFailure;
+
+    @FXML
     private Button btnConfirm;
 
     @FXML
@@ -107,7 +110,7 @@ public class DoctorEquipmentController implements Initializable {
 
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
-
+        txFailure.setVisible(false);
         cboxStatus.getItems().addAll(
                 "in use", "in repair", "decommissioned", "broken"
         );
@@ -445,18 +448,22 @@ public class DoctorEquipmentController implements Initializable {
 
     @FXML
     void btnConfirmClicked(ActionEvent event) throws IOException, InterruptedException {
-        if (Objects.equals(btnConfirm.getText(), "Edit")) {
-            eq.setName(tfEName.getText());
-            eq.setEquipmentStatus(EquipmentStatus.valueOf(getEnumValue(cboxStatus.getValue())));
-            Session.getClient().updateEquipment(eq);
-        } else {
-            Session.getClient().addEquipment(new Equipment(tfEName.getText(), EquipmentStatus.IN_USE, clin.getClinicId()));
+        try {
+            txFailure.setVisible(true);
+            if (Objects.equals(btnConfirm.getText(), "Edit")) {
+                eq.setName(tfEName.getText());
+                eq.setEquipmentStatus(EquipmentStatus.valueOf(getEnumValue(cboxStatus.getValue())));
+                Session.getClient().updateEquipment(eq);
+            } else {
+                Session.getClient().addEquipment(new Equipment(tfEName.getText(), EquipmentStatus.IN_USE, clin.getClinicId()));
+            }
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorEquipment.fxml")));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception ignored) {
         }
-        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("doctorEquipment.fxml")));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
 
     }
 

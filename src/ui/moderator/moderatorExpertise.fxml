@@ -143,6 +143,11 @@
                               <Font name="Leelawadee UI" size="18.0" />
                            </font>
                         </Text>
+                        <Text fx:id="txFailure" fill="RED" layoutX="458.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Failure">
+                           <font>
+                              <Font name="Leelawadee UI Bold" size="14.0" />
+                           </font>
+                        </Text>
                      </children>
                      <padding>
                         <Insets bottom="10.0" />

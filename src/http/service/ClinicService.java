@@ -6,8 +6,8 @@ import src.db.entities.ClinicEntity;
 import src.db.repository.ClinicRepository;
 import src.http.constants.HttpStatus;
 import src.http.util.HttpException;
+import src.validator.Validator;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -26,7 +26,7 @@ public class ClinicService {
         return clinicRepository.toClinicList(clinicRepository.getAllClinics());
     }
 
-    public Clinic getClinic(int clinicId) {
+    public synchronized Clinic getClinic(int clinicId) {
         ClinicEntity clinic = clinicRepository.getClinic(clinicId);
         if (clinic.equals(new ClinicEntity())) {
             return null;
@@ -34,27 +34,32 @@ public class ClinicService {
         return clinicRepository.toClinic(clinic);
     }
 
-    public Clinic addClinic(Map<String, String> clinicData) {
+    public synchronized Clinic addClinic(Map<String, String> clinicData) {
         ClinicEntity clinic = toClinicEntity(clinicData);
         int clinicId = clinicRepository.insertClinic(clinic);
         clinic.setClinicId(clinicId);
         return clinicRepository.toClinic(clinic);
     }
 
-    public Clinic updateClinic(int clinicId, Map<String, String> clinicData) {
-        //TODO validate data
+    public synchronized Clinic updateClinic(int clinicId, Map<String, String> clinicData) {
         ClinicEntity clinicEntity = toClinicEntity(clinicData);
         clinicEntity.setClinicId(clinicId);
         clinicRepository.updateClinic(clinicEntity);
         return clinicRepository.toClinic(clinicEntity);
     }
 
-    public void deleteClinic(int clinicId) {
+    public synchronized void deleteClinic(int clinicId) {
         clinicRepository.deleteClinicById(clinicId);
     }
 
     private ClinicEntity toClinicEntity(Map<String, String> clinicData) {
         try {
+            if (!Validator.isValidStringWithSpace(clinicData.get("name")) ||
+                    !Validator.isValidAddress(clinicData.get("address")) ||
+                    !Validator.isValidStringWithDashAndSpace(clinicData.get("city"))
+            ) {
+                throw new HttpException(HttpStatus.BAD_REQUEST, "Data did not pass validation");
+            }
             ClinicEntity clinic = new ClinicEntity(
                     clinicData.get("name"),
                     clinicData.get("address"),

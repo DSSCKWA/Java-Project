@@ -6,6 +6,7 @@ import src.db.entities.ScheduleEntity;
 import src.db.repository.ScheduleRepository;
 import src.http.constants.HttpStatus;
 import src.http.util.HttpException;
+import src.validator.Validator;
 
 import java.sql.SQLException;
 import java.time.DayOfWeek;
@@ -25,19 +26,19 @@ public class ScheduleService {
 
     private static final ScheduleRepository scheduleRepository = new ScheduleRepository(dbClient);
 
-    public ArrayList<Schedule> getAllSchedules() {
+    public synchronized ArrayList<Schedule> getAllSchedules() {
         return scheduleRepository.toScheduleList(scheduleRepository.getAllSchedules());
     }
 
-    public ArrayList<Schedule> getSchedules(int doctorId) {
+    public synchronized ArrayList<Schedule> getSchedules(int doctorId) {
         return scheduleRepository.toScheduleList(scheduleRepository.getSchedules(doctorId));
     }
 
-    public ArrayList<Schedule> getSchedules(int doctorId, int clinicId) {
+    public synchronized ArrayList<Schedule> getSchedules(int doctorId, int clinicId) {
         return scheduleRepository.toScheduleList(scheduleRepository.getSchedules(doctorId, clinicId));
     }
 
-    public Schedule getSchedule(int doctorId, int clinicId, DayOfWeek day) {
+    public synchronized Schedule getSchedule(int doctorId, int clinicId, DayOfWeek day) {
         ScheduleEntity schedule = scheduleRepository.getSchedule(doctorId, clinicId, day);
         if (schedule.equals(new ScheduleEntity())) {
             return null;
@@ -45,25 +46,23 @@ public class ScheduleService {
         return scheduleRepository.toSchedule(schedule);
     }
 
-    public Schedule addSchedule(Map<String, String> scheduleData) {
+    public synchronized Schedule addSchedule(Map<String, String> scheduleData) {
         ScheduleEntity schedule = toScheduleEntity(scheduleData);
         scheduleRepository.insertSchedule(schedule);
         return scheduleRepository.toSchedule(schedule);
     }
 
-    public Schedule updateSchedule(Map<String, String> scheduleData) {
-        //TODO validate data
-        System.out.println(scheduleData);
+    public synchronized Schedule updateSchedule(Map<String, String> scheduleData) {
         ScheduleEntity scheduleEntity = toScheduleEntity(scheduleData);
         scheduleRepository.updateSchedule(scheduleEntity);
         return scheduleRepository.toSchedule(scheduleEntity);
     }
 
-    public void deleteSchedule(int doctorId) {
+    public synchronized void deleteSchedule(int doctorId) {
         scheduleRepository.deleteSchedule(doctorId);
     }
 
-    public void deleteSchedule(int doctorId, int clinicId, DayOfWeek day) {
+    public synchronized void deleteSchedule(int doctorId, int clinicId, DayOfWeek day) {
         scheduleRepository.deleteSchedule(doctorId, clinicId, day);
     }
 

@@ -160,6 +160,11 @@
                               <Font name="Leelawadee UI" size="12.0" />
                            </font></Button>
                         <ComboBox fx:id="cboxStatus" layoutX="424.0" layoutY="75.0" prefHeight="25.0" prefWidth="159.0" styleClass="mainCBBox" stylesheets="@../css/styles.css" />
+                        <Text fx:id="txFailure" fill="RED" layoutX="477.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Failure">
+                           <font>
+                              <Font name="Leelawadee UI Bold" size="14.0" />
+                           </font>
+                        </Text>
                      </children>
                      <VBox.margin>
                         <Insets />

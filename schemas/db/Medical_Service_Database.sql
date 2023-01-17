@@ -136,7 +136,8 @@ CREATE TABLE IF NOT EXISTS `schedule` (
   PRIMARY KEY (`doctor_id`,`clinic_id`,`day`),
   KEY `clinic_id` (`clinic_id`) USING BTREE,
   KEY `doctor_id` (`doctor_id`) USING BTREE,
-  KEY `day` (`day`) USING BTREE
+  KEY `day` (`day`) USING BTREE,
+  KEY `doctor_clinic` (`doctor_id`,`clinic_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `schedule` (`doctor_id`, `clinic_id`, `day`, `start_hour`, `end_hour`) VALUES
@@ -162,7 +163,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(30) NOT NULL,
   `permissions` enum('admin','moderator','patient','doctor','guest') NOT NULL,
   PRIMARY KEY (`user_id`),
-  UNIQUE KEY `email` (`email`) USING BTREE
+  UNIQUE KEY `email` (`email`) USING BTREE,
+  KEY `permissions` (`permissions`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 --
@@ -175,7 +177,7 @@ INSERT INTO `users` (`user_id`, `name`, `surname`, `address`, `city`, `phone_num
 (3, 'Krzysztof', 'Nowak', 'Warszawska 2', 'Cracov', 123123123, 'karolina.jez@outlook.com', 'tina', 'doctor'),
 (4, 'Anna', 'Kowalska', 'Parkowa 3', 'Warsaw', 321321321, 'anna.kowalska@anna.pk', 'anna123', 'doctor'),
 (5, 'Wojciech', 'Malicki', 'Akademikowa 3', 'Rastenburg', 133742069, 'wojciech.malicki09@gmail.com', 'wojtek123', 'patient'),
-(6, 'Davido', 'Mountaino', 'G2A_headquarters 1', 'Breslau', 694201337, 'dawidgorski0000@gmail.com', 'dawid123', 'patient');
+(6, 'Davido', 'Mountaino', 'Mostowa 1', 'Breslau', 694201337, 'dawidgorski0000@gmail.com', 'dawid123', 'patient');
 
 
 --

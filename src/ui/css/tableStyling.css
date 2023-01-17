@@ -8,7 +8,7 @@
 .button {
     -fx-background-color:  #4ECCA3;
     -fx-text-fill: #EEE;
-    -fx-padding:0px 10px;
+    -fx-padding:0px 0px;
     -fx-font-weight: bold;
     -fx-cursor: hand;
     -fx-box-sizing: border-box;
